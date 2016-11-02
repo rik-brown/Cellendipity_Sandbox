@@ -4,19 +4,43 @@ class Colony {
 // this is not ideal, but better than before (when it didn't work)
 
   // VARIABLES
-  ArrayList<Cell> cells;    // An arraylist for all the cells //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-  int colonyMaxSize = 200;
+  ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
+  ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
+  int colonyMaxSize = 500;
+  PVector v; 
 
-  // CONSTRUCTOR: Create a 'Colony' object, initially populated with 'num' cells
+  // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Colony() {
+    genepool = new ArrayList<DNA>();
     cells = new ArrayList<Cell>();
-
-    for (int i = 0; i < gs.numStrains; i++) {
-      DNA dna = new DNA(); // All cells in a strain have identical DNA
+    
+    // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
+    for (int g = 0; g < gs.numStrains; g++) {
+    genepool.add(new DNA()); // Add new Cell with DNA
+    }
+    
+    v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+    
+    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    for (int r = 0; r < gs.rows; r++) {
+      
+      //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
       //if (i == 0) {dna.genes[1] = 255; dna.genes[2] = 0;} else {dna.genes[1] = 0; dna.genes[2] = 255;}
-      for (int j = 0; j < gs.strainSize; j++) {
-        PVector v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-        cells.add(new Cell(v, dna)); // Add new Cell with DNA
+      
+      for (int c = 0; c < gs.cols; c++) {
+        DNA dna = genepool.get(int(random(gs.numStrains))); // Get the dna for each strain
+        dna.genes[18] = ((r+1) * (width/(gs.rows+1)));
+        dna.genes[19] = ((c+1) * (height/(gs.cols+1)));
+        dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
+        dna.genes[2] = map(dna.genes[19], 0, height, 192, 255);
+        //dna.genes[10] = map(r*c, 0, gs.cols*gs.rows, width*0.3, width*1.0);
+        dna.genes[12] = map(dna.genes[18], 0, width, 0, 60);
+        //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30);
+        //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+        for (int s = 0; s < gs.strainSize; s ++) {
+          //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+          cells.add(new Cell(v, dna)); // Add new Cell with DNA
+        }
       }
     }
   }

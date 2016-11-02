@@ -164,6 +164,7 @@ class Cell {
     range = toHome.mag(); // range is how far the cell is from home at any time
     remoteness = map(range, 0, lifespan, 0, 1); // remoteness is a value between 0-1.
     maturity = map(range, 0, lifespan, 1, 0); // remoteness is a value between 0-1.
+    //maturity = map(age, 0, lifespan, 1, 0); // remoteness is a value between 0-1.
     
   }
 

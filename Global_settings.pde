@@ -13,6 +13,8 @@ class Global_settings {
 
   int strainSize;
   int numStrains;
+  int rows;
+  int cols;
   int stepSize;
   int stepSizeN;
 
@@ -38,24 +40,30 @@ class Global_settings {
     debug = false;
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
-    fillDisable = true;
+    fillDisable = false;
     strokeDisable = false;
     greyscaleON = false;
-    nucleus = true;
+    nucleus = false;
     wraparound = false;
     
-    gene_18 = (width/2);
-    gene_19 = (height/2);
+    //gene_18 = random(width);
+    //gene_19 = random(height);
+    gene_18 = width/2;
+    gene_19 = height/2;
 
    
-    numStrains = 1; // Number of strains (a group of cells sharing the same DNA)
+    //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
+    numStrains = 1;
     strainSize = 1; // Number of cells in a strain
+    //rows = int(random(1, 9));
+    rows = 10;
+    cols = rows;
 
     stepped = false;
     stepSize = 55;
     stepSizeN = 50;
 
-    bkgColor = color(random(360), 0, 255); // Background colour = white
+    bkgColor = color(random(360), 10, 255); // Background colour = white
     bkgColGrey = int(random(128, 360));
        
     nucleusColorU = color(0, 255, 255); // Red
