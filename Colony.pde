@@ -35,10 +35,10 @@ class Colony {
       
       for (int c = 0; c < gs.cols; c++) {
         DNA dna = genepool.get(int(random(gs.numStrains))); // Get the dna for each strain
-        //dna.genes[18] = ((r+1) * (width/(gs.rows+1)));
-        //dna.genes[19] = ((c+1) * (height/(gs.cols+1)));
-        dna.genes[18] = p.x + width/2;
-        dna.genes[19] = p.y + height/2;
+        dna.genes[18] = ((r+1) * (width/(gs.rows+1)));  // CARTESIAN ARRAY X
+        dna.genes[19] = ((c+1) * (height/(gs.cols+1))); // CARTESIAN ARRAY Y
+        //dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
+        //dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
         dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
         dna.genes[2] = map(dna.genes[19], 0, height, 192, 255);
         //dna.genes[10] = map(r*c, 0, gs.cols*gs.rows, width*0.3, width*1.0);
