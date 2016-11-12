@@ -42,8 +42,8 @@ class Global_settings {
     screendumpON = true;
     fillDisable = false;
     strokeDisable = false;
-    greyscaleON = false;
-    nucleus = false;
+    greyscaleON = true;
+    nucleus = true;
     wraparound = false;
     
     //gene_18 = random(width);
@@ -53,11 +53,11 @@ class Global_settings {
 
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
+    numStrains = 2;
     strainSize = 1; // Number of cells in a strain
     //rows = int(random(1, 9));
-    rows = 10;
-    cols = rows;
+    rows = 18;
+    cols = 3;
 
     stepped = false;
     stepSize = 55;
@@ -76,7 +76,7 @@ class Global_settings {
 
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
-    stroke_BTwist = 0; // (0-255)
+    stroke_BTwist = 255; // (0-255)
     stroke_ATwist = 0; // (0-255)
     
     logSettings();
