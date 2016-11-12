@@ -120,7 +120,7 @@ class Cell {
   fillAlpha = dna.genes[3];
 
   stroke_H = dna.genes[4];
-  if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[1];}
+  if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
   stroke_B = dna.genes[6];
   strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set
   strokeAlpha = dna.genes[7];
