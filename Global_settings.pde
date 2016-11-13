@@ -60,8 +60,8 @@ class Global_settings {
     cols = rows;
     //cols = 3;
 
-    stepped = false;
-    stepSize = 55;
+    stepped = true;
+    stepSize = 50;
     stepSizeN = 50;
 
     bkgColor = color(random(360), 10, 255); // Background colour = white
@@ -72,7 +72,7 @@ class Global_settings {
 
     fillDisable = false;
     fill_HTwist = 0; // (0-360)
-    fill_STwist = 0; // (0-255)
+    fill_STwist = 255; // (0-255)
     fill_BTwist = 0; // (0-255)
     fill_ATwist = 0; // (0-255)
 

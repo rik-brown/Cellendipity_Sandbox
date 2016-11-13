@@ -16,7 +16,7 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 10;
+int maxCycles = 20;
 int maxFrames = 2000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
@@ -32,9 +32,9 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //local
   //pathName = "D:/output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //USB
