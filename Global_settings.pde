@@ -40,8 +40,7 @@ class Global_settings {
     debug = false;
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
-    fillDisable = false;
-    strokeDisable = false;
+    
     greyscaleON = false;
     nucleus = false;
     wraparound = false;
@@ -71,14 +70,16 @@ class Global_settings {
     nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
 
+    fillDisable = false;
     fill_HTwist = 0; // (0-360)
-    fill_STwist = 100; // (0-255)
+    fill_STwist = 0; // (0-255)
     fill_BTwist = 0; // (0-255)
     fill_ATwist = 0; // (0-255)
 
+    strokeDisable = false;
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
-    stroke_BTwist = 10; // (0-255)
+    stroke_BTwist = 0; // (0-255)
     stroke_ATwist = 0; // (0-255)
     
     logSettings();

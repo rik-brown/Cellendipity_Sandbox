@@ -50,12 +50,12 @@ class DNA {
       
             genes[4] = random(360);    // 4 = stroke Hue (0-360)
             genes[5] = 0;    // 5 = stroke Saturation (0-255)
-            genes[6] = 255;    // 6 = stroke Brightness (0-255)
+            genes[6] = 64;    // 6 = stroke Brightness (0-255)
             genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
             //genes[7] = 24;
       
             //genes[8] = width/(gs.rows*random(0.5, 3));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width/20;
+            genes[8] = width/15;
             genes[9] = random(5, 20);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[10] = width * random(0.3, 0.6);  // 10 = lifespan (200-1000)
             genes[11] = random (100, 120); // 11 = flatness (50-200 %)
