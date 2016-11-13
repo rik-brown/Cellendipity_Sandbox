@@ -76,7 +76,7 @@ class Global_settings {
     fill_BTwist = 0; // (0-255)
     fill_ATwist = 0; // (0-255)
 
-    strokeDisable = false;
+    strokeDisable = true;
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
     stroke_BTwist = 0; // (0-255)
