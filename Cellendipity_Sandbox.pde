@@ -16,11 +16,11 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 20;
+int maxCycles = 10;
 int maxFrames = 2000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-031";
+String batchName = "batch-033";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

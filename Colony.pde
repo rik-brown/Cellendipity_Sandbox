@@ -6,7 +6,7 @@ class Colony {
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
-  int colonyMaxSize = 50;
+  int colonyMaxSize = 100;
   PVector v;
   PVector p;
   float a;

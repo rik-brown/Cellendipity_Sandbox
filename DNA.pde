@@ -44,7 +44,7 @@ class DNA {
 
       // RANDOMIZED VALUES
             genes[0] = random(360);    // 0 = fill Hue (0-360)
-            genes[1] = 255;  // 1 = fill Saturation (0-255)
+            genes[1] = 128;  // 1 = fill Saturation (0-255)
             genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
@@ -55,19 +55,19 @@ class DNA {
             genes[7] = 255;
       
             //genes[8] = width/(gs.rows*random(0.5, 3));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width/15;
+            genes[8] = width/10;
             genes[9] = random(5, 20);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[10] = width * random(0.2, 0.4);  // 10 = lifespan (200-1000)
-            genes[11] = random (100, 120); // 11 = flatness (50-200 %)
-            genes[12] = random(0, 90);  // 12 = spiral screw (-75 - +75 %)
+            genes[10] = width * random(0.25, 0.5);  // 10 = lifespan (200-1000)
+            genes[11] = random (100, 110); // 11 = flatness (50-200 %)
+            genes[12] = random(0, 120);  // 12 = spiral screw (-75 - +75 %)
             //genes[12] = 0;
             genes[13] = random(65,85);  // 13 = fertility (70-90%)
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
-            genes[14] = 1;
+            genes[14] = 2;
             
             genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
             genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-            genes[17] = random(3,60);  // 17 = noisePercent (0-100%)
+            genes[17] = random(3,30);  // 17 = noisePercent (0-100%)
             //genes[17] = 80;
             
             genes[18] = random(width);
