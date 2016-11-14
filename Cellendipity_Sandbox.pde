@@ -20,7 +20,7 @@ int maxCycles = 10;
 int maxFrames = 2000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-033";
+String batchName = "batch-039";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -35,6 +35,7 @@ void setup() {
   //size(1000, 1000);
   //size(2000, 2000);
   size(4000, 4000);
+  //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //local
   //pathName = "D:/output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //USB

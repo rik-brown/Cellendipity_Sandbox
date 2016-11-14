@@ -19,6 +19,7 @@ class Global_settings {
   int stepSizeN;
 
   int bkgColGrey;
+  float bkgHue;
   color bkgColor;
   color nucleusColorU;
   color nucleusColorF;
@@ -51,21 +52,22 @@ class Global_settings {
     gene_19 = height/2;
 
    
-    //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
+    //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
     strainSize = 1; // Number of cells in a strain
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
-    rows = 3;
+    rows = 30;
     cols = rows;
     //cols = 3;
 
-    stepped = true;
-    stepSize = 30;
+    stepped = false;
+    stepSize = 60;
     stepSizeN = 50;
 
-    bkgColor = color(random(360), 10, 255); // Background colour = white
-    bkgColor = 0; // Black
+    bkgHue = random(360);
+    bkgColor = color(bkgHue, 48, 255); // Background colour = white
+    //bkgColor = 0; // Black
     //bkgColGrey = int(random(128, 360));
     bkgColGrey = 0; // Black
        
@@ -73,9 +75,9 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0); // Black
 
     fillDisable = false;
-    fill_HTwist = 0; // (0-360)
+    fill_HTwist = 96; // (0-360)
     fill_STwist = 0; // (0-255)
-    fill_BTwist = 200; // (0-255)
+    fill_BTwist = 80; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
     strokeDisable = true;
