@@ -66,8 +66,8 @@ class Global_settings {
     stepSizeN = 50;
 
     bkgHue = random(360);
-    bkgColor = color(bkgHue, 48, 255); // Background colour = white
-    //bkgColor = 0; // Black
+    //bkgColor = color(bkgHue, 48, 255); // Background colour = white
+    bkgColor = 0; // Black
     //bkgColGrey = int(random(128, 360));
     bkgColGrey = 0; // Black
        
@@ -77,7 +77,7 @@ class Global_settings {
     fillDisable = false;
     fill_HTwist = 96; // (0-360)
     fill_STwist = 0; // (0-255)
-    fill_BTwist = 80; // (0-255) last: 100
+    fill_BTwist = 255; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
     strokeDisable = true;

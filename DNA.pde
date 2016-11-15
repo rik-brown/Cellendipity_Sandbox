@@ -46,7 +46,7 @@ class DNA {
             genes[0] = random(360);    // 0 = fill Hue (0-360)
             //genes[0] = gs.bkgHue + 180;    // 0 = fill Hue (0-360)
             //if (genes[0] > 360) {genes[0] -= 360;}
-            genes[1] = 60;  // 1 = fill Saturation (0-255)
+            genes[1] = 0;  // 1 = fill Saturation (0-255)
             genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
