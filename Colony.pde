@@ -23,10 +23,10 @@ class Colony {
     
     float col0 =gs.bkgHue + 180; 
     if (col0 > 360) {col0 -= 360;}
-    genepool.get(0).genes[0] = col0;
-    float col1 =gs.bkgHue + 200; 
-    if (col1 > 360) {col1 -= 360;}
-    genepool.get(1).genes[0] = col1;
+    //genepool.get(0).genes[0] = col0;
+    //float col1 =gs.bkgHue + 200; 
+    //if (col1 > 360) {col1 -= 360;}
+    //genepool.get(1).genes[0] = col1;
     
     //genepool.get(1).genes[1] = 10;
     //genepool.get(1).genes[2] = 255;
@@ -41,7 +41,8 @@ class Colony {
       
       //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
       //if (i == 0) {dna.genes[1] = 255; dna.genes[2] = 0;} else {dna.genes[1] = 0; dna.genes[2] = 255;}
-      a = map(r, 0, gs.rows, 0, TWO_PI);
+      //a = map(r, 0, gs.rows, 0, TWO_PI);
+      a = map(r, 0, gs.rows, 0, PI);
       p = PVector.fromAngle(a);
       v = PVector.fromAngle(a).mult(-1);
       p.mult(width/4);

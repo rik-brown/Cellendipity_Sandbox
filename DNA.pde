@@ -43,11 +43,12 @@ class DNA {
 
 
       // RANDOMIZED VALUES
-            genes[0] = random(360);    // 0 = fill Hue (0-360)
-            //genes[0] = gs.bkgHue + 180;    // 0 = fill Hue (0-360)
-            //if (genes[0] > 360) {genes[0] -= 360;}
-            genes[1] = 0;  // 1 = fill Saturation (0-255)
-            genes[2] = 255;    // 2 = fill Brightness (0-255)
+            //genes[0] = random(360);    // 0 = fill Hue (0-360)
+            //genes[0] = gs.bkgHue + random(170, 210);    // 0 = fill Hue (0-360)
+            genes[0] = gs.bkgHue + random(5, 15);    // 0 = fill Hue (0-360)
+            if (genes[0] > 360) {genes[0] -= 360;}
+            genes[1] = 200;  // 1 = fill Saturation (0-255)
+            genes[2] = 200;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             genes[4] = random(360);    // 4 = stroke Hue (0-360)
@@ -56,10 +57,10 @@ class DNA {
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
             genes[7] = 255;
       
-            genes[8] = width/((gs.rows)*random(1.5, 3));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
+            genes[8] = width/((gs.rows+1)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             //genes[8] = width/random(50,80);
             genes[9] = random(20, 60);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[10] = width * random(0.01, 0.1);  // 10 = lifespan (200-1000)
+            genes[10] = width * random(0.01, 0.05);  // 10 = lifespan (200-1000)
             genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
             //genes[12] = 0;
