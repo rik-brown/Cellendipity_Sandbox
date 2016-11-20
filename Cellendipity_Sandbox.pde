@@ -17,7 +17,7 @@ Global_settings gs;                                // A Parameters object called
 
 int runCycle = 1;
 int maxCycles = 1;
-int maxFrames = 2000;
+int maxFrames = int(random(1300,1600));
 int frameCounter = maxFrames;
 String versionName = "sandbox";
 String batchName = "batch-056";
@@ -41,7 +41,8 @@ void setup() {
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //local
   //pathName = "D:/output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //USB
-  screendumpPath = pathName + versionName + "." + outputName + ".png";
+  //screendumpPath = pathName + versionName + "." + outputName + ".png";
+  screendumpPath = "../output.png";
   framedumpPath = pathName + "/frames/";
   output = createWriter(pathName + versionName + "." + outputName +"_settings.txt");
   ellipseMode(RADIUS);

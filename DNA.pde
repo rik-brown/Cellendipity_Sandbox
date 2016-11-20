@@ -44,34 +44,38 @@ class DNA {
 
       // RANDOMIZED VALUES
             //genes[0] = random(360);    // 0 = fill Hue (0-360)
+            genes[0] = 0;    // 0 = fill Hue (0=RED)
             //genes[0] = gs.bkgHue + random(170, 210);    // 0 = fill Hue (0-360)
-            genes[0] = gs.bkgHue + random(5, 15);    // 0 = fill Hue (0-360)
-            if (genes[0] > 360) {genes[0] -= 360;}
-            genes[1] = 200;  // 1 = fill Saturation (0-255)
-            genes[2] = 200;    // 2 = fill Brightness (0-255)
+            //genes[0] = gs.bkgHue + random(5, 15);    // 0 = fill Hue (0-360)
+            //if (genes[0] > 360) {genes[0] -= 360;}
+            genes[1] = random(130,180);  // 1 = fill Saturation (0-255)
+			genes[1] = 0;
+            genes[2] = random(220,255);    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             genes[4] = random(360);    // 4 = stroke Hue (0-360)
-            genes[5] = 0;    // 5 = stroke Saturation (0-255)
-            genes[6] = 0;    // 6 = stroke Brightness (0-255)
+            genes[5] = 100;    // 5 = stroke Saturation (0-255)
+            genes[6] = 0;    // 6 = stroke Brightness (0-255) 0 = BLACK
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 255;
+            genes[7] = 11;
       
-            genes[8] = width/((gs.rows+1)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            //genes[8] = width/random(50,80);
-            genes[9] = random(20, 60);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[10] = width * random(0.01, 0.05);  // 10 = lifespan (200-1000)
+            genes[8] = width/((gs.rows)*random(1.5, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
+            //genes[8] = 50;
+            genes[9] = random(5, 20);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
+            genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
             //genes[12] = 0;
-            genes[13] = random(65,85);  // 13 = fertility (70-90%)
+            
+            //genes[13] = random(65,85);  // 13 = fertility (70-90%)
+			      genes[13] = 65;
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
             genes[14] = 1;
             
             genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
             genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-            genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
-            //genes[17] = 80;
+            //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
+            genes[17] = 50;
             
             genes[18] = random(width);
             genes[19] = random(height);

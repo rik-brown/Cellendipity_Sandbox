@@ -114,7 +114,8 @@ class Cell {
   // COLOUR
 
   fill_H = dna.genes[0];
-  if (gs.greyscaleON) {fill_S = 0;} else {fill_S = dna.genes[1];}
+  //if (gs.greyscaleON) {fill_S = 0;} else {fill_S = dna.genes[1];}
+  fill_S = dna.genes[1];
   fill_B = dna.genes[2];
   fillColor = color(fill_H, fill_S, fill_B); // Initial color is set
   fillAlpha = dna.genes[3];
@@ -249,7 +250,7 @@ class Cell {
     if (r < cellEndSize) {return true;} // Death by too little radius
     if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnCount <= 0) {return true;} // Death by too much babies
-    if (position.x > width + r * flatness || position.x < -r * flatness || position.y > height + r * flatness || position.y < -r * flatness) {return true;} // Death if move beyond canvas boundary
+    //if (position.x > width + r * flatness || position.x < -r * flatness || position.y > height + r * flatness || position.y < -r * flatness) {return true;} // Death if move beyond canvas boundary
     else { return false; }
     //return false; // Use to disable death
   }
@@ -293,7 +294,7 @@ class Cell {
   void checkCollision(Cell other) {       // Method receives a Cell object 'other' to get the required info about the collidee
       PVector distVect = PVector.sub(other.position, position); // Static vector to get distance between the cell & other
       float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
-      if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
+      //if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
   }
 
   void conception(Cell other, PVector distVect) {

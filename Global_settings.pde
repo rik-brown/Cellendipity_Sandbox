@@ -42,7 +42,7 @@ class Global_settings {
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
     
-    greyscaleON = false;
+    
     nucleus = false;
     wraparound = false;
     
@@ -52,32 +52,37 @@ class Global_settings {
     gene_19 = height/2;
 
    
-    //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
+    //numStrains = int(random(1, 3)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 1;
-    strainSize = 1; // Number of cells in a strain
+    //strainSize = int(random(1,4)); // Number of cells in a strain
+    strainSize = 1;
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
-    rows = 12;
+    //rows = int(random(9,21));
+	rows = 25;
     cols = rows;
     //cols = 3;
 
-    stepped = false;
-    stepSize = 60;
+    stepped = true;
+    stepSize = 30;
     stepSizeN = 50;
 
+    greyscaleON = false;
     bkgHue = random(360);
-    bkgColor = color(bkgHue, 200, 200);
-    //bkgColor = 128; // Black
+    //bkgColor = color(bkgHue, random(128,164), random(180,220));
+    bkgColor = 0; // Black
     //bkgColGrey = int(random(128, 360));
-    bkgColGrey = 0; // Black
+    //bkgColGrey = 0; // Black
+    bkgColGrey = 300; // White
        
-    nucleusColorU = color(0, 255, 255); // Red
+    nucleusColorU = color(0, 0, 255); // White
+    //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
 
     fillDisable = false;
-    fill_HTwist = 0; // (0-360)
-    fill_STwist = 64; // (0-255)
-    fill_BTwist = 128; // (0-255) last: 100
+    fill_HTwist = int(random(12,48)); // (0-360)
+    fill_STwist = 0; // (0-255)
+    fill_BTwist = 255; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
     strokeDisable = true;
