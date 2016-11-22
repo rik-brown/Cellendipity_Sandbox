@@ -1,6 +1,6 @@
 /*
 * Cellendipity_Sandbox
-* p014 Saturday 22nd October 2016
+* Sunday 20th November 2016
 * Template: p014a (26.10.2016 21:41)
 *
 * Main Goal: Work towards a generic 'multi-cellular playset' that 
@@ -16,11 +16,11 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 1;
+int maxCycles = 10;
 int maxFrames = int(random(1300,1600));
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-056";
+String batchName = "batch-062";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -33,16 +33,16 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1600, 1600);
   //size(2000, 2000);
-  size(4096, 4096);
+  //size(4096, 4096);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //local
   //pathName = "D:/output/" + versionName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/" + batchName + "/"; //USB
-  //screendumpPath = pathName + versionName + "." + outputName + ".png";
-  screendumpPath = "../output.png";
+  screendumpPath = pathName + versionName + "." + outputName + ".png";
+  //screendumpPath = "../output.png";
   framedumpPath = pathName + "/frames/";
   output = createWriter(pathName + versionName + "." + outputName +"_settings.txt");
   ellipseMode(RADIUS);
@@ -50,6 +50,7 @@ void setup() {
   gs = new Global_settings();
   colony = new Colony();
   if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+  //background (0,0,0,0);
   if (gs.debug) {frameRate(15);}
 }
 

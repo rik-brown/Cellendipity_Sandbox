@@ -45,12 +45,12 @@ class DNA {
       // RANDOMIZED VALUES
             //genes[0] = random(360);    // 0 = fill Hue (0-360)
             genes[0] = 0;    // 0 = fill Hue (0=RED)
-            //genes[0] = gs.bkgHue + random(170, 210);    // 0 = fill Hue (0-360)
-            //genes[0] = gs.bkgHue + random(5, 15);    // 0 = fill Hue (0-360)
+            //genes[0] = gs.bkg_H + random(170, 210);    // 0 = fill Hue (0-360)
+            //genes[0] = gs.bkg_H + random(5, 15);    // 0 = fill Hue (0-360)
             //if (genes[0] > 360) {genes[0] -= 360;}
-            genes[1] = random(130,180);  // 1 = fill Saturation (0-255)
-			genes[1] = 0;
-            genes[2] = random(220,255);    // 2 = fill Brightness (0-255)
+            //genes[1] = random(130,180);  // 1 = fill Saturation (0-255)
+			      genes[1] = 255;
+            genes[2] = random(255,255);    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             genes[4] = random(360);    // 4 = stroke Hue (0-360)
@@ -61,7 +61,7 @@ class DNA {
       
             genes[8] = width/((gs.rows)*random(1.5, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             //genes[8] = 50;
-            genes[9] = random(5, 20);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
+            genes[9] = random(25, 50);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)

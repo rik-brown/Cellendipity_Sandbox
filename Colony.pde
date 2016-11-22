@@ -21,10 +21,10 @@ class Colony {
     genepool.add(new DNA()); // Add new Cell with DNA
     }
     
-    float col0 =gs.bkgHue + 60; 
+    float col0 =gs.bkg_H + 0; 
     if (col0 > 360) {col0 -= 360;}
     genepool.get(0).genes[0] = col0;
-    //float col1 =gs.bkgHue + 200; 
+    //float col1 =gs.bkg_H + 200; 
     //if (col1 > 360) {col1 -= 360;}
     //genepool.get(1).genes[0] = col1;
     
@@ -49,10 +49,10 @@ class Colony {
       
       for (int c = 0; c <= gs.cols; c++) {
         DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
-        //dna.genes[18] = ((r+1) * (width/(gs.rows+1)));  // CARTESIAN ARRAY X
-        //dna.genes[19] = ((c+1) * (height/(gs.cols+1))); // CARTESIAN ARRAY Y
-        dna.genes[18] = (r * (width/gs.rows));  // CARTESIAN ARRAY X
-        dna.genes[19] = (c * (height/gs.cols)); // CARTESIAN ARRAY Y
+        dna.genes[18] = ((r+1) * (width/(gs.rows+1)));  // CARTESIAN ARRAY X
+        dna.genes[19] = ((c+1) * (height/(gs.cols+1))); // CARTESIAN ARRAY Y
+        //dna.genes[18] = (r * (width/gs.rows));  // CARTESIAN ARRAY X
+        //dna.genes[19] = (c * (height/gs.cols)); // CARTESIAN ARRAY Y
         //dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
         //dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
@@ -61,6 +61,8 @@ class Colony {
         //dna.genes[12] = map(dna.genes[18], 0, width, 0, 10);
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10);
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30);
+        dna.genes[22] = map(c, 0, gs.cols, 0, 1);
+        //dna.genes[23] = map(r, 0, gs.rows, 0, 1);
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
