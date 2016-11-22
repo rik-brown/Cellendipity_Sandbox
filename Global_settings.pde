@@ -58,7 +58,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	rows = 30;
+	rows = 10;
     cols = rows;
     //cols = 3;
 
@@ -67,12 +67,12 @@ class Global_settings {
     stepSizeN = 50;
 
     greyscaleON = false;
-    //bkg_H = random(360);
-    bkg_H = 0;
+    bkg_H = random(360);
+    //bkg_H = 0;
     //bkg_S = random(128,164);
-    bkg_S = 255;
+    bkg_S = 205;
     //bkg_B = random(180,220);
-    bkg_B = 255;
+    bkg_B = 180;
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -86,10 +86,10 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0); // Black
 
     fillDisable = false;
-    //fill_HTwist = int(random(12,48)); // (0-360)
-    fill_HTwist = 0;
-    fill_STwist = 0; // (0-255)
-    fill_BTwist = 64; // (0-255) last: 100
+    fill_HTwist = int(random(12,48)); // (0-360)
+    //fill_HTwist = 0;
+    fill_STwist = 160; // (0-255)
+    fill_BTwist = 0; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
     strokeDisable = true;

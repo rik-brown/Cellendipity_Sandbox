@@ -209,7 +209,8 @@ class Cell {
   }
 
   void updateColourR() {
-    if (gs.fill_STwist > 0) {fill_S = map(r, cellStartSize, cellEndSize, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
+    //if (gs.fill_STwist > 0) {fill_S = map(r, cellStartSize, cellEndSize, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
+    if (gs.fill_STwist > 0) {fill_S = map(r, cellEndSize, cellStartSize, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
     //if (gs.fill_BTwist > 0) {fill_B = map(r, cellStartSize, cellEndSize, (255-gs.fill_BTwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill brightness by radius
     if (gs.fill_BTwist > 0) {fill_B = map(r, cellEndSize, cellStartSize, (255-gs.fill_BTwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill brightness by radius
     if (gs.fill_ATwist > 0) {fillAlpha = map(r, cellEndSize, cellStartSize, (255-gs.fill_ATwist), 255);} // Modulate fill Alpha by radius
