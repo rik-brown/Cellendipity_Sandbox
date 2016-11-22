@@ -209,16 +209,13 @@ class Cell {
   }
 
   void updateColourR() {
-    //if (gs.fill_STwist > 0) {fill_S = map(r, cellStartSize, cellEndSize, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
-    if (gs.fill_STwist > 0) {fill_S = map(r, cellEndSize, cellStartSize, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
-    //if (gs.fill_BTwist > 0) {fill_B = map(r, cellStartSize, cellEndSize, (255-gs.fill_BTwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill brightness by radius
-    if (gs.fill_BTwist > 0) {fill_B = map(r, cellEndSize, cellStartSize, (255-gs.fill_BTwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill brightness by radius
-    if (gs.fill_ATwist > 0) {fillAlpha = map(r, cellEndSize, cellStartSize, (255-gs.fill_ATwist), 255);} // Modulate fill Alpha by radius
-    if (gs.fill_HTwist > 0) { // Modulate fill hue by radius. Does not change original hue value but replaces it with a 'twisted' version
-      float fill_Htwisted = map(r, cellStartSize, cellEndSize, fill_H, fill_H+gs.fill_HTwist);
-      if (fill_Htwisted > 360) {fill_Htwisted -= 360;}
-      fillColor = color(fill_Htwisted, fill_S, fill_B); //fill colour is updated with new hue value
-    }
+    fill_H = map(r, cellStartSize, cellEndSize, dna.genes[24], dna.genes[25]);
+    fill_S = map(r, cellStartSize, cellEndSize, dna.genes[26], dna.genes[27]);
+    //fill_S = map(r, cellEndSize, cellStartSize,  dna.genes[26], dna.genes[27]);
+    fill_B = map(r, cellStartSize, cellEndSize,  dna.genes[28], dna.genes[29]);
+    //fill_B = map(r, cellEndSize, cellStartSize, dna.genes[28], dna.genes[29]);
+    fillAlpha = map(r, cellEndSize, cellStartSize, dna.genes[30], dna.genes[31]);   
+    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new hue value
     if (gs.stroke_STwist > 0) {stroke_S = map(r, cellStartSize, cellEndSize, (255-gs.stroke_STwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke saturation by radius
     if (gs.stroke_BTwist > 0) {stroke_B = map(r, cellStartSize, cellEndSize, (255-gs.stroke_BTwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke brightness by radius
     if (gs.stroke_ATwist > 0) {strokeAlpha = map(r, cellEndSize, cellStartSize, (255-gs.stroke_ATwist), 255);} // Modulate stroke Alpha by radius

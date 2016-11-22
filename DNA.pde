@@ -12,10 +12,10 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 24;
-      genes = new float[numGenes];  // DNA contains an array called 'genes' with [12] float values
+      numGenes = 32;
+      genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
-      // DNA gene mapping (18 genes)
+      // DNA gene mapping (32 genes)
       // 0 = fill Hue (0-360)
       // 1 = fill Saturation (0-255)
       // 2 = fill Brightness (0-255)
@@ -40,6 +40,14 @@ class DNA {
       // 21 = originY (0-height)
       // 22 = xOff (rnd 1000)
       // 23 = yOff (rnd 1000)
+      // 24 = fillHstart
+      // 25 = fillHend
+      // 26 = fillSstart
+      // 27 = fillSend
+      // 28 = fillBstart
+      // 29 = fillBend
+      // 30 = fillAstart
+      // 31 = fillAend
 
 
       // RANDOMIZED VALUES
@@ -59,9 +67,9 @@ class DNA {
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
             genes[7] = 11;
       
-            genes[8] = width/((gs.rows)*random(1.5, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
+            genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             //genes[8] = 50;
-            genes[9] = random(25, 50);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
+            genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
@@ -81,7 +89,19 @@ class DNA {
             genes[19] = random(height);
             genes[22] = random(1000);
             genes[23] = random(1000);
-
+            
+            genes[24] = gs.bkg_H;  // fillHstart
+            genes[25] = gs.bkg_H * random (0.7, 0.9);  // fillHend
+            
+            genes[26] = gs.bkg_S;// fillSstart
+            genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
+            
+            genes[28] = gs.bkg_B;// fillBstart
+            genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
+            
+            genes[30] = 255;// fillAstart
+            genes[31] = 255;// fillAend
+                       
             logDNA();
    }
 
