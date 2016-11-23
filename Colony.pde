@@ -65,8 +65,8 @@ class Colony {
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30);
         //dna.genes[22] = map(c, 0, gs.cols, 0, 1);
         //dna.genes[23] = map(r, 0, gs.rows, 0, 1);
-        dna.genes[25] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3);
-        dna.genes[29] = map(r, 0, gs.rows, gs.bkg_B, gs.bkg_B*2.0);
+        //dna.genes[25] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3);
+        //dna.genes[29] = map(r, 0, gs.rows, gs.bkg_B, gs.bkg_B*2.0);
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell

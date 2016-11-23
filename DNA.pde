@@ -91,13 +91,17 @@ class DNA {
             genes[23] = random(1000);
             
             genes[24] = gs.bkg_H;  // fillHstart
-            genes[25] = gs.bkg_H * random (0.7, 0.9);  // fillHend
+            //genes[24] = 0; //RED
+            //genes[25] = gs.bkg_H * random (0.7, 0.9);  // fillHend
+            genes[25] = 360; // GREEN
             
             genes[26] = gs.bkg_S;// fillSstart
-            genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
+            genes[27] = gs.bkg_S;// fillSstart
+            //genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
             genes[28] = gs.bkg_B;// fillBstart
-            genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
+            genes[29] = gs.bkg_B;// fillBstart
+            //genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[30] = 255;// fillAstart
             genes[31] = 255;// fillAend
