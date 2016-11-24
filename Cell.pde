@@ -155,7 +155,7 @@ class Cell {
     velocityNoise = new PVector(vx,vy);
     xoff += step;
     yoff += step;
-    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>// //<>// //<>// //<>//
+    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     float screwAngle = map(maturity, 0, 1, 0, spiral * TWO_PI);
     //if (dna.genes[11] >= 0.5) {screwAngle *= -1;} //IS THIS ACTUALLY NEEDED ANY MORE? (screwAngle is both +ve & -ve)
     velocity.rotate(screwAngle);
@@ -246,7 +246,7 @@ class Cell {
   boolean dead() {
     //if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < cellEndSize) {return true;} // Death by too little radius
-    if (r > (width*0.1)) {return true;} // Death by too much radius
+    //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnCount <= 0) {return true;} // Death by too much babies
     //if (position.x > width + r * flatness || position.x < -r * flatness || position.y > height + r * flatness || position.y < -r * flatness) {return true;} // Death if move beyond canvas boundary
     else { return false; }
@@ -341,8 +341,11 @@ class Cell {
     int rowHeight = 15;
     fill(0, 255);
     textSize(rowHeight);
-    //text("r:" + r, position.x, position.y + rowHeight * 0);
-    text("range:" + range, position.x, position.y + rowHeight * 0);
+    text("r:" + r, position.x, position.y + rowHeight * 0);
+    //text("range:" + range, position.x, position.y + rowHeight * 0);
+    text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 1);
+    text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 2);
+    text("dna.genes[29]:" + dna.genes[29], position.x, position.y + rowHeight * 3);
     //text("cellStartSize:" + cellStartSize, position.x, position.y + rowHeight * 1);
     //text("cellEndSize:" + cellEndSize, position.x, position.y + rowHeight * 2);
     //text("fill_H:" + fill_H, position.x, position.y + rowHeight * 0);

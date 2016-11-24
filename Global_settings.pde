@@ -40,7 +40,7 @@ class Global_settings {
   float gene_19;
 
   Global_settings() {
-    debug = false;
+    debug = true;
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
     wraparound = false;
@@ -58,7 +58,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	rows = 11;
+	  rows = 3;
     cols = rows;
     //cols = 3;
 
@@ -70,9 +70,9 @@ class Global_settings {
     bkg_H = random(360);
     //bkg_H = 0;
     //bkg_S = random(128,164);
-    bkg_S = 105;
+    bkg_S = 25; // last 105, 55
     //bkg_B = random(180,220);
-    bkg_B = 160;
+    bkg_B = 130; // last 160
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
