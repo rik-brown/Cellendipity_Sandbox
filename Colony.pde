@@ -51,12 +51,13 @@ class Colony {
       
       for (int c = 0; c <= gs.cols; c++) {
         DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
+        //DNA dna = genepool.get(0); // Get's a random dna from the genepool
         //dna.genes[18] = ((r+1) * (width/(gs.rows+1)));  // CARTESIAN ARRAY X
         //dna.genes[19] = ((c+1) * (height/(gs.cols+1))); // CARTESIAN ARRAY Y
-        dna.genes[18] = (r * (width/gs.rows));  // CARTESIAN ARRAY X
-        dna.genes[19] = (c * (height/gs.cols)); // CARTESIAN ARRAY Y
-        //dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
-        //dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
+        //dna.genes[18] = (r * (width/gs.rows));  // CARTESIAN ARRAY X
+        //dna.genes[19] = (c * (height/gs.cols)); // CARTESIAN ARRAY Y
+        dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
+        dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
         //dna.genes[2] = map(dna.genes[19], 0, height, 192, 255);
         //dna.genes[10] = map(r, 0, gs.rows, width*0.09, width*0.01);

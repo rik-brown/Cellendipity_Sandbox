@@ -17,6 +17,8 @@ class Global_settings {
   int cols;
   int stepSize;
   int stepSizeN;
+  int stripeSize;
+  float stripeRatio;
 
   int bkgColGrey;
   float bkg_H;
@@ -40,7 +42,7 @@ class Global_settings {
   float gene_19;
 
   Global_settings() {
-    debug = true;
+    debug = false;
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
     wraparound = false;
@@ -58,21 +60,24 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	  rows = 3;
+	  rows = 12;
     cols = rows;
     //cols = 3;
 
     stepped = false;
     stepSize = 30;
     stepSizeN = 50;
+    
+    stripeSize = 10;
+    stripeRatio = 0.95;
 
     greyscaleON = false;
     bkg_H = random(360);
     //bkg_H = 0;
     //bkg_S = random(128,164);
-    bkg_S = 25; // last 105, 55
+    bkg_S = 0; // last 105, 55
     //bkg_B = random(180,220);
-    bkg_B = 130; // last 160
+    bkg_B = 220; // last 160, 50
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -86,9 +91,9 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0); // Black
 
     fillDisable = false;
-    fill_HTwist = int(random(12,48)); // (0-360)
-    //fill_HTwist = 0;
-    fill_STwist = 160; // (0-255)
+    //fill_HTwist = int(random(12,48)); // (0-360)
+    fill_HTwist = 0;
+    fill_STwist = 0; // (0-255)
     fill_BTwist = 0; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
@@ -114,10 +119,15 @@ class Global_settings {
     output.println("numStrains = " + numStrains);
     output.println("stepSize = " + stepSize);
     output.println("stepSizeN = " + stepSizeN);
+    output.println("stripeSize = " + stripeSize);
+    output.println("stripeRatio = " + stripeRatio);
     output.println("bkgColGrey = " + bkgColGrey);
+    output.println("bkg_H = " + bkg_H);
+    output.println("bkg_S = " + bkg_S);
+    output.println("bkg_B = " + bkg_B);
     output.println("bkgColor = " + bkgColor);
-    //output.println("nucleusColorU = " + nucleusColorU);
-    //output.println("nucleusColorF = " + nucleusColorF);
+    output.println("nucleusColorU = " + nucleusColorU);
+    output.println("nucleusColorF = " + nucleusColorF);
     output.println("fill_HTwist = " + fill_HTwist);
     output.println("fill_STwist = " + fill_STwist);
     output.println("fill_BTwist = " + fill_BTwist);

@@ -5,6 +5,7 @@ class Cell {
 
   // BOOLEAN
   boolean fertile;
+  boolean stripe;
 
   // GROWTH AND REPRODUCTION
   float age;       // Age (nr. of frames since birth)
@@ -21,6 +22,7 @@ class Cell {
   float growth;    // Radius grows by this amount per frame
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
+  float stripeStep;// Countdown to toggle between stripe and !stripe
 
   // MOVEMENT
   PVector position;
@@ -82,6 +84,7 @@ class Cell {
 
   // BOOLEAN
   fertile = false; // A new cell always starts off infertile
+  stripe = false; // A new cell always starts off displaying it's normal colour 
 
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
@@ -98,6 +101,7 @@ class Cell {
   growth = (cellStartSize-cellEndSize)/lifespan; // Should work for both large>small and small>large
   drawStep = 1;
   drawStepN = 1;
+  stripeStep = gs.stripeSize;
 
   // MOVEMENT
   position = new PVector(dna.genes[18], dna.genes[19]); //cell has position
@@ -133,6 +137,7 @@ class Cell {
     updateSize();
     updateFertility();
     updateColourR();
+    if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
     display();
     if (gs.debug) {cellDebugger();}
@@ -146,7 +151,11 @@ class Cell {
     if (drawStep < 0) {drawStep = drawStepStart;}
     drawStepN--;
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
-    if (drawStepN < 0) {drawStepN = drawStepNStart;}
+    if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
+    stripeStep--;
+    float stripeStepStart = map(gs.stripeSize, 0, 100, 0, r*2);
+    if (stripe) {stripeStepStart *= gs.stripeRatio;} else {stripeStepStart *= (1-gs.stripeRatio);}
+    if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
   }
 
   void updatePosition() { //Update parameters linked to the position
@@ -226,6 +235,10 @@ class Cell {
     }
   }
 
+  void updateStripes() {
+    fillColor = color(0, 0, 0);
+    strokeColor = color(0, 0, 0);  
+  }
 
   void checkBoundaryWraparound() {
     if (position.x > width + r * flatness) {
@@ -342,10 +355,12 @@ class Cell {
     fill(0, 255);
     textSize(rowHeight);
     text("r:" + r, position.x, position.y + rowHeight * 0);
+    text("drawStepN:" + drawStepN, position.x, position.y + rowHeight * 1);
+    text("Stripe:" + stripe, position.x, position.y + rowHeight * 2);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
-    text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 1);
-    text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 2);
-    text("dna.genes[29]:" + dna.genes[29], position.x, position.y + rowHeight * 3);
+    //text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 1);
+    //text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 2);
+    //text("dna.genes[29]:" + dna.genes[29], position.x, position.y + rowHeight * 3);
     //text("cellStartSize:" + cellStartSize, position.x, position.y + rowHeight * 1);
     //text("cellEndSize:" + cellEndSize, position.x, position.y + rowHeight * 2);
     //text("fill_H:" + fill_H, position.x, position.y + rowHeight * 0);
