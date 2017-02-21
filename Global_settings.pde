@@ -60,9 +60,9 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	  rows = 4;
+	  rows = 8;
     //cols = rows;
-    cols = 4;
+    cols = 8;
 
     stepped = false;
     stepSize = 30;

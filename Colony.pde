@@ -61,18 +61,19 @@ class Colony {
         
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
         //dna.genes[2] = map(dna.genes[19], 0, height, 192, 255);
-        //dna.genes[8] = width/gs.rows*(map(c, 0, gs.cols, 2.0, 2.0));
+        dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.0)));
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350);
         //dna.genes[10] = map(r, 0, gs.cols, width*0.1, width*0.2);
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150);
-        dna.genes[12] = map(c, 0, gs.cols, 0, 5);
+        dna.genes[12] = map(c, 0, gs.cols, 15, 45);
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10);
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30);
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100);
         //dna.genes[23] = map(r, 0, gs.rows, 0, 1);
         //dna.genes[25] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3);
+        dna.genes[25] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0);
         //dna.genes[29] = random(255);
-        //dna.genes[29] = map(r, 0, gs.rows, gs.bkg_B, 0);
+        dna.genes[29] = map(r, 0, gs.rows, 160, 220);
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell

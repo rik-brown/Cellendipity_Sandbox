@@ -13,7 +13,8 @@
 *   a) Maybe this should be done inside the cell, using the information passed down from the DNA?
     b) Is it still meaningful to determine position in the DNA?
     c) Maybe this would open for different strains interpreting the parametrically controlled variables differently? INTERESTING!!!
-*  c) Introduce configurable stripes (initially 2 states - on/off)
+    Something is not right with gene 25 in colony???
+*  3) Introduce configurable stripes (initially 2 states - on/off)
 *    NEED a good way of defining stripe colour
 *    (is currently hard-coded in cell: stripe() )
 *  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
@@ -29,7 +30,7 @@ int maxCycles =10;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-109";
+String batchName = "batch-113";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
