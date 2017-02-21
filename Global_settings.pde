@@ -60,24 +60,24 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	  rows = 12;
-    cols = rows;
-    //cols = 3;
+	  rows = 4;
+    //cols = rows;
+    cols = 4;
 
     stepped = false;
     stepSize = 30;
     stepSizeN = 50;
     
     stripeSize = 10;
-    stripeRatio = 0.95;
+    stripeRatio = 0.5;
 
     greyscaleON = false;
-    bkg_H = random(360);
-    //bkg_H = 0;
+    //bkg_H = random(360);
+    bkg_H = 240;
     //bkg_S = random(128,164);
-    bkg_S = 0; // last 105, 55
+    bkg_S = 255; // last 105, 55
     //bkg_B = random(180,220);
-    bkg_B = 220; // last 160, 50
+    bkg_B = 255; // last 160, 50
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -117,6 +117,8 @@ class Global_settings {
     output.println("wraparound = " + wraparound);
     output.println("strainSize = " + strainSize);
     output.println("numStrains = " + numStrains);
+    output.println("rows = " + rows);
+    output.println("cols = " + cols);
     output.println("stepSize = " + stepSize);
     output.println("stepSizeN = " + stepSizeN);
     output.println("stripeSize = " + stripeSize);

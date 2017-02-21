@@ -236,7 +236,7 @@ class Cell {
   }
 
   void updateStripes() {
-    fillColor = color(0, 0, 0);
+    fillColor = color(40, 255, 255); // RED
     strokeColor = color(0, 0, 0);  
   }
 

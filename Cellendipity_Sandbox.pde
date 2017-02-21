@@ -8,22 +8,28 @@
 *  - is geared towards making future art-experiments easier to prototype
 *
 * Sub-Goals:
-*  a) Introduce a 'genepool' array so I can first populate a number of different DNA-variants which can later be selected when seeding the canvas
-*  b) Introduce alternative "seed-patterns" (like x-y grid or polar array)
+*  1) Introduce alternative "seed-patterns" (like x-y grid or polar array)
+*  2) Architecture which supports parametric control of DNA relating to spawn position
+*   a) Maybe this should be done inside the cell, using the information passed down from the DNA?
+    b) Is it still meaningful to determine position in the DNA?
+    c) Maybe this would open for different strains interpreting the parametrically controlled variables differently? INTERESTING!!!
 *  c) Introduce configurable stripes (initially 2 states - on/off)
-*  BUG Why is brightness not doing what I expect it to?
+*    NEED a good way of defining stripe colour
+*    (is currently hard-coded in cell: stripe() )
+*  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+
 */
 
 Colony colony;                                     // A Colony object called 'colony'
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles =15;
+int maxCycles =10;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-086";
+String batchName = "batch-109";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -36,10 +42,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1600, 1600);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
