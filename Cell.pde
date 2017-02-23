@@ -137,7 +137,7 @@ class Cell {
     updateSize();
     updateFertility();
     updateColourR();
-    if (stripe) {updateStripes();}
+    //if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
     display();
     if (gs.debug) {cellDebugger();}
@@ -237,6 +237,7 @@ class Cell {
 
   void updateStripes() {
     fillColor = color(10, 255, 255); // RED
+    fillColor = color(0, 0, 0); // BLACK
     strokeColor = color(0, 0, 0);  
   }
 
