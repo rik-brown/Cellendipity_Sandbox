@@ -43,8 +43,8 @@ class Colony {
       
       //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
       //if (i == 0) {dna.genes[1] = 255; dna.genes[2] = 0;} else {dna.genes[1] = 0; dna.genes[2] = 255;}
-      a = map(r, 0, gs.rows, 0, TWO_PI);
-      //a = map(r, 0, gs.rows, 0, PI);
+      //a = map(r, 0, gs.rows, 0, TWO_PI);
+      a = map(r, 0, gs.rows, 0, PI*0.1);
       p = PVector.fromAngle(a);
       v = PVector.fromAngle(a).mult(-1);
       p.mult(width/4);
@@ -61,16 +61,20 @@ class Colony {
         
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255);
         //dna.genes[2] = map(dna.genes[19], 0, height, 192, 255);
-        dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2)));
+        //dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2)));
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350);
-        //dna.genes[10] = map(r, 0, gs.cols, width*0.1, width*0.2);
-        dna.genes[10] = width * map(r, 0, gs.rows, 0.2, 0.4);
+        dna.genes[10] = map(r, 0, gs.cols, width*0.1, width*0.3);
+        //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3);
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150);
-        dna.genes[12] = map(c, 0, gs.cols, 15, 25);
+        dna.genes[12] = map(c, 0, gs.cols, 0, 15);
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10);
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30);
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100);
         //dna.genes[23] = map(r, 0, gs.rows, 0, 1);
+        //dna.genes[0] = map(r, 0, gs.rows, 200, 260);
+        //dna.genes[1] = map(c, 0, gs.cols, 128, 255);
+        //dna.genes[25] = map(r, 0, gs.rows, 0, 360);
+        //println ("c: " + c + " r: " + r + " 24: " + dna.genes[24] +  " 25: " + dna.genes[25]);
         //dna.genes[25] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3);
         //dna.genes[25] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0);
         //dna.genes[29] = random(255);

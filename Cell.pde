@@ -353,18 +353,13 @@ class Cell {
 
   void cellDebugger() { // For debug only
     int rowHeight = 15;
-    fill(0, 255);
     textSize(rowHeight);
-    text("r:" + r, position.x, position.y + rowHeight * 0);
-    text("drawStepN:" + drawStepN, position.x, position.y + rowHeight * 1);
-    text("Stripe:" + stripe, position.x, position.y + rowHeight * 2);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
     //text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 1);
     //text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 2);
     //text("dna.genes[29]:" + dna.genes[29], position.x, position.y + rowHeight * 3);
     //text("cellStartSize:" + cellStartSize, position.x, position.y + rowHeight * 1);
     //text("cellEndSize:" + cellEndSize, position.x, position.y + rowHeight * 2);
-    //text("fill_H:" + fill_H, position.x, position.y + rowHeight * 0);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("age:" + age, position.x, position.y + rowHeight * 0);
     //text("maturity:" + maturity, position.x, position.y + rowHeight * 4);
