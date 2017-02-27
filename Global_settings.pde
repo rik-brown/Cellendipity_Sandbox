@@ -60,24 +60,24 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (3,9));
     //rows = int(random(9,21));
-	  rows = 8;
-    //cols = rows;
-    cols = 8;
+	  rows = 24;
+    cols = rows;
+    //cols = 12;
 
     stepped = false;
     stepSize = 30;
     stepSizeN = 50;
     
-    stripeSize = 20; // last 10
-    stripeRatio = 0.7;
+    stripeSize = 20000; // last 10
+    stripeRatio = 1;
 
     greyscaleON = false;
     //bkg_H = random(360);
     bkg_H = 240;
     //bkg_S = random(128,164);
-    bkg_S = 255; // last 105, 55, 255
+    bkg_S = 200; // last 105, 55, 255
     //bkg_B = random(180,220);
-    bkg_B = 0; // last 160, 50, 128
+    bkg_B = 10; // last 160, 50, 128
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

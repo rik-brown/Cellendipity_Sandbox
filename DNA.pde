@@ -51,13 +51,13 @@ class DNA {
 
 
       // RANDOMIZED VALUES
-            //genes[0] = random(360);    // 0 = fill Hue (0-360)
-            genes[0] = 0;    // 0 = fill Hue (0=RED)
+            genes[0] = random(360);    // 0 = fill Hue (0-360)
+            //genes[0] = 0;    // 0 = fill Hue (0=RED)
             //genes[0] = gs.bkg_H + random(170, 210);    // 0 = fill Hue (0-360)
             //genes[0] = gs.bkg_H + random(5, 15);    // 0 = fill Hue (0-360)
             //if (genes[0] > 360) {genes[0] -= 360;}
             //genes[1] = random(130,180);  // 1 = fill Saturation (0-255)
-			      genes[1] = 0;
+			      genes[1] = 255;
             genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
@@ -70,7 +70,7 @@ class DNA {
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = width/((gs.rows)*2.0);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 10;
+            genes[9] = 1;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             //genes[10] = width * 0.5; // last * 0.09, 0.2, 0.5
             genes[10] = 200;
@@ -87,10 +87,10 @@ class DNA {
             genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
             genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
-            genes[17] = 30;
+            genes[17] = 0;
             
-            genes[18] = (width*0.5);
-            genes[19] = (height*0.5);
+            genes[18] = width*0.5;
+            genes[19] = height*0.5;
             genes[22] = random(1000);
             genes[23] = random(1000);
             
@@ -99,15 +99,15 @@ class DNA {
             //genes[25] = gs.bkg_H * random (0.85, 0.97);  // fillHend
             genes[25] = gs.bkg_H;
             
-            //genes[26] = gs.bkg_S;// fillSstart
-            genes[26] = 192;
-            //genes[27] = gs.bkg_S;// fillSend
-            genes[27] = 0;// fillSend LAST: 128
+            genes[26] = gs.bkg_S;// fillSstart
+            //genes[26] = 192;
+            genes[27] = gs.bkg_S;// fillSend
+            //genes[27] = 32;// fillSend LAST: 128
             //genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            genes[28] = 128;// fillBstart
+            genes[28] = 0;// fillBstart
             //genes[28] = gs.bkg_B;// fillBstart
-            genes[29] = 255;// fillBend last: 180
+            genes[29] = 200;// fillBend last: 180
             //genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[30] = 255;// fillAstart

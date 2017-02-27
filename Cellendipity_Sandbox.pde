@@ -18,6 +18,7 @@
 *    NEED a good way of defining stripe colour
 *    (is currently hard-coded in cell: stripe() )
 *  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+* WHAT HAVE I DONE TO BREAK BRIGHTNESS? Is it linked to updateColourR()??
 
 */
 
@@ -25,12 +26,12 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles =10;
+int maxCycles =1;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-118";
+String batchName = "batch-120d";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -40,13 +41,14 @@ PrintWriter output;
 void setup() {
   //frameRate(10);
   colorMode(HSB, 360, 255, 255, 255);
+  rectMode(RADIUS);
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1600, 1600);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -61,7 +63,7 @@ void setup() {
   colony = new Colony();
   if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
   //background (0,0,0,0);
-  if (gs.debug) {frameRate(15);}
+  if (gs.debug) {frameRate(3);}
 }
 
 void draw() {

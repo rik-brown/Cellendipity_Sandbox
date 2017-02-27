@@ -105,6 +105,7 @@ class Cell {
 
   // MOVEMENT
   position = new PVector(dna.genes[18], dna.genes[19]); //cell has position
+  println(dna.genes[18] + "," + dna.genes[19] + "," + position.x + "," + position.y);
   //home = new PVector(dna.genes[18], dna.genes[19]); //cell has origin
   home = new PVector(gs.gene_18, gs.gene_19); //cell has origin
   velocityLinear = vel.copy(); //cell has unique basic velocity component
@@ -136,10 +137,12 @@ class Cell {
     updatePosition();
     updateSize();
     updateFertility();
+    //updateColour();
     updateColourR();
-    //if (stripe) {updateStripes();}
+    if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
     display();
+    //displayRect();
     if (gs.debug) {cellDebugger();}
   }
 
@@ -218,25 +221,22 @@ class Cell {
   }
 
   void updateColourR() {
-    fill_H = map(r, cellStartSize, cellEndSize, dna.genes[24], dna.genes[25]);
+    // START > END
+    //fill_H = map(r, cellStartSize, cellEndSize, dna.genes[24], dna.genes[25]);
     fill_S = map(r, cellStartSize, cellEndSize, dna.genes[26], dna.genes[27]);
-    //fill_S = map(r, cellEndSize, cellStartSize,  dna.genes[26], dna.genes[27]);
     fill_B = map(r, cellStartSize, cellEndSize,  dna.genes[28], dna.genes[29]);
+    fillAlpha = map(r, cellStartSize, cellEndSize, dna.genes[30], dna.genes[31]);
+    
+    // END > START
+    //fill_S = map(r, cellEndSize, cellStartSize,  dna.genes[26], dna.genes[27]);
     //fill_B = map(r, cellEndSize, cellStartSize, dna.genes[28], dna.genes[29]);
-    fillAlpha = map(r, cellEndSize, cellStartSize, dna.genes[30], dna.genes[31]);   
-    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new hue value
-    if (gs.stroke_STwist > 0) {stroke_S = map(r, cellStartSize, cellEndSize, (255-gs.stroke_STwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke saturation by radius
-    if (gs.stroke_BTwist > 0) {stroke_B = map(r, cellStartSize, cellEndSize, (255-gs.stroke_BTwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke brightness by radius
-    if (gs.stroke_ATwist > 0) {strokeAlpha = map(r, cellEndSize, cellStartSize, (255-gs.stroke_ATwist), 255);} // Modulate stroke Alpha by radius
-    if (gs.stroke_HTwist > 0) { // Modulate stroke hue by radius
-      float stroke_Htwisted = map(r, cellStartSize, cellEndSize, stroke_H, stroke_H+gs.stroke_HTwist);
-      if (stroke_Htwisted > 360) {stroke_Htwisted -= 360;}
-      strokeColor = color(stroke_Htwisted, stroke_S, stroke_B); //stroke colour is updated with new hue value
-    }
+    //fillAlpha = map(r, cellEndSize, cellStartSize, dna.genes[30], dna.genes[31]);
+    
+    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
   }
 
   void updateStripes() {
-    fillColor = color(10, 255, 255); // RED
+    //fillColor = color(10, 255, 255); // RED
     fillColor = color(0, 0, 0); // BLACK
     strokeColor = color(0, 0, 0);  
   }
@@ -303,6 +303,44 @@ class Cell {
    else {popMatrix();} //G
   }
 
+void displayRect() {
+    strokeWeight(3);
+    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), strokeAlpha);}
+    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fillAlpha);}
+
+    float angle = velocity.heading();
+    pushMatrix();
+    translate(position.x,position.y);
+    rotate(angle);
+    if (!gs.stepped) {
+      rect(0, 0, r, r * flatness);
+      if (gs.nucleus && drawStepN < 1) {
+        if (fertile) {
+        fill(gs.nucleusColorF); rect(0, 0, cellEndSize/2, cellEndSize/2 * flatness);
+        popMatrix(); //A
+        //line(position.x, position.y, home.x, home.y);
+        }
+        else {fill(gs.nucleusColorU); rect(0, 0, cellEndSize/2, cellEndSize/2 * flatness); popMatrix();} //B
+      }
+      else {popMatrix();} //C
+    }
+    else if (drawStep < 1) { // stepped=true, step-counter is active for cell, draw only when counter=0
+      rect(0, 0, r, r*flatness);
+      if (gs.nucleus && drawStepN < 1) { // Nucleus is always drawn when cell is drawn (no step-counter for nucleus)
+        if (fertile) {
+          fill(gs.nucleusColorF); rect(0, 0, cellEndSize/2, cellEndSize/2 * flatness);
+          popMatrix(); //D
+          //line(position.x, position.y, home.x, home.y);
+        }
+        else {fill(gs.nucleusColorU); rect(0, 0, cellEndSize/2, cellEndSize/2 * flatness); popMatrix();} //E
+      }
+      else {popMatrix();} //F
+    }
+   else {popMatrix();} //G
+  }
+
+
+
   void checkCollision(Cell other) {       // Method receives a Cell object 'other' to get the required info about the collidee
       PVector distVect = PVector.sub(other.position, position); // Static vector to get distance between the cell & other
       float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
@@ -312,7 +350,7 @@ class Cell {
   void conception(Cell other, PVector distVect) {
     // Decrease spawn counters.
     spawnCount --;
-    other.spawnCount --;
+    other.spawnCount --; //<>//
 
     // Calculate velocity vector for spawn as being centered between parent cell & other
     PVector spawnVel = velocity.copy(); // Create spawnVel as a copy of parent cell's velocity vector
@@ -353,13 +391,26 @@ class Cell {
 
   void cellDebugger() { // For debug only
     int rowHeight = 15;
+    fill(120, 255, 0);
     textSize(rowHeight);
+    //text("r:" + r, position.x, position.y + rowHeight * 0);
+    text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
+    //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
+    //text("Stripe:" + stripe, position.x, position.y + rowHeight * 0);
+    text("hue " + hue(fillColor), position.x, position.y + rowHeight * 1);
+    text("sat " + saturation(fillColor), position.x, position.y + rowHeight * 2);
+    text("bri " + brightness(fillColor), position.x, position.y + rowHeight * 3);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
-    //text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 1);
-    //text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 2);
-    //text("dna.genes[29]:" + dna.genes[29], position.x, position.y + rowHeight * 3);
+    //text("dna.genes[18]:" + dna.genes[18], position.x, position.y + rowHeight * 4);
+    //text("dna.genes[19]:" + dna.genes[19], position.x, position.y + rowHeight * 5);    
+    //text("dna.genes[10]:" + dna.genes[10], position.x, position.y + rowHeight * 6);
+    //text("dna.genes[12]:" + dna.genes[12], position.x, position.y + rowHeight * 7);
+    //text("dna.genes[24]:" + dna.genes[24], position.x, position.y + rowHeight * 8);
     //text("cellStartSize:" + cellStartSize, position.x, position.y + rowHeight * 1);
     //text("cellEndSize:" + cellEndSize, position.x, position.y + rowHeight * 2);
+    //text("fill_H:" + fill_H, position.x, position.y + rowHeight * 4);
+    //text("fill_S:" + fill_S, position.x, position.y + rowHeight * 5);
+    text("fill_B:" + fill_B, position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("age:" + age, position.x, position.y + rowHeight * 0);
     //text("maturity:" + maturity, position.x, position.y + rowHeight * 4);
