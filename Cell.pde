@@ -141,8 +141,8 @@ class Cell {
     updateColourR();
     if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
-    display();
-    //displayRect();
+    //display();
+    displayRect();
     if (gs.debug) {cellDebugger();}
   }
 

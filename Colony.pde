@@ -51,7 +51,7 @@ class Colony {
       //a = map(r, 0, gs.rows, 0, TWO_PI);
       a = map(r, 0, gs.rows, 0, PI*rand);
       p = PVector.fromAngle(a);
-      v = PVector.fromAngle(a).mult(1);
+      v = PVector.fromAngle(0).mult(1);
       p.mult(width/4);
       
       for (int c = 0; c <= gs.cols; c++) {
@@ -99,19 +99,19 @@ class Colony {
         //dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
         //dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
         //dna.genes[0] = map(r, 0, gs.rows, 200, 260); // 0 = fill Hue (0-360)
-        dna.genes[0] = map(distMag, 0, width*0.5, 240, 300); // 12 = spiral screw (-75 - +75 %)
+        dna.genes[0] = map(distMag, 0, width*0.5, 240, 280); // 12 = spiral screw (-75 - +75 %)
         dna.genes[29] = map(distMag, 0, width*0.5, 0, 255); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[1] = map(c, 0, gs.cols, 128, 255); // 1 = fill Saturation (0-255)
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255); // 1 = fill Saturation (0-255)
         //dna.genes[2] = map(dna.genes[19], 0, height, 192, 255); // 2 = fill Brightness (0-255)
         //dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2))); // 8 = cellStartSize
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350); // 8 = cellStartSize
-        dna.genes[10] = map(distMag, 0, width*0.5, 10, 50); // 10 = lifespan (200-1000)
+        dna.genes[10] = width * map(distMag, 0, width*0.5, 0.01, 0.05); // 10 = lifespan (200-1000)
         //dna.genes[10] = map(c, 0, gs.cols, width*0.01, width*0.25); // 10 = lifespan (200-1000)
         //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3); // 10 = lifespan (200-1000)
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150); // 11 = flatness (50-200 %)
         //dna.genes[12] = map(c, 0, gs.cols, 45, 60); // 12 = spiral screw (-75 - +75 %)
-        dna.genes[12] = map(distMag, 0, width*0.5, 0, 5); // 12 = spiral screw (-75 - +75 %)
+        dna.genes[12] = map(distMag, 0, width*0.5, 0, 10); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30); // 17 = noisePercent (0-100%)
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100); // 17 = noisePercent (0-100%)
