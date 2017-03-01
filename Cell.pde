@@ -141,8 +141,8 @@ class Cell {
     updateColourR();
     if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
-    //display();
-    displayRect();
+    display();
+    //displayRect();
     if (gs.debug) {cellDebugger();}
   }
 
@@ -222,7 +222,7 @@ class Cell {
 
   void updateColourR() {
     // START > END
-    //fill_H = map(r, cellStartSize, cellEndSize, dna.genes[24], dna.genes[25]);
+    fill_H = map(r, cellStartSize, cellEndSize, dna.genes[24], dna.genes[25]);
     fill_S = map(r, cellStartSize, cellEndSize, dna.genes[26], dna.genes[27]);
     fill_B = map(r, cellStartSize, cellEndSize,  dna.genes[28], dna.genes[29]);
     fillAlpha = map(r, cellStartSize, cellEndSize, dna.genes[30], dna.genes[31]);

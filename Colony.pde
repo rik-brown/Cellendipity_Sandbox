@@ -77,9 +77,7 @@ class Colony {
       // 20 = originX (0-width)
       // 21 = originY (0-height)
       // 22 = xOff (rnd 1000)
-      
-      // 24 = fillHstart
-      
+            
       // 26 = fillSstart
       // 27 = fillSend
       // 28 = fillBstart
@@ -90,8 +88,10 @@ class Colony {
       //dna.genes[19] = random(height);
         //dna.genes[18] = ((c+1) * (height/(gs.cols+1))); // CARTESIAN ARRAY X
         //dna.genes[19] = ((r+1) * (width/(gs.rows+1)));  // CARTESIAN ARRAY Y
-        dna.genes[18] = (c * (height/gs.cols)); // CARTESIAN ARRAY X
-        dna.genes[19] = (r * (width/gs.rows));  // CARTESIAN ARRAY Y
+        //dna.genes[18] = (c * (height/gs.cols)); // CARTESIAN ARRAY X
+        //dna.genes[19] = (r * (width/gs.rows));  // CARTESIAN ARRAY Y
+        dna.genes[18] = height * map (c, 0, gs.cols, -0.2, 1.2);
+        dna.genes[19] = width * map (r, 0, gs.rows, -0.2, 1.2);
         pos = new PVector(dna.genes[18], dna.genes[19]);
         origin = new PVector(width/2, height/2);
         PVector distVect = PVector.sub(origin, pos); // Static vector to get distance between the cell & other
@@ -99,29 +99,31 @@ class Colony {
         //dna.genes[18] = p.x + width/2;                  // RADIAL ARRAY X
         //dna.genes[19] = p.y + height/2;                 // RADIAL ARRAY Y
         //dna.genes[0] = map(r, 0, gs.rows, 200, 260); // 0 = fill Hue (0-360)
-        dna.genes[0] = map(distMag, 0, width*0.5, 240, 280); // 12 = spiral screw (-75 - +75 %)
-        dna.genes[29] = map(distMag, 0, width*0.5, 0, 255); // 12 = spiral screw (-75 - +75 %)
+        //dna.genes[0] = map(distMag, 0, width*0.5, 240, 280); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[1] = map(c, 0, gs.cols, 128, 255); // 1 = fill Saturation (0-255)
         //dna.genes[1] = map(dna.genes[18], 0, width, 64, 255); // 1 = fill Saturation (0-255)
         //dna.genes[2] = map(dna.genes[19], 0, height, 192, 255); // 2 = fill Brightness (0-255)
         //dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2))); // 8 = cellStartSize
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350); // 8 = cellStartSize
-        dna.genes[10] = width * map(distMag, 0, width*0.5, 0.01, 0.05); // 10 = lifespan (200-1000)
+        dna.genes[10] = width * map(distMag, 0, width, 0.4, 0.001); // 10 = lifespan (200-1000)
         //dna.genes[10] = map(c, 0, gs.cols, width*0.01, width*0.25); // 10 = lifespan (200-1000)
         //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3); // 10 = lifespan (200-1000)
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150); // 11 = flatness (50-200 %)
         //dna.genes[12] = map(c, 0, gs.cols, 45, 60); // 12 = spiral screw (-75 - +75 %)
-        dna.genes[12] = map(distMag, 0, width*0.5, 0, 10); // 12 = spiral screw (-75 - +75 %)
+        //dna.genes[12] = map(distMag, 0, width*0.5, 0, 10); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[17] = map(dna.genes[19], 0, height, 0, 30); // 17 = noisePercent (0-100%)
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100); // 17 = noisePercent (0-100%)
+        dna.genes[17] = map(distMag, 0, width*0.7, 100, 50); // 17 = noisePercent (0-100%)
         //dna.genes[23] = map(r, 0, gs.rows, 0, 1); // 23 = yOff (rnd 1000)
-        
-        //dna.genes[25] = map(r, 0, gs.rows, 0, 360); // 25 = fillHend
+        //dna.genes[24] = map(distMag, 0, width*0.5, 0, 360); // 24 = fillHstart
+        //dna.genes[25] = map(distMag, 0, width*0.5, 0, 360); // 25 = fillHend
+        //dna.genes[24] = map(r, 0, gs.rows, 0, 360); // 25 = fillHend
         //dna.genes[25] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3); // 25 = fillHend
         //dna.genes[25] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0); // 25 = fillHend
         //dna.genes[29] = map(distMag, 0, width*0.5, 255, 0); // 29 = fillBend
         //dna.genes[29] = map(r, 0, gs.rows, 160, 220); // 29 = fillBend
+        //dna.genes[29] = map(distMag, 0, width*0.7, 0, 255); // 29 = fillBend
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell

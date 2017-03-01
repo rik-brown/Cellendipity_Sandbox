@@ -68,12 +68,12 @@ class DNA {
             genes[7] = 0;
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width/((gs.rows)*1.8);
+            genes[8] = width/((gs.rows)*1.6);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 10;
+            genes[9] = 15;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
-            //genes[10] = width * 0.5; // last * 0.09, 0.2, 0.5
-            genes[10] = 200;
+            genes[10] = width * 0.6; // last * 0.09, 0.2, 0.5
+            //genes[10] = 200;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
@@ -94,20 +94,21 @@ class DNA {
             genes[22] = random(1000);
             genes[23] = random(1000);
             
-            genes[24] = gs.bkg_H;  // fillHstart
-            //genes[24] = 0; //RED
+            //genes[24] = gs.bkg_H;  // fillHstart
+            genes[24] = 240; //RED
             //genes[25] = gs.bkg_H * random (0.85, 0.97);  // fillHend
-            genes[25] = gs.bkg_H;
+            //genes[25] = gs.bkg_H;
+            genes[25] = 300;
             
             genes[26] = gs.bkg_S;// fillSstart
             //genes[26] = 192;
-            genes[27] = gs.bkg_S;// fillSend
-            //genes[27] = 32;// fillSend LAST: 128
+            //genes[27] = gs.bkg_S;// fillSend
+            genes[27] = 164;// fillSend LAST: 128
             //genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
             genes[28] = 0;// fillBstart
             //genes[28] = gs.bkg_B;// fillBstart
-            genes[29] = 200;// fillBend last: 180
+            genes[29] = 255;// fillBend last: 180
             //genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[30] = 255;// fillAstart
