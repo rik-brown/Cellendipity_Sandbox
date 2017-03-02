@@ -12,7 +12,7 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 32;
+      numGenes = 28;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (32 genes)
@@ -34,20 +34,17 @@ class DNA {
       // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
       // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
       // 17 = noisePercent (0-100%)
-      // 18 = seedPosX (0-width)
-      // 19 = seedPosY (0-height)
-      // 20 = originX (0-width)
-      // 21 = originY (0-height)
-      // 22 = xOff (rnd 1000)
-      // 23 = yOff (rnd 1000)
-      // 24 = fillHstart
-      // 25 = fillHend
-      // 26 = fillSstart
-      // 27 = fillSend
-      // 28 = fillBstart
-      // 29 = fillBend
-      // 30 = fillAstart
-      // 31 = fillAend
+      // 18 = xOff (rnd 1000)
+      // 19 = yOff (rnd 1000)
+      
+      // 20 = fillHstart
+      // 21 = fillHend
+      // 22 = fillSstart
+      // 23 = fillSend
+      // 24 = fillBstart
+      // 25 = fillBend
+      // 26 = fillAstart
+      // 27 = fillAend
 
 
       // RANDOMIZED VALUES
@@ -89,30 +86,28 @@ class DNA {
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0;
             
-            genes[18] = width*0.5;
-            genes[19] = height*0.5;
-            genes[22] = random(1000);
-            genes[23] = random(1000);
+            genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            //genes[24] = gs.bkg_H;  // fillHstart
-            genes[24] = 240; //RED
-            //genes[25] = gs.bkg_H * random (0.85, 0.97);  // fillHend
-            //genes[25] = gs.bkg_H;
-            genes[25] = 300;
+            genes[20] = gs.bkg_H;  // fillHstart
+            //genes[20] = 240; //BLUE
+            //genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
+            //genes[21] = gs.bkg_H;
+            genes[21] = 300;
             
-            genes[26] = gs.bkg_S;// fillSstart
-            //genes[26] = 192;
-            //genes[27] = gs.bkg_S;// fillSend
-            genes[27] = 164;// fillSend LAST: 128
-            //genes[27] = gs.bkg_S * random(0.5, 0.9);// fillSend
+            genes[22] = gs.bkg_S;// fillSstart
+            //genes[22] = 192;
+            //genes[23] = gs.bkg_S;// fillSend
+            genes[23] = 164;// fillSend LAST: 128
+            //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            genes[28] = 0;// fillBstart
-            //genes[28] = gs.bkg_B;// fillBstart
-            genes[29] = 255;// fillBend last: 180
-            //genes[29] = gs.bkg_B * random(0.9, 1.1);// fillBend
+            genes[24] = 0;// fillBstart
+            //genes[24] = gs.bkg_B;// fillBstart
+            genes[25] = 255;// fillBend last: 180
+            //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
-            genes[30] = 255;// fillAstart
-            genes[31] = 255;// fillAend
+            genes[26] = 255;// fillAstart
+            genes[27] = 255;// fillAend
                        
             logDNA();
    }
