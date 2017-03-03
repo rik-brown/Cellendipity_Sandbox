@@ -101,8 +101,8 @@ class DNA {
             genes[23] = 164;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            genes[24] = 0;// fillBstart
-            //genes[24] = gs.bkg_B;// fillBstart
+            //genes[24] = 0;// fillBstart
+            genes[24] = gs.bkg_B;// fillBstart
             genes[25] = 255;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             

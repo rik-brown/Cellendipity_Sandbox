@@ -58,7 +58,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     //rows = int(random(1, 9));
-    rows = int(random (4,19));
+    rows = int(random (4,24));
     //rows = int(random(9,21));
 	  //rows = 19;
     cols = rows;

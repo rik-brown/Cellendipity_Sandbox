@@ -18,7 +18,8 @@
 *    NEED a good way of defining stripe colour
 *    (is currently hard-coded in cell: stripe() )
 *  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
-* WHAT HAVE I DONE TO BREAK BRIGHTNESS? Is it linked to updateColourR()??
+* Need to introduce -start and -end variables for fill & stroke color elements
+* Or if this is longwinded, maybe explore lerpColor (startcolor, endcolor)
 
 */
 
@@ -31,7 +32,7 @@ int maxCycles =10;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-123";
+String batchName = "batch-124b";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

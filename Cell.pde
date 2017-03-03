@@ -49,6 +49,12 @@ class Cell {
   float fillAlpha;      // Transparency (HSB & RGB)
   float fill_Hstart;
   float fill_Hend;
+  float fill_Sstart;
+  float fill_Send;
+  float fill_Bstart;
+  float fill_Bend;
+  float fill_Astart;
+  float fill_Aend;
 
   // FILL COLOUR
   color strokeColor; // For HSB you need Hue to be the heading of a PVector
@@ -126,6 +132,12 @@ class Cell {
   fillAlpha = dna.genes[3];
   fill_Hstart = dna.genes[20];
   fill_Hend = dna.genes[21];
+  fill_Sstart = dna.genes[22];
+  fill_Send = dna.genes[23];
+  fill_Bstart = dna.genes[24];
+  fill_Bend = dna.genes[25];
+  fill_Astart = dna.genes[24];
+  fill_Aend = dna.genes[25];
 
   stroke_H = dna.genes[4];
   if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
@@ -171,7 +183,6 @@ class Cell {
     yoff += step;
     velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     float screwAngle = map(maturity, 0, 1, 0, spiral * TWO_PI);
-    //if (dna.genes[11] >= 0.5) {screwAngle *= -1;} //IS THIS ACTUALLY NEEDED ANY MORE? (screwAngle is both +ve & -ve)
     velocity.rotate(screwAngle);
     position.add(velocity);
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
@@ -193,7 +204,6 @@ class Cell {
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*cellStartSize;
     //r = (((sin(map(remoteness, 0, 1, 0, PI)))+0)*cellStartSize) + cellEndSize;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;
-    //cellEndSize = r * dna.genes[9] * 0.01;
     //r -= growth;
   }
 
@@ -224,9 +234,9 @@ class Cell {
   void updateColourR() {
     // START > END
     fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend);
-    fill_S = map(r, cellStartSize, cellEndSize, dna.genes[22], dna.genes[23]);
-    fill_B = map(r, cellStartSize, cellEndSize,  dna.genes[24], dna.genes[25]);
-    fillAlpha = map(r, cellStartSize, cellEndSize, dna.genes[26], dna.genes[27]);
+    fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
+    fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
+    fillAlpha = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
     
     // END > START
     //fill_S = map(r, cellEndSize, cellStartSize,  dna.genes[22], dna.genes[23]);
