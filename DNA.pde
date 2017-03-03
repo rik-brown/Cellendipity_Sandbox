@@ -12,7 +12,7 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 28;
+      numGenes = 36;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (32 genes)
@@ -45,6 +45,15 @@ class DNA {
       // 25 = fillBend
       // 26 = fillAstart
       // 27 = fillAend
+      
+      // 28 = fillHstart
+      // 29 = fillHend
+      // 30 = fillSstart
+      // 31 = fillSend
+      // 32 = fillBstart
+      // 33 = fillBend
+      // 34 = fillAstart
+      // 35 = fillAend
 
 
       // RANDOMIZED VALUES
@@ -108,7 +117,16 @@ class DNA {
             
             genes[26] = 255;// fillAstart
             genes[27] = 255;// fillAend
-                       
+
+            genes[28] = 0;  // stroke_Hstart
+            genes[29] = 0;  // stroke_Hend            
+            genes[30] = 0;  // stroke_Sstart
+            genes[31] = 0;  // stroke_Send
+            genes[32] = 0;  // stroke_Bstart
+            genes[33] = 0;  // stroke_Bend
+            genes[34] = 0;  // strokeAstart
+            genes[35] = 0;  // strokeAend
+
             logDNA();
    }
 

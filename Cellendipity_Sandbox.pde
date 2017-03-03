@@ -20,6 +20,7 @@
 *  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
 * Need to introduce -start and -end variables for fill & stroke color elements
 * Or if this is longwinded, maybe explore lerpColor (startcolor, endcolor)
+* I DON'T NEED 'fill_H' and 'fill_Hstart' if updateFillColor() is always active (can slim down on # genes)
 
 */
 
@@ -27,12 +28,12 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles =10;
+int maxCycles =20;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-124b";
+String batchName = "batch-124c";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

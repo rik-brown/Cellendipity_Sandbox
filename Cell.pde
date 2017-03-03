@@ -62,6 +62,14 @@ class Cell {
   float stroke_S;       // Saturation (HSB) / Green (RGB)
   float stroke_B;       // Brightness (HSB) / Blue (RGB)
   float strokeAlpha;    // Transparency (HSB & RGB)
+  float stroke_Hstart;
+  float stroke_Hend;
+  float stroke_Sstart;
+  float stroke_Send;
+  float stroke_Bstart;
+  float stroke_Bend;
+  float stroke_Astart;
+  float stroke_Aend;
 
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
@@ -129,7 +137,9 @@ class Cell {
   fill_S = dna.genes[1];
   fill_B = dna.genes[2];
   fillColor = color(fill_H, fill_S, fill_B); // Initial color is set
+  
   fillAlpha = dna.genes[3];
+  
   fill_Hstart = dna.genes[20];
   fill_Hend = dna.genes[21];
   fill_Sstart = dna.genes[22];
@@ -143,7 +153,17 @@ class Cell {
   if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
   stroke_B = dna.genes[6];
   strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set
+  
   strokeAlpha = dna.genes[7];
+  
+  stroke_Hstart = dna.genes[26];
+  stroke_Hend = dna.genes[27];
+  stroke_Sstart = dna.genes[28];
+  stroke_Send = dna.genes[29];
+  stroke_Bstart = dna.genes[30];
+  stroke_Bend = dna.genes[31];
+  stroke_Astart = dna.genes[32];
+  stroke_Aend = dna.genes[33];
   }
 
   void run() {
@@ -151,8 +171,8 @@ class Cell {
     updatePosition();
     updateSize();
     updateFertility();
-    //updateColour();
-    updateColourR();
+    updateFillColor();
+    updateStrokeColor();
     if (stripe) {updateStripes();}
     if (gs.wraparound) {checkBoundaryWraparound();}
     display();
@@ -212,38 +232,22 @@ class Cell {
     if (spawnCount == 0) {fertility = 0;} // Once spawnCount has counted down to zero, the cell will spawn no more
   }
 
-  void updateColour() {
-    if (gs.fill_STwist > 0) {fill_S = map(maturity, 1, 0, (255-gs.fill_STwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill saturation by radius
-    if (gs.fill_BTwist > 0) {fill_B = map(maturity, 1, 0, (255-gs.fill_BTwist), 255); fillColor = color(fill_H, fill_S, fill_B);} // Modulate fill brightness by radius
-    if (gs.fill_ATwist > 0) {fillAlpha = map(maturity, 0, 1, (255-gs.fill_ATwist), 255);} // Modulate fill Alpha by radius
-    if (gs.fill_HTwist > 0) { // Modulate fill hue by radius. Does not change original hue value but replaces it with a 'twisted' version
-      float fill_Htwisted = map(maturity, 1, 0, fill_H, fill_H+gs.fill_HTwist);
-      if (fill_Htwisted > 360) {fill_Htwisted -= 360;}
-      fillColor = color(fill_Htwisted, fill_S, fill_B); //fill colour is updated with new hue value
-    }
-    if (gs.stroke_STwist > 0) {stroke_S = map(maturity, 1, 0, (255-gs.stroke_STwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke saturation by radius
-    if (gs.stroke_BTwist > 0) {stroke_B = map(maturity, 0, 1, (255-gs.stroke_BTwist), 255); strokeColor = color(stroke_H, stroke_S, stroke_B);} // Modulate stroke brightness by radius
-    if (gs.stroke_ATwist > 0) {strokeAlpha = map(maturity, 0, 1, (255-gs.stroke_ATwist), 255);} // Modulate stroke Alpha by radius
-    if (gs.stroke_HTwist > 0) { // Modulate stroke hue by radius
-      float stroke_Htwisted = map(maturity, 1, 0, stroke_H, stroke_H+gs.stroke_HTwist);
-      if (stroke_Htwisted > 360) {stroke_Htwisted -= 360;}
-      strokeColor = color(stroke_Htwisted, stroke_S, stroke_B); //stroke colour is updated with new hue value
-    }
-  }
-
-  void updateColourR() {
+  void updateFillColor() {
     // START > END
     fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend);
     fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
     fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
     fillAlpha = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
-    
-    // END > START
-    //fill_S = map(r, cellEndSize, cellStartSize,  dna.genes[22], dna.genes[23]);
-    //fill_B = map(r, cellEndSize, cellStartSize, dna.genes[24], dna.genes[25]);
-    //fillAlpha = map(r, cellEndSize, cellStartSize, dna.genes[26], dna.genes[27]);
-    
     fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+  }
+  
+  void updateStrokeColor() {
+    // START > END
+    stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend);
+    stroke_S = map(r, cellStartSize, cellEndSize, stroke_Sstart, stroke_Send);
+    stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
+    strokeAlpha = map(r, cellStartSize, cellEndSize, stroke_Astart, stroke_Aend);    
+    strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
   }
 
   void updateStripes() {

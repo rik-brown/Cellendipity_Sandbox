@@ -99,7 +99,8 @@ class Colony {
         //dna.genes[2] = map(ypos, 0, height, 192, 255);       // 2 = fill Brightness (0-255)
         //dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2))); // 8 = cellStartSize
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350); // 8 = cellStartSize
-        dna.genes[10] = width * map(distMag, 0, width*0.7, 0.38, 0.012); // 10 = lifespan (200-1000)
+        dna.genes[8] = width/(gs.rows*map(distMag, 0, width*0.7, 1.6, 2.5));
+        dna.genes[10] = width * map(distMag, 0, width*0.7, 0.18, 0.012); // 10 = lifespan (200-1000)
         //dna.genes[10] = map(c, 0, gs.cols, width*0.01, width*0.25); // 10 = lifespan (200-1000)
         //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3); // 10 = lifespan (200-1000)
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150); // 11 = flatness (50-200 %)
