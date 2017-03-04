@@ -146,8 +146,8 @@ class Cell {
   fill_Send = dna.genes[23];
   fill_Bstart = dna.genes[24];
   fill_Bend = dna.genes[25];
-  fill_Astart = dna.genes[24];
-  fill_Aend = dna.genes[25];
+  fill_Astart = dna.genes[26];
+  fill_Aend = dna.genes[27];
 
   stroke_H = dna.genes[4];
   if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
@@ -156,14 +156,14 @@ class Cell {
   
   strokeAlpha = dna.genes[7];
   
-  stroke_Hstart = dna.genes[26];
-  stroke_Hend = dna.genes[27];
-  stroke_Sstart = dna.genes[28];
-  stroke_Send = dna.genes[29];
-  stroke_Bstart = dna.genes[30];
-  stroke_Bend = dna.genes[31];
-  stroke_Astart = dna.genes[32];
-  stroke_Aend = dna.genes[33];
+  stroke_Hstart = dna.genes[28];
+  stroke_Hend = dna.genes[29];
+  stroke_Sstart = dna.genes[30];
+  stroke_Send = dna.genes[31];
+  stroke_Bstart = dna.genes[32];
+  stroke_Bend = dna.genes[33];
+  stroke_Astart = dna.genes[34];
+  stroke_Aend = dna.genes[35];
   }
 
   void run() {

@@ -68,10 +68,10 @@ class DNA {
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             genes[4] = random(360);    // 4 = stroke Hue (0-360)
-            genes[5] = 100;    // 5 = stroke Saturation (0-255)
+            genes[5] = 255;    // 5 = stroke Saturation (0-255)
             genes[6] = 255;    // 6 = stroke Brightness (0-255) 0 = BLACK
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 0;
+            genes[7] = 10;
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = width/((gs.rows)*2);
@@ -118,14 +118,14 @@ class DNA {
             genes[26] = 255;// fillAstart
             genes[27] = 255;// fillAend
 
-            genes[28] = 0;  // stroke_Hstart
-            genes[29] = 0;  // stroke_Hend            
-            genes[30] = 0;  // stroke_Sstart
-            genes[31] = 0;  // stroke_Send
-            genes[32] = 0;  // stroke_Bstart
-            genes[33] = 0;  // stroke_Bend
-            genes[34] = 0;  // strokeAstart
-            genes[35] = 0;  // strokeAend
+            genes[28] = gs.bkg_H;  // stroke_Hstart
+            genes[29] = 300;  // stroke_Hend            
+            genes[30] = gs.bkg_S;  // stroke_Sstart
+            genes[31] = 164;  // stroke_Send
+            genes[32] = gs.bkg_B;  // stroke_Bstart
+            genes[33] = 255;  // stroke_Bend
+            genes[34] = 10;  // strokeAstart
+            genes[35] = 10;  // strokeAend
 
             logDNA();
    }

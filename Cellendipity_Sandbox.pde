@@ -21,6 +21,7 @@
 * Need to introduce -start and -end variables for fill & stroke color elements
 * Or if this is longwinded, maybe explore lerpColor (startcolor, endcolor)
 * I DON'T NEED 'fill_H' and 'fill_Hstart' if updateFillColor() is always active (can slim down on # genes)
+* Can also remove fill- and stroke-twist
 
 */
 
@@ -28,12 +29,12 @@ Colony colony;                                     // A Colony object called 'co
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles =10;
+int maxCycles =3;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-124e";
+String batchName = "batch-125";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -48,9 +49,9 @@ void setup() {
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
-  //size(1600, 1600);
+  size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -63,8 +64,8 @@ void setup() {
   startSettingsFile();
   gs = new Global_settings();
   colony = new Colony();
-  if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
-  //background (0,0,0,0);
+  //if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+  background (0,0,0,0);
   if (gs.debug) {frameRate(3);}
 }
 
@@ -94,7 +95,7 @@ void manageColony() {
     startSettingsFile();
     gs = new Global_settings();
     colony = new Colony();
-    if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+    //if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
 }
 
 void startSettingsFile() {

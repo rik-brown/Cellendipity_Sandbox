@@ -54,13 +54,13 @@ class Global_settings {
 
    
     //numStrains = int(random(1, 3)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 2;
+    numStrains = 1;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 20;
+	  rows = 8;
     cols = rows;
     //cols = 12;
 
@@ -90,14 +90,14 @@ class Global_settings {
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
 
-    fillDisable = false;
+    fillDisable = true;
     //fill_HTwist = int(random(12,48)); // (0-360)
     fill_HTwist = 0;
     fill_STwist = 0; // (0-255)
     fill_BTwist = 0; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
-    strokeDisable = true;
+    strokeDisable = false;
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
     stroke_BTwist = 0; // (0-255)

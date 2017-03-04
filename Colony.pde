@@ -120,6 +120,8 @@ class Colony {
         dna.genes[25] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
         //dna.genes[25] = map(r, 0, gs.rows, 160, 220); // 25 = fillBend
         //dna.genes[25] = map(distMag, 0, width*0.7, 0, 255); // 25 = fillBend
+        dna.genes[29] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
+        dna.genes[33] = map(distMag, 0, width*0.7, 255, 20); // 25 = stroke_Bend
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
