@@ -99,7 +99,7 @@ class Colony {
         //dna.genes[2] = map(ypos, 0, height, 192, 255);       // 2 = fill Brightness (0-255)
         //dna.genes[8] = width/(gs.rows*(map(c, 0, gs.cols, 1.8, 2.2))); // 8 = cellStartSize
         //dna.genes[8] = map(c, 0, gs.cols, 50, 350); // 8 = cellStartSize
-        dna.genes[8] = width/(gs.rows*map(distMag, 0, width*0.7, 1.6, 2.5));
+        //dna.genes[8] = width/(gs.rows*map(distMag, 0, width*0.7, 1.6, 2.5));
         dna.genes[10] = width * map(distMag, 0, width*0.7, 0.18, 0.012); // 10 = lifespan (200-1000)
         //dna.genes[10] = map(c, 0, gs.cols, width*0.01, width*0.25); // 10 = lifespan (200-1000)
         //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3); // 10 = lifespan (200-1000)
@@ -117,7 +117,7 @@ class Colony {
         //dna.genes[21] = map(c, 0, gs.cols, 360, 0); // 21 = fillHend
         //dna.genes[21] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3); // 21 = fillHend
         //dna.genes[21] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0); // 21 = fillHend
-        dna.genes[25] = map(distMag, 0, width*0.7, 255, 10); // 25 = fillBend
+        dna.genes[25] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
         //dna.genes[25] = map(r, 0, gs.rows, 160, 220); // 25 = fillBend
         //dna.genes[25] = map(distMag, 0, width*0.7, 0, 255); // 25 = fillBend
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell

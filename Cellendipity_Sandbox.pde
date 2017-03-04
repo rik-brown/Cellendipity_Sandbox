@@ -48,9 +48,9 @@ void setup() {
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
-  size(1600, 1600);
+  //size(1600, 1600);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
