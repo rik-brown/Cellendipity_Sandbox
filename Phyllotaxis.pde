@@ -41,12 +41,12 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = width * map(n, 0, gs.seeds, 0.004, 0.04); // 8 = cellStartSize
-      dna.genes[10] = map(n, 0, gs.seeds, 15, 65); // 10 = lifespan (200-1000)
+      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 7, 70); // 8 = cellStartSize
+      dna.genes[10] = width * 0.01 * map(n, 0, gs.seeds, 15, 85); // 10 = lifespan (200-1000)
       dna.genes[12] = map(n, 0, gs.seeds, 25, 5); // 12 = spiral screw (-75 - +75 %)
       //dna.genes[17] = map(n, 0, gs.seeds, 100, 50); // 17 = noisePercent (0-100%)
       
-      //dna.genes[20] = map(n, 0, gs.seeds, 0, 360); //
+      dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
       dna.genes[21] = dna.genes[20] + map(n, 0, gs.seeds, 30, 0); //
       
       //dna.genes[22] = map(n, 0, gs.seeds, 0, 255); //
