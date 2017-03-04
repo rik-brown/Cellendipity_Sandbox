@@ -112,12 +112,12 @@ class Colony {
         dna.genes[17] = map(distMag, 0, width*0.7, 100, 50); // 17 = noisePercent (0-100%)
         //dna.genes[19] = map(r, 0, gs.rows, 0, 1); // 21 = yOff (rnd 1000)
         //dna.genes[20] = map(distMag, 0, width*0.7, 0, 180); // 20 = fillHstart
-        dna.genes[21] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = fillHend
+        //dna.genes[21] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = fillHend
         //dna.genes[20] = map(r, 0, gs.rows, 0, 360); // 20 = fillHstart
         //dna.genes[21] = map(c, 0, gs.cols, 360, 0); // 21 = fillHend
         //dna.genes[21] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3); // 21 = fillHend
         //dna.genes[21] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0); // 21 = fillHend
-        dna.genes[25] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
+        //dna.genes[25] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
         //dna.genes[25] = map(r, 0, gs.rows, 160, 220); // 25 = fillBend
         //dna.genes[25] = map(distMag, 0, width*0.7, 0, 255); // 25 = fillBend
         dna.genes[29] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend

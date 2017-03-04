@@ -13,8 +13,11 @@ class Global_settings {
 
   int strainSize;
   int numStrains;
+  
   int rows;
   int cols;
+  int seeds;
+  
   int stepSize;
   int stepSizeN;
   int stripeSize;
@@ -57,10 +60,13 @@ class Global_settings {
     numStrains = 1;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
+    
+    seeds = 650;
+    
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 8;
+	  rows = 12;
     cols = rows;
     //cols = 12;
 
@@ -90,7 +96,7 @@ class Global_settings {
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
 
-    fillDisable = true;
+    fillDisable = false;
     //fill_HTwist = int(random(12,48)); // (0-360)
     fill_HTwist = 0;
     fill_STwist = 0; // (0-255)
