@@ -58,7 +58,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     //rows = int(random(1, 9));
-    rows = int(random (4,24));
+    rows = int(random (4,12));
     //rows = int(random(9,21));
 	  //rows = 19;
     cols = rows;
@@ -68,8 +68,8 @@ class Global_settings {
     stepSize = 30;
     stepSizeN = 50;
     
-    stripeSize = 20000; // last 10
-    stripeRatio = 0.85;
+    stripeSize = 20; // last 10
+    stripeRatio = 0.65;
 
     greyscaleON = false;
     bkg_H = random(360);

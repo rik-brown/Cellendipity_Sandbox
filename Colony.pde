@@ -105,7 +105,7 @@ class Colony {
         //dna.genes[10] = width * map(r, 0, gs.rows, 0.1, 0.3); // 10 = lifespan (200-1000)
         //dna.genes[11] = map(c, 0, gs.cols, 75, 150); // 11 = flatness (50-200 %)
         //dna.genes[12] = map(c, 0, gs.cols, 45, 60); // 12 = spiral screw (-75 - +75 %)
-        //dna.genes[12] = map(distMag, 0, width*0.5, 0, 10); // 12 = spiral screw (-75 - +75 %)
+        dna.genes[12] = map(distMag, 0, width*0.7, 15, 5); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[12] = map(a, 0, TWO_PI, 0, 10); // 12 = spiral screw (-75 - +75 %)
         //dna.genes[17] = map(ypos], 0, height, 0, 30); // 17 = noisePercent (0-100%)
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100); // 17 = noisePercent (0-100%)
