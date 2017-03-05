@@ -32,10 +32,10 @@ Global_settings gs;                                // A Parameters object called
 int runCycle = 1;
 int maxCycles = 10;
 //int maxFrames = int(random(1300,1600));
-int maxFrames = 300;
+int maxFrames = 1000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-128_noise-seed_h-300f";
+String batchName = "batch-129b";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -49,10 +49,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1502, 1502);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4001, 4001);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -66,8 +66,9 @@ void setup() {
   gs = new Global_settings();
   //colony = new Colony();
   colony = new Phyllotaxis();
-  if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+  //if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
   //background (0,0,0,0);
+  background (0,0,255); //white
   if (gs.debug) {frameRate(3);}
 }
 
@@ -93,8 +94,9 @@ void manageColony() {
     outputName = nf(runCycle, 3);
     screendumpPath = pathName + versionName + "." + outputName + ".png";
     output = createWriter(pathName + versionName + "." + outputName +"_settings.txt");
-    if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+    //if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
     //background (0,0,0,0);
+    background (0,0,255); //white
     startSettingsFile();
     gs = new Global_settings();
     //colony = new Colony();

@@ -111,22 +111,22 @@ class DNA {
             //genes[23] = 192;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            //genes[24] = 255;// fillBstart
-            genes[24] = gs.bkg_B;// fillBstart
-            genes[25] = 255;// fillBend last: 180
+            genes[24] = 0;// fillBstart
+            //genes[24] = gs.bkg_B;// fillBstart
+            genes[25] = 0;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[26] = 255;// fillAstart
             genes[27] = 255;// fillAend
 
             genes[28] = gs.bkg_H;  // stroke_Hstart
-            genes[29] = 300;  // stroke_Hend            
+            genes[29] = gs.bkg_H;  // stroke_Hend            
             genes[30] = gs.bkg_S;  // stroke_Sstart
-            genes[31] = 164;  // stroke_Send
-            genes[32] = gs.bkg_B;  // stroke_Bstart
+            genes[31] = gs.bkg_S;  // stroke_Send
+            genes[32] = 128;  // stroke_Bstart
             genes[33] = 255;  // stroke_Bend
-            genes[34] = 0;  // strokeAstart
-            genes[35] = 10;  // strokeAend
+            genes[34] = 16;  // strokeAstart
+            genes[35] = 36;  // strokeAend
 
             logDNA();
    }

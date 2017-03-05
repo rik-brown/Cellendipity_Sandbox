@@ -7,7 +7,8 @@ class Phyllotaxis {
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
   int colonyMaxSize = 200;
-  float c = width * 0.003; // Scaling factor
+  //float c = width * 0.006; // Scaling factor
+  float c = 0; // Scaling factor
   PVector v;
   PVector pos;
   PVector origin;
@@ -36,16 +37,16 @@ class Phyllotaxis {
       
       PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
       v.normalize();
-      v.rotate(PI * 1.5);
+      v.rotate(PI * 0.5);
       
       
       DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 1, 30); // 8 = cellStartSize
-      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 10, 300); // 10 = lifespan (200-1000)
-      //dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 1, 33); // 8 = cellStartSize
+      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 203, 33); // 10 = lifespan (200-1000)
+      //dna.genes[12] = map(n, 0, gs.seeds, 5, 15); // 12 = spiral screw (-75 - +75 %)
       dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
@@ -55,13 +56,13 @@ class Phyllotaxis {
       //dna.genes[19] = map(n, 0, gs.seeds, 0, 10); // 19 = yOff (0-1000)
       
       //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
-      dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 10, 30); //
+      //dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 10, 30); //
       
       //dna.genes[22] = map(n, 0, gs.seeds, 255, 64); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 192, 32); //
+      //dna.genes[23] = map(n, 0, gs.seeds, 16, 255); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
-      dna.genes[25] = map(n, 0, gs.seeds, 255, 190); //
+      //dna.genes[25] = map(n, 0, gs.seeds, 255, 225); //
       
       //dna.genes[26] = map(n, 0, gs.seeds, 255, 0); //
       
@@ -72,7 +73,8 @@ class Phyllotaxis {
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));
       }
-     c *= 1.0015;
+     //c *= 1.0015;
+     c += width * 0.00003;
     }
   }
 
