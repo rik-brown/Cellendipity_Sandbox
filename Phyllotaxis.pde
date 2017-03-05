@@ -17,7 +17,7 @@ class Phyllotaxis {
   Phyllotaxis() {
     genepool = new ArrayList<DNA>();
     cells = new ArrayList<Cell>();
-    v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+    //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
@@ -34,7 +34,9 @@ class Phyllotaxis {
       origin = new PVector (width * 0.5, height * 0.5);
       float distance = dist(xpos, ypos, width*0.5, height*0.5);
       
-      //v = PVector.sub(origin, pos).mult(1); // Static vector to get distance between the cell & other
+      PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
+      v.normalize();
+      v.rotate(PI * 1.5);
       
       
       DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
@@ -42,15 +44,15 @@ class Phyllotaxis {
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
       dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 7, 70); // 8 = cellStartSize
-      dna.genes[10] = width * 0.01 * map(n, 0, gs.seeds, 15, 85); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 25, 5); // 12 = spiral screw (-75 - +75 %)
-      //dna.genes[17] = map(n, 0, gs.seeds, 100, 50); // 17 = noisePercent (0-100%)
+      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
+      dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
       
-      dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
-      dna.genes[21] = dna.genes[20] + map(n, 0, gs.seeds, 30, 0); //
+      //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
+      dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 0, 120); //
       
       //dna.genes[22] = map(n, 0, gs.seeds, 0, 255); //
-      dna.genes[23] = map(n, 0, gs.seeds, 64, 255); //
+      //dna.genes[23] = map(n, 0, gs.seeds, 64, 255); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
       dna.genes[25] = map(n, 0, gs.seeds, 255, 128); //

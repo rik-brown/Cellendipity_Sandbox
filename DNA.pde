@@ -77,7 +77,7 @@ class DNA {
             genes[8] = 20;
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 35;
+            genes[9] = 15;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             //genes[10] = width * 0.6; // last * 0.09, 0.2, 0.5
             genes[10] = 20;
@@ -108,7 +108,7 @@ class DNA {
             genes[22] = gs.bkg_S;// fillSstart
             //genes[22] = 255;
             //genes[23] = gs.bkg_S;// fillSend
-            genes[23] = 255;// fillSend LAST: 128
+            genes[23] = 192;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
             //genes[24] = 255;// fillBstart

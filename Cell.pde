@@ -234,7 +234,7 @@ class Cell {
 
   void updateFillColor() {
     // START > END
-    fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend);
+    fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
     fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
     fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
     fillAlpha = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
@@ -243,7 +243,7 @@ class Cell {
   
   void updateStrokeColor() {
     // START > END
-    stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend);
+    stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend) % 360;
     stroke_S = map(r, cellStartSize, cellEndSize, stroke_Sstart, stroke_Send);
     stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
     strokeAlpha = map(r, cellStartSize, cellEndSize, stroke_Astart, stroke_Aend);    
