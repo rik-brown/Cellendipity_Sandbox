@@ -32,10 +32,10 @@ Global_settings gs;                                // A Parameters object called
 int runCycle = 1;
 int maxCycles = 10;
 //int maxFrames = int(random(1300,1600));
-int maxFrames = 5000;
+int maxFrames = 300;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-128_noise-seed_h";
+String batchName = "batch-128_noise-seed_h-300f";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
