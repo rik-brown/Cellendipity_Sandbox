@@ -32,7 +32,7 @@ Global_settings gs;                                // A Parameters object called
 int runCycle = 1;
 int maxCycles = 10;
 //int maxFrames = int(random(1300,1600));
-int maxFrames = 1000;
+int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
 String batchName = "batch-129c";
