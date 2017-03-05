@@ -43,25 +43,25 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 7, 70); // 8 = cellStartSize
-      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 100, 100); // 10 = lifespan (200-1000)
+      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, 1, 20); // 8 = cellStartSize
+      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 10, 500); // 10 = lifespan (200-1000)
       //dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 100, 100); // 17 = noisePercent (0-100%)
+      dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
       
-      dna.genes[18] = map(n, 0, gs.seeds, 0, 10); // 18 = xOff (0-1000)
-      dna.genes[19] = map(n, 0, gs.seeds, 0, 10); // 19 = yOff (0-1000)
+      //dna.genes[18] = map(n, 0, gs.seeds, 0, 10); // 18 = xOff (0-1000)
+      //dna.genes[19] = map(n, 0, gs.seeds, 0, 10); // 19 = yOff (0-1000)
       
       //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
-      dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60); //
+      dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 10, 30); //
       
-      //dna.genes[22] = map(n, 0, gs.seeds, 0, 255); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 64, 255); //
+      //dna.genes[22] = map(n, 0, gs.seeds, 255, 64); //
+      //dna.genes[23] = map(n, 0, gs.seeds, 192, 32); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
-      dna.genes[25] = map(n, 0, gs.seeds, 255, 128); //
+      dna.genes[25] = map(n, 0, gs.seeds, 255, 190); //
       
       //dna.genes[26] = map(n, 0, gs.seeds, 255, 0); //
       
