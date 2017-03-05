@@ -57,7 +57,7 @@ class Global_settings {
 
    
     //numStrains = int(random(1, 3)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
+    numStrains = 2;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     

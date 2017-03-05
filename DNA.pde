@@ -79,8 +79,8 @@ class DNA {
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 15;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
-            //genes[10] = width * 0.6; // last * 0.09, 0.2, 0.5
-            genes[10] = 20;
+            genes[10] = width * 0.6; // last * 0.09, 0.2, 0.5
+            //genes[10] = 20;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
@@ -105,13 +105,13 @@ class DNA {
             //genes[21] = gs.bkg_H;
             genes[21] = 300;
             
-            genes[22] = gs.bkg_S;// fillSstart
-            //genes[22] = 255;
+            //genes[22] = gs.bkg_S;// fillSstart
+            genes[22] = 0;
             genes[23] = gs.bkg_S;// fillSend
             //genes[23] = 192;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            genes[24] = 0;// fillBstart
+            genes[24] = 255;// fillBstart
             //genes[24] = gs.bkg_B;// fillBstart
             genes[25] = 0;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
