@@ -101,8 +101,8 @@ class DNA {
             
             genes[20] = gs.bkg_H;  // fillHstart
             //genes[20] = 360; //BLUE
-            genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
-            //genes[21] = gs.bkg_H;
+            //genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
+            genes[21] = gs.bkg_H;
             //genes[21] = 320;
             
             genes[22] = gs.bkg_S;// fillSstart
