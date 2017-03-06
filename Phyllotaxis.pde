@@ -7,8 +7,10 @@ class Phyllotaxis {
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
   int colonyMaxSize = 200;
-  int sf = 27;
-  float c = width * 0.001 * sf; // Scaling factor
+  float w = width * 0.001;
+  float sf = 20000/gs.seeds;
+  //float c = w * sf; // Scaling factor
+  float c;
   //float c = 0; // Scaling factor
   PVector v;
   PVector pos;
@@ -28,6 +30,7 @@ class Phyllotaxis {
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 0; n <= gs.seeds; n++) {      
+      c = map(n, 0, gs.seeds, 0, w * sf*0.666); 
       float a = n * radians(137.5);
       float r = c * sqrt(n);
       float xpos = r * cos(a) + width * 0.5;
@@ -45,10 +48,10 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, sf*0.8, sf); // 8 = cellStartSize
-      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 200, 10); // 10 = lifespan (200-1000)
-      //dna.genes[12] = map(n, 0, gs.seeds, 5, 15); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 100, 0); // 17 = noisePercent (0-100%)
+      dna.genes[8] = w * map(n, 0, gs.seeds, 10, 50); // 8 = cellStartSize
+      dna.genes[10] = w * map(n, 0, gs.seeds, 100, 50); // 10 = lifespan (200-1000)
+      //dna.genes[12] = map(n, 0, gs.seeds, 180, 0); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[17] = map(n, 0, gs.seeds, 80, 20); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
@@ -59,11 +62,13 @@ class Phyllotaxis {
       //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
       //dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 10, 30); //
       
-      //dna.genes[22] = map(n, 0, gs.seeds, 255, 64); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 16, 255); //
+      //dna.genes[22] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
+      dna.genes[22] = map(n, 0, gs.seeds, 255, 64); //
+      //dna.genes[23] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
+      dna.genes[23] = map(n, 0, gs.seeds, 48, 255); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
-      //dna.genes[25] = map(n, 0, gs.seeds, 192, 0); //
+      dna.genes[25] = map(n, 0, gs.seeds, 192, gs.bkg_B*1.5); //
       
       //dna.genes[26] = map(n, 0, gs.seeds, 255, 0); //
       
