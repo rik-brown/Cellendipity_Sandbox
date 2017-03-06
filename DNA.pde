@@ -84,7 +84,7 @@ class DNA {
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
-            genes[12] = 0;
+            genes[12] = 10;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
@@ -99,21 +99,21 @@ class DNA {
             genes[18] = random(1000); // 18 = xOff (rnd 1000)
             genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            genes[20] = gs.bkg_H;  // fillHstart
-            //genes[20] = 240; //BLUE
+            //genes[20] = gs.bkg_H;  // fillHstart
+            genes[20] = 360; //BLUE
             //genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
             //genes[21] = gs.bkg_H;
-            genes[21] = 300;
+            genes[21] = 240;
             
-            //genes[22] = gs.bkg_S;// fillSstart
-            genes[22] = 0;
+            genes[22] = gs.bkg_S;// fillSstart
+            //genes[22] = 0;
             genes[23] = gs.bkg_S;// fillSend
             //genes[23] = 192;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
             genes[24] = 255;// fillBstart
             //genes[24] = gs.bkg_B;// fillBstart
-            genes[25] = 0;// fillBend last: 180
+            genes[25] = 255;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[26] = 255;// fillAstart
