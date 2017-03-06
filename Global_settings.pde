@@ -74,7 +74,7 @@ class Global_settings {
     stepSize = 10;
     stepSizeN = 50;
     
-    stripeSize = 20000; // last 10
+    stripeSize = 20; // last 10
     stripeRatio = 0.75;
 
     greyscaleON = false;

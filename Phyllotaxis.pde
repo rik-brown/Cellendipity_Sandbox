@@ -29,7 +29,8 @@ class Phyllotaxis {
     }
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
-    for (int n = 0; n <= gs.seeds; n++) {      
+    for (int n = 1; n <= gs.seeds; n++) {      
+      int str = (n % gs.numStrains);
       c = map(n, 0, gs.seeds, 0, w * sf * 0.7); 
       float a = n * radians(137.5);
       float r = c * sqrt(n);
@@ -44,12 +45,13 @@ class Phyllotaxis {
       v.rotate(PI * 0.5);
       
       
-      DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
+      //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
+      DNA dna = genepool.get(str); // Get's alternating dna from the genepool
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
       dna.genes[8] = w * map(n, 0, gs.seeds, 20, 50); // 8 = cellStartSize
-      dna.genes[10] = w * map(n, 0, gs.seeds, 200, 60); // 10 = lifespan (200-1000)
+      dna.genes[10] = w * map(n, 0, gs.seeds, 100, 60); // 10 = lifespan (200-1000)
       //dna.genes[12] = map(n, 0, gs.seeds, 180, 0); // 12 = spiral screw (-75 - +75 %)
       dna.genes[17] = map(n, 0, gs.seeds, 80, 20); // 17 = noisePercent (0-100%)
       
@@ -63,9 +65,9 @@ class Phyllotaxis {
       dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 0, 10); //
       
       //dna.genes[22] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
-      dna.genes[22] = map(n, 0, gs.seeds, 255, 64); //
+      dna.genes[22] = map(n, 0, gs.seeds, 255, 128); //
       //dna.genes[23] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
-      dna.genes[23] = map(n, 0, gs.seeds, 48, 255); //
+      dna.genes[23] = map(n, 0, gs.seeds, 128, 255); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
       dna.genes[25] = map(n, 0, gs.seeds, 192, gs.bkg_B*1.5); //
