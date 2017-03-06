@@ -125,8 +125,8 @@ class DNA {
             genes[31] = gs.bkg_S;  // stroke_Send
             genes[32] = 128;  // stroke_Bstart
             genes[33] = 255;  // stroke_Bend
-            genes[34] = 16;  // strokeAstart
-            genes[35] = 36;  // strokeAend
+            genes[34] = 0;  // strokeAstart
+            genes[35] = 0;  // strokeAend
 
             logDNA();
    }

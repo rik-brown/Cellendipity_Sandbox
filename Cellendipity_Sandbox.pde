@@ -30,7 +30,7 @@ Phyllotaxis colony;
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 1;
+int maxCycles = 5;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
@@ -49,10 +49,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local

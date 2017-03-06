@@ -7,7 +7,7 @@ class Phyllotaxis {
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
   int colonyMaxSize = 200;
-  int sf = 6;
+  int sf = 27;
   float c = width * 0.001 * sf; // Scaling factor
   //float c = 0; // Scaling factor
   PVector v;
@@ -45,10 +45,10 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, sf, sf); // 8 = cellStartSize
-      //dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 203, 33); // 10 = lifespan (200-1000)
+      dna.genes[8] = width * 0.001 * map(n, 0, gs.seeds, sf, sf*1.5); // 8 = cellStartSize
+      dna.genes[10] = width * 0.001 * map(n, 0, gs.seeds, 200, 20); // 10 = lifespan (200-1000)
       //dna.genes[12] = map(n, 0, gs.seeds, 5, 15); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
+      dna.genes[17] = map(n, 0, gs.seeds, 100, 0); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
@@ -63,7 +63,7 @@ class Phyllotaxis {
       //dna.genes[23] = map(n, 0, gs.seeds, 16, 255); //
       
       //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
-      //dna.genes[25] = map(n, 0, gs.seeds, 255, 225); //
+      dna.genes[25] = map(n, 0, gs.seeds, 192, 0); //
       
       //dna.genes[26] = map(n, 0, gs.seeds, 255, 0); //
       
