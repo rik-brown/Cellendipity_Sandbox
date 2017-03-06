@@ -201,7 +201,7 @@ class Cell {
     velocityNoise = new PVector(vx,vy);
     xoff += step;
     yoff += step;
-    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     float screwAngle = map(maturity, 0, 1, 0, spiral * TWO_PI);
     velocity.rotate(screwAngle);
     position.add(velocity);
@@ -365,7 +365,7 @@ void displayRect() {
   void conception(Cell other, PVector distVect) {
     // Decrease spawn counters.
     spawnCount --;
-    other.spawnCount --; //<>//
+    other.spawnCount --; //<>// //<>//
 
     // Calculate velocity vector for spawn as being centered between parent cell & other
     PVector spawnVel = velocity.copy(); // Create spawnVel as a copy of parent cell's velocity vector
