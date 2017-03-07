@@ -220,10 +220,10 @@ class Cell {
     float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
     //r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
-    //r = map(age, 0, lifespan, cellStartSize, cellEndSize);
+    r = map(age, 0, lifespan, cellStartSize, cellEndSize);
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*cellStartSize;
     //r = (((sin(map(remoteness, 0, 1, 0, PI)))+0)*cellStartSize) + cellEndSize;
-    r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;
+    //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;
     //r -= growth;
   }
 

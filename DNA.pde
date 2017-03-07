@@ -96,13 +96,18 @@ class DNA {
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0;
             
-            genes[18] = random(1000); // 18 = xOff (rnd 1000)
-            genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            //genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            //genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            
+            genes[18] = 500; // 18 = xOff (rnd 1000)
+            genes[19] = 500; // 19 = yOff (rnd 1000)
             
             genes[20] = gs.bkg_H;  // fillHstart
+            genes[20] = random(360);  // fillHstart
             //genes[20] = 360; //BLUE
             //genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
-            genes[21] = gs.bkg_H;
+            //genes[21] = gs.bkg_H;
+            genes[21] = genes[20];
             //genes[21] = 320;
             
             genes[22] = gs.bkg_S;// fillSstart
@@ -113,7 +118,7 @@ class DNA {
             
             //genes[24] = 64;// fillBstart
             genes[24] = gs.bkg_B * 0.5;// fillBstart
-            //genes[25] = 255;// fillBend last: 180
+            genes[25] = 255;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[26] = 255;// fillAstart

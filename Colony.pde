@@ -22,6 +22,18 @@ class Colony {
     for (int g = 0; g < gs.numStrains; g++) {
       genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
+ 
+    // Strain 1 = WHITE
+    genepool.get(0).genes[22] = 0;
+    genepool.get(0).genes[23] = 0;
+    genepool.get(0).genes[24] = 255;
+    genepool.get(0).genes[25] = 255;
+    
+    // Strain 2 = BLACK
+    genepool.get(1).genes[22] = 0;
+    genepool.get(1).genes[23] = 0;
+    genepool.get(1).genes[24] = 0;
+    genepool.get(1).genes[25] = 0;
    
     //float col0 =gs.bkg_H + 0; 
     //if (col0 > 360) {col0 -= 360;}
