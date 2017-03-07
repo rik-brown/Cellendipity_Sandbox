@@ -96,11 +96,11 @@ class DNA {
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0;
             
-            //genes[18] = random(1000); // 18 = xOff (rnd 1000)
-            //genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            genes[18] = 500; // 18 = xOff (rnd 1000)
-            genes[19] = 500; // 19 = yOff (rnd 1000)
+            //genes[18] = 500; // 18 = xOff (rnd 1000)
+            //genes[19] = 500; // 19 = yOff (rnd 1000)
             
             genes[20] = gs.bkg_H;  // fillHstart
             genes[20] = random(360);  // fillHstart
