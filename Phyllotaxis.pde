@@ -29,16 +29,16 @@ class Phyllotaxis {
     }
     
        // Strain 1 = WHITE
-    genepool.get(0).genes[22] = 128;
-    genepool.get(0).genes[23] = 210;
-    genepool.get(0).genes[24] = 128;
-    genepool.get(0).genes[25] = 225;
+    //genepool.get(0).genes[22] = 128;
+    //genepool.get(0).genes[23] = 210;
+    //genepool.get(0).genes[24] = 128;
+    //genepool.get(0).genes[25] = 225;
     
-    // Strain 2 = BLACK
-    genepool.get(1).genes[22] = 128;
-    genepool.get(1).genes[23] = 190;
-    genepool.get(1).genes[24] = 128;
-    genepool.get(1).genes[25] = 225;
+    //// Strain 2 = BLACK
+    //genepool.get(1).genes[22] = 128;
+    //genepool.get(1).genes[23] = 190;
+    //genepool.get(1).genes[24] = 128;
+    //genepool.get(1).genes[25] = 225;
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
@@ -63,11 +63,11 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = w * map(n, 0, gs.seeds, 15, 55); // 8 = cellStartSize
-      dna.genes[10] = w * map(n, 0, gs.seeds, 50, 200); // 10 = lifespan (200-1000)
+      dna.genes[8] = w * map(n, 0, gs.seeds, 2, 55); // 8 = cellStartSize
+      dna.genes[10] = w * map(n, 0, gs.seeds, 5, 225); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 0, 15); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 50, 0); // 17 = noisePercent (0-100%)
+      dna.genes[12] = map(n, 0, gs.seeds, 0, 45); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[17] = map(n, 0, gs.seeds, 0, 33); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)

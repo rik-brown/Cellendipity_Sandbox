@@ -77,7 +77,7 @@ class DNA {
             genes[8] = 20;
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 15;
+            genes[9] = 10;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             genes[10] = width * 0.3; // last * 0.09, 0.2, 0.5
             //genes[10] = 20;
@@ -103,33 +103,35 @@ class DNA {
             //genes[19] = 500; // 19 = yOff (rnd 1000)
             
             genes[20] = gs.bkg_H;  // fillHstart
-            genes[20] = random(360);  // fillHstart
+            //genes[20] = random(360);  // fillHstart
             //genes[20] = 360; //BLUE
             //genes[21] = gs.bkg_H * random (0.85, 0.97);  // fillHend
             //genes[21] = gs.bkg_H;
             genes[21] = genes[20];
             //genes[21] = 320;
             
-            genes[22] = gs.bkg_S;// fillSstart
-            //genes[22] = 0;
-            genes[23] = gs.bkg_S;// fillSend
-            //genes[23] = 192;// fillSend LAST: 128
+            //genes[22] = gs.bkg_S;// fillSstart
+            genes[22] = 48;
+            //genes[23] = gs.bkg_S;// fillSend
+            genes[23] = 0;// fillSend LAST: 128
             //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
             
-            //genes[24] = 64;// fillBstart
-            genes[24] = gs.bkg_B * 0.5;// fillBstart
-            genes[25] = 255;// fillBend last: 180
+            genes[24] = 255;// fillBstart
+            //genes[24] = gs.bkg_B * 0.5;// fillBstart
+            genes[25] = 128;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
             genes[26] = 255;// fillAstart
             genes[27] = 255;// fillAend
 
-            genes[28] = gs.bkg_H;  // stroke_Hstart
-            genes[29] = gs.bkg_H;  // stroke_Hend            
+            //genes[28] = gs.bkg_H;  // stroke_Hstart
+            genes[28] = 0;  // stroke_Hstart
+            //genes[29] = gs.bkg_H;  // stroke_Hend
+            genes[29] = genes[28];  // stroke_Hend            
             genes[30] = gs.bkg_S;  // stroke_Sstart
             genes[31] = gs.bkg_S;  // stroke_Send
-            genes[32] = 128;  // stroke_Bstart
-            genes[33] = 255;  // stroke_Bend
+            genes[32] = 0;  // stroke_Bstart
+            genes[33] = 0;  // stroke_Bend
             genes[34] = 0;  // strokeAstart
             genes[35] = 0;  // strokeAend
 
