@@ -122,8 +122,8 @@ class DNA {
             genes[25] = 160;// fillBend last: 180
             //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
             
-            genes[26] = 255;// fillAstart
-            genes[27] = 0;// fillAend
+            genes[26] = 0;// fillAstart
+            genes[27] = 255;// fillAend
 
             //genes[28] = gs.bkg_H;  // stroke_Hstart
             genes[28] = 0;  // stroke_Hstart

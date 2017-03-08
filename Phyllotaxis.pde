@@ -43,7 +43,7 @@ class Phyllotaxis {
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
       int str = (n % gs.numStrains);
-      c = map(n, 0, gs.seeds, 0, w * sf * 0.75); 
+      c = map(n, 0, gs.seeds, 0, w * sf * 0.77); 
       float a = n * radians(137.5);
       float r = c * sqrt(n);
       float xpos = r * cos(a) + width * 0.5;

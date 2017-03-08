@@ -71,7 +71,7 @@ class Global_settings {
     //cols = 12;
 
     stepped = true;
-    stepSize = 20;
+    stepSize = 25;
     stepSizeN = 50;
     
     stripeSize = 20000; // last 10
