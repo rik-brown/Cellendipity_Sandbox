@@ -61,7 +61,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 666;
+    seeds = 500; // Last:666
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -78,8 +78,8 @@ class Global_settings {
     stripeRatio = 0.75;
 
     greyscaleON = false;
-    //bkg_H = random(360);
-    bkg_H = 64;
+    bkg_H = random(360);
+    //bkg_H = 0;
     //bkg_S = random(128,164);
     bkg_S = 255; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
