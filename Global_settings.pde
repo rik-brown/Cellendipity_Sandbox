@@ -70,8 +70,8 @@ class Global_settings {
     cols = rows;
     //cols = 12;
 
-    stepped = false;
-    stepSize = 10;
+    stepped = true;
+    stepSize = 20;
     stepSizeN = 50;
     
     stripeSize = 20000; // last 10
