@@ -61,7 +61,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 500; // Last:666
+    seeds = 450; // Last:666
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -71,19 +71,19 @@ class Global_settings {
     //cols = 12;
 
     stepped = false;
-    stepSize = 25;
+    stepSize = 15;
     stepSizeN = 50;
     
     stripeSize = 25; // last 10
     stripeRatio = 0.65;
 
     greyscaleON = false;
-    bkg_H = random(360);
-    //bkg_H = 10;
+    //bkg_H = random(360);
+    bkg_H = 192;
     //bkg_S = random(128,164);
-    bkg_S = 7; // last 105, 55, 255, 225
+    bkg_S = 0.35 * 255; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
-    bkg_B = 255; // last 160, 50, 128
+    bkg_B = 0.98 * 255; // last 160, 50, 128
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -103,7 +103,7 @@ class Global_settings {
     fill_BTwist = 0; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
-    strokeDisable = false;
+    strokeDisable = true;
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
     stroke_BTwist = 0; // (0-255)

@@ -43,7 +43,7 @@ class Phyllotaxis {
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
       int str = (n % gs.numStrains);
-      c = map(n, 0, gs.seeds, 0, w * sf * 0.77); 
+      c = map(n, 0, gs.seeds, 0, w * sf * 0.79); 
       float a = n * radians(137.5);
       float r = c * sqrt(n);
       float xpos = r * cos(a) + width * 0.5;
@@ -60,10 +60,11 @@ class Phyllotaxis {
       
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
       DNA dna = genepool.get(str); // Get's alternating dna from the genepool
+      //dna.genes[2] = map(n, 0, gs.seeds, 64, 96); //
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = w * map(n, 0, gs.seeds, 1, 25); // 8 = cellStartSize
+      dna.genes[8] = w * map(n, 0, gs.seeds, 1, 30); // 8 = cellStartSize
       dna.genes[10] = w * map(n, 0, gs.seeds, 2, 125); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
       dna.genes[12] = map(n, 0, gs.seeds, 0, 25); // 12 = spiral screw (-75 - +75 %)
