@@ -52,18 +52,21 @@ class DNA {
             //genes[0] = random(360); // 0 = fill Hue (0-360)
             //genes[0] = 0; // 0 = fill Hue (0=RED)
             //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
-            genes[0] = gs.bkg_H; // 0 = fill Hue (0-360)
-            genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            //genes[1] = 0; // 1 = fill Saturation (0-255)
+            genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
+            //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
+            genes[1] = 150; // 1 = fill Saturation (0-255)
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             genes[2] = 255;    // 2 = fill Brightness (0-255)
-            genes[3] = 255;   // 3 = fill Alpha (0-255)
+            genes[3] = 128;   // 3 = fill Alpha (0-255)
       
-            genes[4] = random(360);    // 4 = stroke Hue (0-360)
+            //genes[4] = random(360);    // 4 = stroke Hue (0-360)
+            genes[4] = gs.bkg_H;  // stroke_Hstart
             genes[5] = 255;    // 5 = stroke Saturation (0-255)
+            //genes[5] = gs.bkg_S;  // stroke_Sstart
             genes[6] = 255;    // 6 = stroke Brightness (0-255) 0 = BLACK
+            //genes[6] = 0;  // stroke_Bstart
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 10;
+            genes[7] = 0;  // strokeAstart
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = 20;
@@ -94,34 +97,27 @@ class DNA {
             //genes[18] = 500; // 18 = xOff (rnd 1000)
             //genes[19] = 500; // 19 = yOff (rnd 1000)
             
-            genes[20] = (gs.bkg_H + 60) % 360;  // 20 = fill_Hend
+            //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
             //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
             //genes[20] = gs.bkg_H;
-            //genes[20] = genes[0];
+            genes[20] = genes[0];
             //genes[20] = 320;
             
-            //genes[21] = gs.bkg_S; // fillSend
-            genes[21] = 0;// fillSend LAST: 128
-            //genes[23] = gs.bkg_S * random(0.5, 0.9);// fillSend
+            //genes[21] = gs.bkg_S; // fill_Send
+            //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
+            genes[21] = 255;// fill_Send LAST: 128
             
-            genes[24] = 255;// fillBstart
-            //genes[24] = gs.bkg_B * 0.5;// fillBstart
-            genes[22] = 160;// fillBend last: 180
-            //genes[25] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            
-            genes[26] = 0;// fillAstart
-            genes[27] = 255;// fillAend
+            //genes[22] = gs.bkg_B * 0.5;// fillBstart
+            //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
+            genes[22] = 225;// fill_Bend last: 180
 
-            //genes[28] = gs.bkg_H;  // stroke_Hstart
-            genes[28] = 0;  // stroke_Hstart
-            //genes[29] = gs.bkg_H;  // stroke_Hend
-            genes[29] = genes[28];  // stroke_Hend            
-            genes[30] = gs.bkg_S;  // stroke_Sstart
-            genes[31] = gs.bkg_S;  // stroke_Send
-            genes[32] = 0;  // stroke_Bstart
-            genes[33] = 0;  // stroke_Bend
-            genes[34] = 0;  // strokeAstart
-            genes[35] = 0;  // strokeAend
+            genes[23] = 25;// fill_Aend
+
+            genes[24] = gs.bkg_H;  // stroke_Hend
+            //genes[24] = genes[4];  // stroke_Hend            
+            genes[25] = gs.bkg_S;  // stroke_Send
+            genes[26] = 0;  // stroke_Bend
+            genes[27] = 0;  // strokeAend
 
             logDNA();
    }

@@ -54,8 +54,8 @@ class Phyllotaxis {
       
       PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
       v.normalize();
-      //v.rotate(PI * 0.5);
-      v.rotate(PI * str * 0.15);
+      v.rotate(PI * 0.5);
+      //v.rotate(PI * str * 0.15);
       
       
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
@@ -63,11 +63,11 @@ class Phyllotaxis {
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = w * map(n, 0, gs.seeds, 2, 55); // 8 = cellStartSize
-      dna.genes[10] = w * map(n, 0, gs.seeds, 5, 225); // 10 = lifespan (200-1000)
+      dna.genes[8] = w * map(n, 0, gs.seeds, 1, 25); // 8 = cellStartSize
+      dna.genes[10] = w * map(n, 0, gs.seeds, 2, 125); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 0, 45); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 0, 11); // 17 = noisePercent (0-100%)
+      dna.genes[12] = map(n, 0, gs.seeds, 0, 25); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[17] = map(n, 0, gs.seeds, 0, 90); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
@@ -75,22 +75,22 @@ class Phyllotaxis {
       //dna.genes[18] = map(n, 0, gs.seeds, 0, 10); // 18 = xOff (0-1000)
       //dna.genes[19] = map(n, 0, gs.seeds, 0, 10); // 19 = yOff (0-1000)
       
-      //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
-      //dna.genes[21] = gs.bkg_H + map(n, 0, gs.seeds, 0, 10); //
+      //dna.genes[0] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
+      //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 10); //
       
-      //dna.genes[22] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
-      //dna.genes[22] = map(n, 0, gs.seeds, 255, 128); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 128, 255); //
+      //dna.genes[1] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
+      //dna.genes[1] = map(n, 0, gs.seeds, 255, 128); //
+      //dna.genes[21] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
+      //dna.genes[21] = map(n, 0, gs.seeds, 128, 255); //
       
-      //dna.genes[24] = map(n, 0, gs.seeds, 0, 255); //
-      //dna.genes[25] = map(n, 0, gs.seeds, 224, 192); //
+      //dna.genes[3] = map(n, 0, gs.seeds, 0, 255); //
+      //dna.genes[23] = map(n, 0, gs.seeds, 224, 192); //
       
-      //dna.genes[26] = map(n, 0, gs.seeds, 255, 0); //
+      //dna.genes[4] = map(n, 0, gs.seeds, 255, 0); //
       
-      //dna.genes[29] = dna.genes[20] * map(distance, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
+      //dna.genes[24] = dna.genes[20] * map(distance, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
       
-      //dna.genes[33] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend
+      //dna.genes[26] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend
       
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));

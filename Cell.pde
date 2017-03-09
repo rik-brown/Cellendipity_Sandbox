@@ -23,6 +23,7 @@ class Cell {
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
   float stripeStep;// Countdown to toggle between stripe and !stripe
+  float size; // A value between 0-1 indicating how large the cell is proportional to it's limits
 
   // MOVEMENT
   PVector position;
@@ -42,6 +43,8 @@ class Cell {
 
   // FILL COLOUR
   color fillColor;   // For HSB you need Hue to be the heading of a PVector
+  color fillStart;
+  color fillEnd;
   color spawnCol;      // spawnCol needs to be a GLOBAL variable
   float fill_H;         // Hue (HSB) / Red (RGB)
   float fill_S;         // Saturation (HSB) / Green (RGB)
@@ -58,6 +61,8 @@ class Cell {
 
   // FILL COLOUR
   color strokeColor; // For HSB you need Hue to be the heading of a PVector
+  color strokeStart;
+  color strokeEnd;
   float stroke_H;       // Hue (HSB) / Red (RGB)
   float stroke_S;       // Saturation (HSB) / Green (RGB)
   float stroke_B;       // Brightness (HSB) / Blue (RGB)
@@ -135,31 +140,33 @@ class Cell {
   fill_Sstart = dna.genes[1];
   fill_Bstart = dna.genes[2];
   fill_Astart = dna.genes[3];
-  fill_Hend = dna.genes[21];
-  fill_Send = dna.genes[23];
-  fill_Bend = dna.genes[25];
-  fill_Aend = dna.genes[27];
+  fill_Hend = dna.genes[20];
+  fill_Send = dna.genes[21];
+  fill_Bend = dna.genes[22];
+  fill_Aend = dna.genes[23];
   //fill_H = fill_Hstart;
   //fill_S = fill_Sstart;
   //fill_B = fill_Bstart;
   //fill_A = fill_Astart;
   fillColor = color(fill_Hstart, fill_Sstart, fill_Bstart); // Initial color is set
+  fillStart = color(dna.genes[0], dna.genes[1], dna.genes[2]);
+  fillEnd = color(dna.genes[20], dna.genes[21], dna.genes[22]);
 
-  stroke_H = dna.genes[4];
-  if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
-  stroke_B = dna.genes[6];
-  strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set
-  
-  stroke_A = dna.genes[7];
-  
-  stroke_Hstart = dna.genes[28];
-  stroke_Hend = dna.genes[29];
-  stroke_Sstart = dna.genes[30];
-  stroke_Send = dna.genes[31];
-  stroke_Bstart = dna.genes[32];
-  stroke_Bend = dna.genes[33];
-  stroke_Astart = dna.genes[34];
-  stroke_Aend = dna.genes[35];
+  stroke_Hstart = dna.genes[4];
+  stroke_Sstart = dna.genes[5];
+  stroke_Bstart = dna.genes[6];
+  stroke_Astart = dna.genes[7];
+  stroke_Hend = dna.genes[24];
+  stroke_Send = dna.genes[25];
+  stroke_Bend = dna.genes[26];
+  stroke_Aend = dna.genes[27];
+  //stroke_H = stroke_Hstart;
+  //stroke_S = stroke_Sstart;
+  //stroke_B = stroke_Bstart;
+  //stroke_A = stroke_Astart;  
+  strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set 
+  strokeStart = color(dna.genes[4], dna.genes[5], dna.genes[6]);
+  strokeEnd = color(dna.genes[24], dna.genes[25], dna.genes[26]);
   }
 
   void run() {
@@ -213,14 +220,15 @@ class Cell {
     // I should introduce an selector-toggle here!
     PVector center = new PVector(width/2, height/2);
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
-    float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
+    //float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
     //r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
-    //r = map(age, 0, lifespan, cellStartSize, cellEndSize);
+    r = map(age, 0, lifespan, cellStartSize, cellEndSize);
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*cellStartSize;
-    r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*cellStartSize) + cellEndSize;
+    //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*cellStartSize) + cellEndSize;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;
     //r -= growth;
+    size = map(r, cellStartSize, cellEndSize, 0, 1); // size indicates how large the cell is in proportion to it's limits
   }
 
   void updateFertility() {
@@ -230,20 +238,22 @@ class Cell {
 
   void updateFillColor() {
     // START > END
-    fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
-    fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
-    fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
-    fill_A = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
-    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+    //fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
+    //fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
+    //fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
+    fill_A = map(size, 0, 1, fill_Astart, fill_Aend);
+    //fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+    fillColor = lerpColor(fillStart, fillEnd, size); //fill colour is proportional to size
   }
   
   void updateStrokeColor() {
     // START > END
-    stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend) % 360;
-    stroke_S = map(r, cellStartSize, cellEndSize, stroke_Sstart, stroke_Send);
-    stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
-    stroke_A = map(r, cellStartSize, cellEndSize, stroke_Astart, stroke_Aend);    
-    strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
+    //stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend) % 360;
+    //stroke_S = map(r, cellStartSize, cellEndSize, stroke_Sstart, stroke_Send);
+    //stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
+    stroke_A = map(size, 0, 1, stroke_Astart, stroke_Aend);    
+    //strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
+    strokeColor = lerpColor(strokeStart, strokeEnd, size); //stroke colour is proportional to size
   }
 
   void updateStripes() {
@@ -354,7 +364,7 @@ void displayRect() {
 
   void checkCollision(Cell other) {       // Method receives a Cell object 'other' to get the required info about the collidee
       PVector distVect = PVector.sub(other.position, position); // Static vector to get distance between the cell & other
-      float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
+      //float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
       //if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
   }
 

@@ -24,16 +24,16 @@ class Colony {
     }
  
     // Strain 1 = WHITE
-    genepool.get(0).genes[22] = 0;
-    genepool.get(0).genes[23] = 0;
-    genepool.get(0).genes[24] = 255;
-    genepool.get(0).genes[25] = 255;
+    genepool.get(0).genes[1] = 0;
+    genepool.get(0).genes[21] = 0;
+    genepool.get(0).genes[2] = 255;
+    genepool.get(0).genes[22] = 255;
     
     // Strain 2 = BLACK
+    genepool.get(1).genes[1] = 0;
+    genepool.get(1).genes[21] = 0;
+    genepool.get(1).genes[2] = 0;
     genepool.get(1).genes[22] = 0;
-    genepool.get(1).genes[23] = 0;
-    genepool.get(1).genes[24] = 0;
-    genepool.get(1).genes[25] = 0;
    
     //float col0 =gs.bkg_H + 0; 
     //if (col0 > 360) {col0 -= 360;}
@@ -81,14 +81,10 @@ class Colony {
     
         // 18 = xOff (rnd 1000)
               
-        // 20 = fillHstart
-        // 21 = fillHend
-        // 22 = fillSstart
-        // 23 = fillSend
-        // 24 = fillBstart
-        // 25 = fillBend
-        // 26 = fillAstart
-        // 27 = fillAend
+        // 20 = fillHend
+        // 21 = fillSend
+        // 22 = fillBend
+        // 23 = fillAend
         
         //float xpos = random(width);
         //float ypos = random(height);
@@ -123,17 +119,17 @@ class Colony {
         //dna.genes[17] = map(c, 0, gs.cols, 0, 100); // 17 = noisePercent (0-100%)
         dna.genes[17] = map(distMag, 0, width*0.7, 100, 50); // 17 = noisePercent (0-100%)
         //dna.genes[19] = map(r, 0, gs.rows, 0, 1); // 21 = yOff (rnd 1000)
-        //dna.genes[20] = map(distMag, 0, width*0.7, 0, 180); // 20 = fillHstart
-        //dna.genes[21] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = fillHend
-        //dna.genes[20] = map(r, 0, gs.rows, 0, 360); // 20 = fillHstart
-        //dna.genes[21] = map(c, 0, gs.cols, 360, 0); // 21 = fillHend
-        //dna.genes[21] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3); // 21 = fillHend
-        //dna.genes[21] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0); // 21 = fillHend
-        //dna.genes[25] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
-        //dna.genes[25] = map(r, 0, gs.rows, 160, 220); // 25 = fillBend
-        //dna.genes[25] = map(distMag, 0, width*0.7, 0, 255); // 25 = fillBend
-        dna.genes[29] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
-        dna.genes[33] = map(distMag, 0, width*0.7, 255, 20); // 25 = stroke_Bend
+        //dna.genes[0] = map(distMag, 0, width*0.7, 0, 180); // 20 = fillHstart
+        //dna.genes[20] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = fillHend
+        //dna.genes[0] = map(r, 0, gs.rows, 0, 360); // 20 = fillHstart
+        //dna.genes[20] = map(c, 0, gs.cols, 360, 0); // 21 = fillHend
+        //dna.genes[20] = map(c, 0, gs.cols, gs.bkg_H, gs.bkg_H*1.3); // 21 = fillHend
+        //dna.genes[20] = gs.bkg_H * map(c, 0, gs.cols, 0.7, 1.0); // 21 = fillHend
+        //dna.genes[22] = map(distMag, 0, width*0.7, 255, 20); // 25 = fillBend
+        //dna.genes[22] = map(r, 0, gs.rows, 160, 220); // 25 = fillBend
+        //dna.genes[22] = map(distMag, 0, width*0.7, 0, 255); // 25 = fillBend
+        dna.genes[24] = dna.genes[20] * map(distMag, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
+        dna.genes[26] = map(distMag, 0, width*0.7, 255, 20); // 25 = stroke_Bend
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
