@@ -46,7 +46,7 @@ class Cell {
   float fill_H;         // Hue (HSB) / Red (RGB)
   float fill_S;         // Saturation (HSB) / Green (RGB)
   float fill_B;         // Brightness (HSB) / Blue (RGB)
-  float fillAlpha;      // Transparency (HSB & RGB)
+  float fill_A;      // Transparency (HSB & RGB)
   float fill_Hstart;
   float fill_Hend;
   float fill_Sstart;
@@ -61,7 +61,7 @@ class Cell {
   float stroke_H;       // Hue (HSB) / Red (RGB)
   float stroke_S;       // Saturation (HSB) / Green (RGB)
   float stroke_B;       // Brightness (HSB) / Blue (RGB)
-  float strokeAlpha;    // Transparency (HSB & RGB)
+  float stroke_A;    // Transparency (HSB & RGB)
   float stroke_Hstart;
   float stroke_Hend;
   float stroke_Sstart;
@@ -131,30 +131,26 @@ class Cell {
   step = dna.genes[16] * 0.001; //Step-size for noise
 
   // COLOUR
-
-  fill_H = dna.genes[0];
-  //if (gs.greyscaleON) {fill_S = 0;} else {fill_S = dna.genes[1];}
-  fill_S = dna.genes[1];
-  fill_B = dna.genes[2];
-  fillColor = color(fill_H, fill_S, fill_B); // Initial color is set
-  
-  fillAlpha = dna.genes[3];
-  
-  fill_Hstart = dna.genes[20];
+  fill_Hstart = dna.genes[0];
+  fill_Sstart = dna.genes[1];
+  fill_Bstart = dna.genes[2];
+  fill_Astart = dna.genes[3];
   fill_Hend = dna.genes[21];
-  fill_Sstart = dna.genes[22];
   fill_Send = dna.genes[23];
-  fill_Bstart = dna.genes[24];
   fill_Bend = dna.genes[25];
-  fill_Astart = dna.genes[26];
   fill_Aend = dna.genes[27];
+  //fill_H = fill_Hstart;
+  //fill_S = fill_Sstart;
+  //fill_B = fill_Bstart;
+  //fill_A = fill_Astart;
+  fillColor = color(fill_Hstart, fill_Sstart, fill_Bstart); // Initial color is set
 
   stroke_H = dna.genes[4];
   if (gs.greyscaleON) {stroke_S = 0;} else {stroke_S = dna.genes[5];}
   stroke_B = dna.genes[6];
   strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set
   
-  strokeAlpha = dna.genes[7];
+  stroke_A = dna.genes[7];
   
   stroke_Hstart = dna.genes[28];
   stroke_Hend = dna.genes[29];
@@ -237,7 +233,7 @@ class Cell {
     fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
     fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
     fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
-    fillAlpha = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
+    fill_A = map(r, cellStartSize, cellEndSize, fill_Astart, fill_Aend);
     fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
   }
   
@@ -246,7 +242,7 @@ class Cell {
     stroke_H = map(r, cellStartSize, cellEndSize, stroke_Hstart, stroke_Hend) % 360;
     stroke_S = map(r, cellStartSize, cellEndSize, stroke_Sstart, stroke_Send);
     stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
-    strokeAlpha = map(r, cellStartSize, cellEndSize, stroke_Astart, stroke_Aend);    
+    stroke_A = map(r, cellStartSize, cellEndSize, stroke_Astart, stroke_Aend);    
     strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
   }
 
@@ -284,8 +280,8 @@ class Cell {
 
   void display() {
     strokeWeight(1);
-    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), strokeAlpha);}
-    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fillAlpha);}
+    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
+    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
 
     float angle = velocity.heading();
     pushMatrix();
@@ -320,8 +316,8 @@ class Cell {
 
 void displayRect() {
     strokeWeight(3);
-    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), strokeAlpha);}
-    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fillAlpha);}
+    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
+    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
 
     float angle = velocity.heading();
     pushMatrix();
