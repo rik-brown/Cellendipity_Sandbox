@@ -257,9 +257,10 @@ class Cell {
   }
 
   void updateStripes() {
-    //fillColor = color(10, 255, 255); // RED
-    fillColor = color(0, 0, 0); // BLACK
-    strokeColor = color(0, 0, 0);  
+    fillColor = color(10, 255, 255); // RED
+    //fillColor = strokeColor; // RED
+    //fillColor = color(0, 0, 0); // BLACK
+    //strokeColor = color(0, 0, 0);  
   }
 
   void checkBoundaryWraparound() {

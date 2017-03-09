@@ -57,17 +57,18 @@ class DNA {
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
             genes[1] = 0; // 1 = fill Saturation (0-255)
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
-            genes[2] = 0;    // 2 = fill Brightness (0-255)
+            genes[2] = 10;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             //genes[4] = random(360);    // 4 = stroke Hue (0-360)
-            genes[4] = gs.bkg_H;  // stroke_Hstart
+            //genes[4] = gs.bkg_H;  // stroke_Hstart
+            genes[4] = 0;  // stroke_Hstart
             genes[5] = 255;    // 5 = stroke Saturation (0-255)
             //genes[5] = gs.bkg_S;  // stroke_Sstart
-            genes[6] = 255;    // 6 = stroke Brightness (0-255) 0 = BLACK
+            genes[6] = 128;    // 6 = stroke Brightness (0-255) 0 = BLACK
             //genes[6] = 0;  // stroke_Bstart
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 0;  // strokeAstart
+            genes[7] = 255;  // strokeAstart
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = 20;
@@ -106,19 +107,19 @@ class DNA {
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 15;// fill_Send LAST: 128
+            genes[21] = 0;// fill_Send LAST: 128
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 240;// fill_Bend last: 180
+            genes[22] = 245;// fill_Bend last: 180
 
             genes[23] = 255;// fill_Aend
 
-            genes[24] = gs.bkg_H;  // stroke_Hend
-            //genes[24] = genes[4];  // stroke_Hend            
-            genes[25] = gs.bkg_S;  // stroke_Send
-            genes[26] = 0;  // stroke_Bend
-            genes[27] = 0;  // strokeAend
+            //genes[24] = gs.bkg_H;  // stroke_Hend
+            genes[24] = genes[4];  // stroke_Hend            
+            genes[25] = 255;  // stroke_Send
+            genes[26] = 255;  // stroke_Bend
+            genes[27] = 255;  // strokeAend
 
             logDNA();
    }
