@@ -52,12 +52,13 @@ class DNA {
             //genes[0] = random(360); // 0 = fill Hue (0-360)
             //genes[0] = 0; // 0 = fill Hue (0=RED)
             //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
-            genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
+            //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
+            genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            genes[1] = 150; // 1 = fill Saturation (0-255)
+            genes[1] = 0; // 1 = fill Saturation (0-255)
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
-            genes[2] = 255;    // 2 = fill Brightness (0-255)
-            genes[3] = 128;   // 3 = fill Alpha (0-255)
+            genes[2] = 0;    // 2 = fill Brightness (0-255)
+            genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             //genes[4] = random(360);    // 4 = stroke Hue (0-360)
             genes[4] = gs.bkg_H;  // stroke_Hstart
@@ -105,13 +106,13 @@ class DNA {
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 255;// fill_Send LAST: 128
+            genes[21] = 15;// fill_Send LAST: 128
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 225;// fill_Bend last: 180
+            genes[22] = 240;// fill_Bend last: 180
 
-            genes[23] = 25;// fill_Aend
+            genes[23] = 255;// fill_Aend
 
             genes[24] = gs.bkg_H;  // stroke_Hend
             //genes[24] = genes[4];  // stroke_Hend            

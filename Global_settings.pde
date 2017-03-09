@@ -74,14 +74,14 @@ class Global_settings {
     stepSize = 25;
     stepSizeN = 50;
     
-    stripeSize = 20000; // last 10
-    stripeRatio = 0.75;
+    stripeSize = 25; // last 10
+    stripeRatio = 0.65;
 
     greyscaleON = false;
     bkg_H = random(360);
     //bkg_H = 10;
     //bkg_S = random(128,164);
-    bkg_S = 255; // last 105, 55, 255, 225
+    bkg_S = 7; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
     bkg_B = 255; // last 160, 50, 128
     bkgColor = color(bkg_H, bkg_S, bkg_B);

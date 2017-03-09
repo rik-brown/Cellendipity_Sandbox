@@ -30,12 +30,12 @@ Phyllotaxis colony;
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 20;
+int maxCycles = 10;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-133";
+String batchName = "batch-134";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
