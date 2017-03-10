@@ -238,12 +238,12 @@ class Cell {
 
   void updateFillColor() {
     // START > END
-    //fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
-    //fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
-    //fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
+    fill_H = map(r, cellStartSize, cellEndSize, fill_Hstart, fill_Hend) % 360;
+    fill_S = map(r, cellStartSize, cellEndSize, fill_Sstart, fill_Send);
+    fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
     fill_A = map(size, 0, 1, fill_Astart, fill_Aend);
-    //fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
-    fillColor = lerpColor(fillStart, fillEnd, size); //fill colour is proportional to size
+    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+    //fillColor = lerpColor(fillStart, fillEnd, size); //fill colour is proportional to size
   }
   
   void updateStrokeColor() {
