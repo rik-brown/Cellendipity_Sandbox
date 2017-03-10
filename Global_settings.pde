@@ -61,7 +61,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 450; // Last:666
+    seeds = 250; // Last:666
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
