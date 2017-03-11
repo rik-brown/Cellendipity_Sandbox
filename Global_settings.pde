@@ -1,6 +1,8 @@
 // Global settings that apply equally to all cells in the colony
 
 class Global_settings {
+  StringList words;
+  
   boolean debug;
   boolean centerSpawn;
   boolean screendumpON;
@@ -45,6 +47,14 @@ class Global_settings {
   float gene_19;
 
   Global_settings() {
+    
+    words = new StringList();
+    words.append("All");
+    words.append("you");
+    words.append("need");
+    words.append("is");
+    words.append("love");
+    
     debug = false;
     centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
@@ -61,7 +71,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 250; // Last:666
+    seeds = 300; // Last:666
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -79,11 +89,11 @@ class Global_settings {
 
     greyscaleON = false;
     //bkg_H = random(360);
-    bkg_H = 240;
+    bkg_H = 350;
     //bkg_S = random(128,164);
-    bkg_S = 200; // last 105, 55, 255, 225
+    bkg_S = 255; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
-    bkg_B = 100; // last 160, 50, 128
+    bkg_B = 255; // last 160, 50, 128
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

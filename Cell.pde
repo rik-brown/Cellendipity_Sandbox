@@ -75,6 +75,9 @@ class Cell {
   float stroke_Bend;
   float stroke_Astart;
   float stroke_Aend;
+  
+  // STRAIN
+  int strainID;
 
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
@@ -167,6 +170,9 @@ class Cell {
   strokeColor = color(stroke_H, stroke_S, stroke_B); // Initial color is set 
   strokeStart = color(dna.genes[4], dna.genes[5], dna.genes[6]);
   strokeEnd = color(dna.genes[24], dna.genes[25], dna.genes[26]);
+  
+  // STRAIN ID
+  strainID = int(dna.genes[28]);
   }
 
   void run() {
@@ -180,6 +186,7 @@ class Cell {
     if (gs.wraparound) {checkBoundaryWraparound();}
     display();
     //displayRect();
+    //displayText();
     if (gs.debug) {cellDebugger();}
   }
 
@@ -220,7 +227,7 @@ class Cell {
     // I should introduce an selector-toggle here!
     PVector center = new PVector(width/2, height/2);
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
-    //float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
+    float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
     //r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
     r = map(age, 0, lifespan, cellStartSize, cellEndSize);
@@ -359,6 +366,22 @@ void displayRect() {
       else {popMatrix();} //F
     }
    else {popMatrix();} //G
+  }
+
+void displayText() {
+    textSize(r*0.5);
+    strokeWeight(1);
+    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
+    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
+
+    float angle = velocity.heading();
+    pushMatrix();
+    translate(position.x,position.y);
+    rotate(angle);
+    String word = gs.words.get(strainID);
+    text(word, 0, 0);
+    
+   popMatrix();
   }
 
 

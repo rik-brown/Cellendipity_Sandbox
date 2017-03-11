@@ -12,7 +12,7 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 28;
+      numGenes = 29;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (32 genes)
@@ -46,6 +46,8 @@ class DNA {
       // 25 = stroke_Send
       // 26 = stroke_Bend
       // 27 = stroke_Aend
+      
+      // 28 = Strain id
 
 
       // RANDOMIZED VALUES
@@ -57,7 +59,7 @@ class DNA {
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
             genes[1] = 200; // 1 = fill Saturation (0-255)
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
-            genes[2] = 0;    // 2 = fill Brightness (0-255)
+            genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
       
             //genes[4] = random(360);    // 4 = stroke Hue (0-360)
@@ -74,9 +76,9 @@ class DNA {
             genes[8] = 20;
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 10;
+            genes[9] = 19;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
-            genes[10] = width * 0.3; // last * 0.09, 0.2, 0.5
+            genes[10] = width * 0.2; // last * 0.09, 0.2, 0.5
             //genes[10] = 20;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
@@ -88,30 +90,32 @@ class DNA {
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
             genes[14] = 1;
             
-            genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-            genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
+            //genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
+            genes[15] = 3;
+            //genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
+            genes[16] = 3;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0;
             
-            genes[18] = random(1000); // 18 = xOff (rnd 1000)
-            genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            //genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            //genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            //genes[18] = 500; // 18 = xOff (rnd 1000)
-            //genes[19] = 500; // 19 = yOff (rnd 1000)
+            genes[18] = 100; // 18 = xOff (rnd 1000)
+            genes[19] = 500; // 19 = yOff (rnd 1000)
             
             //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
             //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
             //genes[20] = gs.bkg_H;
             //genes[20] = genes[0];
-            genes[20] = 300;
+            genes[20] = 245;
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 164;// fill_Send LAST: 128
+            genes[21] = 255;// fill_Send LAST: 128
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 255;// fill_Bend last: 180
+            genes[22] = 125;// fill_Bend last: 180
 
             genes[23] = 255;// fill_Aend
 
@@ -120,6 +124,8 @@ class DNA {
             genes[25] = 255;  // stroke_Send
             genes[26] = 255;  // stroke_Bend
             genes[27] = 255;  // strokeAend
+            
+            genes[28] = 0;  // strain ID
 
             logDNA();
    }

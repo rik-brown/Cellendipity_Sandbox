@@ -30,12 +30,12 @@ Phyllotaxis colony;
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 5;
+int maxCycles = 1;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-136b";
+String batchName = "batch-137";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -45,14 +45,15 @@ PrintWriter output;
 void setup() {
   //frameRate(10);
   colorMode(HSB, 360, 255, 255, 255);
+  //blendMode(DIFFERENCE);
   rectMode(RADIUS);
   smooth();
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -73,7 +74,8 @@ void setup() {
 }
 
 void draw() {
-  if (gs.debug) {background(gs.bkgColor);}
+  //if (gs.debug) {background(gs.bkgColor);}
+  //background(gs.bkgColor);
   colony.run();
   String frameName = nf(frameCount, 5);
   //saveFrame(framedumpPath + frameName + ".jpg");
