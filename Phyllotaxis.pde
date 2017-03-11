@@ -43,8 +43,8 @@ class Phyllotaxis {
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
       int str = (n % gs.numStrains);
-      //c = map(n, 0, gs.seeds, 0, w * sf * 0.79);
-      c = n*0.2;
+      c = map(n, 0, gs.seeds, 0, w * sf * 0.83);
+      //c = n*0.2;
       float a = n * radians(137.5);
       float r = c * sqrt(n);
       float xpos = r * cos(a) + width * 0.5;
@@ -71,7 +71,7 @@ class Phyllotaxis {
       //dna.genes[8] = n;
       dna.genes[10] = w * map(n, 0, gs.seeds, 2, 123); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 0, 180); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[12] = map(n, 0, gs.seeds, 30, 120); // 12 = spiral screw (-75 - +75 %)
       dna.genes[17] = map(n, 0, gs.seeds, 0, 50); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
