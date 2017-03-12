@@ -62,16 +62,15 @@ class Phyllotaxis {
       
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
       DNA dna = genepool.get(str); // Get's alternating dna from the genepool
-      dna.genes[1] = map(n, 0, gs.seeds, 200, 255); //
-      dna.genes[2] = map(n, 0, gs.seeds, 255, 200); //
+      
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       
-      dna.genes[8] = w * map(n, 0, gs.seeds, 1, 80); // 8 = cellStartSize
+      dna.genes[8] = w * map(n, 0, gs.seeds, 1, gs.stepSizeN); // 8 = cellStartSize
       //dna.genes[8] = n;
-      dna.genes[10] = w * map(n, 0, gs.seeds, 2, 123); // 10 = lifespan (200-1000)
+      dna.genes[10] = w * map(n, 0, gs.seeds, 22, 223); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 30, 120); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[12] = map(n, 0, gs.seeds, 30, 60); // 12 = spiral screw (-75 - +75 %)
       dna.genes[17] = map(n, 0, gs.seeds, 0, 50); // 17 = noisePercent (0-100%)
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
@@ -80,20 +79,22 @@ class Phyllotaxis {
       //dna.genes[15] = map(n, 0, gs.seeds, 5, 2); // 18 = xOff (0-1000)
       //dna.genes[16] = map(n, 0, gs.seeds, 1, 6); // 19 = yOff (0-1000)
       
-      //dna.genes[0] = gs.bkg_H + map(n, 0, gs.seeds, 0, 30); //
-      //dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 10); //
+      dna.genes[0] = map(n, 0, gs.seeds, 230, 240); //
+      dna.genes[20] = map(n, 0, gs.seeds, 240, 250); //
       
       //dna.genes[1] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
       //dna.genes[1] = map(n, 0, gs.seeds, 255, 128); //
+      dna.genes[1] = map(n, 0, gs.seeds, 220, 255); //
+      dna.genes[21] = map(n, 0, gs.seeds, 200, 180); //
       //dna.genes[21] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
-      dna.genes[21] = map(n, 0, gs.seeds, 225, 255); //
-      dna.genes[22] = map(n, 0, gs.seeds, 100, 125); //
+      
+      dna.genes[2] = map(n, 0, gs.seeds, 100, 125); //
+      dna.genes[22] = map(n, 0, gs.seeds, 255, 200); //
       
       //dna.genes[3] = map(n, 0, gs.seeds, 0, 255); //
       //dna.genes[23] = map(n, 0, gs.seeds, 224, 192); //
       
       //dna.genes[4] = map(n, 0, gs.seeds, 255, 0); //
-      
       //dna.genes[24] = dna.genes[20] * map(distance, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
       
       //dna.genes[26] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend

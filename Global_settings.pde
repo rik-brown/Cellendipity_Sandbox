@@ -82,14 +82,14 @@ class Global_settings {
 
     stepped = false;
     stepSize = 15;
-    stepSizeN = 50;
+    stepSizeN = int(random (50, 90));
     
-    stripeSize = 25000; // last 10
+    stripeSize = 50; // last 10
     stripeRatio = 0.65;
 
     greyscaleON = false;
     //bkg_H = random(360);
-    bkg_H = 350;
+    bkg_H = 355;
     //bkg_S = random(128,164);
     bkg_S = 255; // last 105, 55, 255, 225
     //bkg_B = random(180,220);

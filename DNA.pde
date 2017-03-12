@@ -52,7 +52,7 @@ class DNA {
 
       // RANDOMIZED VALUES
             //genes[0] = random(360); // 0 = fill Hue (0-360)
-            genes[0] = 240; // 0 = fill Hue (0=RED)
+            genes[0] = 230; // 0 = fill Hue (0=RED)
             //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
@@ -61,7 +61,23 @@ class DNA {
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
-      
+
+            //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
+            //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
+            //genes[20] = gs.bkg_H;
+            //genes[20] = genes[0];
+            genes[20] = 245;
+            
+            //genes[21] = gs.bkg_S; // fill_Send
+            //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
+            genes[21] = 255;// fill_Send LAST: 128
+            
+            //genes[22] = gs.bkg_B * 0.5;// fillBstart
+            //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
+            genes[22] = 125;// fill_Bend last: 180
+
+            genes[23] = 255;// fill_Aend
+
             //genes[4] = random(360);    // 4 = stroke Hue (0-360)
             //genes[4] = gs.bkg_H;  // stroke_Hstart
             genes[4] = 0;  // stroke_Hstart
@@ -71,6 +87,12 @@ class DNA {
             //genes[6] = 0;  // stroke_Bstart
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
             genes[7] = 255;  // strokeAstart
+            
+            //genes[24] = gs.bkg_H;  // stroke_Hend
+            genes[24] = genes[4];  // stroke_Hend            
+            genes[25] = 255;  // stroke_Send
+            genes[26] = 255;  // stroke_Bend
+            genes[27] = 255;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = 20;
@@ -91,9 +113,9 @@ class DNA {
             genes[14] = 1;
             
             //genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-            genes[15] = 3;
+            genes[15] = 4;
             //genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-            genes[16] = 3;
+            genes[16] = 5;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0;
             
@@ -102,28 +124,6 @@ class DNA {
             
             genes[18] = 100; // 18 = xOff (rnd 1000)
             genes[19] = 500; // 19 = yOff (rnd 1000)
-            
-            //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
-            //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
-            //genes[20] = gs.bkg_H;
-            //genes[20] = genes[0];
-            genes[20] = 245;
-            
-            //genes[21] = gs.bkg_S; // fill_Send
-            //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 255;// fill_Send LAST: 128
-            
-            //genes[22] = gs.bkg_B * 0.5;// fillBstart
-            //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 125;// fill_Bend last: 180
-
-            genes[23] = 255;// fill_Aend
-
-            //genes[24] = gs.bkg_H;  // stroke_Hend
-            genes[24] = genes[4];  // stroke_Hend            
-            genes[25] = 255;  // stroke_Send
-            genes[26] = 255;  // stroke_Bend
-            genes[27] = 255;  // strokeAend
             
             genes[28] = 0;  // strain ID
 
