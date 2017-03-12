@@ -91,9 +91,9 @@ class Global_settings {
     //bkg_H = random(360);
     bkg_H = 0;
     //bkg_S = random(128,164);
-    bkg_S = 255; // last 105, 55, 255, 225
+    bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
-    bkg_B = 255; // last 160, 50, 128
+    bkg_B = 192; // last 160, 50, 128
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -113,7 +113,7 @@ class Global_settings {
     fill_BTwist = 0; // (0-255) last: 100
     fill_ATwist = 0; // (0-255)
 
-    strokeDisable = true;
+    strokeDisable = false;
     stroke_HTwist = 0; // (0-360)
     stroke_STwist = 0; // (0-255)
     stroke_BTwist = 0; // (0-255)

@@ -81,18 +81,18 @@ class DNA {
             //genes[4] = random(360);    // 4 = stroke Hue (0-360)
             //genes[4] = gs.bkg_H;  // stroke_Hstart
             genes[4] = 0;  // stroke_Hstart
-            genes[5] = 255;    // 5 = stroke Saturation (0-255)
+            genes[5] = 0;    // 5 = stroke Saturation (0-255)
             //genes[5] = gs.bkg_S;  // stroke_Sstart
-            genes[6] = 128;    // 6 = stroke Brightness (0-255) 0 = BLACK
+            genes[6] = 0;    // 6 = stroke Brightness (0-255) 0 = BLACK
             //genes[6] = 0;  // stroke_Bstart
             //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 255;  // strokeAstart
+            genes[7] = 0;  // strokeAstart
             
             //genes[24] = gs.bkg_H;  // stroke_Hend
-            genes[24] = genes[4];  // stroke_Hend            
-            genes[25] = 255;  // stroke_Send
-            genes[26] = 255;  // stroke_Bend
-            genes[27] = 255;  // strokeAend
+            genes[24] = 0;  // stroke_Hend            
+            genes[25] = 0;  // stroke_Send
+            genes[26] = 0;  // stroke_Bend
+            genes[27] = 0;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
             genes[8] = 20;
@@ -105,7 +105,7 @@ class DNA {
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
-            genes[12] = 0;
+            genes[12] = 30;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
@@ -117,13 +117,13 @@ class DNA {
             //genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
             genes[16] = 5;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
-            genes[17] = 0;
+            genes[17] = 0; // 17 = noisePercent (0-100%)
             
-            //genes[18] = random(1000); // 18 = xOff (rnd 1000)
-            //genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            genes[18] = 100; // 18 = xOff (rnd 1000)
-            genes[19] = 500; // 19 = yOff (rnd 1000)
+            //genes[18] = 100; // 18 = xOff (rnd 1000)
+            //genes[19] = 500; // 19 = yOff (rnd 1000)
             
             genes[28] = 0;  // strain ID
 

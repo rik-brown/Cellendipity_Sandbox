@@ -12,7 +12,7 @@ class Phyllotaxis {
   //float c = w * sf; // Scaling factor
   float c;
   //float c = 0; // Scaling factor
-  int picker = int(random(1, gs.seeds));
+  int picker = int(random(gs.seeds*0.5, gs.seeds*0.9));
   int picked;
   PVector v;
   PVector pos;
@@ -33,21 +33,30 @@ class Phyllotaxis {
     
     // Strain 1 = WHITE
     genepool.get(0).genes[0] = 128;
+    genepool.get(0).genes[20] = 64;
     genepool.get(0).genes[1] = 0;
+    genepool.get(0).genes[21] = 60;
     genepool.get(0).genes[2] = 255;
+    genepool.get(0).genes[22] = 128;
     genepool.get(0).genes[3] = 255;
+    genepool.get(0).genes[23] = 255;
     
     // Strain 2 = BLACK
-    genepool.get(1).genes[0] = 128;
-    genepool.get(1).genes[1] = 190;
-    genepool.get(1).genes[2] = 0;
-    genepool.get(1).genes[22] = 0;
+    genepool.get(1).genes[0] = 94;
+    genepool.get(1).genes[20] = 158;
+    genepool.get(1).genes[1] = 60;
+    genepool.get(1).genes[21] = 0;
+    genepool.get(1).genes[2] = 128;
+    genepool.get(1).genes[22] = 255;
     genepool.get(1).genes[3] = 255;
+    genepool.get(1).genes[23] = 255;
+    genepool.get(1).genes[7] = 8;
+    
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
       int str = (n % gs.numStrains);
-      c = map(n, 0, gs.seeds, 0, w * sf * 0.83);
+      c = map(n, 1, gs.seeds, 0, w * sf * 0.3);
       //c = n*0.2;
       float a = n * radians(137.5);
       float r = c * sqrt(n);
@@ -66,20 +75,24 @@ class Phyllotaxis {
       
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
       //DNA dna = genepool.get(str); // Get's alternating dna from the genepool
-      println("n= " + n);
-      if (n == picker) {println("Picked!");picked = 1;} else {picked = 0;}
+      if (n == picker) {picked = 1;} else {picked = 0;}
       DNA dna = genepool.get(picked); 
       
-      
+      //dna.genes[8] = n;
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
-      
-      dna.genes[8] = w * map(n, 0, gs.seeds, 1, gs.stepSizeN); // 8 = cellStartSize
-      //dna.genes[8] = n;
-      dna.genes[10] = w * map(n, 0, gs.seeds, 22, 223); // 10 = lifespan (200-1000)
+      dna.genes[10] = w * map(n, 1, gs.seeds, 12, 80); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 30, 60); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 0, 50); // 17 = noisePercent (0-100%)
+      dna.genes[12] = map(n, 1, gs.seeds, 0, 30); // 12 = spiral screw (-75 - +75 %)
+      dna.genes[17] = map(n, 1, gs.seeds, 0, 50); // 17 = noisePercent (0-100%)
+      
+      //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize
+            
+      if (picked == 1) {dna.genes[8] = w * map(n, 1, gs.seeds, 1, 40);} else {dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20);} // 10 = lifespan (200-1000)  
+      //if (picked == 1) {dna.genes[10] = map(n, 1, gs.seeds, 20, 400);} else {dna.genes[10] = map(n, 1, gs.seeds, 5, 100);} // 10 = lifespan (200-1000)
+      //if (picked == 1) {dna.genes[12] = map(n, 1, gs.seeds, 0, -10);} else {dna.genes[12] = map(n, 1, gs.seeds, 0, 10);} // 12 = spiral screw (-75 - +75 %)
+      //if (picked == 1) {dna.genes[17] = map(n, 1, gs.seeds, 0, 0);} else {dna.genes[17] = map(n, 1, gs.seeds, 0, 50);} // 17 = noisePercent (0-100%)
+      //if (picked == 1) {dna.genes[18] = random(1000);}
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
       //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
