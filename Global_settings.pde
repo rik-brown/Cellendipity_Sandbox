@@ -67,11 +67,11 @@ class Global_settings {
 
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
+    numStrains = 2;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 300; // Last:666
+    seeds = 200; // Last:666
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -82,14 +82,14 @@ class Global_settings {
 
     stepped = false;
     stepSize = 15;
-    stepSizeN = int(random (50, 90));
+    stepSizeN = int(random (55, 82));
     
-    stripeSize = 50; // last 10
-    stripeRatio = 0.65;
+    stripeSize = 20050; // last 10
+    stripeRatio = 0.70;
 
     greyscaleON = false;
     //bkg_H = random(360);
-    bkg_H = 355;
+    bkg_H = 0;
     //bkg_S = random(128,164);
     bkg_S = 255; // last 105, 55, 255, 225
     //bkg_B = random(180,220);

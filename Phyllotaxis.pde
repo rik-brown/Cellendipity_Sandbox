@@ -12,6 +12,8 @@ class Phyllotaxis {
   //float c = w * sf; // Scaling factor
   float c;
   //float c = 0; // Scaling factor
+  int picker = int(random(1, gs.seeds));
+  int picked;
   PVector v;
   PVector pos;
   PVector origin;
@@ -19,6 +21,7 @@ class Phyllotaxis {
 
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Phyllotaxis() {
+    println("Picker = " + picker);
     genepool = new ArrayList<DNA>();
     cells = new ArrayList<Cell>();
     //v = PVector.random2D();
@@ -28,17 +31,18 @@ class Phyllotaxis {
       genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
     
-       // Strain 1 = WHITE
-    //genepool.get(0).genes[22] = 128;
-    //genepool.get(0).genes[23] = 210;
-    //genepool.get(0).genes[24] = 128;
-    //genepool.get(0).genes[25] = 225;
+    // Strain 1 = WHITE
+    genepool.get(0).genes[0] = 128;
+    genepool.get(0).genes[1] = 0;
+    genepool.get(0).genes[2] = 255;
+    genepool.get(0).genes[3] = 255;
     
-    //// Strain 2 = BLACK
-    //genepool.get(1).genes[22] = 128;
-    //genepool.get(1).genes[23] = 190;
-    //genepool.get(1).genes[24] = 128;
-    //genepool.get(1).genes[25] = 225;
+    // Strain 2 = BLACK
+    genepool.get(1).genes[0] = 128;
+    genepool.get(1).genes[1] = 190;
+    genepool.get(1).genes[2] = 0;
+    genepool.get(1).genes[22] = 0;
+    genepool.get(1).genes[3] = 255;
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
     for (int n = 1; n <= gs.seeds; n++) {      
@@ -61,7 +65,11 @@ class Phyllotaxis {
       
       
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
-      DNA dna = genepool.get(str); // Get's alternating dna from the genepool
+      //DNA dna = genepool.get(str); // Get's alternating dna from the genepool
+      println("n= " + n);
+      if (n == picker) {println("Picked!");picked = 1;} else {picked = 0;}
+      DNA dna = genepool.get(picked); 
+      
       
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
@@ -79,17 +87,17 @@ class Phyllotaxis {
       //dna.genes[15] = map(n, 0, gs.seeds, 5, 2); // 18 = xOff (0-1000)
       //dna.genes[16] = map(n, 0, gs.seeds, 1, 6); // 19 = yOff (0-1000)
       
-      dna.genes[0] = map(n, 0, gs.seeds, 230, 240); //
-      dna.genes[20] = map(n, 0, gs.seeds, 240, 250); //
+      //dna.genes[0] = map(n, 0, gs.seeds, 230, 240); //
+      //dna.genes[20] = map(n, 0, gs.seeds, 240, 250); //
       
       //dna.genes[1] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
       //dna.genes[1] = map(n, 0, gs.seeds, 255, 128); //
-      dna.genes[1] = map(n, 0, gs.seeds, 220, 255); //
-      dna.genes[21] = map(n, 0, gs.seeds, 200, 180); //
+      //dna.genes[1] = map(n, 0, gs.seeds, 220, 255); //
+      //dna.genes[21] = map(n, 0, gs.seeds, 200, 180); //
       //dna.genes[21] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
       
-      dna.genes[2] = map(n, 0, gs.seeds, 100, 125); //
-      dna.genes[22] = map(n, 0, gs.seeds, 255, 200); //
+      //dna.genes[2] = map(n, 0, gs.seeds, 100, 125); //
+      //dna.genes[22] = map(n, 0, gs.seeds, 255, 200); //
       
       //dna.genes[3] = map(n, 0, gs.seeds, 0, 255); //
       //dna.genes[23] = map(n, 0, gs.seeds, 224, 192); //

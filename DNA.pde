@@ -70,11 +70,11 @@ class DNA {
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 255;// fill_Send LAST: 128
+            genes[21] = 55;// fill_Send LAST: 128
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 125;// fill_Bend last: 180
+            genes[22] = 225;// fill_Bend last: 180
 
             genes[23] = 255;// fill_Aend
 
