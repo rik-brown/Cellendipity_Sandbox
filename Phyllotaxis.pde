@@ -108,7 +108,7 @@ class Phyllotaxis {
       dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
       //dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
       dna.genes[17] = map(distance, 0, width*0.4, 0, 100);
-      dna.genes[20] = gs.bkg_H + map(distance, 0, width*0.4, 90, 0) % 360;
+      dna.genes[20] = (gs.bkg_H + map(distance, 0, width*0.4, 90, 0)) % 360;
       dna.genes[22] = map(distance, 0, width*0.4, 250, 48);
       
       //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize

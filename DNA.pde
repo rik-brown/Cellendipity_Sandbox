@@ -113,18 +113,18 @@ class DNA {
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
             genes[14] = 2;
             
-            //genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-            genes[15] = 2.8731356;
-            //genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-            genes[16] = 4.848875;
+            genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
+            //genes[15] = 2.8731356;
+            genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
+            //genes[16] = 4.848875;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0; // 17 = noisePercent (0-100%)
             
-            //genes[18] = random(1000); // 18 = xOff (rnd 1000)
-            //genes[19] = random(1000); // 19 = yOff (rnd 1000)
+            genes[18] = random(1000); // 18 = xOff (rnd 1000)
+            genes[19] = random(1000); // 19 = yOff (rnd 1000)
             
-            genes[18] = 648.2952; // 18 = xOff (rnd 1000)
-            genes[19] = 728.6432; // 19 = yOff (rnd 1000)
+            //genes[18] = 648.2952; // 18 = xOff (rnd 1000)
+            //genes[19] = 728.6432; // 19 = yOff (rnd 1000)
             
             genes[28] = 0;  // strain ID
 
