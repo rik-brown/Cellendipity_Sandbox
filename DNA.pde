@@ -101,7 +101,7 @@ class DNA {
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 15;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
-            genes[10] = width * 0.2; // last * 0.09, 0.2, 0.5
+            genes[10] = width * 0.05; // last * 0.09, 0.2, 0.5
             //genes[10] = 20;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;

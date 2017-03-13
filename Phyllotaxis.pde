@@ -18,6 +18,8 @@ class Phyllotaxis {
   PVector v;
   PVector pos;
   PVector origin;
+  float orx = width * random (0.3, 0.7);
+  float ory = height * random (0.3, 0.7);
 
 
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
@@ -36,6 +38,7 @@ class Phyllotaxis {
     genepool.get(0).genes[0] = gs.bkg_H;
     genepool.get(0).genes[20] = 300;
     genepool.get(0).genes[1] = gs.bkg_S;
+    genepool.get(0).genes[1] = 100;
     genepool.get(0).genes[21] = 220;
     genepool.get(0).genes[2] = gs.bkg_B;
     genepool.get(0).genes[22] = 255;
@@ -61,6 +64,7 @@ class Phyllotaxis {
     
     // Start by adding one random 'infiltrator'
     //pos = new PVector(random(width), random(height));
+    pos = new PVector(orx, ory);
     //DNA dnx = genepool.get(1);
     //v = PVector.random2D();
     //cells.add(new Cell(pos, v, dnx));
@@ -76,9 +80,11 @@ class Phyllotaxis {
       float xpos = r * cos(a) + width * 0.5;
       float ypos = r * sin(a) + height * 0.5;
       pos = new PVector(xpos, ypos);
-      origin = new PVector (width * 0.5, height * 0.5);
+      //origin = new PVector (width * 0.5, height * 0.5);
       //origin = new PVector (width * random(0.4, 0.6), height * random(0.4, 0.6));
-      float distance = dist(xpos, ypos, width*0.5, height*0.5);
+      origin = new PVector (orx, ory);
+      //float distance = dist(xpos, ypos, width*0.5, height*0.5);
+      float distance = dist(xpos, ypos, orx, ory);
       
       PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
       //v = new PVector(1, 0); // Static vector to get distance between the cell & other
@@ -90,24 +96,30 @@ class Phyllotaxis {
       //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
       //DNA dna = genepool.get(str); // Get's alternating dna from the genepool
       if (n == picker) {picked = 1;} else {picked = 0;}
-      DNA dna = genepool.get(picked); 
+      //DNA dna = genepool.get(picked); 
+      DNA dna = genepool.get(0);
       
       //dna.genes[8] = n;
       //dna.genes[8] = width * map(distance, 0, width*0.5, 0.02, 0.035); // 8 = cellStartSize
+      dna.genes[8] = w * map(n, 0, gs.seeds, 10, 30);
       //dna.genes[10] = map(distance, 0, width*0.5, 15, 55); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
       dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
       //dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
+      dna.genes[20] = gs.bkg_H + map(distance, 0, width*0.4, 90, 0) % 360;
+      dna.genes[22] = map(distance, 0, width*0.4, 200, 0);
       
       //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize
 
       //if (picked == 1) {dna.genes[20] = 240;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
-      if (picked == 1) {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, -60) % 360;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
-      if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} // 10 = lifespan (200-1000)  
-      if (picked == 1) {dna.genes[10] = w * map(n, 0, gs.seeds, 2, 50);} else {dna.genes[10] = w *  map(n, 0, gs.seeds, 2, 50);} // 10 = lifespan (200-1000)
+      //if (picked == 1) {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, -60) % 360;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
+      //if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} // 10 = lifespan (200-1000)  
+      //if (picked == 1) {dna.genes[10] = w * map(n, 0, gs.seeds, 2, 50);} else {dna.genes[10] = w *  map(n, 0, gs.seeds, 2, 50);} // 10 = lifespan (200-1000)
+      if (picked == 1) {dna.genes[10] = w * map(distance, 0, width*0.4, 2, 50);} else {dna.genes[10] = w *  map(distance, 0, width*0.4, 2, 50);} // 10 = lifespan (200-1000)
       //if (picked == 1) {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} else {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} // 12 = spiral screw (-75 - +75 %)
-      if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 90);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
+      //if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 90);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
+      if (picked == 1) {dna.genes[17] = map(distance, 0, width*0.4, 0, 90);} else {dna.genes[17] = map(distance, 0, width*0.4, 0, 100);} // 17 = noisePercent (0-100%)
       //if (picked == 1) {dna.genes[18] = random(1000);}
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
