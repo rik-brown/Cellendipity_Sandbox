@@ -52,13 +52,14 @@ class DNA {
 
       // RANDOMIZED VALUES
             //genes[0] = random(360); // 0 = fill Hue (0-360)
-            genes[0] = 230; // 0 = fill Hue (0=RED)
+            //genes[0] = 230; // 0 = fill Hue (0=RED)
+            genes[0] = gs.bkg_H; // 0 = fill Hue 
             //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            genes[1] = 200; // 1 = fill Saturation (0-255)
-			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
+            //genes[1] = 200; // 1 = fill Saturation (0-255)
+			      genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             genes[2] = 255;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
 
@@ -66,15 +67,15 @@ class DNA {
             //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
             //genes[20] = gs.bkg_H;
             //genes[20] = genes[0];
-            genes[20] = 245;
+            genes[20] = 300;
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 55;// fill_Send LAST: 128
+            genes[21] = 192;// fill_Send LAST: 128
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 225;// fill_Bend last: 180
+            genes[22] = 255;// fill_Bend last: 180
 
             genes[23] = 255;// fill_Aend
 
@@ -110,7 +111,7 @@ class DNA {
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
-            genes[14] = 1;
+            genes[14] = 2;
             
             //genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
             genes[15] = 4;
