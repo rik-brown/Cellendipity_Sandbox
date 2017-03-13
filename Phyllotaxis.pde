@@ -75,8 +75,8 @@ class Phyllotaxis {
       float xpos = r * cos(a) + width * 0.5;
       float ypos = r * sin(a) + height * 0.5;
       pos = new PVector(xpos, ypos);
-      //origin = new PVector (width * 0.5, height * 0.5);
-      origin = new PVector (width * random(0.4, 0.6), height * random(0.4, 0.6));
+      origin = new PVector (width * 0.5, height * 0.5);
+      //origin = new PVector (width * random(0.4, 0.6), height * random(0.4, 0.6));
       float distance = dist(xpos, ypos, width*0.5, height*0.5);
       
       PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
@@ -101,9 +101,9 @@ class Phyllotaxis {
       
       //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize
 
-      if (picked == 1) {dna.genes[0] = 240;} else {dna.genes[0] = gs.bkg_H + map(n, 0, gs.seeds, 0, 120) % 360;} // 10 = lifespan (200-1000)
+      if (picked == 1) {dna.genes[20] = 240;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 120) % 360;} // 10 = lifespan (200-1000)
       if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 70);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 70);} // 10 = lifespan (200-1000)  
-      if (picked == 1) {dna.genes[10] = map(n, 0, gs.seeds, 2, 350);} else {dna.genes[10] = map(n, 0, gs.seeds, 2, 250);} // 10 = lifespan (200-1000)
+      if (picked == 1) {dna.genes[10] = map(n, 0, gs.seeds, 2, 150);} else {dna.genes[10] = map(n, 0, gs.seeds, 2, 150);} // 10 = lifespan (200-1000)
       //if (picked == 1) {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} else {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} // 12 = spiral screw (-75 - +75 %)
       //if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
       //if (picked == 1) {dna.genes[18] = random(1000);}
