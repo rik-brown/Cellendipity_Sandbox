@@ -105,7 +105,7 @@ class Phyllotaxis {
       //if (picked == 1) {dna.genes[20] = 240;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
       if (picked == 1) {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, -60) % 360;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
       if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} // 10 = lifespan (200-1000)  
-      if (picked == 1) {dna.genes[10] = w * map(n, 0, gs.seeds, 2, 150);} else {dna.genes[10] = w *  map(n, 0, gs.seeds, 2, 150);} // 10 = lifespan (200-1000)
+      if (picked == 1) {dna.genes[10] = w * map(n, 0, gs.seeds, 2, 50);} else {dna.genes[10] = w *  map(n, 0, gs.seeds, 2, 50);} // 10 = lifespan (200-1000)
       //if (picked == 1) {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} else {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} // 12 = spiral screw (-75 - +75 %)
       if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 90);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
       //if (picked == 1) {dna.genes[18] = random(1000);}
