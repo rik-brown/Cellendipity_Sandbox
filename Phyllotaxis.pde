@@ -47,12 +47,12 @@ class Phyllotaxis {
     genepool.get(1).genes[0] = 240;
     genepool.get(1).genes[20] = 240;
     genepool.get(1).genes[1] = gs.bkg_S;
-    genepool.get(1).genes[21] = 192;
+    genepool.get(1).genes[21] = 0;
     genepool.get(1).genes[2] = gs.bkg_B;
     genepool.get(1).genes[22] = 255;
     genepool.get(1).genes[3] = 255;
     genepool.get(1).genes[23] = 255;
-    genepool.get(1).genes[7] = 8;
+    //genepool.get(1).genes[7] = 8;
     //genepool.get(1).genes[10] = w * 150;
     //genepool.get(1).genes[12] = 0;
     //genepool.get(1).genes[17] = 0;
@@ -97,15 +97,15 @@ class Phyllotaxis {
       //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
       dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
-      dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
+      //dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
       
       //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize
 
       if (picked == 1) {dna.genes[20] = 240;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 120) % 360;} // 10 = lifespan (200-1000)
       if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 70);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 70);} // 10 = lifespan (200-1000)  
-      if (picked == 1) {dna.genes[10] = map(n, 0, gs.seeds, 2, 150);} else {dna.genes[10] = map(n, 0, gs.seeds, 2, 150);} // 10 = lifespan (200-1000)
+      if (picked == 1) {dna.genes[10] = map(n, 0, gs.seeds, 2, 250);} else {dna.genes[10] = map(n, 0, gs.seeds, 2, 250);} // 10 = lifespan (200-1000)
       //if (picked == 1) {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} else {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} // 12 = spiral screw (-75 - +75 %)
-      //if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
+      if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 90);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
       //if (picked == 1) {dna.genes[18] = random(1000);}
       
       //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
