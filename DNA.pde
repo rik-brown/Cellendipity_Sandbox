@@ -99,7 +99,7 @@ class DNA {
             genes[8] = 20;
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 19;
+            genes[9] = 15;
             //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
             genes[10] = width * 0.2; // last * 0.09, 0.2, 0.5
             //genes[10] = 20;
@@ -113,10 +113,10 @@ class DNA {
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
             genes[14] = 2;
             
-            //genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-            genes[15] = 4;
-            //genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-            genes[16] = 5;
+            genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
+            //genes[15] = 4;
+            genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
+            //genes[16] = 5;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
             genes[17] = 0; // 17 = noisePercent (0-100%)
             
