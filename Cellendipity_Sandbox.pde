@@ -14,14 +14,8 @@
     b) Is it still meaningful to determine position in the DNA?
     c) Maybe this would open for different strains interpreting the parametrically controlled variables differently? INTERESTING!!!
     Something is not right with gene 25 in colony???
-*  3) Introduce configurable stripes (initially 2 states - on/off)
-*    NEED a good way of defining stripe colour
-*    (is currently hard-coded in cell: stripe() )
-*  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
-* Need to introduce -start and -end variables for fill & stroke color elements
-* Or if this is longwinded, maybe explore lerpColor (startcolor, endcolor)
-* I DON'T NEED 'fill_H' and 'fill_Hstart' if updateFillColor() is always active (can slim down on # genes)
-* Can also remove fill- and stroke-twist
+*   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+*  Can also remove fill- and stroke-twist
 
 */
 
@@ -30,12 +24,12 @@ Phyllotaxis colony;
 Global_settings gs;                                // A Parameters object called 'p'
 
 int runCycle = 1;
-int maxCycles = 10;
+int maxCycles = 1;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-141e";
+String batchName = "batch-142";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -67,7 +61,7 @@ void setup() {
   gs = new Global_settings();
   //colony = new Colony();
   colony = new Phyllotaxis();
-  if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+  background(gs.bkgColor);
   //background (0,0,0,0);
   //background (0,0,255); //white
   if (gs.debug) {frameRate(3);}
@@ -96,14 +90,13 @@ void manageColony() {
     outputName = nf(runCycle, 3);
     screendumpPath = pathName + versionName + "." + outputName + ".png";
     output = createWriter(pathName + versionName + "." + outputName +"_settings.txt");
-    if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
+    background(gs.bkgColor);
     //background (0,0,0,0);
     //background (0,0,255); //white
     startSettingsFile();
     gs = new Global_settings();
     //colony = new Colony();
     colony = new Phyllotaxis();
-    //if (gs.greyscaleON) {background(gs.bkgColGrey); } else {background(gs.bkgColor);}
 }
 
 void startSettingsFile() {

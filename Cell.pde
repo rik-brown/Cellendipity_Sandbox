@@ -29,6 +29,7 @@ class Cell {
   PVector position;
   PVector home;
   PVector toHome; // Points from cell to it's origin
+  PVector origin;
   PVector velocityLinear;
   PVector velocityNoise;
   PVector velocity;
@@ -129,7 +130,7 @@ class Cell {
 
   // MOVEMENT
   position = pos.copy(); //cell has position
-  home = pos.copy();     //cell has origin
+  home = pos.copy();     //cell origin
   velocityLinear = vel.copy(); //cell has unique basic velocity component
   noisePercent = dna.genes[17] * 0.01; // How much influence on velocity does Perlin noise have?
   spiral = dna.genes[12] * 0.01; // Spiral screw amount
