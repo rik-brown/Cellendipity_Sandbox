@@ -100,7 +100,7 @@ class Phyllotaxis {
       DNA dna = genepool.get(0);
       
       //dna.genes[8] = n;
-      dna.genes[8] = w * map(distance, 0, width*0.5, 15, 50); // 8 = cellStartSize
+      //dna.genes[8] = w * map(distance, 0, width*0.5, 15, 50); // 8 = cellStartSize
       //dna.genes[8] = w * map(n, 0, gs.seeds, 10, 30);
       dna.genes[10] = w * map(distance, 0, width*0.4, 20, 60); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
