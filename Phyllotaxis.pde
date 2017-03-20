@@ -102,7 +102,7 @@ class Phyllotaxis {
       //dna.genes[8] = n;
       //dna.genes[8] = w * map(distance, 0, width*0.5, 15, 50); // 8 = cellStartSize
       //dna.genes[8] = w * map(n, 0, gs.seeds, 10, 30);
-      dna.genes[10] = w * map(distance, 0, width*0.4, 20, 60); // 10 = lifespan (200-1000)
+      //dna.genes[10] = w * map(distance, 0, width*0.4, 20, 60); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
       dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
@@ -149,7 +149,8 @@ class Phyllotaxis {
       
       //dna.genes[26] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend
       
-      dna.genes[28] = str; //StrainID is transferred to gene 28
+      //dna.genes[28] = str; //StrainID is transferred to gene 28
+      dna.genes[28] = n; //n is transferred to gene 28
       
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));
