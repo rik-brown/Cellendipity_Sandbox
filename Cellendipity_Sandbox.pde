@@ -9,14 +9,16 @@
 *
 * Sub-Goals:
 *  1) Introduce alternative "seed-patterns" (like x-y grid or polar array)
+*
 *  2) Architecture which supports parametric control of DNA relating to spawn position
 *   a) Maybe this should be done inside the cell, using the information passed down from the DNA?
-    b) Is it still meaningful to determine position in the DNA?
-    c) Maybe this would open for different strains interpreting the parametrically controlled variables differently? INTERESTING!!!
-    Something is not right with gene 25 in colony???
+*   Started this in batch-142.
+*   Next step is to move the 'dna-modifiers' into cell
+*
+*   c) Maybe this would open for different strains or cell-types, each interpreting the parametrically controlled variables differently? INTERESTING!!!
+*
 *   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
-*  Can also remove fill- and stroke-twist
-
+*
 */
 
 //Colony colony;    // A Colony object called 'colony'
