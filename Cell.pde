@@ -80,7 +80,8 @@ class Cell {
   float stroke_Aend;
   
   // STRAIN
-  int strainID;
+  //int strainID;
+  int spawnID;
 
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
@@ -114,6 +115,10 @@ class Cell {
   fertile = false; // A new cell always starts off infertile
   stripe = false; // A new cell always starts off displaying it's normal colour 
 
+  // ID
+  //strainID = int(dna.genes[28]);
+  spawnID = int(dna.genes[28]);
+
   // POSITION & MOVEMENT
   position = pos.copy();                // cell has current position
   home = pos.copy();                    // home= initial position
@@ -131,6 +136,14 @@ class Cell {
   xoff = dna.genes[18]; //Seed for noise
   yoff = dna.genes[19]; //Seed for noise
   
+  // MODULATED BY POSITION
+  dna.genes[8] = width * 0.001 * map(oDist, 0, width*0.5, 1, 30); // 8 = cellStartSize
+  dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.5, 20, 60); // 10 = lifespan (200-1000)
+  dna.genes[17] = map(oDist, 0, width*0.5, 0, 100);
+  
+  // MODULATED BY INDEX NUMBER
+  dna.genes[12] = map(spawnID, 0, gs.seeds, 5, 45); // 12 = spiral screw
+  
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
   lifespan = dna.genes[10];
@@ -139,7 +152,6 @@ class Cell {
   spawnCount = dna.genes[14]; // Max. number of spawns
 
   // SIZE AND SHAPE
-  dna.genes[8] = width * 0.001 * map(range, 0, width*0.5, 1, 30); // 8 = cellStartSize
   cellStartSize = dna.genes[8];
   cellEndSize = cellStartSize * dna.genes[9] * 0.01;
   r = cellStartSize; // Initial value for radius
@@ -181,9 +193,6 @@ class Cell {
   strokeColor = color(stroke_Hstart, stroke_Sstart, stroke_Bstart); // Initial color is set 
   //strokeStart = color(dna.genes[4], dna.genes[5], dna.genes[6]);
   //strokeEnd = color(dna.genes[24], dna.genes[25], dna.genes[26]);
-  
-  // STRAIN ID
-  strainID = int(dna.genes[28]);
   }
 
   void run() {
@@ -379,21 +388,21 @@ void displayRect() {
    else {popMatrix();} //G
   }
 
-void displayText() {
-    textSize(r*0.5);
-    strokeWeight(1);
-    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
-    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
+//void displayText() {
+//    textSize(r*0.5);
+//    strokeWeight(1);
+//    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
+//    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
 
-    float angle = velocity.heading();
-    pushMatrix();
-    translate(position.x,position.y);
-    rotate(angle);
-    String word = gs.words.get(strainID);
-    text(word, 0, 0);
+//    float angle = velocity.heading();
+//    pushMatrix();
+//    translate(position.x,position.y);
+//    rotate(angle);
+//    String word = gs.words.get(strainID);
+//    text(word, 0, 0);
     
-   popMatrix();
-  }
+//   popMatrix();
+//  }
 
 
 
