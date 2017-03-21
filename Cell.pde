@@ -137,12 +137,14 @@ class Cell {
   yoff = dna.genes[19]; //Seed for noise
   
   // MODULATED BY POSITION
-  dna.genes[8] = width * 0.001 * map(oDist, 0, width*0.5, 1, 30); // 8 = cellStartSize
-  dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.5, 20, 60); // 10 = lifespan (200-1000)
-  dna.genes[17] = map(oDist, 0, width*0.5, 0, 100);
+  dna.genes[8] = width * 0.001 * map(oDist, 0, width*0.5, 1, 30);     // 8 = cellStartSize
+  dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.5, 20, 60);   // 10 = lifespan (200-1000)
+  dna.genes[17] = map(oDist, 0, width*0.5, 0, 100);                   // 17 = noisePercent (0-100%)
+  dna.genes[20] = (gs.bkg_H + map(oDist, 0, width*0.5, 90, 0)) % 360; // 20 = fill_Hend
+  dna.genes[22] = map(oDist, 0, width*0.5, 250, 48);                  // 22 = fill_Bend
   
   // MODULATED BY INDEX NUMBER
-  dna.genes[12] = map(spawnID, 0, gs.seeds, 5, 45); // 12 = spiral screw
+  dna.genes[12] = map(spawnID, 0, gs.seeds, 5, 45);                   // 12 = spiral screw
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity

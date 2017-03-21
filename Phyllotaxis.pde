@@ -2,156 +2,56 @@ class Phyllotaxis {
 
   // Is this a good way to keep different spawn patterns separate?
   // Probably not the best way, but worth a try...
+  // Should ultimately boil down to a simple 'position and velocity pattern' (with all the rest taken care of by the cell & it's dna)
   
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
-  int colonyMaxSize = 200;
-  float w = width * 0.001;
-  //float sf = 20000/gs.seeds;
-  float sf = 8;
-  float c = w * sf; // Scaling factor
-  //float c;
-  //float c = 0; // Scaling factor
-  int picker = int(random(gs.seeds*0.5, gs.seeds*0.6));
-  int picked;
+  
+  int colonyMaxSize = 200;  // Not really used when 'breeding' is disabled
+  
+  float w = width * 0.001;  // For convinience
+  float c = w * 8; // Scaling factor
+  
   PVector v;
   PVector pos;
   PVector origin;
-  float orx = width * random (0.3, 0.7);
-  float ory = height * random (0.3, 0.7);
+  float orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
+  float ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
+  //float orx = width * 0.5;  // Centered
+  //float ory = height * 0.5; // Centered
 
 
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Phyllotaxis() {
-    //println("Picker = " + picker);
     genepool = new ArrayList<DNA>();
     cells = new ArrayList<Cell>();
-    //v = PVector.random2D();
+    //v = PVector.random2D(); // All cells get the same random velocity vector
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
       genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
-    
-    // Strain 1 = WHITE
-    genepool.get(0).genes[0] = gs.bkg_H;
-    genepool.get(0).genes[20] = 300;
-    //genepool.get(0).genes[1] = gs.bkg_S;
-    genepool.get(0).genes[1] = 50;
-    genepool.get(0).genes[21] = 220;
-    genepool.get(0).genes[2] = gs.bkg_B;
-    genepool.get(0).genes[22] = 255;
-    genepool.get(0).genes[3] = 255;
-    genepool.get(0).genes[23] = 255;
-    
-    // Strain 2 = BLACK
-    //genepool.get(1).genes[0] = gs.bkg_H;
-    genepool.get(1).genes[0] = 240;
-    genepool.get(1).genes[20] = 240;
-    genepool.get(1).genes[1] = gs.bkg_S;
-    genepool.get(1).genes[21] = 220;
-    genepool.get(1).genes[2] = gs.bkg_B;
-    //genepool.get(1).genes[2] = 255;
-    genepool.get(1).genes[22] = 255;
-    genepool.get(1).genes[3] = 255;
-    genepool.get(1).genes[23] = 255;
-    //genepool.get(1).genes[7] = 8;
-    //genepool.get(1).genes[10] = w * 150;
-    //genepool.get(1).genes[12] = 0;
-    //genepool.get(1).genes[17] = 0;
-    
-    
-    // Start by adding one random 'infiltrator'
-    //pos = new PVector(random(width), random(height));
-    pos = new PVector(orx, ory);
-    //DNA dnx = genepool.get(1);
-    //v = PVector.random2D();
-    //cells.add(new Cell(pos, v, dnx));
-    
            
     // Here is the code which fills the 'cells' arraylist with cells at given positions
-    for (int n = 0; n <= gs.seeds; n++) {      
-      int str = (n % gs.numStrains);
-      //c = map(n, 1, gs.seeds, 0, w * sf * 0.3);
-      //c = n*0.2;
+    for (int n = 0; n <= gs.seeds; n++) {
+      
+      // Simple Phyllotaxis formula:
       float a = n * radians(137.5);
-      float r = c * sqrt(n);
+      float r = c * sqrt(n);   
       float xpos = r * cos(a) + width * 0.5;
       float ypos = r * sin(a) + height * 0.5;
       pos = new PVector(xpos, ypos);
-      //origin = new PVector (width * 0.5, height * 0.5);
-      //origin = new PVector (width * random(0.4, 0.6), height * random(0.4, 0.6));
+      
       origin = new PVector (orx, ory);
-      //float distance = dist(xpos, ypos, width*0.5, height*0.5);
-      float distance = dist(xpos, ypos, orx, ory);
-      
-      PVector v = PVector.sub(pos, origin); // Static vector to get distance between the cell & other
-      //v = new PVector(1, 0); // Static vector to get distance between the cell & other
+      PVector v = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       v.normalize();
-      v.rotate(PI * 1.5);
-      //v.rotate(PI * str * 0.15);
-      
-      
-      //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random dna from the genepool
-      //DNA dna = genepool.get(str); // Get's alternating dna from the genepool
-      if (n == picker) {picked = 1;} else {picked = 0;}
-      //DNA dna = genepool.get(picked); 
-      DNA dna = genepool.get(0);
-      //dna.genes[28] = str; //StrainID is transferred to gene 28
-      dna.genes[28] = n; //n is transferred to gene 28
-      
-      //dna.genes[8] = n;
-      //dna.genes[8] = w * map(distance, 0, width*0.5, 15, 50); // 8 = cellStartSize
-      //dna.genes[8] = w * map(n, 0, gs.seeds, 10, 30);
-      //dna.genes[10] = w * map(distance, 0, width*0.4, 20, 60); // 10 = lifespan (200-1000)
-      //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
-      //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      //dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
-      //dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
-      //dna.genes[17] = map(distance, 0, width*0.4, 0, 100);
-      dna.genes[20] = (gs.bkg_H + map(distance, 0, width*0.5, 90, 0)) % 360;
-      dna.genes[22] = map(distance, 0, width*0.5, 250, 48);
-      
-      //dna.genes[8] = w * map(n, 1, gs.seeds, 1, 20); // 8 = cellStartSize
+      v.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-      //if (picked == 1) {dna.genes[20] = 240;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
-      //if (picked == 1) {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, -60) % 360;} else {dna.genes[20] = gs.bkg_H + map(n, 0, gs.seeds, 0, 60) % 360;} // 10 = lifespan (200-1000)
-      //if (picked == 1) {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} else {dna.genes[8] = w * map(n, 0, gs.seeds, 7, 50);} // 10 = lifespan (200-1000)  
-      //if (picked == 1) {dna.genes[10] = w * map(n, 0, gs.seeds, 2, 50);} else {dna.genes[10] = w *  map(n, 0, gs.seeds, 2, 50);} // 10 = lifespan (200-1000)
-      //if (picked == 1) {dna.genes[10] = w * map(distance, 0, width*0.4, 2, 30);} else {dna.genes[10] = w *  map(distance, 0, width*0.4, 2, 30);} // 10 = lifespan (200-1000)
-      //if (picked == 1) {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} else {dna.genes[12] = map(n, 0, gs.seeds, 5, 45);} // 12 = spiral screw (-75 - +75 %)
-      //if (picked == 1) {dna.genes[17] = map(n, 0, gs.seeds, 0, 90);} else {dna.genes[17] = map(n, 0, gs.seeds, 0, 100);} // 17 = noisePercent (0-100%)
-      //if (picked == 1) {dna.genes[17] = map(distance, 0, width*0.4, 0, 90);} else {dna.genes[17] = map(distance, 0, width*0.4, 0, 100);} // 17 = noisePercent (0-100%)
-      //if (picked == 1) {dna.genes[18] = random(1000);}
+      //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+      DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
       
-      //dna.genes[18] = map(xpos, 0, width, 0, 1); // 18 = xOff (0-1000)
-      //dna.genes[19] = map(ypos, 0, height, 0, 1); // 19 = yOff (0-1000)
-      
-      //dna.genes[15] = map(n, 0, gs.seeds, 5, 2); // 18 = xOff (0-1000)
-      //dna.genes[16] = map(n, 0, gs.seeds, 1, 6); // 19 = yOff (0-1000)
-      
-      //dna.genes[0] = gs.bkg_H + map(n, 0, gs.seeds, 0, 120) % 360; //
-      //dna.genes[20] = map(n, 0, gs.seeds, 240, 250); //
-      
-      //dna.genes[1] = map(n, 0, gs.seeds, gs.bkg_S, gs.bkg_S*0.9); //
-      //dna.genes[1] = map(n, 0, gs.seeds, 255, 128); //
-      //dna.genes[1] = map(n, 0, gs.seeds, 220, 255); //
-      //dna.genes[21] = map(n, 0, gs.seeds, 200, 180); //
-      //dna.genes[21] = map(n, 0, gs.seeds, 64, gs.bkg_S); //
-      
-      //dna.genes[2] = map(n, 0, gs.seeds, 100, 125); //
-      //dna.genes[22] = map(n, 0, gs.seeds, 255, 128); //
-      
-      //dna.genes[3] = map(n, 0, gs.seeds, 0, 255); //
-      //dna.genes[23] = map(n, 0, gs.seeds, 224, 192); //
-      
-      //dna.genes[4] = map(n, 0, gs.seeds, 255, 0); //
-      //dna.genes[24] = dna.genes[20] * map(distance, 0, width*0.7, 0.7, 1); // 21 = stroke_Hend
-      
-      //dna.genes[26] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend
-      
-      
+      dna.genes[28] = n; //n is transferred to gene 28
       
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));
