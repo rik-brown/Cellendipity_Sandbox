@@ -10,17 +10,12 @@ class Phyllotaxis {
   
   int colonyMaxSize = 200;  // Not really used when 'breeding' is disabled
   
-  float w = width * 0.001;  // For convinience
-  float c = w * 8; // Scaling factor
-  
   PVector v;
   PVector pos;
   PVector origin;
-  float orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
-  float ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
-  //float orx = width * 0.5;  // Centered
-  //float ory = height * 0.5; // Centered
-
+  
+  float w = width * 0.001;  // For convinience
+  float c = w * 8; // Scaling factor
 
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Phyllotaxis() {
@@ -43,7 +38,7 @@ class Phyllotaxis {
       float ypos = r * sin(a) + height * 0.5;
       pos = new PVector(xpos, ypos);
       
-      origin = new PVector (orx, ory);
+      origin = new PVector (gs.orx, gs.ory);
       PVector v = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       v.normalize();
       v.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
@@ -56,7 +51,7 @@ class Phyllotaxis {
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));
       }
-     c *= 1.002;
+     c *= 1.0015;
      //c += width * 0.00003;
     }
   }

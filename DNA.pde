@@ -20,17 +20,22 @@ class DNA {
       // 1 = fill Saturation (0-255)
       // 2 = fill Brightness (0-255)
       // 3 = fill Alpha (0-255)
+      
       // 4 = stroke Hue (0-360)
       // 5 = stroke Saturation (0-255)
       // 6 = stroke Brightness (0-255)
       // 7 = stroke Alpha (0-255)
+      
       // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
       // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
+      
       // 10 = lifespan (200-1000)
       // 11 = flatness (50-200 %)
       // 12 = spiral screw (-75 - +75 %)
+      
       // 13 = fertility (70-90%)
       // 14 = spawnCount (1-5)
+      
       // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
       // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
       // 17 = noisePercent (0-100%)
@@ -48,7 +53,6 @@ class DNA {
       // 27 = stroke_Aend
       
       // 28 = Strain id
-
 
       // RANDOMIZED VALUES
             //genes[0] = random(360); // 0 = fill Hue (0-360)

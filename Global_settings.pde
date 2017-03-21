@@ -30,6 +30,9 @@ class Global_settings {
   color bkgColor;
   color nucleusColorU;
   color nucleusColorF;
+  
+  float orx;
+  float ory; 
 
   Global_settings() {
     
@@ -43,7 +46,7 @@ class Global_settings {
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     
-    seeds = 450; // Last:650
+    seeds = 500;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -51,6 +54,11 @@ class Global_settings {
 	  rows = 12;
     cols = rows;
     //cols = 12;
+    
+    orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
+    ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
+    //float orx = width * 0.5;  // Centered
+    //float ory = height * 0.5; // Centered
 
     stepped = false;
     stepSize = 15;
@@ -92,6 +100,7 @@ class Global_settings {
     output.println("numStrains = " + numStrains);
     output.println("rows = " + rows);
     output.println("cols = " + cols);
+    output.println("seeds = " + seeds);
     output.println("stepSize = " + stepSize);
     output.println("stepSizeN = " + stepSizeN);
     output.println("stripeSize = " + stripeSize);
@@ -102,5 +111,7 @@ class Global_settings {
     output.println("bkgColor = " + bkgColor);
     output.println("nucleusColorU = " + nucleusColorU);
     output.println("nucleusColorF = " + nucleusColorF);
+    output.println("orx = " + orx);
+    output.println("ory = " + ory);
   }
 }

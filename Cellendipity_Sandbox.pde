@@ -21,8 +21,8 @@
 *
 */
 
-//Colony colony;    // A Colony object called 'colony'
-Phyllotaxis colony;
+Colony colony;        // A Colony object called 'colony'
+//Phyllotaxis colony;   // A Phyllotaxis object called 'colony'
 Global_settings gs;                                // A Global_settings object called 'gs'
 
 int runCycle = 1;
@@ -31,7 +31,7 @@ int maxCycles = 1;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-143.2";
+String batchName = "batch-143.5";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -61,8 +61,8 @@ void setup() {
   ellipseMode(RADIUS);
   startSettingsFile();
   gs = new Global_settings();
-  //colony = new Colony();
-  colony = new Phyllotaxis();
+  colony = new Colony();
+  //colony = new Phyllotaxis();
   background(gs.bkgColor);
   //background (0,0,0,0);
   //background (0,0,255); //white
@@ -97,8 +97,8 @@ void manageColony() {
     //background (0,0,255); //white
     startSettingsFile();
     gs = new Global_settings();
-    //colony = new Colony();
-    colony = new Phyllotaxis();
+    colony = new Colony();
+    //colony = new Phyllotaxis();
 }
 
 void startSettingsFile() {
