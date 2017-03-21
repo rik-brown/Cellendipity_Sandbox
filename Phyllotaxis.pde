@@ -98,6 +98,8 @@ class Phyllotaxis {
       if (n == picker) {picked = 1;} else {picked = 0;}
       //DNA dna = genepool.get(picked); 
       DNA dna = genepool.get(0);
+      //dna.genes[28] = str; //StrainID is transferred to gene 28
+      dna.genes[28] = n; //n is transferred to gene 28
       
       //dna.genes[8] = n;
       //dna.genes[8] = w * map(distance, 0, width*0.5, 15, 50); // 8 = cellStartSize
@@ -105,9 +107,9 @@ class Phyllotaxis {
       //dna.genes[10] = w * map(distance, 0, width*0.4, 20, 60); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(n, 0, gs.seeds, 2, 250); // 10 = lifespan (200-1000)
       //dna.genes[10] = w * map(str, 0, gs.numStrains, 50, 150); // 10 = lifespan (200-1000)
-      dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
+      //dna.genes[12] = map(n, 0, gs.seeds, 5, 45); // 12 = spiral screw (-75 - +75 %)
       //dna.genes[17] = map(n, 0, gs.seeds, 0, 100); // 17 = noisePercent (0-100%)
-      dna.genes[17] = map(distance, 0, width*0.4, 0, 100);
+      //dna.genes[17] = map(distance, 0, width*0.4, 0, 100);
       dna.genes[20] = (gs.bkg_H + map(distance, 0, width*0.5, 90, 0)) % 360;
       dna.genes[22] = map(distance, 0, width*0.5, 250, 48);
       
@@ -149,8 +151,7 @@ class Phyllotaxis {
       
       //dna.genes[26] = map(distance, 0, width*0.7, 255, 20); // 25 = stroke_Bend
       
-      //dna.genes[28] = str; //StrainID is transferred to gene 28
-      dna.genes[28] = n; //n is transferred to gene 28
+      
       
       for (int s = 0; s < gs.strainSize; s ++) {
         cells.add(new Cell(pos, v, dna));
