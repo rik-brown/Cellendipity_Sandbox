@@ -1,8 +1,7 @@
 // Global settings that apply equally to all cells in the colony
 
 class Global_settings {
-  StringList words;
-  
+
   boolean debug;
   boolean screendumpON;
   boolean fillDisable;
@@ -12,6 +11,7 @@ class Global_settings {
 
   int strainSize;
   int numStrains;
+  int colonyMaxSize;
   
   int rows;
   int cols;
@@ -41,6 +41,7 @@ class Global_settings {
     numStrains = 2;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
+    colonyMaxSize = 200;  // Not really used when 'breeding' is disabled
     
     seeds = 500;
     

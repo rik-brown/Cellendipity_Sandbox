@@ -1,14 +1,8 @@
 class Phyllotaxis {
-
-  // Is this a good way to keep different spawn patterns separate?
-  // Probably not the best way, but worth a try...
-  // Should ultimately boil down to a simple 'position and velocity pattern' (with all the rest taken care of by the cell & it's dna)
   
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
-  
-  int colonyMaxSize = 200;  // Not really used when 'breeding' is disabled
   
   PVector v;
   PVector pos;
@@ -70,7 +64,7 @@ class Phyllotaxis {
       if (c.dead()) {cells.remove(i);}           // If the cell has died, remove it from the array
 
       // Iteration to check collision between current cell(i) and the rest
-      if (cells.size() <= colonyMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
+      if (cells.size() <= gs.colonyMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
         for (int others = i-1; others >= 0; others--) {         // Since main iteration (i) goes backwards, this one needs to too
           Cell other = cells.get(others);                       // Get the other cells, one by one
           if (other.fertile) { c.checkCollision(other); }       // Only check for collisions when both cells are fertile
@@ -86,7 +80,7 @@ class Phyllotaxis {
     rect(0,0,230,40);
     fill(360);
     textSize(16);
-    text("frames" + frameCount + " Nr. cells: " + cells.size() + " MaxLimit:" + colonyMaxSize, 10, 18);
+    text("frames" + frameCount + " Nr. cells: " + cells.size() + " MaxLimit:" + gs.colonyMaxSize, 10, 18);
   }
 
 }

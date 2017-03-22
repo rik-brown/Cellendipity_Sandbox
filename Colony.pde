@@ -4,8 +4,6 @@ class Colony {
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
   
-  int colonyMaxSize = 200;
-  
   PVector v;
   PVector pos;
   PVector origin;
@@ -69,7 +67,7 @@ class Colony {
       if (c.dead()) {cells.remove(i);}           // If the cell has died, remove it from the array
 
       // Iteration to check collision between current cell(i) and the rest
-      if (cells.size() <= colonyMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
+      if (cells.size() <= gs.colonyMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
         for (int others = i-1; others >= 0; others--) {         // Since main iteration (i) goes backwards, this one needs to too
           Cell other = cells.get(others);                       // Get the other cells, one by one
           if (other.fertile) { c.checkCollision(other); }       // Only check for collisions when both cells are fertile
@@ -85,7 +83,7 @@ class Colony {
     rect(0,0,230,40);
     fill(360);
     textSize(16);
-    text("frames" + frameCount + " Nr. cells: " + cells.size() + " MaxLimit:" + colonyMaxSize, 10, 18);
+    text("frames" + frameCount + " Nr. cells: " + cells.size() + " MaxLimit:" + gs.colonyMaxSize, 10, 18);
   }
 
 }
