@@ -4,13 +4,11 @@ class Global_settings {
   StringList words;
   
   boolean debug;
-  boolean centerSpawn;
   boolean screendumpON;
   boolean fillDisable;
   boolean strokeDisable;
   boolean nucleus;
   boolean stepped;
-  boolean wraparound;
 
   int strainSize;
   int numStrains;
@@ -37,9 +35,7 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
-    centerSpawn = true;  // true=initial spawn is width/2, height/2 false=random
     screendumpON = true;
-    wraparound = false;
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
@@ -89,13 +85,11 @@ class Global_settings {
   }
   
   void logSettings() {
-    output.println("centerSpawn = " + centerSpawn);
     output.println("screendumpON = " + screendumpON);
     output.println("fillDisable = " + fillDisable);
     output.println("strokeDisable = " + strokeDisable);
     output.println("nucleus = " + nucleus);
     output.println("stepped = " + stepped);
-    output.println("wraparound = " + wraparound);
     output.println("strainSize = " + strainSize);
     output.println("numStrains = " + numStrains);
     output.println("rows = " + rows);

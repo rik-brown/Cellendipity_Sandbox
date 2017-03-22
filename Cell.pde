@@ -211,7 +211,6 @@ class Cell {
     updateFillColor();
     updateStrokeColor();
     if (stripe) {updateStripes();}
-    if (gs.wraparound) {checkBoundaryWraparound();}
     display();
     //displayRect();
     //displayText();
@@ -296,21 +295,6 @@ class Cell {
     //fillColor = strokeColor; // RED
     //fillColor = color(0, 0, 0); // BLACK
     //strokeColor = color(0, 0, 0);  
-  }
-
-  void checkBoundaryWraparound() {
-    if (position.x > width + r * flatness) {
-      position.x = -r * flatness;
-    }
-    else if (position.x < -r * flatness) {
-      position.x = width + r * flatness;
-    }
-    else if (position.y > height + r * flatness) {
-      position.y = -r * flatness;
-    }
-    else if (position.y < -r * flatness) {
-      position.y = height + r * flatness;
-    }
   }
 
   // Death
