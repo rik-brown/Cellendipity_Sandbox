@@ -2,7 +2,7 @@ class Phyllotaxis {
   
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
-  ArrayList<Cell> cells;    // An arraylist for all the cells //<>//
+  ArrayList<Cell> population;    // An arraylist for all the cells //<>//
   
   PVector v;
   PVector pos;
@@ -14,7 +14,7 @@ class Phyllotaxis {
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Phyllotaxis() {
     genepool = new ArrayList<DNA>();
-    cells = new ArrayList<Cell>();
+    population = new ArrayList<Cell>();
     //v = PVector.random2D(); // All cells get the same random velocity vector
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
@@ -43,7 +43,7 @@ class Phyllotaxis {
       dna.genes[28] = n; //n is transferred to gene 28
       
       for (int s = 0; s < gs.strainSize; s ++) {
-        cells.add(new Cell(pos, v, dna));
+        population.add(new Cell(pos, v, dna));
       }
      c *= 1.0015;
      //c += width * 0.00003;
@@ -52,21 +52,21 @@ class Phyllotaxis {
 
 // Spawn a new cell
   void spawn(PVector pos, PVector vel, DNA dna_) {
-    cells.add(new Cell(pos, vel, dna_));
+    population.add(new Cell(pos, vel, dna_));
   }
 
 // Run the colony
   void run() {
     if (gs.debug) {colonyDebugger();}
-    for (int i = cells.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items
-      Cell c = cells.get(i);                     // Get one cell at a time
+    for (int i = population.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items
+      Cell c = population.get(i);                     // Get one cell at a time
       c.run();                                   // Run the cell (grow, move, spawn, check position vs boundaries etc.)
-      if (c.dead()) {cells.remove(i);}           // If the cell has died, remove it from the array
+      if (c.dead()) {population.remove(i);}           // If the cell has died, remove it from the array
 
       // Iteration to check collision between current cell(i) and the rest
-      if (cells.size() <= gs.colonyMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
+      if (population.size() <= gs.populationMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
         for (int others = i-1; others >= 0; others--) {         // Since main iteration (i) goes backwards, this one needs to too
-          Cell other = cells.get(others);                       // Get the other cells, one by one
+          Cell other = population.get(others);                       // Get the other cells, one by one
           if (other.fertile) { c.checkCollision(other); }       // Only check for collisions when both cells are fertile
         }
       }
@@ -80,7 +80,7 @@ class Phyllotaxis {
     rect(0,0,230,40);
     fill(360);
     textSize(16);
-    text("frames" + frameCount + " Nr. cells: " + cells.size() + " MaxLimit:" + gs.colonyMaxSize, 10, 18);
+    text("frames" + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize, 10, 18);
   }
 
 }

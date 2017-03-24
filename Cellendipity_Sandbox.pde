@@ -31,7 +31,7 @@ int maxCycles = 1;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-144.4";
+String batchName = "batch-144.5";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -46,10 +46,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -75,7 +75,7 @@ void draw() {
   colony.run();
   String frameName = nf(frameCount, 5);
   //saveFrame(framedumpPath + frameName + ".jpg");
-  if (colony.cells.size() == 0 || frameCounter < 0 ) {manageColony();}
+  if (colony.population.size() == 0 || frameCounter < 0 ) {manageColony();}
   frameCounter --;
 }
 
@@ -85,7 +85,7 @@ void manageColony() {
     output.flush();
     output.close();
     //exit();
-    colony.cells.clear();
+    colony.population.clear();
     frameCounter = maxFrames;
     runCycle ++;
     if (runCycle > maxCycles) {exit();}

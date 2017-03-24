@@ -11,7 +11,7 @@ class Global_settings {
 
   int strainSize;
   int numStrains;
-  int colonyMaxSize;
+  int populationMaxSize;
   
   int rows;
   int cols;
@@ -41,14 +41,14 @@ class Global_settings {
     numStrains = 2;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
-    colonyMaxSize = 200;  // Not really used when 'breeding' is disabled
+    populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
     seeds = 500;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 18;
+	  rows = 9;
     cols = rows;
     //cols = 12;
     
