@@ -62,7 +62,7 @@ class DNA {
             //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            genes[1] = 50; // 1 = fill Saturation (0-255)
+            genes[1] = 0; // 1 = fill Saturation (0-255) LAST:50
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             genes[2] = gs.bkg_B;    // 2 = fill Brightness (0-255)
             //genes[2] = 255;    // 2 = fill Brightness (0-255)
@@ -76,7 +76,7 @@ class DNA {
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 220;// fill_Send LAST: 128
+            genes[21] = 0;// fill_Send LAST: 128, 220
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
