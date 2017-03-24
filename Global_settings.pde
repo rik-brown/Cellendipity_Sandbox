@@ -48,7 +48,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 9;
+	  rows = 19;
     cols = rows;
     //cols = 12;
     
@@ -63,7 +63,7 @@ class Global_settings {
     stepSize = 15;
     stepSizeN = int(random (55, 82));
     
-    stripeSize = 20; // last 10
+    stripeSize = 20000; // last 10
     stripeRatio = 0.70;
 
     bkg_H = random(360);

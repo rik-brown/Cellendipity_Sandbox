@@ -136,21 +136,23 @@ class Cell {
   yoff = dna.genes[19]; //Seed for noise
   
   // MODULATED BY POSITION (Phyllotaxis)
-  dna.genes[8] = width * 0.001 * map(oDist, 0, width, 100, 50);     // 8 = cellStartSize
+  dna.genes[8] = width * 0.001 * map(oDist, 0, width, 60, 30);     // 8 = cellStartSize
   dna.genes[10] = width * 0.001 * map(oDist, 0, width, 100, 300);   // 10 = lifespan (200-1000)
-  dna.genes[17] = map(oDist, 0, width, 0, 100);                   // 17 = noisePercent (0-100%)
-  //dna.genes[20] = (gs.bkg_H + map(oDist, 0, width*0.5, 90, 0)); // 20 = fill_Hend
+  dna.genes[17] = map(oDist, 0, width, 100, 50);                   // 17 = noisePercent (0-100%)
+  dna.genes[20] = (gs.bkg_H + map(oDist, 0, width, 30, 0)); // 20 = fill_Hend
   
   // I think the %360 needs to be moved to the updateColor function!
   
   
   //dna.genes[22] = map(oDist, 0, width*0.5, 250, 48);                  // 22 = fill_Bend
-  dna.genes[22] = map(oDist, 0, width, 128, 0);                  // 22 = fill_Bend
+  dna.genes[2] = map(pos.x, 0, width, 128, 0);                   // 2 = fill bright start
+  dna.genes[22] = map(oDist, 0, width, 200, 255);                  // 22 = fill_Bend
   
   // MODULATED BY POSITION (Colony)
   //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)
+  dna.genes[1] = map(pos.x, 0, width, 255, 0);                     // 1 = fill sat start
+  dna.genes[21] = map(pos.x, 0, width, 30, 0);                    // 21 = fill sat end
   dna.genes[12] = map(oDist, 0, width, 0, 30);                    // 12 = spiral screw (-75 - +75 %)
-  //dna.genes[17] = map(oDist, 0, width*0.7, 100, 50);                  // 17 = noisePercent (0-100%)
   //dna.genes[22] = dna.genes[2] * map(oDist, 0, width*0.7, 0.7, 1);    // 22 = fill_Bend
   //dna.genes[7] = map(oDist, 0, width*0.7, 255, 20);                   // 7 = fill_Astart
   
