@@ -138,7 +138,7 @@ class Cell {
   // MODULATED BY POSITION (Phyllotaxis)
   dna.genes[8] = width * 0.001 * map(oDist, 0, width, 60, 30);     // 8 = cellStartSize
   dna.genes[10] = width * 0.001 * map(oDist, 0, width, 100, 300);   // 10 = lifespan (200-1000)
-  dna.genes[17] = map(oDist, 0, width, 100, 50);                   // 17 = noisePercent (0-100%)
+  dna.genes[17] = map(oDist, 0, width, 0, 50);                   // 17 = noisePercent (0-100%)
   dna.genes[20] = (gs.bkg_H + map(oDist, 0, width, 30, 0)); // 20 = fill_Hend
   
   // I think the %360 needs to be moved to the updateColor function!

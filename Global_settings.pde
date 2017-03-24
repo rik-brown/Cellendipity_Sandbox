@@ -48,7 +48,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 19;
+	  rows = 11;
     cols = rows;
     //cols = 12;
     
