@@ -63,7 +63,7 @@ class Global_settings {
     stepSize = 15;
     stepSizeN = int(random (55, 82));
     
-    stripeSize = 20050; // last 10
+    stripeSize = 20; // last 10
     stripeRatio = 0.70;
 
     bkg_H = random(360);
