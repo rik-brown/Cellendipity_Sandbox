@@ -26,7 +26,7 @@ Colony colony;        // A Colony object called 'colony'
 Global_settings gs;                                // A Global_settings object called 'gs'
 
 int runCycle = 1;
-int maxCycles = 10;
+int maxCycles = 5;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
