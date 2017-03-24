@@ -136,26 +136,26 @@ class Cell {
   yoff = dna.genes[19]; //Seed for noise
   
   // MODULATED BY POSITION (Phyllotaxis)
-  dna.genes[8] = width * 0.001 * map(oDist, 0, width*0.5, 40, 80);     // 8 = cellStartSize
-  dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.5, 20, 60);   // 10 = lifespan (200-1000)
-  dna.genes[17] = map(oDist, 0, width*0.5, 0, 100);                   // 17 = noisePercent (0-100%)
-  dna.genes[20] = (gs.bkg_H + map(oDist, 0, width*0.5, 90, 0)); // 20 = fill_Hend
+  dna.genes[8] = width * 0.001 * map(oDist, 0, width, 40, 80);     // 8 = cellStartSize
+  dna.genes[10] = width * 0.001 * map(oDist, 0, width, 20, 260);   // 10 = lifespan (200-1000)
+  //dna.genes[17] = map(oDist, 0, width*0.5, 0, 100);                   // 17 = noisePercent (0-100%)
+  //dna.genes[20] = (gs.bkg_H + map(oDist, 0, width*0.5, 90, 0)); // 20 = fill_Hend
   
   // I think the %360 needs to be moved to the updateColor function!
   
   
   //dna.genes[22] = map(oDist, 0, width*0.5, 250, 48);                  // 22 = fill_Bend
-  dna.genes[22] = map(oDist, 0, width*0.5, 128, 0);                  // 22 = fill_Bend
+  dna.genes[22] = map(oDist, 0, width, 128, 0);                  // 22 = fill_Bend
   
   // MODULATED BY POSITION (Colony)
   //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)
-  //dna.genes[12] = map(oDist, 0, width*0.7, 15, 5);                    // 12 = spiral screw (-75 - +75 %)
-  dna.genes[17] = map(oDist, 0, width*0.7, 100, 50);                  // 17 = noisePercent (0-100%)
+  dna.genes[12] = map(oDist, 0, width*0.7, 5, 90);                    // 12 = spiral screw (-75 - +75 %)
+  //dna.genes[17] = map(oDist, 0, width*0.7, 100, 50);                  // 17 = noisePercent (0-100%)
   //dna.genes[22] = dna.genes[2] * map(oDist, 0, width*0.7, 0.7, 1);    // 22 = fill_Bend
   //dna.genes[7] = map(oDist, 0, width*0.7, 255, 20);                   // 7 = fill_Astart
   
   // MODULATED BY INDEX NUMBER
-  dna.genes[12] = map(spawnID, 0, gs.seeds, 5, 45);                   // 12 = spiral screw
+  //dna.genes[12] = map(spawnID, 0, gs.seeds, 5, 45);                   // 12 = spiral screw
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity

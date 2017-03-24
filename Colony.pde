@@ -42,7 +42,7 @@ class Colony {
         //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         v = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
         v.normalize();
-        v.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+        //v.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
         for (int s = 0; s < gs.strainSize; s ++) {
           //v = PVector.random2D();   // Initial velocity vector is random & unique for each cell

@@ -111,7 +111,7 @@ class DNA {
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
-            genes[12] = 30;
+            genes[12] = 0;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;

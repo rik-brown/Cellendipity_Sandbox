@@ -52,8 +52,10 @@ class Global_settings {
     cols = rows;
     //cols = 12;
     
-    orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
-    ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
+    //orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
+    //ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
+    orx = width * random (1);  // Fully random
+    ory = height * random (1); // Fully random
     //float orx = width * 0.5;  // Centered
     //float ory = height * 0.5; // Centered
 
