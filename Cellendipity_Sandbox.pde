@@ -8,13 +8,6 @@
 *  - is geared towards making future art-experiments easier to prototype
 *
 * Sub-Goals:
-*  1) Introduce alternative "seed-patterns" (like x-y grid or polar array)
-*
-*  2) Architecture which supports parametric control of DNA relating to spawn position
-*   a) Maybe this should be done inside the cell, using the information passed down from the DNA?
-*   Started this in batch-142.
-*   Next step is to move the 'dna-modifiers' into cell
-*
 *   c) Maybe this would open for different strains or cell-types, each interpreting the parametrically controlled variables differently? INTERESTING!!!
 *
 *   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
@@ -22,16 +15,15 @@
 */
 
 Colony colony;        // A Colony object called 'colony'
-//Phyllotaxis colony;   // A Phyllotaxis object called 'colony'
 Global_settings gs;                                // A Global_settings object called 'gs'
 
 int runCycle = 1;
-int maxCycles = 5;
+int maxCycles = 1;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-144.8e";
+String batchName = "batch-145.0";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -43,13 +35,14 @@ void setup() {
   colorMode(HSB, 360, 255, 255, 255);
   //blendMode(DIFFERENCE);
   rectMode(RADIUS);
+  ellipseMode(RADIUS);
   smooth();
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -58,11 +51,10 @@ void setup() {
   //screendumpPath = "../output.png";
   framedumpPath = pathName + "/frames/";
   output = createWriter(pathName + versionName + "." + outputName +"_settings.txt");
-  ellipseMode(RADIUS);
+  
   startSettingsFile();
   gs = new Global_settings();
   colony = new Colony();
-  //colony = new Phyllotaxis();
   background(gs.bkgColor);
   //background (0,0,0,0);
   //background (0,0,255); //white
@@ -98,7 +90,6 @@ void manageColony() {
     startSettingsFile();
     gs = new Global_settings();
     colony = new Colony();
-    //colony = new Phyllotaxis();
 }
 
 void startSettingsFile() {

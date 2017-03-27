@@ -9,6 +9,7 @@ class Global_settings {
   boolean nucleus;
   boolean stepped;
 
+  int patternSelector;
   int strainSize;
   int numStrains;
   int populationMaxSize;
@@ -16,6 +17,8 @@ class Global_settings {
   int rows;
   int cols;
   int seeds;
+  int orx;
+  int ory; 
   
   int stepSize;
   int stepSizeN;
@@ -29,13 +32,15 @@ class Global_settings {
   color nucleusColorU;
   color nucleusColorF;
   
-  float orx;
-  float ory; 
+
 
   Global_settings() {
     
     debug = false;
     screendumpON = true;
+    
+    //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
+    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
@@ -43,7 +48,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 500;
+    seeds = 200;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -54,8 +59,8 @@ class Global_settings {
     
     //orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
     //ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
-    orx = width * random (1);  // Fully random
-    ory = height * random (1); // Fully random
+    orx = int(width * random (1));  // Fully random
+    ory = int(height * random (1)); // Fully random
     //float orx = width * 0.5;  // Centered
     //float ory = height * 0.5; // Centered
 
@@ -71,7 +76,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(180,220);
-    bkg_B = 200; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
