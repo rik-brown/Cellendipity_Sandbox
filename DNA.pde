@@ -15,7 +15,7 @@ class DNA {
       numGenes = 29;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
-      // DNA gene mapping (32 genes)
+      // DNA gene mapping (29 genes)
       // 0 = fill Hue (0-360)
       // 1 = fill Saturation (0-255)
       // 2 = fill Brightness (0-255)

@@ -24,42 +24,11 @@ class Colony {
     }
     
     if (gs.patternSelector == 0) {random_pattern();}
-    else if (gs.patternSelector == 1) {center_pattern();}
-    else if (gs.patternSelector == 2) {cartesian_pattern();}
+    else
+    if (gs.patternSelector == 1) {center_pattern();}
+    else
+    if (gs.patternSelector == 2) {cartesian_pattern();}
     else {phyllotaxic_pattern();}
-    
-    ////vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-
-    //// Here is the code which fills the 'cells' arraylist with cells at given positions
-    //for (int r = 0; r <= gs.rows; r++) {      
-    //  //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    //  //a = map(r, 0, gs.rows, 0, TWO_PI);
-    //  //vel = PVector.fromAngle(0).mult(1);
-      
-    //  for (int c = 0; c <= gs.cols; c++) {
-    //    DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-    //    //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
-        
-    //    float xpos = width * map (c, 0, gs.cols, 0, 1);
-    //    float ypos = height * map (r, 0, gs.rows, 0, 1);
-    //    pos = new PVector(xpos, ypos);
-        
-    //    origin = new PVector (gs.orx, gs.ory);
-
-    //    //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    //    vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-    //    vel.normalize();
-    //    //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
-    //    for (int s = 0; s < gs.strainSize; s ++) {
-    //      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    //      //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
-		  //    population.add(new Cell(pos, vel, dna));
-    //    }
-    //  }
-    //}
-    
-    
   }
 
 // 0) Spawn cells in a random pattern
@@ -108,6 +77,7 @@ void cartesian_pattern() {
   //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
 
   // Here is the code which fills the 'cells' arraylist with cells at given positions
+  int n = 0;
   for (int r = 0; r <= gs.rows; r++) {      
     //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
     //a = map(r, 0, gs.rows, 0, TWO_PI);
@@ -116,7 +86,8 @@ void cartesian_pattern() {
     for (int c = 0; c <= gs.cols; c++) {
       DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      
+      dna.genes[28] = n; //n is transferred to gene 28
+      n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
       float ypos = height * map (r, 0, gs.rows, 0, 1);
       pos = new PVector(xpos, ypos);

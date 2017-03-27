@@ -1,6 +1,5 @@
 /*
 * Cellendipity_Sandbox
-* Thursday 16th February 2016
 * Template: p014a (26.10.2016 21:41)
 *
 * Main Goal: Work towards a generic 'multi-cellular playset' that
@@ -15,7 +14,7 @@
 */
 
 Colony colony;        // A Colony object called 'colony'
-Global_settings gs;                                // A Global_settings object called 'gs'
+Global_settings gs;   // A Global_settings object called 'gs'
 
 int runCycle = 1;
 int maxCycles = 1;
