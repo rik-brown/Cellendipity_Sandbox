@@ -90,45 +90,7 @@ class Cell {
   // OBJECTS
   dna = dna_;
 
-  // DNA gene mapping (29 genes)
-  // 0 = fill Hue (0-360)
-  // 1 = fill Saturation (0-255)
-  // 2 = fill Brightness (0-255)
-  // 3 = fill Alpha (0-255)
   
-  // 4 = stroke Hue (0-360)
-  // 5 = stroke Saturation (0-255)
-  // 6 = stroke Brightness (0-255)
-  // 7 = stroke Alpha (0-255)
-  
-  // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-  // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-  
-  // 10 = lifespan (200-1000)
-  // 11 = flatness (50-200 %)
-  // 12 = spiral screw (-75 - +75 %)
-  
-  // 13 = fertility (70-90%)
-  // 14 = spawnCount (1-5)
-  
-  // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-  // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-  // 17 = noisePercent (0-100%)
-  // 18 = xOff (rnd 1000)
-  // 19 = yOff (rnd 1000)
-  
-  // 20 = fill_Hend
-  // 21 = fill_Send
-  // 22 = fill_Bend
-  // 23 = fill_Aend
-  
-  // 24 = stroke_Hend
-  // 25 = stroke_Send
-  // 26 = stroke_Bend
-  // 27 = stroke_Aend
-  
-  // 28 = Strain id
-
   // BOOLEAN
   fertile = false; // A new cell always starts off infertile
   stripe = false; // A new cell always starts off displaying it's normal colour 
@@ -152,30 +114,6 @@ class Cell {
   noisePercent = dna.genes[17] * 0.01; // How much influence on velocity does Perlin noise have?
   xoff = dna.genes[18]; //Seed for noise
   yoff = dna.genes[19]; //Seed for noise
-  
-  // MODULATED BY POSITION (Phyllotaxis)
-  dna.genes[8] = width * 0.001 * map(oDist, 0, width, 90, 60);     // 8 = cellStartSize
-  dna.genes[10] = width * 0.001 * map(oDist, 0, width, 25, 300);   // 10 = lifespan (200-1000)
-  dna.genes[13] = map(oDist, 0, width*0.7, 0, 100);                   // 13 = Fertility (0-100%)
-  dna.genes[17] = map(oDist, 0, width, 0, 50);                   // 17 = noisePercent (0-100%)
-  dna.genes[20] = (gs.bkg_H + map(oDist, 0, width, 40, 0)); // 20 = fill_Hend
-  
-  //dna.genes[22] = map(oDist, 0, width*0.5, 250, 48);                  // 22 = fill_Bend
-  dna.genes[2] = map(pos.x, 0, width, 128, 0);                   // 2 = fill bright start
-  dna.genes[22] = map(oDist, 0, width, 220, 255);                  // 22 = fill_Bend
-  
-  // MODULATED BY POSITION (Cartesian/Random)
-  //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)
-  dna.genes[1] = map(pos.x, 0, width, 255, 0);                     // 1 = fill sat start
-  dna.genes[21] = map(pos.x, 0, width, 128, 0);                    // 21 = fill sat end
-  //dna.genes[12] = map(oDist, 0, width, 0, 15);                    // 12 = spiral screw (-75 - +75 %)
-  //dna.genes[22] = dna.genes[2] * map(oDist, 0, width*0.7, 0.7, 1);    // 22 = fill_Bend
-  //dna.genes[7] = map(oDist, 0, width*0.7, 255, 20);                   // 7 = fill_Astart
-  
-  // MODULATED BY INDEX NUMBER
-  //dna.genes[0] = map(spawnID, 0, gs.seeds, 0, 360);   // 10 = lifespan (200-1000)
-  //dna.genes[10] = width * 0.001 * map(spawnID, 0, gs.seeds, 1, 500);   // 10 = lifespan (200-1000)
-  //dna.genes[12] = map(spawnID, 0, gs.seeds, 0, 15);                   // 12 = spiral screw
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
@@ -227,6 +165,41 @@ class Cell {
   //strokeStart = color(dna.genes[4], dna.genes[5], dna.genes[6]);
   //strokeEnd = color(dna.genes[24], dna.genes[25], dna.genes[26]);
   }
+
+  void cartesianMods() {
+  // MODULATED BY POSITION (Phyllotaxis)
+  dna.genes[8] *= map(oDist, 0, width, 0.9, 0.6);     // 8 = cellStartSize
+  dna.genes[10] = width * 0.001 * map(oDist, 0, width, 25, 300);   // 10 = lifespan (200-1000)
+  //dna.genes[13] = map(oDist, 0, width*0.7, 0, 100);                   // 13 = Fertility (0-100%)
+  dna.genes[17] = map(oDist, 0, width, 0, 50);                   // 17 = noisePercent (0-100%)
+  dna.genes[20] = (gs.bkg_H + map(oDist, 0, width, 40, 0)); // 20 = fill_Hend
+  
+  //dna.genes[22] = map(oDist, 0, width*0.5, 250, 48);                  // 22 = fill_Bend
+  dna.genes[2] = map(position.x, 0, width, 128, 0);                   // 2 = fill bright start
+  dna.genes[22] = map(oDist, 0, width, 220, 255);                  // 22 = fill_Bend
+  
+  // MODULATED BY POSITION (Cartesian/Random)
+  //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)
+  dna.genes[1] = map(position.x, 0, width, 255, 0);                     // 1 = fill sat start
+  dna.genes[21] = map(position.x, 0, width, 128, 0);                    // 21 = fill sat end
+  //dna.genes[12] = map(oDist, 0, width, 0, 15);                    // 12 = spiral screw (-75 - +75 %)
+  //dna.genes[22] = dna.genes[2] * map(oDist, 0, width*0.7, 0.7, 1);    // 22 = fill_Bend
+  //dna.genes[7] = map(oDist, 0, width*0.7, 255, 20);                   // 7 = fill_Astart
+  
+  // MODULATED BY INDEX NUMBER
+  //dna.genes[0] = map(spawnID, 0, gs.seeds, 0, 360);   // 10 = lifespan (200-1000)
+  //dna.genes[10] = width * 0.001 * map(spawnID, 0, gs.seeds, 1, 500);   // 10 = lifespan (200-1000)
+  //dna.genes[12] = map(spawnID, 0, gs.seeds, 0, 15);                   // 12 = spiral screw
+  
+  
+  
+  
+  }
+
+
+
+
+
 
   void run() {
     live();

@@ -22,7 +22,7 @@ int maxCycles = 1;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-145.0";
+String batchName = "batch-146.0";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -38,10 +38,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
