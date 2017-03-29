@@ -62,10 +62,10 @@ class DNA {
             //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
             //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            genes[1] = 0; // 1 = fill Saturation (0-255) LAST:50
+            genes[1] = 255; // 1 = fill Saturation (0-255) LAST:50
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             //genes[2] = gs.bkg_B;    // 2 = fill Brightness (0-255)
-            genes[2] = 0;    // 2 = fill Brightness (0-255)
+            genes[2] = 128;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
 
             //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
@@ -76,7 +76,7 @@ class DNA {
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 0;// fill_Send LAST: 128, 220
+            genes[21] = 128;// fill_Send LAST: 128, 220
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
@@ -105,8 +105,8 @@ class DNA {
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 15;
-            //genes[10] = width * random(0.1, 0.3);  // 10 = lifespan (200-1000)
-            genes[10] = width * 0.05; // last * 0.09, 0.2, 0.5
+            //genes[10] = width * 0.001 * random(100, 300);  // 10 = lifespan (200-1000)
+            genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
@@ -123,7 +123,7 @@ class DNA {
             genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
             //genes[16] = 4.848875;
             //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
-            genes[17] = 0; // 17 = noisePercent (0-100%)
+            genes[17] = 100; // 17 = noisePercent (0-100%)
             
             genes[18] = random(1000); // 18 = xOff (rnd 1000)
             genes[19] = random(1000); // 19 = yOff (rnd 1000)
