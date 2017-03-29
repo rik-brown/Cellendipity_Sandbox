@@ -47,36 +47,25 @@ class Cell {
 
   // FILL COLOUR
   color fillColor;   // For HSB you need Hue to be the heading of a PVector
-  //color fillStart;
-  //color fillEnd;
-  color spawnCol;      // spawnCol needs to be a GLOBAL variable
-  //float fill_H;         // Hue (HSB) / Red (RGB)
-  //float fill_S;         // Saturation (HSB) / Green (RGB)
-  //float fill_B;         // Brightness (HSB) / Blue (RGB)
-  float fill_A;      // Transparency (HSB & RGB)
   float fill_Hstart;
   float fill_Hend;
   float fill_Sstart;
   float fill_Send;
   float fill_Bstart;
   float fill_Bend;
+  float fill_A;      // Transparency (HSB & RGB)
   float fill_Astart;
   float fill_Aend;
 
   // STROKE COLOUR
   color strokeColor; // For HSB you need Hue to be the heading of a PVector
-  //color strokeStart;
-  //color strokeEnd;
-  //float stroke_H;       // Hue (HSB) / Red (RGB)
-  //float stroke_S;       // Saturation (HSB) / Green (RGB)
-  //float stroke_B;       // Brightness (HSB) / Blue (RGB)
-  float stroke_A;    // Transparency (HSB & RGB)
   float stroke_Hstart;
   float stroke_Hend;
   float stroke_Sstart;
   float stroke_Send;
   float stroke_Bstart;
   float stroke_Bend;
+  float stroke_A;    // Transparency (HSB & RGB)
   float stroke_Astart;
   float stroke_Aend;
   
@@ -141,13 +130,7 @@ class Cell {
   fill_Send = dna.genes[21];
   fill_Bend = dna.genes[22];
   fill_Aend = dna.genes[23];
-  //fill_H = fill_Hstart;
-  //fill_S = fill_Sstart;
-  //fill_B = fill_Bstart;
-  //fill_A = fill_Astart;
   fillColor = color(fill_Hstart, fill_Sstart, fill_Bstart); // Initial color is set
-  //fillStart = color(dna.genes[0], dna.genes[1], dna.genes[2]);
-  //fillEnd = color(dna.genes[20], dna.genes[21], dna.genes[22]);
 
   stroke_Hstart = dna.genes[4];
   stroke_Sstart = dna.genes[5];
@@ -157,18 +140,15 @@ class Cell {
   stroke_Send = dna.genes[25];
   stroke_Bend = dna.genes[26];
   stroke_Aend = dna.genes[27];
-  //stroke_H = stroke_Hstart;
-  //stroke_S = stroke_Sstart;
-  //stroke_B = stroke_Bstart;
-  //stroke_A = stroke_Astart;  
-  strokeColor = color(stroke_Hstart, stroke_Sstart, stroke_Bstart); // Initial color is set 
-  //strokeStart = color(dna.genes[4], dna.genes[5], dna.genes[6]);
-  //strokeEnd = color(dna.genes[24], dna.genes[25], dna.genes[26]);
+  strokeColor = color(stroke_Hstart, stroke_Sstart, stroke_Bstart); // Initial color is set
+  
+  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  
   }
 
   void cartesianMods() {
   // MODULATED BY POSITION (Phyllotaxis)
-  dna.genes[8] *= map(oDist, 0, width, 0.9, 0.6);     // 8 = cellStartSize
+  cellStartSize *= map(oDist, 0, width, 0.9, 0.6);     // 8 = cellStartSize
   dna.genes[10] = width * 0.001 * map(oDist, 0, width, 25, 300);   // 10 = lifespan (200-1000)
   //dna.genes[13] = map(oDist, 0, width*0.7, 0, 100);                   // 13 = Fertility (0-100%)
   dna.genes[17] = map(oDist, 0, width, 0, 50);                   // 17 = noisePercent (0-100%)
@@ -277,7 +257,6 @@ class Cell {
     float fill_B = map(r, cellStartSize, cellEndSize, fill_Bstart, fill_Bend);
     fill_A = map(size, 0, 1, fill_Astart, fill_Aend);
     fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
-    //fillColor = lerpColor(fillStart, fillEnd, size); //fill colour is proportional to size
   }
   
   void updateStrokeColor() {
@@ -287,7 +266,6 @@ class Cell {
     float stroke_B = map(r, cellStartSize, cellEndSize, stroke_Bstart, stroke_Bend);
     stroke_A = map(size, 0, 1, stroke_Astart, stroke_Aend);    
     strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
-    //strokeColor = lerpColor(strokeStart, strokeEnd, size); //stroke colour is proportional to size
   }
 
   void updateStripes() {
