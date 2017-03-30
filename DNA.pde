@@ -12,7 +12,7 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 29;
+      numGenes = 31;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (29 genes)
@@ -53,6 +53,9 @@ class DNA {
       // 27 = stroke_Aend
       
       // 28 = Strain id
+      
+      // 29 = StripeSize
+      // 30 = StripeRatio
 
       // RANDOMIZED VALUES
             //genes[0] = random(360); // 0 = fill Hue (0-360)
@@ -104,9 +107,9 @@ class DNA {
             genes[8] = width * 0.001 * 100;
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 15;
+            genes[9] = 3;
             //genes[10] = width * 0.001 * random(100, 300);  // 10 = lifespan (200-1000)
-            genes[10] = width * 0.001 * 300; //
+            genes[10] = width * 0.001 * 150; //
             //genes[10] = 20;
             //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
             genes[11] = 100;
@@ -132,6 +135,10 @@ class DNA {
             //genes[19] = 728.6432; // 19 = yOff (rnd 1000)
             
             genes[28] = 0;  // strain ID
+            
+            genes[29] = 20; // StripeSize
+            genes[30] = 0.60;  // StripeRatio
+
 
             logDNA();
    }

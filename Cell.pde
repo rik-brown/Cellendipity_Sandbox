@@ -23,6 +23,8 @@ class Cell {
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
   float stripeStep;// Countdown to toggle between stripe and !stripe
+  float stripeSize;
+  float stripeRatio;
   float size; // A value between 0-1 indicating how large the cell is proportional to it's limits
 
   // MOVEMENT
@@ -120,7 +122,9 @@ class Cell {
   growth = (cellStartSize-cellEndSize)/lifespan; // Should work for both large>small and small>large
   drawStep = 1;
   drawStepN = 1;
-  stripeStep = gs.stripeSize;
+  stripeStep = dna.genes[29];
+  stripeSize = dna.genes[29];
+  stripeRatio = dna.genes[30];
 
   // COLOUR
   fill_Hstart = dna.genes[0];
@@ -150,14 +154,17 @@ class Cell {
   void cartesianMods() {
   // MODULATED BY POSITION
   cellStartSize *= map(oDist, 0, width, 0.9, 0.6);
-  lifespan *= map(oDist, 0, width, 0.1, 1.0);
+  lifespan *= map(oDist, 0, width, 0.3, 1.0);
   noisePercent *= map(oDist, 0, width, 0, 0.5);
   fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
-  fill_Sstart *= map(position.x, 0, width, 1, 0);
-  fill_Send *= map(position.x, 0, width, 1, 0);
+  //fill_Sstart *= map(position.x, 0, width, 1, 0);
+  fill_Sstart *= map(oDist, 0, width, 1, 0);
+  //fill_Send *= map(position.x, 0, width, 1, 0);
+  fill_Send *= map(oDist, 0, width, 1, 0.3);
   //fill_Bend = map(oDist, 0, width*0.5, 250, 48);
   fill_Bstart *= map(position.x, 0, width, 1, 0);
   fill_Bend *= map(oDist, 0, width, 0.9, 1.0);
+  stripeRatio *= map(oDist, 0, width, 1, 0.2);
   
   // MODULATED BY POSITION (Cartesian/Random)
   //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)
@@ -201,8 +208,8 @@ class Cell {
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
     if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
     stripeStep--;
-    float stripeStepStart = map(gs.stripeSize, 0, 100, 0, r*2);
-    if (stripe) {stripeStepStart *= gs.stripeRatio;} else {stripeStepStart *= (1-gs.stripeRatio);}
+    float stripeStepStart = map(stripeSize, 0, 100, 0, r*2);
+    if (stripe) {stripeStepStart *= stripeRatio;} else {stripeStepStart *= (1-stripeRatio);}
     if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
   }
 
@@ -266,8 +273,8 @@ class Cell {
   void updateStripes() {
     //fillColor = color(34, 255, 255); // RED
     //fillColor = strokeColor; // RED
-    //fillColor = color(0, 0, 0); // BLACK
-    fillColor = color(0, 0, 255); // WHITE
+    fillColor = color(0, 0, 0); // BLACK
+    //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
   }
 
