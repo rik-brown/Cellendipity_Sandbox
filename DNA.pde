@@ -58,9 +58,9 @@ class DNA {
       // 30 = StripeRatio
 
       // RANDOMIZED VALUES
-            //genes[0] = random(360); // 0 = fill Hue (0-360)
+            genes[0] = random(360); // 0 = fill Hue (0-360)
             //genes[0] = 230; // 0 = fill Hue (0=RED)
-            genes[0] = gs.bkg_H; // 0 = fill Hue 
+            //genes[0] = gs.bkg_H; // 0 = fill Hue 
             //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
             //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
@@ -74,8 +74,8 @@ class DNA {
             //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
             //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
             //genes[20] = gs.bkg_H;
-            //genes[20] = genes[0];
-            genes[20] = 300;
+            genes[20] = genes[0];
+            //genes[20] = 300;
             
             //genes[21] = gs.bkg_S; // fill_Send
             //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
@@ -104,7 +104,7 @@ class DNA {
             genes[27] = 0;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width * 0.001 * 100;
+            genes[8] = width * 0.001 * random(75, 150);
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 3;
@@ -136,7 +136,7 @@ class DNA {
             
             genes[28] = 0;  // strain ID
             
-            genes[29] = 20; // StripeSize
+            genes[29] = random(10,40); // StripeSize
             genes[30] = 0.60;  // StripeRatio
 
 

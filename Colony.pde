@@ -41,8 +41,8 @@ void random_pattern() {
     vel.normalize();
     vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-    DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
+    DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+    //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
     dna.genes[28] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {

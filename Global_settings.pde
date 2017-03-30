@@ -40,7 +40,7 @@ class Global_settings {
     screendumpON = true;
     
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
-    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
+    patternSelector = 0; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
@@ -71,9 +71,9 @@ class Global_settings {
     bkg_H = random(360);
     //bkg_H = 240;
     //bkg_S = random(128,164);
-    bkg_S = 0; // last 105, 55, 255, 225
-    //bkg_B = random(180,220);
-    bkg_B = 0; // last 160, 50, 128, 255
+    bkg_S = 50; // last 105, 55, 255, 225
+    bkg_B = random(180,220);
+    //bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

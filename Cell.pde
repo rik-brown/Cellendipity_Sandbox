@@ -156,7 +156,7 @@ class Cell {
   cellStartSize *= map(oDist, 0, width, 0.9, 0.6);
   lifespan *= map(oDist, 0, width, 0.3, 1.0);
   noisePercent *= map(oDist, 0, width, 0, 0.5);
-  fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
+  //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_Sstart *= map(position.x, 0, width, 1, 0);
   fill_Sstart *= map(oDist, 0, width, 1, 0);
   //fill_Send *= map(position.x, 0, width, 1, 0);
@@ -273,7 +273,8 @@ class Cell {
   void updateStripes() {
     //fillColor = color(34, 255, 255); // RED
     //fillColor = strokeColor; // RED
-    fillColor = color(0, 0, 0); // BLACK
+    //fillColor = color(0, 0, 0); // BLACK
+    fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
   }
