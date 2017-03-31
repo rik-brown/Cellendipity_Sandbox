@@ -22,7 +22,7 @@ int maxCycles = 10;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-146.8";
+String batchName = "batch-146.8d";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

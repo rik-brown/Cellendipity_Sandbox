@@ -83,7 +83,7 @@ class DNA {
             
             //genes[22] = gs.bkg_B * 0.5;// fillBstart
             //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 255;// fill_Bend last: 180
+            genes[22] = 200;// fill_Bend last: 180
 
             genes[23] = 255;// fill_Aend
 
@@ -108,14 +108,14 @@ class DNA {
             genes[8] = width * 0.001 * random(25, 50);
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
-            genes[9] = 3;
+            genes[9] = 5;
             //genes[10] = width * 0.001 * random(100, 300);  // 10 = lifespan (200-1000)
             genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
             genes[11] = random (100, 120); // 11 = flatness (50-200 %)
             //genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
-            genes[12] = 0;
+            genes[12] = 60;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
@@ -137,8 +137,8 @@ class DNA {
             
             genes[28] = 0;  // strain ID
             
-            //if (random(1)>0.3) {genes[29] = random(10,40);} else {genes[29] = 1000;} // StripeSize
-            genes[29] = 1000;
+            if (random(1)>0.3) {genes[29] = random(10,40);} else {genes[29] = 1000;} // StripeSize
+            //genes[29] = 1000;
             genes[30] = 0.60;  // StripeRatio
 
 
