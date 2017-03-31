@@ -153,8 +153,8 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  cellStartSize *= map(oDist, 0, width, 0.9, 0.6);
-  lifespan *= map(oDist, 0, width, 0.3, 1.0);
+  cellStartSize *= map(oDist, 0, width, 0.9, 0.3);
+  lifespan *= map(oDist, 0, width, 1.0, 0.3);
   noisePercent *= map(oDist, 0, width, 0, 0.5);
   //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_Sstart *= map(position.x, 0, width, 1, 0);
@@ -164,7 +164,7 @@ class Cell {
   //fill_Bend = map(oDist, 0, width*0.5, 250, 48);
   fill_Bstart *= map(position.x, 0, width, 1, 0);
   fill_Bend *= map(oDist, 0, width, 0.9, 1.0);
-  stripeRatio *= map(oDist, 0, width, 1, 0.2);
+  stripeRatio *= map(oDist, 0, width, 1, 0.5);
   
   // MODULATED BY POSITION (Cartesian/Random)
   //dna.genes[10] = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);   // 10 = lifespan (200-1000)

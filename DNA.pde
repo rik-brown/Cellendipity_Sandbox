@@ -104,15 +104,15 @@ class DNA {
             genes[27] = 0;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width * 0.001 * random(75, 150);
+            genes[8] = width * 0.001 * random(75, 200);
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 3;
             //genes[10] = width * 0.001 * random(100, 300);  // 10 = lifespan (200-1000)
-            genes[10] = width * 0.001 * 150; //
+            genes[10] = width * 0.001 * 100; //
             //genes[10] = 20;
-            //genes[11] = random (100, 110); // 11 = flatness (50-200 %)
-            genes[11] = 100;
+            genes[11] = random (100, 120); // 11 = flatness (50-200 %)
+            //genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
             genes[12] = 0;
             
@@ -136,7 +136,7 @@ class DNA {
             
             genes[28] = 0;  // strain ID
             
-            genes[29] = random(10,40); // StripeSize
+            if (random(1)>0.3) {genes[29] = random(10,40);} else {genes[29] = 1000;} // StripeSize
             genes[30] = 0.60;  // StripeRatio
 
 
