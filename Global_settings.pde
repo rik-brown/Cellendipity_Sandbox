@@ -40,15 +40,15 @@ class Global_settings {
     screendumpON = true;
     
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
-    patternSelector = 0; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
+    patternSelector = 2; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 2;
+    numStrains = 3;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
-    populationMaxSize = 200;  // Not really used when 'breeding' is disabled
+    populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 200;
+    seeds = 350;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -57,12 +57,14 @@ class Global_settings {
     cols = rows;
     //cols = 12;
     
-    //orx = width * random (0.3, 0.7);  // Random but kept roughly within the pattern
-    //ory = height * random (0.3, 0.7); // Random but kept roughly within the pattern
-    orx = int(width * random (1));  // Fully random
-    ory = int(height * random (1)); // Fully random
-    //float orx = width * 0.5;  // Centered
-    //float ory = height * 0.5; // Centered
+    //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
+    //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
+    orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
+    ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
+    //orx = int(width * random (1));  // Fully random
+    //ory = int(height * random (1)); // Fully random
+    //orx = int(width * 0.5);  // Centered
+    //ory = int(height * 0.5); // Centered
 
     stepped = false;
     stepSize = 15;
@@ -72,7 +74,7 @@ class Global_settings {
     //bkg_H = 240;
     //bkg_S = random(128,164);
     bkg_S = 50; // last 105, 55, 255, 225
-    bkg_B = random(180,220);
+    bkg_B = random(120,180);
     //bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
