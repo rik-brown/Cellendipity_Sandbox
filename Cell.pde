@@ -154,7 +154,7 @@ class Cell {
   void cartesianMods() {
   // MODULATED BY POSITION
   cellStartSize *= map(oDist, 0, width, 0.9, 0.3);
-  lifespan *= map(oDist, 0, width, 1.0, 0.3);
+  lifespan *= map(oDist, 0, width, 0.3, 1.0);
   noisePercent *= map(oDist, 0, width, 0, 0.5);
   //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_Sstart *= map(position.x, 0, width, 1, 0);
@@ -162,7 +162,8 @@ class Cell {
   //fill_Send *= map(position.x, 0, width, 1, 0);
   fill_Send *= map(oDist, 0, width, 1, 0.3);
   //fill_Bend = map(oDist, 0, width*0.5, 250, 48);
-  fill_Bstart *= map(position.x, 0, width, 1, 0);
+  fill_Bstart *= map(oDist, 0, width, 1, 0);
+  //fill_Bstart *= map(position.x, 0, width, 1, 0);
   fill_Bend *= map(oDist, 0, width, 0.9, 1.0);
   stripeRatio *= map(oDist, 0, width, 1, 0.5);
   
@@ -178,11 +179,6 @@ class Cell {
   //dna.genes[10] = width * 0.001 * map(spawnID, 0, gs.seeds, 1, 500);   // 10 = lifespan (200-1000)
   //dna.genes[12] = map(spawnID, 0, gs.seeds, 0, 15);                   // 12 = spiral screw
   }
-
-
-
-
-
 
   void run() {
     live();
@@ -429,29 +425,30 @@ void displayRect() {
     int rowHeight = 15;
     fill(120, 0, 255);
     textSize(rowHeight);
+    text("ID:" + spawnID, position.x, position.y + rowHeight * 0);
     //text("r:" + r, position.x, position.y + rowHeight * 0);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
     //text("Stripe:" + stripe, position.x, position.y + rowHeight * 0);
-    text("hue " + hue(fillColor), position.x, position.y + rowHeight * 1);
+    //text("hue " + hue(fillColor), position.x, position.y + rowHeight * 1);
     //text("sat " + saturation(fillColor), position.x, position.y + rowHeight * 2);
     //text("bri " + brightness(fillColor), position.x, position.y + rowHeight * 3);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
     //text("dna.genes[10]:" + dna.genes[10], position.x, position.y + rowHeight * 6);
     //text("dna.genes[12]:" + dna.genes[12], position.x, position.y + rowHeight * 7);
-    text("fill_Hstart:" + fill_Hstart, position.x, position.y + rowHeight * 3);
-    text("fill_Hend:" + fill_Hend, position.x, position.y + rowHeight * 4);
+    //text("fill_Hstart:" + fill_Hstart, position.x, position.y + rowHeight * 3);
+    //text("fill_Hend:" + fill_Hend, position.x, position.y + rowHeight * 4);
     //text("cellStartSize:" + cellStartSize, position.x, position.y + rowHeight * 1);
     //text("cellEndSize:" + cellEndSize, position.x, position.y + rowHeight * 2);
-    text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 2);
+    //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 2);
     //text("fill_S:" + fill_S, position.x, position.y + rowHeight * 5);
     //text("fill_B:" + fill_B, position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("age:" + age, position.x, position.y + rowHeight * 0);
-    //text("maturity:" + maturity, position.x, position.y + rowHeight * 4);
-    //text("fertile:" + fertile, position.x, position.y + rowHeight * 0);
-    //text("fertility:" + fertility, position.x, position.y + rowHeight * 1);
-    //text("spawnCount:" + spawnCount, position.x, position.y + rowHeight * 2);
+    text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
+    text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
+    text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
+    text("spawnCount:" + spawnCount, position.x, position.y + rowHeight * 4);
     //text("x-velocity:" + velocity.x, position.x, position.y + rowHeight * 0);
     //text("y-velocity:" + velocity.y, position.x, position.y + rowHeight * 0);
     //text("velocity heading:" + velocity.heading(), position.x, position.y + rowHeight * 0);
