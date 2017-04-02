@@ -157,7 +157,7 @@ class Cell {
   void cartesianMods() {
   // MODULATED BY POSITION
   cellStartSize *= map(oDist, 0, width, 0.8, 1.3);
-  lifespan *= map(oDist, 0, width, 0.3, 1.0);
+  lifespan *= map(oDist, 0, width, 0.3, 0.7);
   noisePercent *= map(oDist, 0, width, 0.7, 0.5);
   spiral *= map(oDist, 0, width, 0.3, 0.5);
   //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
@@ -282,8 +282,8 @@ class Cell {
   void updateStripes() {
     //fillColor = color(34, 255, 255); // RED
     //fillColor = strokeColor; // RED
-    //fillColor = color(0, 0, 0); // BLACK
-    fillColor = gs.bkgColor; // Background
+    fillColor = color(0, 0, 0); // BLACK
+    //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
   }

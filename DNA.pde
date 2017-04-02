@@ -109,7 +109,7 @@ class DNA {
             genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 5;
-            genes[10] = width * 0.001 * random(300, 400);  // 10 = lifespan (200-1000)
+            genes[10] = width * 0.001 * random(200, 500);  // 10 = lifespan (200-1000)
             //genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
             //genes[11] = random (100, 120); // 11 = flatness (50-200 %)
@@ -139,7 +139,9 @@ class DNA {
             
             //if (random(1)>0.4) {genes[29] = random(20,50);} else {genes[29] = 10000;} // StripeSize
             genes[29] = 100;
-            genes[30] = 0.70;  // StripeRatio
+            //genes[30] = 0.70;  // StripeRatio
+            genes[30] = random(0.4, 0.8);  // StripeRatio
+
 
 
             logDNA();

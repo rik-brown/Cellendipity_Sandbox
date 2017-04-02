@@ -43,8 +43,8 @@ class Global_settings {
     patternSelector = 2; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
-    //strainSize = int(random(1,4)); // Number of cells in a strain
+    //numStrains = 3;
+    strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
@@ -52,8 +52,8 @@ class Global_settings {
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
-    //rows = int(random(9,21));
-	  rows = 17;
+    rows = int(random(2,21));
+	  //rows = 17;
     cols = rows;
     //cols = 12;
     
@@ -76,8 +76,8 @@ class Global_settings {
     bkg_S = 50; // last 105, 55, 255, 225
     bkg_B = random(120,180);
     //bkg_B = 255; // last 160, 50, 128, 255
-    bkgColor = color(bkg_H, bkg_S, bkg_B);
-    //bkgColor = 0; // Black
+    //bkgColor = color(bkg_H, bkg_S, bkg_B);
+    bkgColor = 0; // Black
     //bkgColor = 360; // White
 
     nucleus = false;
