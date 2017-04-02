@@ -113,9 +113,9 @@ class DNA {
             //genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
             //genes[11] = random (100, 120); // 11 = flatness (50-200 %)
-            genes[11] = 100;
+            genes[11] = 300;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
-            genes[12] = 60;
+            genes[12] = 0;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
@@ -126,8 +126,8 @@ class DNA {
             //genes[15] = 2.8731356;
             genes[16] = random(1, 6);   // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
             //genes[16] = 4.848875;
-            genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
-            //genes[17] = 100; // 17 = noisePercent (0-100%)
+            //genes[17] = random(60,100);  // 17 = noisePercent (0-100%)
+            genes[17] = 0; // 17 = noisePercent (0-100%)
             
             genes[18] = random(1000); // 18 = xOff (rnd 1000)
             genes[19] = random(1000); // 19 = yOff (rnd 1000)
