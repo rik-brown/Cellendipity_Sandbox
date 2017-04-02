@@ -44,7 +44,7 @@ class Global_settings {
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     //numStrains = 3;
-    strainSize = int(random(1,4)); // Number of cells in a strain
+    strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
