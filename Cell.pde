@@ -92,12 +92,15 @@ class Cell {
 
   // POSITION & MOVEMENT
   position = pos.copy();                // cell has current position
-  home = pos.copy();                    // home= initial position
+  home = pos.copy();                    // home = initial position
+  origin = new PVector(gs.orx, gs.ory); //arbitrary origin
+  
   toHome = PVector.sub(home, position); // static vector pointing from cell to home
   range = toHome.mag(); // range is how far the cell is from home at any time
-  origin = new PVector(gs.orx, gs.ory); //arbitrary origin
-  toOrigin = PVector.sub(home, origin); // static vector pointing from cell to home
+  
+  toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
   oDist = toOrigin.mag(); // distance from pos to origin
+  
   velocityLinear = vel.copy(); //cell has unique basic velocity component
   vFactor = dna.genes[13] * 0.01;
   spiral = dna.genes[12] * 0.01; // Spiral screw amount
@@ -154,9 +157,9 @@ class Cell {
   void cartesianMods() {
   // MODULATED BY POSITION
   cellStartSize *= map(oDist, 0, width, 0.9, 0.3);
-  lifespan *= map(oDist, 0, width, 0.3, 1.0);
-  noisePercent *= map(oDist, 0, width, 0, 0.5);
-  spiral *= map(oDist, 0, width, 0, 0.5);
+  //lifespan *= map(oDist, 0, width, 0.3, 1.0);
+  noisePercent *= map(oDist, 0, width, 0.7, 0.5);
+  spiral *= map(oDist, 0, width, 0.3, 0.5);
   //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_Sstart *= map(position.x, 0, width, 1, 0);
   fill_Sstart *= map(oDist, 0, width, 1, 0);
@@ -221,9 +224,17 @@ class Cell {
     velocity.mult(vFactor);
     velocity.rotate(screwAngle);
     position.add(velocity);
+    
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
     range = toHome.mag(); // range is how far the cell is from home at any time
-    remoteness = map(range, 0, lifespan, 0, 1); // remoteness is a value between 0-1.
+    
+    toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
+    oDist = toOrigin.mag(); // distance from pos to origin
+    
+    //remoteness = map(range, 0, lifespan, 0, 1); // remoteness is a value between 0-1.
+    //remoteness = sq(map(range, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
+    remoteness = sq(map(oDist, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
+    
     maturity = map(range, 0, lifespan, 1, 0); // remoteness is a value between 0-1.
     //maturity = map(age, 0, lifespan, 1, 0); // remoteness is a value between 0-1.
     
@@ -235,8 +246,8 @@ class Cell {
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
     float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
-    //r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
-    r = map(age, 0, lifespan, cellStartSize, cellEndSize);
+    r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
+    //r = map(age, 0, lifespan, cellStartSize, cellEndSize);
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*cellStartSize;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*cellStartSize) + cellEndSize;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;

@@ -40,15 +40,15 @@ class Global_settings {
     screendumpON = true;
     
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
-    patternSelector = 2; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
+    patternSelector = 1; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 3;
+    numStrains = 2;
     //strainSize = int(random(1,4)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 350;
+    seeds = 35;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
