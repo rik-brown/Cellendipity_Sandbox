@@ -156,7 +156,7 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  cellStartSize *= map(oDist, 0, width, 0.9, 0.3);
+  cellStartSize *= map(oDist, 0, width, 0.3, 0.9);
   //lifespan *= map(oDist, 0, width, 0.3, 1.0);
   noisePercent *= map(oDist, 0, width, 0.7, 0.5);
   spiral *= map(oDist, 0, width, 0.3, 0.5);
@@ -246,8 +246,8 @@ class Cell {
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
     float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
-    r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
-    //r = map(age, 0, lifespan, cellStartSize, cellEndSize);
+    //r = map(remoteness, 0, 1, cellStartSize, cellEndSize);
+    r = map(age, 0, lifespan, cellStartSize, cellEndSize);
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*cellStartSize;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*cellStartSize) + cellEndSize;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*cellStartSize) + cellEndSize;

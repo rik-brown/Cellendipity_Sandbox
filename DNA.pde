@@ -112,15 +112,15 @@ class DNA {
             genes[10] = width * 0.001 * random(300, 400);  // 10 = lifespan (200-1000)
             //genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
-            genes[11] = random (100, 120); // 11 = flatness (50-200 %)
-            //genes[11] = 100;
+            //genes[11] = random (100, 120); // 11 = flatness (50-200 %)
+            genes[11] = 100;
             //genes[12] = random(0, 30);  // 12 = spiral screw (-75 - +75 %)
             genes[12] = 60;
             
             //genes[13] = random(65,85);  // 13 = fertility (70-90%)
 			      genes[13] = 65;
             //genes[14] = random(2,3);   // 14 = spawnCount (1-5)
-            genes[14] = 2;
+            genes[14] = 1;
             
             genes[15] = random(2, 4);      // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
             //genes[15] = 2.8731356;
