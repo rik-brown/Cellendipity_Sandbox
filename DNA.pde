@@ -137,9 +137,9 @@ class DNA {
             
             genes[28] = 0;  // strain ID
             
-            if (random(1)>0.4) {genes[29] = random(20,50);} else {genes[29] = 10000;} // StripeSize
-            //genes[29] = 1000;
-            genes[30] = 0.60;  // StripeRatio
+            //if (random(1)>0.4) {genes[29] = random(20,50);} else {genes[29] = 10000;} // StripeSize
+            genes[29] = 100;
+            genes[30] = 0.70;  // StripeRatio
 
 
             logDNA();

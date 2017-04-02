@@ -53,16 +53,16 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(9,21));
-	  rows = 11;
+	  rows = 17;
     cols = rows;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
-    orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
-    ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
-    //orx = int(width * random (1));  // Fully random
-    //ory = int(height * random (1)); // Fully random
+    //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
+    //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
+    orx = int(width * random (1));  // Fully random
+    ory = int(height * random (1)); // Fully random
     //orx = int(width * 0.5);  // Centered
     //ory = int(height * 0.5); // Centered
 
