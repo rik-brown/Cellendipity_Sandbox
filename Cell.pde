@@ -162,9 +162,9 @@ class Cell {
   spiral *= map(oDist, 0, width, 0.3, 0.5);
   //fill_Hend = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_Sstart *= map(position.x, 0, width, 1, 0);
-  fill_Sstart *= map(oDist, 0, width, 1, 0);
+  fill_Sstart *= map(oDist, 0, width, 0, 0);
   //fill_Send *= map(position.x, 0, width, 1, 0);
-  fill_Send *= map(oDist, 0, width, 1, 0.3);
+  fill_Send *= map(oDist, 0, width, 0, 0.1);
   //fill_Bend = map(oDist, 0, width*0.5, 250, 48);
   fill_Bstart *= map(oDist, 0, width, 1, 0);
   //fill_Bstart *= map(position.x, 0, width, 1, 0);

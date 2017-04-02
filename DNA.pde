@@ -68,7 +68,7 @@ class DNA {
             genes[1] = 255; // 1 = fill Saturation (0-255) LAST:50
 			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
             //genes[2] = gs.bkg_B;    // 2 = fill Brightness (0-255)
-            genes[2] = 128;    // 2 = fill Brightness (0-255)
+            genes[2] = 64;    // 2 = fill Brightness (0-255)
             genes[3] = 255;   // 3 = fill Alpha (0-255)
 
             //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend

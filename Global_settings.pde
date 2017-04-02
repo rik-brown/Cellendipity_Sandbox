@@ -48,7 +48,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 35;
+    seeds = 12;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
