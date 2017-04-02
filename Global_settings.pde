@@ -42,7 +42,7 @@ class Global_settings {
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
     patternSelector = 2; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
-    numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
+    numStrains = int(random(1, 3)); // Number of strains (a group of cells sharing the same DNA)
     //numStrains = 3;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
@@ -52,7 +52,7 @@ class Global_settings {
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
-    rows = int(random(2,21));
+    rows = int(random(4,15));
 	  //rows = 17;
     cols = rows;
     //cols = 12;
