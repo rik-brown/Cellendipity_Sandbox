@@ -104,9 +104,9 @@ class DNA {
             genes[27] = 0;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width * 0.001 * random(75, 200);
+            //genes[8] = width * 0.001 * random(75, 200);
             //genes[8] = width * 0.001 * random(25, 50);
-            //genes[8] = width/((gs.rows)*2);
+            genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 5;
             genes[10] = width * 0.001 * random(300, 400);  // 10 = lifespan (200-1000)
