@@ -123,7 +123,7 @@ void phyllotaxic_pattern() {
     origin = new PVector (gs.orx, gs.ory);
     PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
-    vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+    //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
     DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
