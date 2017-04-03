@@ -43,7 +43,7 @@ void random_pattern() {
 
     DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    dna.genes[28] = n; //n is transferred to gene 28
+    dna.genes[0] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));
@@ -64,7 +64,7 @@ void center_pattern() {
 
     DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    dna.genes[28] = n; //n is transferred to gene 28
+    dna.genes[0] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));
@@ -86,7 +86,7 @@ void cartesian_pattern() {
     for (int c = 0; c <= gs.cols; c++) {
       DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      dna.genes[28] = n; //n is transferred to gene 28
+      dna.genes[0] = n; //n is transferred to gene 28
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
       float ypos = height * map (r, 0, gs.rows, 0, 1);
@@ -128,7 +128,7 @@ void phyllotaxic_pattern() {
     DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
     
-    dna.genes[28] = n; //n is transferred to gene 28
+    dna.genes[0] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));
