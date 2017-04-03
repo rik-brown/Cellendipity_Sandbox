@@ -1,14 +1,11 @@
 /*
 * Cellendipity_Sandbox
-* Template: p014a (26.10.2016 21:41)
 *
 * Main Goal: Work towards a generic 'multi-cellular playset' that
 *  - consists of well-organized, easy-to-understand functional-modules
 *  - is geared towards making future art-experiments easier to prototype
 *
 * Sub-Goals:
-*   c) Maybe this would open for different strains or cell-types, each interpreting the parametrically controlled variables differently? INTERESTING!!!
-*
 *   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
 *
 */
@@ -22,7 +19,7 @@ int maxCycles = 3;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-148.3";
+String batchName = "batch-149";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

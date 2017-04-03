@@ -12,10 +12,56 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 31;
+      numGenes = 34;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (29 genes)
+      // 0=ID
+
+      // 1=fill_H_start
+      // 2=fill_H_end
+      // 3=fill_S_start
+      // 4=fill_S_end
+      // 5=fill_B_start
+      // 6=fill_B_end
+      // 7=fill_A_start
+      // 8=fill_A_end
+      
+      // 9=stroke_H_start
+      // 10=stroke_H_end
+      // 11=stroke_S_start
+      // 12=stroke_S_end
+      // 13=stroke_B_start
+      // 14=stroke_B_end
+      // 15=stroke_A_start
+      // 16=stroke_A_end
+      
+      // 17=radius_Start
+      // 18=radius_End
+      
+      // 19=flatness_start
+      // 20=flatness_end
+      
+      // 21=twist_Start
+      // 22=twist_End
+      
+      // 23=noisePercent_Start
+      // 24=noisePercent_End
+      
+      // 25=noise_vMax
+      // 26=noise_Step
+      // 27=noise_xOff
+      // 28=noise_yOff
+      
+      // 29=fertility
+      // 30=spawnLimit
+      // 31=lifespan
+      
+      // 32=StripeSize
+      // 33=StripeRatio
+      
+      // =======================================================================================
+
       // 0 = fill Hue (0-360)
       // 1 = fill Saturation (0-255)
       // 2 = fill Brightness (0-255)
@@ -51,62 +97,89 @@ class DNA {
       // 25 = stroke_Send
       // 26 = stroke_Bend
       // 27 = stroke_Aend
-      
-      // 28 = Strain id
-      
+        
       // 29 = StripeSize
       // 30 = StripeRatio
 
       // RANDOMIZED VALUES
-            genes[0] = random(360); // 0 = fill Hue (0-360)
-            //genes[0] = 230; // 0 = fill Hue (0=RED)
-            //genes[0] = gs.bkg_H; // 0 = fill Hue 
-            //genes[0] = (gs.bkg_H + random(170, 210)) % 360; // 0 = fill Hue (0-360)
-            //genes[0] = (gs.bkg_H + 240) % 360; // 0 = fill Hue (0-360)
-            //genes[0] = (gs.bkg_H + 0) % 360; // 0 = fill Hue (0-360)
-            //genes[1] = random(130,180); // 1 = fill Saturation (0-255)
-            genes[1] = 255; // 1 = fill Saturation (0-255) LAST:50
-			      //genes[1] = gs.bkg_S; // 1 = fill Saturation (0-255)
-            //genes[2] = gs.bkg_B;    // 2 = fill Brightness (0-255)
-            genes[2] = 64;    // 2 = fill Brightness (0-255)
-            genes[3] = 255;   // 3 = fill Alpha (0-255)
-
-            //genes[20] = (gs.bkg_H + 10) % 360;  // 20 = fill_Hend
-            //genes[20] = gs.bkg_H * random (0.85, 0.97);  // 20 = fill_Hend
-            //genes[20] = gs.bkg_H;
-            genes[20] = genes[0];
-            //genes[20] = 300;
+            genes[0] = 0;  // ID
             
-            //genes[21] = gs.bkg_S; // fill_Send
-            //genes[21] = gs.bkg_S * random(0.5, 0.9);// fill_Send
-            genes[21] = 128;// fill_Send LAST: 128, 220
-            
-            //genes[22] = gs.bkg_B * 0.5;// fillBstart
-            //genes[22] = gs.bkg_B * random(0.9, 1.1);// fillBend
-            genes[22] = 200;// fill_Bend last: 180
+            genes[1]= random(360);   // 1=fill_H_start
+            //genes[1]= 230;   // 1=fill_H_start
+            //genes[1]= gs.bkg_H;   // 1=fill_H_start
+            //genes[1]= (gs.bkg_H + random(170, 210)) % 360;   // 1=fill_H_start
+            //genes[1]= (gs.bkg_H + 240) % 360;   // 1=fill_H_start
+            //genes[1]= (gs.bkg_H + 0) % 360;   // 1=fill_H_start
+            genes[2]= genes[1];   // 2=fill_H_end
+            //genes[2]= (gs.bkg_H + 10) % 360;   // 2=fill_H_end
+            //genes[2]= gs.bkg_H * random (0.85, 0.97);   // 2=fill_H_end
+            //genes[2]= gs.bkg_H;   // 2=fill_H_end
+            //genes[2]= 300;   // 2=fill_H_end
 
-            genes[23] = 255;// fill_Aend
-
-            //genes[4] = random(360);    // 4 = stroke Hue (0-360)
-            //genes[4] = gs.bkg_H;  // stroke_Hstart
-            genes[4] = 0;  // stroke_Hstart
-            genes[5] = 0;    // 5 = stroke Saturation (0-255)
-            //genes[5] = gs.bkg_S;  // stroke_Sstart
-            genes[6] = 0;    // 6 = stroke Brightness (0-255) 0 = BLACK
-            //genes[6] = 0;  // stroke_Bstart
-            //genes[7] = random(5.5, 16.3);    // 7 = stroke Alpha (0-255)
-            genes[7] = 0;  // strokeAstart
+            genes[3]= random(130,180);   // 3=fill_S_start
+            //genes[3]= 255;   // 3=fill_S_start
+            //genes[3]= gs.bkg_S;   // 3=fill_S_start
+            genes[4]= 128;   // 4=fill_S_end
+            //genes[4]= gs.bkg_S;   // 4=fill_S_end
+            //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
             
-            //genes[24] = gs.bkg_H;  // stroke_Hend
-            genes[24] = 0;  // stroke_Hend            
-            genes[25] = 0;  // stroke_Send
-            genes[26] = 128;  // stroke_Bend
-            genes[27] = 0;  // strokeAend
+            //genes[5]= gs.bkg_B;   // 5=fill_B_start
+            genes[5]= 64;   // 5=fill_B_start
+            genes[6]= 200;   // 6=fill_B_end
+            //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
+            //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
+            
+            genes[7]= 255;   // 7=fill_A_start
+            genes[8]= 255;   // 8=fill_A_end
+            
+            genes[9]= 0;   // 9=stroke_H_start
+            //genes[9]= random(360);   // 9=stroke_H_start
+            //genes[9]= gs.bkg_H;   // 9=stroke_H_start
+            genes[10]= 0;   // 10=stroke_H_end
+            //genes[10]= gs.bkg_H;   // 10=stroke_H_end
+            
+            genes[11]= 0;   // 11=stroke_S_start
+            //genes[11]= gs.bkg_S;   // 11=stroke_S_start
+            genes[12]= 0;   // 12=stroke_S_end
+            
+            genes[13]= 0;   // 13=stroke_B_start
+            genes[14]= 128;   // 14=stroke_B_end
+            
+            genes[15]= 0;   // 15=stroke_A_start
+            //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
+            genes[16]= 0;   // 16=stroke_A_end
+            
+            genes[17]= width * 0.001 * random(75, 200);   // 17=radius_Start
+            //genes[17]= width/((gs.rows)*random(2, 4));   // 17=radius_Start CARTESIAN GRID
+            //genes[17]= width/((gs.rows)*2);   // 17=radius_Start CARTESIAN GRID
+            //genes[17]= width * 0.001 * random(25, 50);   // 17=radius_Start
+            
+            genes[18]= ;   // 18=radius_End
+            
+            genes[19]= ;   // 19=flatness_start
+            genes[20]= ;   // 20=flatness_end
+            
+            genes[21]= ;   // 21=twist_Start
+            genes[22]= ;   // 22=twist_End
+            genes[] ;   
+            genes[23]= ;   // 23=noisePercent_Start
+            genes[24]= ;   // 24=noisePercent_End
+            
+            genes[25]= ;   // 25=noise_vMax
+            genes[26]= ;   // 26=noise_Step
+            genes[27]= ;   // 27=noise_xOff
+            genes[28]= ;   // 28=noise_yOff
+            
+            genes[29]= ;   // 29=fertility
+            genes[30]= ;   // 30=spawnLimit
+            genes[31]= ;   // 31=lifespan
+            
+            genes[32]= ;   // 32=StripeSize
+            genes[33]= ;   // 33=StripeRatio
+
+// ===================================================================
       
-            //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
-            genes[8] = width * 0.001 * random(75, 200);
-            //genes[8] = width * 0.001 * random(25, 50);
-            //genes[8] = width/((gs.rows)*2);
+
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 5;
             genes[10] = width * 0.001 * random(200, 300);  // 10 = lifespan (200-1000)
@@ -135,8 +208,7 @@ class DNA {
             //genes[18] = 648.2952; // 18 = xOff (rnd 1000)
             //genes[19] = 728.6432; // 19 = yOff (rnd 1000)
             
-            genes[28] = 0;  // strain ID
-            
+           
             //if (random(1)>0.4) {genes[29] = random(20,50);} else {genes[29] = 10000;} // StripeSize
             //genes[29] = 100;
             //genes[29] = 30;

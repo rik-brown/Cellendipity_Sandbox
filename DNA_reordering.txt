@@ -16,6 +16,53 @@ class DNA {
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (29 genes)
+	  // 0=ID
+
+// 1=fill_H_start
+// 2=fill_H_end
+// 3=fill_S_start
+// 4=fill_S_end
+// 5=fill_B_start
+// 6=fill_B_end
+// 7=fill_A_start
+// 8=fill_A_end
+
+// 9=stroke_H_start
+// 10=stroke_H_end
+// 11=stroke_S_start
+// 12=stroke_S_end
+// 13=stroke_B_start
+// 14=stroke_B_end
+// 15=stroke_A_start
+// 16=stroke_A_end
+
+// 17=radius_Start
+// 18=radius_End
+
+// 19=flatness_start
+// 20=flatness_end
+
+// 21=twist_Start
+// 22=twist_End
+
+// 23=noisePercent_Start
+// 24=noisePercent_End
+
+// 25=noise_vMax
+// 26=noise_Step
+// 27=noise_xOff
+// 28=noise_yOff
+
+// 29=fertility
+// 30=spawnLimit
+// 31=lifespan
+
+// 32=StripeSize
+// 33=StripeRatio
+
+	  
+	  
+	  
 	  
 	  // 28 = Strain id
 	  

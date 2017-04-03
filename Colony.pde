@@ -2,7 +2,7 @@ class Colony {
 
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
-  ArrayList<Cell> population;    // An arraylist for all the cells //<>//
+  ArrayList<Cell> population;    // An arraylist for all the cells //<>// //<>//
   
   PVector vel;
   PVector pos;
