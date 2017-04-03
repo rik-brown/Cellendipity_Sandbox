@@ -100,7 +100,7 @@ class DNA {
             //genes[24] = gs.bkg_H;  // stroke_Hend
             genes[24] = 0;  // stroke_Hend            
             genes[25] = 0;  // stroke_Send
-            genes[26] = 0;  // stroke_Bend
+            genes[26] = 128;  // stroke_Bend
             genes[27] = 0;  // strokeAend
       
             //genes[8] = width/((gs.rows)*random(2, 4));   // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
