@@ -139,7 +139,7 @@ class DNA {
             
             //if (random(1)>0.4) {genes[29] = random(20,50);} else {genes[29] = 10000;} // StripeSize
             //genes[29] = 100;
-            genes[29] = 10000;
+            genes[29] = 30;
             //genes[30] = 0.70;  // StripeRatio
             genes[30] = random(0.4, 0.8);  // StripeRatio
 
