@@ -181,6 +181,7 @@ class Cell {
   //dna.genes[7] = map(oDist, 0, width*0.7, 255, 20);                   // 7 = fill_Astart
   
   // MODULATED BY INDEX NUMBER
+  stripeSize = map(spawnID, 0, gs.seeds, 60, 10);
   //dna.genes[0] = map(spawnID, 0, gs.seeds, 0, 360);   // 10 = lifespan (200-1000)
   //dna.genes[10] = width * 0.001 * map(spawnID, 0, gs.seeds, 1, 500);   // 10 = lifespan (200-1000)
   //dna.genes[12] = map(spawnID, 0, gs.seeds, 0, 15);                   // 12 = spiral screw

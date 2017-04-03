@@ -12,49 +12,53 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 31;
+      numGenes = 34;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
 
       // DNA gene mapping (29 genes)
+	  
+	  // 28 = Strain id
+	  
       // 0 = fill Hue (0-360)
+	  // 20 = fill_Hend
       // 1 = fill Saturation (0-255)
+	  // 21 = fill_Send
       // 2 = fill Brightness (0-255)
+	  // 22 = fill_Bend
       // 3 = fill Alpha (0-255)
+	  // 23 = fill_Aend
       
       // 4 = stroke Hue (0-360)
+	  // 24 = stroke_Hend
       // 5 = stroke Saturation (0-255)
+	  // 25 = stroke_Send
       // 6 = stroke Brightness (0-255)
+	  // 26 = stroke_Bend
       // 7 = stroke Alpha (0-255)
+	  // 27 = stroke_Aend
       
       // 8 = cellStartSize (10-50) (cellendipity/one uses 0-200)
       // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
       
-      // 10 = lifespan (200-1000)
-      // 11 = flatness (50-200 %)
-      // 12 = spiral screw (-75 - +75 %)
+      // 11 = flatness START (50-200 
+	  NEW     flatness END
+	  
+      // 12 = spiral screw START (-75 - +75 %)
+	  NEW     spiral screw END
       
-      // 13 = fertility (70-90%)
-      // 14 = spawnCount (1-5)
-      
+      // 17 = noisePercent START (0-100%)
+	  NEW     noisePercent END
+	  
       // 15 = vMax (Noise) (0-5) (cellendipity/one uses 0-4)
-      // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006)
-      // 17 = noisePercent (0-100%)
+      // 16 = step (Noise) (1 - 6 * 0.001?)  (cellendipity/one uses 0.001-0.006) 
       // 18 = xOff (rnd 1000)
       // 19 = yOff (rnd 1000)
-      
-      // 20 = fill_Hend
-      // 21 = fill_Send
-      // 22 = fill_Bend
-      // 23 = fill_Aend
-      
-      // 24 = stroke_Hend
-      // 25 = stroke_Send
-      // 26 = stroke_Bend
-      // 27 = stroke_Aend
-      
-      // 28 = Strain id
-      
-      // 29 = StripeSize
+ 
+	  // 13 = fertility (70-90%)
+      // 14 = spawnCount (1-5)
+	  // 10 = lifespan (200-1000)
+ 
+      // 29 = StripeSize // Should this just be a function of radius? (like nucleus) No, there would still need to be a factor, so can just as well specify exact value.
       // 30 = StripeRatio
 
       // RANDOMIZED VALUES
@@ -109,7 +113,7 @@ class DNA {
             //genes[8] = width/((gs.rows)*2);
             //genes[9] = random(15, 30);   // 9 = cellEndSize (5 - 20 %) (cellendipity/one uses 0-50)
             genes[9] = 5;
-            genes[10] = width * 0.001 * random(200, 300);  // 10 = lifespan (200-1000)
+            genes[10] = width * 0.001 * random(200, 500);  // 10 = lifespan (200-1000)
             //genes[10] = width * 0.001 * 300; //
             //genes[10] = 20;
             //genes[11] = random (100, 120); // 11 = flatness (50-200 %)
