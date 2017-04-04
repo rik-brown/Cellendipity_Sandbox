@@ -162,13 +162,13 @@ class Cell {
   twist_start *= map(oDist, 0, width, 0.3, 0.5);
   //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_S_start *= map(position.x, 0, width, 1, 0);
-  fill_S_start *= map(oDist, 0, width, 0, 0);
+  //fill_S_start *= map(oDist, 0, width, 0, 0);
   //fill_S_end *= map(position.x, 0, width, 1, 0);
-  fill_S_end *= map(oDist, 0, width, 0, 0);
+  //fill_S_end *= map(oDist, 0, width, 0, 0);
   //fill_B_end = map(oDist, 0, width*0.5, 250, 48);
-  fill_B_start *= map(oDist, 0, width, 1, 0);
+  //fill_B_start *= map(oDist, 0, width, 1, 0);
   //fill_B_start *= map(position.x, 0, width, 1, 0);
-  fill_B_end *= map(oDist, 0, width, 0.9, 1.0);
+  //fill_B_end *= map(oDist, 0, width, 0.9, 1.0);
   //stripeSize *= map(oDist, 0, width, 1.0, 0.6);
   //stripeRatio = map(oDist, 0, width, 0.3, 0.7);
   

@@ -42,8 +42,8 @@ class Global_settings {
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
     patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = phyllotaxic
    
-    numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
-    //numStrains = 3;
+    //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
+    numStrains = 3;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled

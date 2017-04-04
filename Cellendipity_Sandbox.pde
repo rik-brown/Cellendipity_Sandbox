@@ -7,6 +7,7 @@
 *
 * Sub-Goals:
 *   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+*   e) Learn how to build a 'library' of predefined DNA objects (presets) that are loaded into fixed positions in the strains arraylist
 *
 */
 
@@ -19,7 +20,7 @@ int maxCycles = 1;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-149";
+String batchName = "batch-149.1";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

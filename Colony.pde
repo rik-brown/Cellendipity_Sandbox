@@ -18,10 +18,36 @@ class Colony {
     genepool = new ArrayList<DNA>();
     population = new ArrayList<Cell>();
     
+    // Here is the code which fills the 'genepool' arraylist with some preset DNA-strains.
+    genepool.add(0, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna0 = genepool.get(0);
+    // PURE BLACK
+    //float [] genes0 = {0, 0, 0, 0, 0, 0, 0, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
+    // BLACK turning grey
+    float [] genes0 = {0, 0, 0, 0, 0, 0, 48, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
+    dna0.genes = genes0;
+    
+    genepool.add(1, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna1 = genepool.get(1);
+    // PURE WHITE
+    //float [] genes1 = {1, 120, 120, 0, 0, 255, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
+    // WHITE turning grey
+    float [] genes1 = {1, 120, 120, 0, 0, 255, 200, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
+    dna1.genes = genes1;
+    
+    genepool.add(2, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna2 = genepool.get(2);
+    // GREY
+    //float [] genes2 = {2, 240, 240, 0, 0, 0, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
+    // BLUE with red stripes
+    float [] genes2 = {2, 240, 240, 255, 255, 128, 255, 255, 255, 0, 0, 255, 255, 128, 255, 0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
+    dna2.genes = genes2;
+    
+    
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
-    for (int g = 0; g < gs.numStrains; g++) {
-      genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
-    }
+    //for (int g = 0; g < gs.numStrains; g++) {
+    //  genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
+    //}
     
     if (gs.patternSelector == 0) {random_pattern();}
     else
