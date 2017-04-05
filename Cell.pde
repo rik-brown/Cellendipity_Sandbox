@@ -222,7 +222,7 @@ class Cell {
     noise_yoff += noise_step;
     velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent_start); //<>// //<>//
     float screwAngle = map(maturity, 0, 1, 0, twist_start * TWO_PI);
-    velocity.mult(vFactor);
+    //velocity.mult(vFactor);
     velocity.rotate(screwAngle);
     position.add(velocity);
     
