@@ -64,7 +64,7 @@ class DNA {
       
       genes[0] = 0;  // ID
       
-      genes[1]= random(360);   // 1=fill_H_start
+      genes[1]= random(200, 240);   // 1=fill_H_start
       //genes[1]= 230;   // 1=fill_H_start
       //genes[1]= gs.bkg_H;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + random(170, 210)) % 360;   // 1=fill_H_start
