@@ -103,7 +103,7 @@ class DNA {
       genes[12]= 0;   // 12=stroke_S_end
       
       genes[13]= 0;   // 13=stroke_B_start
-      genes[14]= 128;   // 14=stroke_B_end
+      genes[14]= 64;   // 14=stroke_B_end
       
       genes[15]= 0;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start

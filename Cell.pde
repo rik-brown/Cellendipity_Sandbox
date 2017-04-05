@@ -154,8 +154,8 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  radius_start *= map(oDist, 0, width, 1.2, 0.3);
-  flatness_start *= map(oDist, 0, width, 0.3, 1.0);
+  radius_start *= map(oDist, 0, width, 0.5, 0.1);
+  flatness_start *= map(oDist, 0, width, 0.4, 1.0);
   lifespan *= map(oDist, 0, width, 0.3, 0.7);
   noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
   twist_start *= map(oDist, 0, width, 0.3, 0.5);

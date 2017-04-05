@@ -25,7 +25,7 @@ class Colony {
     //                   0, 1, 2, 3, 4, 5, 6,     7,     8,   9,  10,  11,  12,  13,    14,  15,  16,        17,  18,    19,  20,  21,  22,  23,  24,        25,       26,        27,       28,   29,  30,       31,    32,  33;               
     //float [] genes0 = {0, 0, 0, 0, 0, 0, 0, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // BLACK turning grey
-    float [] genes0 = {0, 0, 0, 0, 0, 0, 92, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 300), 10000, 0.5};
+    float [] genes0 = {0, 0, 0, 0, 0, 0, 64, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
     dna0.genes = genes0;
     
     genepool.add(1, new DNA()); // Add new DNA object to the genepool in position 0
@@ -33,7 +33,7 @@ class Colony {
     // PURE WHITE
     //float [] genes1 = {1, 120, 120, 0, 0, 255, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // WHITE turning grey
-    float [] genes1 = {1, 120, 120, 0, 0, 255, 250, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 300), 10000, 0.5};
+    float [] genes1 = {1, 120, 120, 0, 0, 255, 240, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
     dna1.genes = genes1;
     
     genepool.add(2, new DNA()); // Add new DNA object to the genepool in position 0
@@ -43,14 +43,14 @@ class Colony {
     // BLUE with red stripes
     //float [] genes2 = {2, 240, 240, 255, 255, 128, 255, 255, 255, 0, 0, 255, 255, 128, 255, 0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
     // PALE BLUE with white stripes
-    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 300), random(20,60), 0.5};
+    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), random(20,60), 0.5};
     dna2.genes = genes2;
     
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
-    //for (int g = 0; g < gs.numStrains; g++) {
-    //  genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
-    //}
+    for (int g = 0; g < gs.numStrains; g++) {
+      genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
+    }
     
     if (gs.patternSelector == 0) {random_pattern();}
     else
@@ -154,7 +154,7 @@ void phyllotaxic_pattern() {
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+    DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
     
     dna.genes[0] = n; //n is transferred to gene 28
