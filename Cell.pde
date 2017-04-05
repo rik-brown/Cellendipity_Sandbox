@@ -72,7 +72,6 @@ class Cell {
   float stroke_A_end;
   
   // STRAIN
-  //int strainID;
   int ID;
 
   // **************************************************CONSTRUCTOR********************************************************
@@ -176,7 +175,7 @@ class Cell {
   //lifespan = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);
 
   //twist_start = map(oDist, 0, width, 0, 15);
-  //fill_B_end = dna.genes[2] * map(oDist, 0, width*0.7, 0.7, 1);
+  //fill_B_end = dna.genes[5] * map(oDist, 0, width*0.7, 0.7, 1);
   //fill_A_start = map(oDist, 0, width*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
@@ -382,7 +381,7 @@ void displayRect() {
 //    pushMatrix();
 //    translate(position.x,position.y);
 //    rotate(angle);
-//    String word = gs.words.get(strainID);
+//    String word = gs.words.get(ID);
 //    text(word, 0, 0);
     
 //   popMatrix();
@@ -417,14 +416,14 @@ void displayRect() {
 
     // Genes for color require special treatment as I want childColor to be a 50/50 blend of parents colors
     // I will therefore overwrite color genes with reverse-engineered values after lerping:
-    childDNA.genes[0] = hue(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[1] = saturation(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[2] = brightness(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[4] = hue(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[5] = saturation(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[6] = brightness(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[1] = hue(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[3] = saturation(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[5] = brightness(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[9] = hue(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[11] = saturation(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    childDNA.genes[13] = brightness(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
 
-    childDNA.genes[8] = (r + other.r) / 2; // Child radius_start is set at average of parents current radii
+    childDNA.genes[17] = (r + other.r) / 2; // Child radius_start is set at average of parents current radii
 
     colony.spawn(position, spawnVel, childDNA);
 
