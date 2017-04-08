@@ -109,15 +109,15 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      genes[17]= width * 0.001 * random(75, 200);   // 17=radius_start
+      //genes[17]= width * 0.001 * random(75, 200);   // 17=radius_start
       //genes[17]= width/((gs.rows)*random(2, 4));   // 17=radius_start CARTESIAN GRID
-      //genes[17]= width/((gs.rows)*2);   // 17=radius_start CARTESIAN GRID
+      genes[17]= width/((gs.rows)*2);   // 17=radius_start CARTESIAN GRID
       //genes[17]= width * 0.001 * random(25, 50);   // 17=radius_start
       
       genes[18]= 5;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
-      genes[19]= 300;   // 19=flatness_start
+      genes[19]= 100;   // 19=flatness_start
       //genes[19]= random (100, 120);   // 19=flatness_start
       genes[20]= 0;   // 20=flatness_end NOT IMPLEMENTED YET
       

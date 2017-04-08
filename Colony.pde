@@ -25,7 +25,7 @@ class Colony {
     //                   0, 1, 2, 3, 4, 5, 6,     7,     8,   9,  10,  11,  12,  13,    14,  15,  16,        17,  18,    19,  20,  21,  22,  23,  24,        25,       26,        27,       28,   29,  30,       31,    32,  33;               
     //float [] genes0 = {0, 0, 0, 0, 0, 0, 0, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // BLACK turning grey
-    float [] genes0 = {0, 0, 0, 0, 0, 0, 64, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
+    float [] genes0 = {0, 0, 0, 0, 0, 0, 64, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width/((gs.rows)*2), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
     dna0.genes = genes0;
     
     genepool.add(1, new DNA()); // Add new DNA object to the genepool in position 0
@@ -33,7 +33,7 @@ class Colony {
     // PURE WHITE
     //float [] genes1 = {1, 120, 120, 0, 0, 255, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // WHITE turning grey
-    float [] genes1 = {1, 120, 120, 0, 0, 255, 240, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
+    float [] genes1 = {1, 120, 120, 0, 0, 255, 240, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
     dna1.genes = genes1;
     
     genepool.add(2, new DNA()); // Add new DNA object to the genepool in position 0
@@ -43,7 +43,7 @@ class Colony {
     // BLUE with red stripes
     //float [] genes2 = {2, 240, 240, 255, 255, 128, 255, 255, 255, 0, 0, 255, 255, 128, 255, 0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
     // PALE BLUE with white stripes
-    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width * 0.001 * random(75, 200), 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), random(20,60), 0.5};
+    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), random(20,60), 0.5};
     dna2.genes = genes2;
     
     
@@ -57,6 +57,8 @@ class Colony {
     if (gs.patternSelector == 1) {center_pattern();}
     else
     if (gs.patternSelector == 2) {cartesian_pattern();}
+    else
+    if (gs.patternSelector == 3) {cartesian_pattern_alt();}
     else {phyllotaxic_pattern();}
   }
 
@@ -72,7 +74,7 @@ void random_pattern() {
 
     DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    dna.genes[0] = n; //n is transferred to gene 28
+    dna.genes[0] = n; //n is transferred to gene 0
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));
@@ -113,9 +115,9 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+      DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      dna.genes[0] = n; //n is transferred to gene 28
+      dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
       float ypos = height * map (r, 0, gs.rows, 0, 1);
@@ -137,7 +139,44 @@ void cartesian_pattern() {
   }
 }
 
-// 3) Spawn cells in a phyllotaxic spiral pattern
+// 3) Spawn cells in a cartesian grid pattern with alternating strains
+void cartesian_pattern_alt() {
+  vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
+
+  // Here is the code which fills the 'cells' arraylist with cells at given positions
+  int n = 0;
+  for (int r = 0; r <= gs.rows; r++) {      
+    //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+    //a = map(r, 0, gs.rows, 0, TWO_PI);
+    //vel = PVector.fromAngle(0).mult(1);
+    
+    for (int c = 0; c <= gs.cols; c++) {
+      int str = ((r + c) % 2) + 1;
+      DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
+      //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
+      dna.genes[0] = n; //n is transferred to gene 0
+      n ++;
+      float xpos = width * map (c, 0, gs.cols, 0, 1);
+      float ypos = height * map (r, 0, gs.rows, 0, 1);
+      pos = new PVector(xpos, ypos);
+      
+      origin = new PVector (gs.orx, gs.ory);
+
+      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+      //vel.normalize();
+      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+
+      for (int s = 0; s < gs.strainSize; s ++) {
+        //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+        //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
+        population.add(new Cell(pos, vel, dna));
+      }
+    }
+  }
+}
+
+// 4) Spawn cells in a phyllotaxic spiral pattern
 void phyllotaxic_pattern() {
   // Here is the code which fills the 'cells' arraylist with cells at given positions
   for (int n = 0; n <= gs.seeds; n++) {
@@ -157,7 +196,7 @@ void phyllotaxic_pattern() {
     DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
     
-    dna.genes[0] = n; //n is transferred to gene 28
+    dna.genes[0] = n; //n is transferred to gene 0
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));

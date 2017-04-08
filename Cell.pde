@@ -148,13 +148,13 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
   
-  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   
   }
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  radius_start *= map(oDist, 0, width, 0.5, 0.1);
+  radius_start *= map(oDist, 0, width, 0.5, 1);
   flatness_start *= map(oDist, 0, width, 0.4, 1.0);
   lifespan *= map(oDist, 0, width, 0.3, 0.7);
   noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);

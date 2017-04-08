@@ -8,6 +8,7 @@
 * Sub-Goals:
 *   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
 *   e) Learn how to build a 'library' of predefined DNA objects (presets) that are loaded into fixed positions in the strains arraylist
+*   f) Introduce a new spawn-pattern of concentric rings
 *
 */
 
@@ -15,12 +16,12 @@ Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 
 int runCycle = 1;
-int maxCycles = 5;
+int maxCycles = 1;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-149.6";
+String batchName = "batch-149.9";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -37,9 +38,9 @@ void setup() {
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
-  //size(1500, 1500);
+  size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
