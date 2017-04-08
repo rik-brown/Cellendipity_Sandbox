@@ -117,17 +117,17 @@ class DNA {
       genes[18]= 5;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
-      genes[19]= 100;   // 19=flatness_start
+      genes[19]= 200;   // 19=flatness_start
       //genes[19]= random (100, 120);   // 19=flatness_start
-      genes[20]= 0;   // 20=flatness_end NOT IMPLEMENTED YET
+      genes[20]= 100;   // 20=flatness_end
       
-      genes[21]= 0;   // 21=twist_start
+      genes[21]= 90;   // 21=twist_start
       //genes[21]= random(0, 30);   // 21=twist_start
-      genes[22]= 0;   // 22=twist_end NOT IMPLEMENTED YET
+      genes[22]= 0;   // 22=twist_end
 
-      genes[23]= 0;   // 23=noisePercent_start
+      genes[23]= 20;   // 23=noisePercent_start
       //genes[23]= random(60,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End NOT IMPLEMENTED YET
+      genes[24]= 0;   // 24=noisePercent_End
       
       genes[25]= random(2, 4);   // 25=noise_vMax
       genes[26]= random(1, 6);   // 26=noise_tep
@@ -138,8 +138,8 @@ class DNA {
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(2,3);   // 30=spawnLimit
-      genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
-      //genes[31]= width * 0.001 * 300;   // 31=lifespan
+      //genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
+      genes[31]= width * 0.001 * 100;   // 31=lifespan
       //genes[31]= 20;   // 31=lifespan
       
       genes[32]= random(20,60);   // 32=StripeSize

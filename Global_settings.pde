@@ -53,7 +53,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 7;
+	  rows = 14;
     cols = rows;
     //cols = 12;
     

@@ -33,7 +33,7 @@ class Colony {
     // PURE WHITE
     //float [] genes1 = {1, 120, 120, 0, 0, 255, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // WHITE turning grey
-    float [] genes1 = {1, 120, 120, 0, 0, 255, 240, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), 10000, 0.5};
+    float [] genes1 = {1, 120, 120, 0, 0, 255, 240, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 100.0, 0.0, 20.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), 10, 0.5};
     dna1.genes = genes1;
     
     genepool.add(2, new DNA()); // Add new DNA object to the genepool in position 0
@@ -43,7 +43,7 @@ class Colony {
     // BLUE with red stripes
     //float [] genes2 = {2, 240, 240, 255, 255, 128, 255, 255, 255, 0, 0, 255, 255, 128, 255, 0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
     // PALE BLUE with white stripes
-    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(200, 400), random(20,60), 0.5};
+    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), random(20,60), 0.5};
     dna2.genes = genes2;
     
     
@@ -115,8 +115,8 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-      //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
+      //DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
+      DNA dna = genepool.get(2);                        // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
@@ -141,7 +141,7 @@ void cartesian_pattern() {
 
 // 3) Spawn cells in a cartesian grid pattern with alternating strains
 void cartesian_pattern_alt() {
-  vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
+  //vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
 
   // Here is the code which fills the 'cells' arraylist with cells at given positions
   int n = 0;
@@ -151,7 +151,7 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 2) + 1;
+      int str = ((r + c) % 3) + 1;
       DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
@@ -163,8 +163,8 @@ void cartesian_pattern_alt() {
       origin = new PVector (gs.orx, gs.ory);
 
       //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-      //vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-      //vel.normalize();
+      vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+      vel.normalize();
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
       for (int s = 0; s < gs.strainSize; s ++) {
