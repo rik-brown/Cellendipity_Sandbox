@@ -40,7 +40,7 @@ class Global_settings {
     screendumpON = true;
     
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 3;
@@ -61,10 +61,10 @@ class Global_settings {
     //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
     //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
-    orx = int(width * random (1));  // Fully random
-    ory = int(height * random (1)); // Fully random
-    //orx = int(width * 0.5);  // Centered
-    //ory = int(height * 0.5); // Centered
+    //orx = int(width * random (1));  // Fully random
+    //ory = int(height * random (1)); // Fully random
+    orx = int(width * 0.5)+1;  // Centered
+    ory = int(height * 0.5)+1; // Centered
 
     stepped = false;
     stepSize = 15;
@@ -75,7 +75,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 100; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 240; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

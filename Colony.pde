@@ -46,6 +46,24 @@ class Colony {
     float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), random(20,60), 0.5};
     dna2.genes = genes2;
     
+    genepool.add(3, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna3 = genepool.get(3);
+    // noFill
+    float [] genes3 = {3, 240, 180, 55, 55, 160, 255, 0, 0, 0, 0, 0, 0, 255, 255, 12, 24, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), random(20,60), 0.5};
+    dna3.genes = genes3;
+    
+    genepool.add(4, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna4 = genepool.get(4);
+    // White to black
+    float [] genes4 = {4, 240, 180, 0, 0, 255, 0, 255, 255, 0, 0, 0, 0, 255, 255, 12, 12, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), 10000, 0.5};
+    dna4.genes = genes4;
+    
+    genepool.add(5, new DNA()); // Add new DNA object to the genepool in position 0
+    DNA dna5 = genepool.get(5);
+    // Black to white
+    float [] genes5 = {4, 240, 180, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0, 0, 24, 12, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), 10000, 0.5};
+    dna5.genes = genes5;
+    
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
@@ -151,7 +169,7 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 2) + 1;
+      int str = ((r + c) % 2) + 3;
       DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
