@@ -151,7 +151,7 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 3) + 1;
+      int str = ((r + c) % 2) + 1;
       DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
@@ -192,9 +192,10 @@ void phyllotaxic_pattern() {
     PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
-    DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-    //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
+    int str = ((n) % 2) + 1;
+    //DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
+    DNA dna = genepool.get(str); // Get's a random strain of dna from the genepool
+    //DNA dna = genepool.get(0); // Get's a specific strain of dna from the genepool
     
     dna.genes[0] = n; //n is transferred to gene 0
     
