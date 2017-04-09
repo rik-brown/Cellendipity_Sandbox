@@ -323,14 +323,15 @@ class Cell {
     //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
     //if (position.x > width + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
+    //if (position.x > width * 0.9 || position.x < width * 0.1 || position.y > height * 0.9 || position.y < height * 0.1) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death
   }
 
   void display() {
     strokeWeight(1);
-    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
-    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
+    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
+    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
 
     float angle = velocity.heading();
     pushMatrix();
@@ -365,8 +366,8 @@ class Cell {
 
 void displayRect() {
     strokeWeight(3);
-    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
-    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
+    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
+    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
 
     float angle = velocity.heading();
     pushMatrix();
@@ -402,8 +403,8 @@ void displayRect() {
 //void displayText() {
 //    textSize(r*0.5);
 //    strokeWeight(1);
-//    if (gs.strokeDisable) {noStroke();} else {stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);}
-//    if (gs.fillDisable) {noFill();} else {fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);}
+//    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
+//    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
 
 //    float angle = velocity.heading();
 //    pushMatrix();

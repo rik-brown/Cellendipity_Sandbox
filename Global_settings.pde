@@ -3,9 +3,7 @@
 class Global_settings {
 
   boolean debug;
-  boolean screendumpON;
-  boolean fillDisable;
-  boolean strokeDisable;
+  
   boolean nucleus;
   boolean stepped;
 
@@ -37,10 +35,9 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
-    screendumpON = true;
-    
+       
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 2; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 4;
@@ -48,12 +45,12 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 350;
+    seeds = 450;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 48;
+	  rows = 8;
     cols = rows;
     //cols = 12;
     
@@ -84,17 +81,11 @@ class Global_settings {
     nucleusColorU = color(0, 0, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
-
-    fillDisable = false;
-    strokeDisable = false;
     
     logSettings();
   }
   
   void logSettings() {
-    output.println("screendumpON = " + screendumpON);
-    output.println("fillDisable = " + fillDisable);
-    output.println("strokeDisable = " + strokeDisable);
     output.println("nucleus = " + nucleus);
     output.println("stepped = " + stepped);
     output.println("strainSize = " + strainSize);
