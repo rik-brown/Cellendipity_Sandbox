@@ -86,7 +86,7 @@ class Colony {
     float [] genes6 = {6,
                       240, 240, 0, 0, 0, 255, 255, 255,
                         0,   0, 0, 0,   0,   0,   0,   0,
-                      24, 1, 100, 100, 50, 10,
+                      width/((gs.rows)*2*1.5), 1, 100, 100, 50, 25,
                       100, 20, random(2, 4), random(1, 6), random(1000), random(1000),
                       65, 1, width * 0.001 * 300, 10000, 0.5};
     dna6.genes = genes6;
@@ -161,8 +161,8 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      //DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-      DNA dna = genepool.get(6);                        // Get's a specific strain of dna from the genepool
+      DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+      //DNA dna = genepool.get(6);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
@@ -197,7 +197,7 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 2) + 4;
+      int str = ((r + c) % 2) + 5;
       DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
