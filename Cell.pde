@@ -159,7 +159,7 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
   
-  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   
   }
 
@@ -235,8 +235,11 @@ class Cell {
     noise_xoff += noise_step;
     noise_yoff += noise_step;
     
+    //Update noisePercent
+    noisePercent = map(maturity, 0, 1, noisePercent_start, noisePercent_end);
+    
     //Interpolate between the linear and noise vectors
-    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent_start); //<>//
+    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>//
     
     //Rotate the resulting vector by the current twist angle
     twist = TWO_PI * map(maturity, 0, 1, twist_start, twist_end);
@@ -460,36 +463,34 @@ void displayRect() {
   }
 
   void cellDebugger() { // For debug only
-    int rowHeight = 15;
+    int rowHeight = 12;
     fill(120, 0, 255);
     textSize(rowHeight);
-    text("ID:" + ID, position.x-10, position.y + rowHeight * 0);
-    //text("r:" + r, position.x, position.y + rowHeight * 0);
+    text("ID:" + ID, position.x, position.y + rowHeight * 0);
+    text("r:" + r, position.x, position.y + rowHeight * 5);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
-    //text("Stripe:" + stripe, position.x, position.y + rowHeight * 0);
-    //text("hue " + hue(fillColor), position.x, position.y + rowHeight * 1);
-    //text("sat " + saturation(fillColor), position.x, position.y + rowHeight * 2);
-    //text("bri " + brightness(fillColor), position.x, position.y + rowHeight * 3);
+    text("Stripe:" + stripe, position.x, position.y + rowHeight * 6);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
-
     //text("fill_H_start:" + fill_H_start, position.x, position.y + rowHeight * 3);
     //text("fill_H_end:" + fill_H_end, position.x, position.y + rowHeight * 4);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
     //text("radius_end:" + radius_end, position.x, position.y + rowHeight * 2);
-    //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 2);
-    //text("fill_S:" + fill_S, position.x, position.y + rowHeight * 5);
-    //text("fill_B:" + fill_B, position.x, position.y + rowHeight * 4);
+    text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
+    text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
+    text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
+    text("fill_A:" + fill_A, position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
-    //text("age:" + age, position.x, position.y + rowHeight * 0);
-    text("maturity:" + maturity, position.x-10, position.y + rowHeight * 1);
+    text("lifespan:" + lifespan, position.x, position.y + rowHeight * 7);
+    text("age:" + age, position.x, position.y + rowHeight * 8);
+    //text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
     //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
-    text("vel.x:" + velocity.x, position.x-10, position.y + rowHeight * 2);
-    text("vel.x:" + velocity.y, position.x-10, position.y + rowHeight * 3);
-    text("vel.heading:" + velocity.heading(), position.x-10, position.y + rowHeight * 4);
-    text("twist:" + twist, position.x-10, position.y + rowHeight * 5);
+    //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 2);
+    //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 3);
+    //text("vel.heading:" + velocity.heading(), position.x, position.y + rowHeight * 4);
+    //text("twist:" + twist, position.x, position.y + rowHeight * 5);
   }
 
 }
