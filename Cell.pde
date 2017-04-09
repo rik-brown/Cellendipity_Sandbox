@@ -159,7 +159,7 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
   
-  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   
   }
 
