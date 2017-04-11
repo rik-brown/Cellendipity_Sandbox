@@ -38,8 +38,8 @@ class DNA {
       // 15=stroke_A_start
       // 16=stroke_A_end
       
-      // 17=radius_start
-      // 18=radius_end
+      // 17=radius_start (in units of 1/1000 of width, so if width = 1000, 1 = 1 pixel)
+      // 18=radius_end (expressed as % of radius_start)
       
       // 19=flatness_start
       // 20=flatness_end
@@ -57,7 +57,7 @@ class DNA {
       
       // 29=fertility
       // 30=spawnLimit
-      // 31=lifespan
+      // 31=lifespan (in units of 1/1000 of width, so if width = 1000, 100 = 100 frames)
       
       // 32=StripeSize
       // 33=StripeRatio
@@ -109,10 +109,10 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      //genes[17]= width * 0.001 * random(75, 200);   // 17=radius_start
-      //genes[17]= width/((gs.rows)*random(2, 4));   // 17=radius_start CARTESIAN GRID
-      genes[17]= width/((gs.rows)*2);   // 17=radius_start CARTESIAN GRID
-      //genes[17]= width * 0.001 * random(25, 50);   // 17=radius_start
+      //genes[17]= random(75, 200);   // 17=radius_start
+      //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
+      genes[17]= 500/gs.rows;   // 17=radius_start CARTESIAN GRID
+      //genes[17]= random(25, 50);   // 17=radius_start
       
       genes[18]= 5;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
@@ -139,7 +139,7 @@ class DNA {
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(2,3);   // 30=spawnLimit
       //genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
-      genes[31]= width * 0.001 * 100;   // 31=lifespan
+      genes[31]= 100;   // 31=lifespan
       //genes[31]= 20;   // 31=lifespan
       
       genes[32]= random(20,60);   // 32=StripeSize

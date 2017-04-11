@@ -29,14 +29,14 @@ class Colony {
     // 17=radius_Start, 18=radius_End, 19=flatness_start, 20=flatness_end, 21=twist_Start, 22=twist_End,
     // 23=noisePercent_Start, 24=noisePercent_End, 25=noise_vMax, 26=noise_Step, 27=noise_xOff, 28=noise_yOff,
     // 29=fertility, 30=spawnLimit, 31=lifespan, 32=StripeSize, 33=StripeRatio  
-    //float [] genes0 = {0, 0, 0, 0, 0, 0, 0, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
+    
     // BLACK turning grey
     float [] genes0 = {0,
-                        0, 0, 0, 0, 0, 64, 255, 255,
-                        0, 0, 0, 0, 255, 255, 0, 0,
-                        width/((gs.rows)*2), 5, 100, 100, 100, 100,
-                        0, 0, random(2, 4), random(1, 6), random(1000), random(1000),
-                        65, 1, width * 0.001 * random(200, 400), 10000, 0.5};
+                       0, 0, 0, 0, 0, 180, 255, 255,
+                       0, 0, 0, 0, 128, 255, 0, 0,
+                       500/gs.rows, 5, 100, 100, 10, 20,
+                       0, 0, random(2, 4), random(1, 6), random(1000), random(1000),
+                       65, 1, random(100, 250), 10000, 0.5};
     dna0.genes = genes0;
     
     genepool.add(1, new DNA()); // Add new DNA object to the genepool in position 0
@@ -45,11 +45,11 @@ class Colony {
     //float [] genes1 = {1, 120, 120, 0, 0, 255, 255, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // WHITE turning grey
     float [] genes1 = {1,
-                      120, 120, 0, 0, 255, 240, 255, 255,
+                      120, 120, 0, 0, 255, 220, 255, 255,
                         0,   0, 0, 0,   0, 128,   0,   0,
-                      width/((gs.rows)*2), 5, 100, 100, 0, 20,
+                      500/gs.rows, 5, 100, 80, 0, 30,
                       0, 0, random(2, 4), random(1, 6), random(1000), random(1000),
-                      65, 1, width * 0.001 * random(100, 200), 10, 0.5};
+                      65, 1, random(100, 200), 10000, 0.5};
     dna1.genes = genes1;
     
     genepool.add(2, new DNA()); // Add new DNA object to the genepool in position 0
@@ -59,25 +59,45 @@ class Colony {
     // BLUE with red stripes
     //float [] genes2 = {2, 240, 240, 255, 255, 128, 255, 255, 255, 0, 0, 255, 255, 128, 255, 0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 52.318718, 0.5};
     // PALE BLUE with white stripes
-    float [] genes2 = {2, 240, 180, 55, 55, 160, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0.0, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), random(20,60), 0.5};
+    float [] genes2 = {2,
+                       240, 180, 55, 55, 160, 255, 255, 255,
+                       0, 0, 0, 0, 255, 255, 0, 0,
+                       500/gs.rows, 5.0, 100.0, 200.0, 30.0, 60.0,
+                       0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000),
+                       65.0, 1.0, random(100, 200), random(20,60), 0.5};
     dna2.genes = genes2;
     
     genepool.add(3, new DNA()); // Add new DNA object to the genepool in position 0
     DNA dna3 = genepool.get(3);
-    // noFill
-    float [] genes3 = {3, 240, 180, 55, 55, 160, 255, 0, 0, 0, 0, 0, 0, 255, 255, 12, 24, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), random(20,60), 0.5};
+    // noFill WHITE
+    float [] genes3 = {3,
+                       240, 180, 55, 55, 160, 255, 0, 0,
+                       0, 0, 0, 0, 255, 255, 12, 44,
+                       500/gs.rows, 5.0, 100.0, 200.0, 30.0, 60.0,
+                       0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000),
+                       65.0, 1.0, random(100, 200), random(20,60), 0.5};
     dna3.genes = genes3;
     
     genepool.add(4, new DNA()); // Add new DNA object to the genepool in position 0
     DNA dna4 = genepool.get(4);
     // White to black
-    float [] genes4 = {4, 240, 180, 0, 0, 255, 0, 255, 255, 0, 0, 0, 0, 255, 255, 12, 12, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), 10000, 0.5};
+    float [] genes4 = {4,
+                       240, 180, 0, 0, 255, 0, 255, 255,
+                       0, 0, 0, 0, 255, 255, 12, 12,
+                       500/gs.rows, 5.0, 100.0, 200.0, 30.0, 60.0,
+                       0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000),
+                       65.0, 1.0, random(100, 200), 10000, 0.5};
     dna4.genes = genes4;
     
     genepool.add(5, new DNA()); // Add new DNA object to the genepool in position 0
     DNA dna5 = genepool.get(5);
     // Black to white
-    float [] genes5 = {5, 240, 180, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0, 0, 24, 12, width/((gs.rows)*2), 5.0, 100.0, 200.0, 30.0, 60.0, 0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000), 65.0, 1.0, width * 0.001 * random(100, 200), 10000, 0.5};
+    float [] genes5 = {5,
+                       240, 180, 0, 0, 0, 255, 255, 255,
+                       0, 0, 0, 0, 0, 0, 24, 12,
+                       500/gs.rows, 5.0, 100.0, 200.0, 30.0, 60.0,
+                       0.0, 0.0, random(2, 4), random(1, 6), random(1000), random(1000),
+                       65.0, 1.0, random(100, 200), 10000, 0.5};
     dna5.genes = genes5;
     
     genepool.add(6, new DNA()); // Add new DNA object to the genepool in position 0
@@ -88,7 +108,7 @@ class Colony {
                         0,   0, 0, 0,   0,   0,   0,   0,
                       width/((gs.rows)*2*1.5), 1, 100, 100, 50, 25,
                       100, 20, random(2, 4), random(1, 6), random(1000), random(1000),
-                      65, 1, width * 0.001 * 300, 10000, 0.5};
+                      65, 1, 300, 10000, 0.5};
     dna6.genes = genes6;
     
     
@@ -198,10 +218,10 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 2) + 5;
+      int str = ((r + c) % 1) + 3;
       DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      dna.genes[0] = n; //n is transferred to gene 0
+      //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
       float ypos = height * map (r, 0, gs.rows, 0, 1);

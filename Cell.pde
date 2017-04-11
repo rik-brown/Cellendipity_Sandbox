@@ -129,13 +129,13 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = dna.genes[31];
+  lifespan = dna.genes[31] * width * 0.001;
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
 
   // SIZE AND SHAPE
-  radius_start = dna.genes[17];
+  radius_start = dna.genes[17] * width * 0.001;
   radius_end = radius_start * dna.genes[18] * 0.01;
   r = radius_start; // Initial value for radius
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
@@ -213,8 +213,10 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColor();
-    updateStrokeColor();
+    //updateFillColorByRadius();
+    //updateStrokeColorByRadius();
+    updateFillColorByDirection();
+    updateStrokeColorByDirection();
     if (stripe) {updateStripes();}
     display();
     //displayRect();
@@ -249,7 +251,7 @@ class Cell {
     noisePercent = map(maturity, 0, 1, noisePercent_start, noisePercent_end);
     
     //Interpolate between the linear and noise vectors
-    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>//
+    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>//
     
     //Rotate the resulting vector by the current twist angle
     twist = TWO_PI * map(maturity, 0, 1, twist_start, twist_end);
@@ -261,7 +263,7 @@ class Cell {
   }
   
   void updatePosition() { //Update parameters linked to the position
-    position.add(velocity); //<>//
+    position.add(velocity); //<>// //<>//
     
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
     range = toHome.mag(); // range is how far the cell is from home at any time
@@ -302,22 +304,37 @@ class Cell {
   flatness = map(maturity, 1, 0, flatness_start, flatness_end);
   }
 
-  void updateFillColor() {
+  void updateFillColorByRadius() {
     // START > END
     float fill_H = map(r, radius_start, radius_end, fill_H_start, fill_H_end) % 360;
     float fill_S = map(r, radius_start, radius_end, fill_S_start, fill_S_end);
-    //float fill_B = map(r, radius_start, radius_end, fill_B_start, fill_B_end);
-    float fill_B = map(directionDiff, 0, PI, fill_B_start, fill_B_end);
+    float fill_B = map(r, radius_start, radius_end, fill_B_start, fill_B_end);
     fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
   }
   
-  void updateStrokeColor() {
+  void updateStrokeColorByRadius() {
     // START > END
     float stroke_H = map(r, radius_start, radius_end, stroke_H_start, stroke_H_end) % 360;
     float stroke_S = map(r, radius_start, radius_end, stroke_S_start, stroke_S_end);
     float stroke_B = map(r, radius_start, radius_end, stroke_B_start, stroke_B_end);
     stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
+    strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
+  }
+
+  void updateFillColorByDirection() {
+    float fill_H = map(directionDiff, 0, PI, fill_H_start, fill_H_end) % 360;
+    float fill_S = map(directionDiff, 0, PI, fill_S_start, fill_S_end);
+    float fill_B = map(directionDiff, 0, PI, fill_B_start, fill_B_end);
+    fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+  }
+  
+  void updateStrokeColorByDirection() {
+    float stroke_H = map(directionDiff, 0, PI, stroke_H_start, stroke_H_end) % 360;
+    float stroke_S = map(directionDiff, 0, PI, stroke_S_start, stroke_S_end);
+    float stroke_B = map(directionDiff, 0, PI, stroke_B_start, stroke_B_end);
+    stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
     strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
   }
 
@@ -443,7 +460,7 @@ void displayRect() {
   void conception(Cell other, PVector distVect) {
     // Decrease spawn counters.
     spawnLimit --;
-    other.spawnLimit --; //<>// //<>//
+    other.spawnLimit --; //<>// //<>// //<>//
 
     // Calculate velocity vector for spawn as being centered between parent cell & other
     PVector spawnVel = velocity.copy(); // Create spawnVel as a copy of parent cell's velocity vector

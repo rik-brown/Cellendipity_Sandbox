@@ -13,8 +13,9 @@
 *      i) Is this leading towards a new Object called Genepool? /9.apr
 *      ii) Colony is starting to feel a little bit crowded / overstuffed /9.apr
 *      iii) It could be time to tidy up and rendyrke what the Colony object is & does /9.apr
-*   f) Is now the time to start importing Json objects? (genes) /9.apr
+*   f) Is now the time to start importing/exporting Json objects or .csv files? (genes) /9.apr
 *   g) Introduce a new spawn-pattern of concentric rings
+*   h) Introduce a parameter for defining BORDER thickness 11/apr
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -26,7 +27,7 @@ int maxCycles = 1;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-150.1";
+String batchName = "batch-150.2";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -42,10 +43,10 @@ void setup() {
   smooth();
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
