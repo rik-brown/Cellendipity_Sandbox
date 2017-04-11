@@ -37,10 +37,10 @@ class Global_settings {
     debug = false;
        
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 4;
+    numStrains = 2;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
@@ -50,7 +50,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 8;
+	  rows = 12;
     cols = rows;
     //cols = 12;
     
@@ -72,7 +72,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 100; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 0; // last 160, 50, 128, 255
+    bkg_B = 200; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

@@ -32,9 +32,9 @@ class Colony {
     //float [] genes0 = {0, 0, 0, 0, 0, 0, 0, 255.0, 255.0, 0.0, 0.0, 0.0, 0.0, 0.0, 128.0, 0.0, 0.0, 107.01311, 5.0, 300.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7383308, 3.411943, 233.01321, 522.7996, 65.0, 1.0, 225.5199, 10000, 0.5};
     // BLACK turning grey
     float [] genes0 = {0,
-                        0, 0, 0, 0, 0, 64, 255.0, 255.0,
-                        0, 0, 0, 0, 0, 128, 0, 0,
-                        width/((gs.rows)*2), 5, 300, 0, 0, 0,
+                        0, 0, 0, 0, 0, 64, 255, 255,
+                        0, 0, 0, 0, 255, 255, 0, 0,
+                        width/((gs.rows)*2), 5, 100, 100, 100, 100,
                         0, 0, random(2, 4), random(1, 6), random(1000), random(1000),
                         65, 1, width * 0.001 * random(200, 400), 10000, 0.5};
     dna0.genes = genes0;
@@ -161,8 +161,8 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-      //DNA dna = genepool.get(6);                        // Get's a specific strain of dna from the genepool
+      //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+      DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = width * map (c, 0, gs.cols, 0, 1);
@@ -173,6 +173,7 @@ void cartesian_pattern() {
 
       //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
       vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+      vel = new PVector(1,0);
       vel.normalize();
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
