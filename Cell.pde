@@ -350,8 +350,8 @@ class Cell {
     float angle = velocity.heading();
     pushMatrix();
     translate(position.x,position.y);
-    line(0, 0, velocityRef.x*100, velocityRef.y*100);
-    line(0, 0, velocity.x*100, velocity.y*100);
+    //line(0, 0, velocityRef.x*100, velocityRef.y*100); // DEBUG
+    //line(0, 0, velocity.x*100, velocity.y*100); // DEBUG
     rotate(angle);
     if (!gs.stepped) {
       ellipse(0, 0, r, r * flatness);
