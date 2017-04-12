@@ -129,13 +129,13 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = dna.genes[31] * widthUsed * 0.001;
+  lifespan = dna.genes[31] * gs.widthUsed * 0.001;
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
 
   // SIZE AND SHAPE
-  radius_start = dna.genes[17] * widthUsed * 0.001;
+  radius_start = dna.genes[17] * gs.widthUsed * 0.001;
   radius_end = radius_start * dna.genes[18] * 0.01;
   r = radius_start; // Initial value for radius
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
@@ -175,34 +175,34 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  radius_start *= map(oDist, 0, widthUsed, 0.5, 1);
-  flatness_start *= map(oDist, 0, widthUsed, 0.4, 1.0);
-  lifespan *= map(oDist, 0, widthUsed, 0.3, 0.7);
-  noisePercent_start *= map(oDist, 0, widthUsed, 0.7, 0.5);
-  twist_start *= map(oDist, 0, widthUsed, 0.3, 0.5);
-  //fill_H_end = (gs.bkg_H + map(oDist, 0, widthUsed, 40, 0));
-  //fill_S_start *= map(position.x, 0, widthUsed, 1, 0);
-  //fill_S_start *= map(oDist, 0, widthUsed, 0, 0);
-  //fill_S_end *= map(position.x, 0, widthUsed, 1, 0);
-  //fill_S_end *= map(oDist, 0, widthUsed, 0, 0);
-  //fill_B_end = map(oDist, 0, widthUsed*0.5, 250, 48);
-  //fill_B_start *= map(oDist, 0, widthUsed, 1, 0);
-  //fill_B_start *= map(position.x, 0, widthUsed, 1, 0);
-  //fill_B_end *= map(oDist, 0, widthUsed, 0.9, 1.0);
-  //stripeSize *= map(oDist, 0, widthUsed, 1.0, 0.6);
-  //stripeRatio = map(oDist, 0, widthUsed, 0.3, 0.7);
+  radius_start *= map(oDist, 0, gs.widthUsed, 0.5, 1);
+  flatness_start *= map(oDist, 0, gs.widthUsed, 0.4, 1.0);
+  lifespan *= map(oDist, 0, gs.widthUsed, 0.3, 0.7);
+  noisePercent_start *= map(oDist, 0, gs.widthUsed, 0.7, 0.5);
+  twist_start *= map(oDist, 0, gs.widthUsed, 0.3, 0.5);
+  //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 40, 0));
+  //fill_S_start *= map(position.x, 0, gs.widthUsed, 1, 0);
+  //fill_S_start *= map(oDist, 0, gs.widthUsed, 0, 0);
+  //fill_S_end *= map(position.x, 0, gs.widthUsed, 1, 0);
+  //fill_S_end *= map(oDist, 0, gs.widthUsed, 0, 0);
+  //fill_B_end = map(oDist, 0, gs.widthUsed*0.5, 250, 48);
+  //fill_B_start *= map(oDist, 0, gs.widthUsed, 1, 0);
+  //fill_B_start *= map(position.x, 0, gs.widthUsed, 1, 0);
+  //fill_B_end *= map(oDist, 0, gs.widthUsed, 0.9, 1.0);
+  //stripeSize *= map(oDist, 0, gs.widthUsed, 1.0, 0.6);
+  //stripeRatio = map(oDist, 0, gs.widthUsed, 0.3, 0.7);
   
   // MODULATED BY POSITION (Cartesian/Random)
-  //lifespan = widthUsed * 0.001 * map(oDist, 0, widthUsed*0.7, 18, 12);
+  //lifespan = gs.widthUsed * 0.001 * map(oDist, 0, gs.widthUsed*0.7, 18, 12);
 
-  //twist_start = map(oDist, 0, widthUsed, 0, 15);
-  //fill_B_end = dna.genes[5] * map(oDist, 0, widthUsed*0.7, 0.7, 1);
-  //fill_A_start = map(oDist, 0, widthUsed*0.7, 255, 20);
+  //twist_start = map(oDist, 0, gs.widthUsed, 0, 15);
+  //fill_B_end = dna.genes[5] * map(oDist, 0, gs.widthUsed*0.7, 0.7, 1);
+  //fill_A_start = map(oDist, 0, gs.widthUsed*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
   stripeSize = map(ID, 0, gs.seeds, 60, 10);
   //lifespan = map(ID, 0, gs.seeds, 0, 360);
-  //lifespan = widthUsed * 0.001 * map(ID, 0, gs.seeds, 1, 500);
+  //lifespan = gs.widthUsed * 0.001 * map(ID, 0, gs.seeds, 1, 500);
   //twist_start = map(ID, 0, gs.seeds, 0, 15);
   }
 
@@ -281,7 +281,7 @@ class Cell {
 
   void updateSize() {
     // I should introduce an selector-toggle here!
-    PVector center = new PVector(widthUsed/2, height/2);
+    PVector center = new PVector(gs.widthUsed/2, height/2);
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
     float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
@@ -351,10 +351,10 @@ class Cell {
   boolean dead() {
     //if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < radius_end) {return true;} // Death by too little radius
-    //if (r > (widthUsed*0.1)) {return true;} // Death by too much radius
+    //if (r > (gs.widthUsed*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
-    //if (position.x > widthUsed + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
-    //if (position.x > widthUsed * 0.9 || position.x < widthUsed * 0.1 || position.y > height * 0.9 || position.y < height * 0.1) {return true;} // Death if move beyond border
+    //if (position.x > gs.widthUsed + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
+    //if (position.x > gs.widthUsed * 0.9 || position.x < gs.widthUsed * 0.1 || position.y > height * 0.9 || position.y < height * 0.1) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death
   }
