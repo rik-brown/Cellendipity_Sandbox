@@ -132,13 +132,13 @@ class Colony {
 void random_pattern() {
   // Here is the code which fills the 'cells' arraylist with cells at random positions
   for (int n = 0; n <= gs.seeds; n++) {
-    pos = new PVector(random(width), random(height)); // random position
+    pos = new PVector(random(gs.widthUsed)+gs.borderWidth, random(gs.heightUsed)+gs.borderHeight); // random position
     origin = new PVector (gs.orx, gs.ory);
     PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+    DNA dna = genepool.get(int(random(gs.numStrains+6))); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
     dna.genes[0] = n; //n is transferred to gene 0
     
@@ -153,6 +153,7 @@ void center_pattern() {
   // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
   for (int n = 0; n <= gs.seeds; n++) {
     pos = new PVector(width*0.5, height*0.5); // random position
+    
     vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
     origin = new PVector (gs.orx, gs.ory);
     //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
@@ -185,8 +186,8 @@ void cartesian_pattern() {
       DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
-      float xpos = width * map (c, 0, gs.cols, 0, 1);
-      float ypos = height * map (r, 0, gs.rows, 0, 1);
+      float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
+      float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
       pos = new PVector(xpos, ypos);
       
       origin = new PVector (gs.orx, gs.ory);
@@ -223,8 +224,8 @@ void cartesian_pattern_alt() {
       //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
-      float xpos = width * map (c, 0, gs.cols, 0, 1);
-      float ypos = height * map (r, 0, gs.rows, 0, 1);
+      float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
+      float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
       pos = new PVector(xpos, ypos);
       
       origin = new PVector (gs.orx, gs.ory);
@@ -251,15 +252,16 @@ void phyllotaxic_pattern() {
     // Simple Phyllotaxis formula:
     float a = n * radians(137.5);
     float r = c * sqrt(n);   
-    float xpos = r * cos(a) + width * 0.5;
-    float ypos = r * sin(a) + height * 0.5;
+    float xpos = r * cos(a) + gs.widthUsed * 0.5 + gs.borderWidth;
+    float ypos = r * sin(a) + gs.heightUsed * 0.5 + gs.borderHeight;
     pos = new PVector(xpos, ypos);
+    
     
     origin = new PVector (gs.orx, gs.ory);
     PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-    int str = ((n) % 2) + 1;
+    int str = ((n) % 2) + 3;
     //DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
     DNA dna = genepool.get(str); // Get's a random strain of dna from the genepool
     //DNA dna = genepool.get(0); // Get's a specific strain of dna from the genepool

@@ -7,19 +7,29 @@ class Global_settings {
   boolean nucleus;
   boolean stepped;
 
+  float borderWidth;
+  float borderHeight;
+  float widthUsed;
+  float heightUsed;
+
   int patternSelector;
+  
   int strainSize;
   int numStrains;
+  
   int populationMaxSize;
   
   int rows;
   int cols;
+  
   int seeds;
+  
   int orx;
   int ory; 
   
   int stepSize;
   int stepSizeN;
+  
   int stripeSize;
   float stripeRatio;
 
@@ -27,17 +37,23 @@ class Global_settings {
   float bkg_S;
   float bkg_B;
   color bkgColor;
+  
   color nucleusColorU;
   color nucleusColorF;
   
 
-
   Global_settings() {
     
     debug = false;
+    
+    borderWidth = width * 0.3;   // Width of the vertical borders
+    borderHeight = height * 0.2; // Height of the horisontal borders
+    
+    widthUsed = width - (2*borderWidth);    //Calculate width of usable area (inside border)
+    heightUsed = height - (2*borderHeight); //Calculate height of usable area (inside border)
        
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
@@ -45,7 +61,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 450;
+    seeds = 100;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));

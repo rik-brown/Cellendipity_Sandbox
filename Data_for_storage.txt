@@ -1,1 +1,29 @@
-Being the planned and/or accidental output of a late-blooming digital gardener
+This is correct JSON format:
+{
+	"DNA":{
+			"genes":[0,0,0,0,0,0,64,255,255,0,0,0,0,255,255,0,0,20,5,100,100,100,100,0,0,3,5,599,324,65,1,200,10000,0.5]
+	}
+}
+
+I had to remove the functions and replace them with float values.
+Here is the original:
+
+float [] genes0 = {0,
+                        0, 0, 0, 0, 0, 64, 255, 255,
+                        0, 0, 0, 0, 255, 255, 0, 0,
+                        width/((gs.rows)*2), 5, 100, 100, 100, 100,
+                        0, 0, random(2, 4), random(1, 6), random(1000), random(1000),
+                        65, 1, width * 0.001 * random(200, 400), 10000, 0.5};
+
+
+
+When I create a DNA object, some of the values are the output of a function call referencing 'live' data from the current configuration.
+This will not work in a stored file of float values (regardless of whether it is a table, JSON or other format)
+How can I get around this?
+One way would be to incorporate the dynamic values (functions like random) into the Colony / pattern generator.
+They are only required on the initial spawn.
+The values in the DNA would then be simply the 'scaling value'.
+
+How to introduce RANDOM??
+is actually
+WHERE to introduce RANDOM??
