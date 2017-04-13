@@ -56,7 +56,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = false;
+    debug = true;
     
     borderWidth = width * 0.3;   // Width of the vertical borders
     borderHeight = height * 0.2; // Height of the horisontal borders
@@ -68,7 +68,7 @@ class Global_settings {
     patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 2;
+    numStrains = 10;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled

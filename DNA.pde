@@ -64,7 +64,7 @@ class DNA {
       // 32=StripeSize
       // 33=StripeRatio
       
-      genes[0] = 0;  // ID
+      genes[0] = int(random(100, 200));  // ID
       
       genes[1]= random(200, 240);   // 1=fill_H_start
       //genes[1]= 230;   // 1=fill_H_start

@@ -42,9 +42,9 @@ void setup() {
   rectMode(RADIUS);
   ellipseMode(RADIUS);
   smooth();
-  //size(200, 200);
+  size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
   //size(4000, 4000);
