@@ -12,7 +12,7 @@ class Colony {
   float w = width * 0.001;  // For convinience
   float c = w * 30; // Scaling factor
 
-  // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
+  // CONSTRUCTOR: Create a 'Colony' object containing an initial population of cells
   Colony() {
     population = new ArrayList<Cell>();
     
@@ -38,8 +38,8 @@ void random_pattern() {
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = genepool.get(int(random(gs.numStrains+6))); // Get's a random strain of dna from the genepool
-    //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
+    DNA dna = gpl.genepool.get(int(random(gs.numStrains+6))); // Get's a random strain of dna from the genepool
+    //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
     dna.genes[0] = n; //n is transferred to gene 0
     
     for (int s = 0; s < gs.strainSize; s ++) {
@@ -60,8 +60,8 @@ void center_pattern() {
     //vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-    //DNA dna = genepool.get(0);                            // Get's a specific strain of dna from the genepool
+    DNA dna = gpl.genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+    //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
     dna.genes[0] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {
@@ -82,8 +82,8 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      //DNA dna = genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-      DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+      DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
@@ -120,8 +120,8 @@ void cartesian_pattern_alt() {
     
     for (int c = 0; c <= gs.cols; c++) {
       int str = ((r + c) % 1) + 3;
-      DNA dna = genepool.get(str); // Get's the appropriate strain of dna from the genepool
-      //DNA dna = genepool.get(0);                        // Get's a specific strain of dna from the genepool
+      DNA dna = gpl.genepool.get(str); // Get's the appropriate strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
@@ -162,9 +162,9 @@ void phyllotaxic_pattern() {
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
     int str = ((n) % 2) + 3;
-    //DNA dna = genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-    DNA dna = genepool.get(str); // Get's a random strain of dna from the genepool
-    //DNA dna = genepool.get(0); // Get's a specific strain of dna from the genepool
+    //DNA dna = gpl.genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
+    DNA dna = gpl.genepool.get(str); // Get's a random strain of dna from the genepool
+    //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
     
     dna.genes[0] = n; //n is transferred to gene 0
     
