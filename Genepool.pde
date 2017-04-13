@@ -21,61 +21,33 @@ class Genepool {
   Genepool() {
     genepool = new ArrayList<DNA>();
     
-    
     Table genetable = loadTable("genepool.csv", "header");
-    int numGenes = genetable.getColumnCount();
-    int numRows = genetable.getRowCount();
     
-    float[] newgenes = new float[numGenes];
-    int rowCount = 0;
-    
-    println ("#rows: " + numRows);
-    println ("#cols: " + numGenes);
     for (TableRow row : genetable.rows()) {
+      float[] newgenes = new float[genetable.getColumnCount()];
       // Iterate through all the columns, getting each value and add it to newgenes[]
       for( int col = 0; col < genetable.getColumnCount(); col++) {  
-        //String Colname = genetable.getColumnTitle(col);
         float value = row.getFloat(col);
-        //println ("Row: " + rowCount + " Col: " + Colname + " Value: " + value);
-        //println ("Row: " + rowCount + " Col: " + col + " Value: " + value);
-        print (value+", ");
         newgenes[col] = value; //Add the value pulled from the table to it's respective position in the array
       }
-      println();
-      //To print out the values in the array:
-      for (float val : newgenes) {
-        print(val+", ");
-      }
-      println();
-      // Now make a new DNA object with these values
-      DNA newDNA = new DNA(newgenes);
-      // Finally, add this new DNA to the genepool
-      genepool.add(newDNA);
-      for (int i = 0; i < genepool.size(); i++) {
-        DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
-        println("Size: " + genepool.size() + " Genepool " + i + ": " + debugDNA.genes[0]);
-      }
-      
-      
-      // Increase the rowCount to select the next row on the next iteration
-      rowCount ++;
-    }
-    
-        // Here is the code which fills the 'genepool' arraylist with some preset DNA-strains.
 
-//Code removed from HERE
-//
-//to HERE
+      // Add a new DNA object to the genepool using the array newgenes[] with data from .csv row
+      genepool.add(new DNA(newgenes));
+      
+    }
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
       genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
     
-    for (int i = 0; i < genepool.size(); i++) {
-    DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
-    println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[0]);
+    if (gs.debug) {
+      for (int i = 0; i < genepool.size(); i++) {
+        DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[0]);
+      }
     }
+    
     
     
     
