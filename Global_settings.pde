@@ -56,9 +56,9 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     
-    borderWidth = width * 0.3;   // Width of the vertical borders
+    borderWidth = width * 0.2;   // Width of the vertical borders
     borderHeight = height * 0.2; // Height of the horisontal borders
     
     widthUsed = width - (2*borderWidth);    //Calculate width of usable area (inside border)
@@ -78,7 +78,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 12;
+	  rows = 16;
     cols = rows;
     //cols = 12;
     
@@ -86,10 +86,10 @@ class Global_settings {
     //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
     //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
-    orx = int(width * random (1));  // Fully random
-    ory = int(height * random (1)); // Fully random
-    //orx = int(width * 0.5)+1;  // Centered
-    //ory = int(height * 0.5)+1; // Centered
+    //orx = int(width * random (1));  // Fully random
+    //ory = int(height * random (1)); // Fully random
+    orx = int(width * 0.5)+1;  // Centered
+    ory = int(height * 0.5)+1; // Centered
 
     stepped = false;
     stepSize = 15;

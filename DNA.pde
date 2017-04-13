@@ -64,15 +64,17 @@ class DNA {
       // 32=StripeSize
       // 33=StripeRatio
       
-      genes[0] = int(random(100, 200));  // ID
+      genes[0] = 0;  // id
       
-      genes[1]= random(200, 240);   // 1=fill_H_start
+      genes[1]= random(180, 260);   // 1=fill_H_start
+      //genes[1]= random(360);   // 1=fill_H_start
       //genes[1]= 230;   // 1=fill_H_start
       //genes[1]= gs.bkg_H;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + random(170, 210)) % 360;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + 240) % 360;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + 0) % 360;   // 1=fill_H_start
-      genes[2]= genes[1];   // 2=fill_H_end
+      //genes[2]= genes[1];   // 2=fill_H_end
+      genes[2]= genes[1] * random (0.80, 0.97);   // 2=fill_H_end
       //genes[2]= (gs.bkg_H + 10) % 360;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.85, 0.97);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
@@ -119,36 +121,38 @@ class DNA {
       genes[18]= 5;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
-      genes[19]= 200;   // 19=flatness_start
-      //genes[19]= random (100, 120);   // 19=flatness_start
+      //genes[19]= 200;   // 19=flatness_start
+      genes[19]= random (100, 120);   // 19=flatness_start
       genes[20]= 100;   // 20=flatness_end
       
-      genes[21]= 90;   // 21=twist_start
-      //genes[21]= random(0, 30);   // 21=twist_start
-      genes[22]= 0;   // 22=twist_end
+      //genes[21]= 90;   // 21=twist_start
+      genes[21]= random(0, 50);   // 21=twist_start
+      //genes[22]= 0;   // 22=twist_end
+      genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 20;   // 23=noisePercent_start
-      //genes[23]= random(60,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End
+      //genes[23]= 20;   // 23=noisePercent_start
+      genes[23]= random(0,100);   // 23=noisePercent_start
+      //genes[24]= 0;   // 24=noisePercent_End
+      genes[24]= random(0,100);   // 24=noisePercent_end
       
       genes[25]= random(2, 4);   // 25=noise_vMax
       genes[26]= random(1, 6);   // 26=noise_tep
       genes[27]= random(1000);   // 27=noise_xOff
       genes[28]= random(1000);   // 28=noise_yOff
                   
-      genes[29]= 65;   // 29=fertility
-      //genes[29]= random(65,85);   // 29=fertility
-      genes[30]= 1;   // 30=spawnLimit
-      //genes[30]= random(2,3);   // 30=spawnLimit
-      //genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
-      genes[31]= 100;   // 31=lifespan
+      //genes[29]= 65;   // 29=fertility
+      genes[29]= random(65,85);   // 29=fertility
+      //genes[30]= 1;   // 30=spawnLimit
+      genes[30]= random(1,3);   // 30=spawnLimit
+      genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
+      //genes[31]= 100;   // 31=lifespan
       //genes[31]= 20;   // 31=lifespan
       
-      genes[32]= random(20,60);   // 32=StripeSize
+      //genes[32]= random(20,60);   // 32=StripeSize
       //genes[32]= 30;   // 32=StripeSize
-      //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
-      genes[33]= 0.5;   // 33=StripeRatio
-      //genes[33] = random(0.4, 0.8);  // 33=StripeRatio
+      if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
+      //genes[33]= 0.5;   // 33=StripeRatio
+      genes[33] = random(0.4, 0.8);  // 33=StripeRatio
 
       logDNA();
    }
