@@ -78,18 +78,18 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 4;
+	  rows = 14;
     cols = rows;
     //cols = 12;
     
-    //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
-    //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
-    //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
-    //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
-    //orx = int(width * random (1));  // Fully random
-    //ory = int(height * random (1)); // Fully random
-    orx = int(width * 0.5)+1;  // Centered
-    ory = int(height * 0.5)+1; // Centered
+    //orx = int(widthUsed * random (0.3, 0.7));  // Random but kept roughly within the pattern
+    //ory = int(heightUsed * random (0.3, 0.7)); // Random but kept roughly within the pattern
+    //orx = int(widthUsed * random (0.4, 0.6));  // Random but kept roughly within the pattern
+    //ory = int(heightUsed * random (0.4, 0.6)); // Random but kept roughly within the pattern
+    //orx = int(widthUsed * random (1));  // Fully random
+    //ory = int(heightUsed * random (1)); // Fully random
+    orx = int(widthUsed * 0.5)+1;  // Centered
+    ory = int(heightUsed * 0.5)+1; // Centered
 
     stepped = false;
     stepSize = 15;

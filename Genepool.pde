@@ -12,10 +12,10 @@ class Genepool {
 *    b) Create a new DNA object using this array <DONE>
 *    c) Add this DNA object to the Genepool arraylist <DONE>
 *
-*  B) Add new DNA to the table in csv format
+*  B) Add new DNA to the table in csv format. CONSIDER CHANGING THIS TO A SEPERATE "OUTPUT" FILE?
 *    1) Get the first 'added-later' DNA from the genepool arraylist
 *    2) Append a new row to the end of the table
-*    2) Fill the new row with the data the genes array in the DNA object
+*    3) Fill the new row with the data the genes array in the DNA object
 */
 
   // VARIABLES
@@ -59,12 +59,17 @@ class Genepool {
       genepool.add(newDNA); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
     
-    saveTable(genetable, "data/genepool.csv");
+    saveTable(genetable, "data/genepool_added.csv");
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {
         DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
         println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[0]);
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[17]);
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[25]);
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[26]);
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[27]);
+        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[28]);
       }
     }
     

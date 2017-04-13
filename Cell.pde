@@ -213,10 +213,10 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    //updateFillColorByRadius();
-    //updateStrokeColorByRadius();
-    updateFillColorByDirection();
-    updateStrokeColorByDirection();
+    updateFillColorByRadius();
+    updateStrokeColorByRadius();
+    //updateFillColorByDirection();
+    //updateStrokeColorByDirection();
     if (stripe) {updateStripes();}
     display();
     //displayRect();
@@ -251,7 +251,7 @@ class Cell {
     noisePercent = map(maturity, 0, 1, noisePercent_start, noisePercent_end);
     
     //Interpolate between the linear and noise vectors
-    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>//
+    velocity = PVector.lerp(velocityLinear, velocityNoise, noisePercent); //<>// //<>// //<>//
     
     //Rotate the resulting vector by the current twist angle
     twist = TWO_PI * map(maturity, 0, 1, twist_start, twist_end);
@@ -263,7 +263,7 @@ class Cell {
   }
   
   void updatePosition() { //Update parameters linked to the position
-    position.add(velocity); //<>// //<>//
+    position.add(velocity); //<>// //<>// //<>//
     
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
     range = toHome.mag(); // range is how far the cell is from home at any time
@@ -460,7 +460,7 @@ void displayRect() {
   void conception(Cell other, PVector distVect) {
     // Decrease spawn counters.
     spawnLimit --;
-    other.spawnLimit --; //<>// //<>// //<>//
+    other.spawnLimit --; //<>// //<>// //<>// //<>//
 
     // Calculate velocity vector for spawn as being centered between parent cell & other
     PVector spawnVel = velocity.copy(); // Create spawnVel as a copy of parent cell's velocity vector
