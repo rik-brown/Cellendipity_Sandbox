@@ -2,10 +2,27 @@ class Genepool {
 
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
+  Table genetable; // A table of gene data
   
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Genepool() {
     genepool = new ArrayList<DNA>();
+    Table genetable = loadTable("genepool.csv", "header");
+    int numGenes = genetable.getColumnCount();
+    int numRows = genetable.getRowCount();
+    //TableRow row = genetable.getRow(2);
+    int rowCount = 0;
+    
+    println ("#rows: " + numRows);
+    println ("#cols: " + numGenes);
+    for (TableRow row : genetable.rows()) {
+      for( int col = 0; col < genetable.getColumnCount(); col++) {  
+        String Colname = genetable.getColumnTitle(col);
+        float value = row.getFloat(col);
+        println ("Row: " + rowCount + " Col: " + Colname + " Value: " + value);
+      }
+      rowCount ++;
+    }
     
         // Here is the code which fills the 'genepool' arraylist with some preset DNA-strains.
     genepool.add(0, new DNA()); // Add new DNA object to the genepool in position 0
