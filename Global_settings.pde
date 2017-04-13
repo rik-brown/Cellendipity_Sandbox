@@ -1,5 +1,17 @@
 // Global settings that apply equally to all cells in the colony
 
+/* The Global_settings object is simply a collection of global variables (available to the rest of the code)
+*  It was originally required as the object associated with the dat.gui menu in the p5js version of cellendipity sandbox
+*  Although this is no longer a requirement, it has felt convinient to organize all settings in one class
+*  New values can be obtained by renewing the object & including random functions for relevant settings
+*  The values used are written to the "..._settings.txt" file for posterity
+*
+*  Examples of variables & usage:
+*  bkg_H  may be used in DNA to allow starting hue to match background hue
+*  rows may be used in Genepool & DNA to calculate size as a function of #rows
+*  debug is a global flag to indicate that debug mode is set
+*/
+
 class Global_settings {
 
   boolean debug;

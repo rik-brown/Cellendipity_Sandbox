@@ -1,5 +1,12 @@
 class Genepool {
 
+/* The Genepool class creates and manages an ArrayList for all the DNA available to the Colony
+*  The genepool consists of:
+*  1) A fixed number of predefined genotypes (DNA objects), stored in /data/genepool.csv
+*  2) A configurable number of genotypes, created by iteratively applying the DNA constructor
+*  3) Any new genotypes that might arise during the lifetime of a colony
+*/
+
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   Table genetable; // A table of gene data

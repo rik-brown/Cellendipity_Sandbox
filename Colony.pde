@@ -1,5 +1,10 @@
 class Colony {
 
+/* The Colony class does the following:
+*  1) Starts a colony by spawning a given number of cells (using DNA from the genepool) in a predetermined spawn-pattern //<>//
+*  2) Runs the colony
+*/
+
   // VARIABLES
   ArrayList<Cell> population;    // An arraylist for all the cells //<>// //<>//
   

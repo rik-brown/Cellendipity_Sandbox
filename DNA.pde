@@ -2,8 +2,10 @@
 // Borrowed from 'Evolution EcoSystem'
 // by Daniel Shiffman <http://www.shiffman.net> #codingrainbow
 
-// Settings apply equally to all cells in a strain
-// Adding genes for position. All cells in a strain will share the same start position
+/* The DNA class creates a genotype DNA object containing an array of float values (or 'genes')
+*  The genes are determined by predefined values & functions in the constructor
+*  Each time the class is called, the values for the DNA created are appended to the "_settings.txt" file
+*/
 
 class DNA {
 
