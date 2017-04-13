@@ -1,5 +1,17 @@
 // Global settings that apply equally to all cells in the colony
 
+/* The Global_settings object is simply a collection of global variables (available to the rest of the code)
+*  It was originally required as the object associated with the dat.gui menu in the p5js version of cellendipity sandbox
+*  Although this is no longer a requirement, it has felt convinient to organize all settings in one class
+*  New values can be obtained by renewing the object & including random functions for relevant settings
+*  The values used are written to the "..._settings.txt" file for posterity
+*
+*  Examples of variables & usage:
+*  bkg_H  may be used in DNA to allow starting hue to match background hue
+*  rows may be used in Genepool & DNA to calculate size as a function of #rows
+*  debug is a global flag to indicate that debug mode is set
+*/
+
 class Global_settings {
 
   boolean debug;
@@ -44,7 +56,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = false;
+    debug = true;
     
     borderWidth = width * 0.3;   // Width of the vertical borders
     borderHeight = height * 0.2; // Height of the horisontal borders
@@ -53,15 +65,15 @@ class Global_settings {
     heightUsed = height - (2*borderHeight); //Calculate height of usable area (inside border)
        
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 2;
+    numStrains = 10;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
     
-    seeds = 100;
+    seeds = 10;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));

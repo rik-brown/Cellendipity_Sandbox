@@ -2,8 +2,10 @@
 // Borrowed from 'Evolution EcoSystem'
 // by Daniel Shiffman <http://www.shiffman.net> #codingrainbow
 
-// Settings apply equally to all cells in a strain
-// Adding genes for position. All cells in a strain will share the same start position
+/* The DNA class creates a genotype DNA object containing an array of float values (or 'genes')
+*  The genes are determined by predefined values & functions in the constructor
+*  Each time the class is called, the values for the DNA created are appended to the "_settings.txt" file
+*/
 
 class DNA {
 
@@ -62,7 +64,7 @@ class DNA {
       // 32=StripeSize
       // 33=StripeRatio
       
-      genes[0] = 0;  // ID
+      genes[0] = int(random(100, 200));  // ID
       
       genes[1]= random(200, 240);   // 1=fill_H_start
       //genes[1]= 230;   // 1=fill_H_start
@@ -157,10 +159,6 @@ class DNA {
       }
   }
 
-  DNA(float[] newgenes) {
-    genes = newgenes;
-  }
-
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents
     float[] newgenes = new float[genes.length];
     for (int i = 0; i < newgenes.length; i++) {
@@ -168,6 +166,12 @@ class DNA {
       else {newgenes[i] = otherDNA_.genes[i];} // 50/50 chance of copying gene from either 'mother' or 'other'
     }
     return new DNA(newgenes);
+  }
+
+// This method accepts a float array called 'newgenes' and fills the 'genes' array with the values therein.
+// It is used when the last line of the combine() method directly above returns a new DNA object to the Cell via the conception() method
+  DNA(float[] newgenes) {
+    genes = newgenes;
   }
 
 }

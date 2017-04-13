@@ -1,3 +1,4 @@
+id,fill_H_start,fill_H_end,fill_S_start,fill_S_end,fill_B_start,fill_B_end,fill_A_start,fill_A_end,stroke_H_start,stroke_H_end,stroke_S_start,stroke_S_end,stroke_B_start,stroke_B_end,stroke_A_start,stroke_A_end,radius_Start,radius_End,flatness_start,flatness_end,twist_Start,twist_End,noisePercent_Start,noisePercent_End,noise_vMax,noise_Step,noise_xOff,noise_yOff,fertility,spawnLimit,lifespan,StripeSize,StripeRatio
 0,0,0,0,0,0,64,255,255,0,0,0,0,255,255,0,0,20,5,100,100,100,100,0,0,3,5,599,324,65,1,200,10000,0.5
 1,120,120,0,0,255,220,255,255,0,0,0,0,0,128,0,0,41.66,5,100,80,0,30,0,0,2.33,3.21,529.72,529.72,65,1,159.86,10000,0.5
 2,240,180,55,55,160,255,255,255,0,0,0,0,255,255,0,0,41.66,5.0,100.0,200.0,30.0,60.0,0.0,0.0,2.33,3.21,529.72,529.72,65.0,1.0,159.86,29.84,0.5

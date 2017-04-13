@@ -1,5 +1,10 @@
 class Colony {
 
+/* The Colony class does the following:
+*  1) Starts a colony by spawning a given number of cells (using DNA from the genepool) in a predetermined spawn-pattern //<>//
+*  2) Runs the colony
+*/
+
   // VARIABLES
   ArrayList<Cell> population;    // An arraylist for all the cells //<>// //<>//
   
@@ -119,7 +124,7 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % 1) + 3;
+      int str = ((r + c) % 6) + 0;
       DNA dna = gpl.genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
