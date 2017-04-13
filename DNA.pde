@@ -159,10 +159,6 @@ class DNA {
       }
   }
 
-  DNA(float[] newgenes) {
-    genes = newgenes;
-  }
-
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents
     float[] newgenes = new float[genes.length];
     for (int i = 0; i < newgenes.length; i++) {
@@ -170,6 +166,12 @@ class DNA {
       else {newgenes[i] = otherDNA_.genes[i];} // 50/50 chance of copying gene from either 'mother' or 'other'
     }
     return new DNA(newgenes);
+  }
+
+// This method accepts a float array called 'newgenes' and fills the 'genes' array with the values therein.
+// It is used when the last line of the combine() method directly above returns a new DNA object to the Cell via the conception() method
+  DNA(float[] newgenes) {
+    genes = newgenes;
   }
 
 }

@@ -65,7 +65,7 @@ class Global_settings {
     heightUsed = height - (2*borderHeight); //Calculate height of usable area (inside border)
        
     //patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 2;
