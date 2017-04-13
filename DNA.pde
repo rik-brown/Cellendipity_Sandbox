@@ -144,7 +144,7 @@ class DNA {
       genes[29]= random(65,85);   // 29=fertility
       //genes[30]= 1;   // 30=spawnLimit
       genes[30]= random(1,3);   // 30=spawnLimit
-      genes[31]= width * 0.001 * random(200, 300);   // 31=lifespan
+      genes[31]= random(200, 300);   // 31=lifespan
       //genes[31]= 100;   // 31=lifespan
       //genes[31]= 20;   // 31=lifespan
       

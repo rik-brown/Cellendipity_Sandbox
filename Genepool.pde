@@ -11,6 +11,11 @@ class Genepool {
 *    a) Fill an array with the data from one row in the table <DONE>
 *    b) Create a new DNA object using this array <DONE>
 *    c) Add this DNA object to the Genepool arraylist <DONE>
+*
+*  B) Add new DNA to the table in csv format
+*    1) Get the first 'added-later' DNA from the genepool arraylist
+*    2) Append a new row to the end of the table
+*    2) Fill the new row with the data the genes array in the DNA object
 */
 
   // VARIABLES
@@ -26,10 +31,17 @@ class Genepool {
     for (TableRow row : genetable.rows()) {
       float[] newgenes = new float[genetable.getColumnCount()];
       // Iterate through all the columns, getting each value and add it to newgenes[]
-      for( int col = 0; col < genetable.getColumnCount(); col++) {  
+      for(int col = 0; col < genetable.getColumnCount(); col++) {  
         float value = row.getFloat(col);
         newgenes[col] = value; //Add the value pulled from the table to it's respective position in the array
       }
+      
+      // This code is needed to inject some random into specific genes in the DNA stored in genepool.csv
+      newgenes[17]= 500/gs.rows;
+      newgenes[25]= random(2, 4);   // 25=noise_vMax
+      newgenes[26]= random(1, 6);   // 26=noise_tep
+      newgenes[27]= random(1000);   // 27=noise_xOff
+      newgenes[28]= random(1000);   // 28=noise_yOff
 
       // Add a new DNA object to the genepool using the array newgenes[] with data from .csv row
       genepool.add(new DNA(newgenes));
@@ -38,8 +50,16 @@ class Genepool {
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
-      genepool.add(new DNA()); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
+      DNA newDNA = new DNA();
+      TableRow newRow = genetable.addRow();
+      for (int i = 0; i < newDNA.genes.length; i++) {
+        float value = newDNA.genes[i];
+        newRow.setFloat(i, value);
+      }
+      genepool.add(newDNA); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
+    
+    saveTable(genetable, "data/genepool.csv");
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {

@@ -124,7 +124,8 @@ void cartesian_pattern_alt() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      int str = ((r + c) % int(random(1,gpl.genepool.size()))) + 0;
+      //int str = ((r + c) % int(random(1,gpl.genepool.size()))) + 0;
+      int str = ((r + c) % 2) + 6;
       DNA dna = gpl.genepool.get(str); // Get's the appropriate strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
