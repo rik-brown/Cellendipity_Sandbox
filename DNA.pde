@@ -13,7 +13,7 @@ class DNA {
   // Constructor (makes a random DNA)
   DNA() {
       numGenes = 34;
-      genes = new float[numGenes];  // DNA contains an array called 'genes' with [32] float values
+      genes = new float[numGenes];  // DNA contains an array called 'genes' with [34] float values
 
 // ID, fill_H_start, fill_H_end, fill_S_start, fill_S_end, fill_B_start, fill_B_end, fill_A_start, fill_A_end, stroke_H_start, stroke_H_end, stroke_S_start, stroke_S_end, stroke_B_start, stroke_B_end, stroke_A_start, stroke_A_end, radius_start, radius_end, flatness_start, flatness_end, twist_Start, twist_End, noisePercent_Start, noisePercent_End, noise_vMax, noise_Step, noise_xOff, noise_yOff, fertility, spawnLimit, lifespan, StripeSize, StripeRatio
 
