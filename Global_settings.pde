@@ -19,10 +19,10 @@ class Global_settings {
   boolean nucleus;
   boolean stepped;
 
-  float borderWidth;
-  float borderHeight;
-  float widthUsed;
-  float heightUsed;
+  int borderWidth;
+  int borderHeight;
+  int widthUsed;
+  int heightUsed;
 
   int patternSelector;
   
@@ -42,9 +42,6 @@ class Global_settings {
   int stepSize;
   int stepSizeN;
   
-  int stripeSize;
-  float stripeRatio;
-
   float bkg_H;
   float bkg_S;
   float bkg_B;
@@ -58,13 +55,13 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = width * 0.2;   // Width of the vertical borders
-    borderHeight = height * 0.2; // Height of the horisontal borders
+    borderWidth = int(width * 0.2);   // Width of the vertical borders
+    borderHeight = int(height * 0.2); // Height of the horisontal borders
     
-    widthUsed = width - (2*borderWidth);    //Calculate width of usable area (inside border)
-    heightUsed = height - (2*borderHeight); //Calculate height of usable area (inside border)
+    widthUsed = int(width - (2*borderWidth));    //Calculate width of usable area (inside border)
+    heightUsed = int(height - (2*borderHeight)); //Calculate height of usable area (inside border)
        
-    patternSelector = int(random(4)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = int(random(5)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
     //patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
@@ -88,8 +85,8 @@ class Global_settings {
     //ory = int(heightUsed * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(widthUsed * random (1));  // Fully random
     //ory = int(heightUsed * random (1)); // Fully random
-    orx = int(widthUsed * 0.5)+1;  // Centered
-    ory = int(heightUsed * 0.5)+1; // Centered
+    orx = int(widthUsed * 0.5) + borderWidth;  // Centered
+    ory = int(heightUsed * 0.5) + borderHeight; // Centered
 
     stepped = false;
     stepSize = 15;
@@ -114,24 +111,23 @@ class Global_settings {
   }
   
   void logSettings() {
-    output.println("nucleus = " + nucleus);
-    output.println("stepped = " + stepped);
-    output.println("strainSize = " + strainSize);
+    output.println("borderW = " + borderWidth);
+    output.println("borderH = " + borderHeight);
+    output.println("Pattern = " + patternSelector);
     output.println("numStrains = " + numStrains);
+    output.println("strainSize = " + strainSize);
+    output.println("maxSize = " + populationMaxSize);
+    output.println("seeds = " + seeds);
     output.println("rows = " + rows);
     output.println("cols = " + cols);
-    output.println("seeds = " + seeds);
+    output.println("or.x = " + orx);
+    output.println("or.y = " + ory);
+    output.println("stepped = " + stepped);
     output.println("stepSize = " + stepSize);
+    output.println("nucleus = " + nucleus);
     output.println("stepSizeN = " + stepSizeN);
-    output.println("stripeSize = " + stripeSize);
-    output.println("stripeRatio = " + stripeRatio);
     output.println("bkg_H = " + bkg_H);
     output.println("bkg_S = " + bkg_S);
     output.println("bkg_B = " + bkg_B);
-    output.println("bkgColor = " + bkgColor);
-    output.println("nucleusColorU = " + nucleusColorU);
-    output.println("nucleusColorF = " + nucleusColorF);
-    output.println("orx = " + orx);
-    output.println("ory = " + ory);
   }
 }

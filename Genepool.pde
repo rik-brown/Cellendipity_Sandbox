@@ -64,7 +64,8 @@ class Genepool {
       genepool.add(newDNA); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
     
-    saveTable(genetable, "data/genepool_added.csv");
+    String newFileName = pathName + "/csv/" + batchName + "-" + iterationNum +".genepool.csv";
+    saveTable(genetable, newFileName);
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {

@@ -153,15 +153,7 @@ class DNA {
       if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       //genes[33]= 0.5;   // 33=StripeRatio
       genes[33] = random(0.4, 0.8);  // 33=StripeRatio
-
-      logDNA();
    }
-
-  void logDNA() {
-    for (int n = 0; n < numGenes; n++) {
-      output.println("gene[" + n + "] = " + genes[n]);
-      }
-  }
 
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents
     float[] newgenes = new float[genes.length];
