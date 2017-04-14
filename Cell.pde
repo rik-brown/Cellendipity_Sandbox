@@ -169,7 +169,8 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
   
-  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   }
 
@@ -204,6 +205,15 @@ class Cell {
   //lifespan = map(id, 0, gs.seeds, 0, 360);
   //lifespan = gs.widthUsed * 0.001 * map(id, 0, gs.seeds, 1, 500);
   //twist_start = map(id, 0, gs.seeds, 0, 15);
+  }
+  
+  void coralMods() {
+    // MODULATED BY POSITION
+    radius_start = map(oDist, 0, gs.widthUsed, 80, 40) * gs.widthUsed * 0.001;
+    lifespan = map(oDist, 0, gs.widthUsed, 100, 200) * gs.widthUsed * 0.001;
+    noisePercent_start = map(oDist, 0, gs.widthUsed, 0, 0.5);
+    noisePercent_end = map(oDist, 0, gs.widthUsed, 0, 0.5);
+    
   }
 
   void run() {

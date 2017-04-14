@@ -8,14 +8,9 @@
 *
 * Development Goals:
 *
-*  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+*  d) Improve functionality for saving frames for gifs (configurable frame interval and intelligent file numbering)
 
 *  g) Introduce a new spawn-pattern of concentric rings
-
-*  h) Fix better naming for output files, it's a MESS!
-*    1) When done, fix path & naming of genepool_output.csv (it should not be in data)
-*    2) Remove DNA logging to settings.txt, it isn't needed there any more
-*    3) Don't write an empty file at the end
 
 *  i) Cell style could be a variant of it's DNA, based on a single DNA (e.g. striped/stepped/nucleus) EXPLORE
 
@@ -27,13 +22,17 @@
 *  l) Try to recreate the twitter/tumblrbot classic styles?
 *  m) DNA modifiers need to take spwan-pattern into account (e.g. centered)
 *
+*  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
+*  o) SPAWNING new cells - does it still work?
+*    1) Add recombined DNA to the genepool?
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 
-String batchName = "batch-155.0";
+String batchName = "batch-156.0";
 int maxCycles = 2;
 int runCycle = 1;
 
@@ -53,8 +52,8 @@ void setup() {
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
-  size(1500, 1500);
-  //size(2000, 2000);
+  //size(1500, 1500);
+  size(2000, 2000);
   //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);

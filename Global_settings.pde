@@ -61,11 +61,11 @@ class Global_settings {
     widthUsed = int(width - (2*borderWidth));    //Calculate width of usable area (inside border)
     heightUsed = int(height - (2*borderHeight)); //Calculate height of usable area (inside border)
        
-    patternSelector = int(random(5)); // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    //patternSelector = 3; // 0 = random, 1 = centered, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(2, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 3;
+    numStrains = 2;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 500;  // Not really used when 'breeding' is disabled
@@ -85,8 +85,8 @@ class Global_settings {
     //ory = int(heightUsed * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(widthUsed * random (1));  // Fully random
     //ory = int(heightUsed * random (1)); // Fully random
-    orx = int(widthUsed * 0.5) + borderWidth;  // Centered
-    ory = int(heightUsed * 0.5) + borderHeight; // Centered
+    orx = int(widthUsed * 0.5) + borderWidth +1;  // Centered
+    ory = int(heightUsed * 0.5) + borderHeight +1; // Centered
 
     stepped = false;
     stepSize = 15;

@@ -22,9 +22,9 @@ class Colony {
     population = new ArrayList<Cell>();
     
 
-    if (gs.patternSelector == 0) {random_pattern();}
+    if (gs.patternSelector == 1) {random_pattern();}
     else
-    if (gs.patternSelector == 1) {center_pattern();}
+    if (gs.patternSelector == 0) {center_pattern();}
     else
     if (gs.patternSelector == 2) {cartesian_pattern();}
     else
