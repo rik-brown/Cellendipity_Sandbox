@@ -50,9 +50,13 @@ class Genepool {
     
     // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
     for (int g = 0; g < gs.numStrains; g++) {
-      DNA newDNA = new DNA();
+      DNA newDNA = new DNA(); // Create a new DNA object from the constructor template (id gene[0] will always be =0)
       TableRow newRow = genetable.addRow();
-      for (int i = 0; i < newDNA.genes.length; i++) {
+      int rows = genetable.getRowCount()-1;
+      newDNA.genes[0] = rows; // Set id gene[0] to a value equal to the number of the new row (subtracting 1 for the header)
+      newRow.setFloat(0, rows); // Add id to the first column
+      // Iterate through the remaining rows of the table, starting at column 1
+      for (int i = 1; i < newDNA.genes.length; i++) {
         float value = newDNA.genes[i];
         newRow.setFloat(i, value);
       }

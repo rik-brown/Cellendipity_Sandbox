@@ -86,7 +86,7 @@ class Cell {
   float stroke_A_end;
   
   // STRAIN
-  int ID;
+  int id;
 
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
@@ -99,8 +99,8 @@ class Cell {
   fertile = false; // A new cell always starts off infertile
   stripe = false; // A new cell always starts off displaying it's normal colour 
 
-  // ID
-  ID = int(dna.genes[0]);
+  // id
+  id = int(dna.genes[0]);
 
   // POSITION & MOVEMENT
   position = pos.copy();                // cell has current position
@@ -200,10 +200,10 @@ class Cell {
   //fill_A_start = map(oDist, 0, gs.widthUsed*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
-  stripeSize = map(ID, 0, gs.seeds, 60, 10);
-  //lifespan = map(ID, 0, gs.seeds, 0, 360);
-  //lifespan = gs.widthUsed * 0.001 * map(ID, 0, gs.seeds, 1, 500);
-  //twist_start = map(ID, 0, gs.seeds, 0, 15);
+  stripeSize = map(id, 0, gs.seeds, 60, 10);
+  //lifespan = map(id, 0, gs.seeds, 0, 360);
+  //lifespan = gs.widthUsed * 0.001 * map(id, 0, gs.seeds, 1, 500);
+  //twist_start = map(id, 0, gs.seeds, 0, 15);
   }
 
   void run() {
@@ -443,7 +443,7 @@ void displayRect() {
 //    pushMatrix();
 //    translate(position.x,position.y);
 //    rotate(angle);
-//    String word = gs.words.get(ID);
+//    String word = gs.words.get(id);
 //    text(word, 0, 0);
     
 //   popMatrix();
@@ -500,7 +500,7 @@ void displayRect() {
     int rowHeight = 12;
     fill(120, 0, 255);
     textSize(rowHeight);
-    text("ID:" + ID, position.x, position.y + rowHeight * 0);
+    text("id:" + id, position.x, position.y + rowHeight * 0);
     //text("r:" + r, position.x, position.y + rowHeight * 5);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
@@ -523,7 +523,7 @@ void displayRect() {
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 2);
     //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 3);
-    text("dirDiff:" + directionDiff, position.x, position.y + rowHeight * 2);
+    //text("dirDiff:" + directionDiff, position.x, position.y + rowHeight * 2);
     //text("twist:" + twist, position.x, position.y + rowHeight * 5);
   }
 
