@@ -8,14 +8,19 @@
 *
 * Development Goals:
 *
-*   d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
-*   e) Learn how to build a 'library' of predefined DNA objects (presets) that are loaded into fixed positions in the strains arraylist
-*      i) Is this leading towards a new Object called Genepool? /9.apr
-*      ii) Colony is starting to feel a little bit crowded / overstuffed /9.apr
-*      iii) It could be time to tidy up and rendyrke what the Colony object is & does /9.apr
-*   f) Is now the time to start importing/exporting Json objects or .csv files? (genes) /9.apr
-*   g) Introduce a new spawn-pattern of concentric rings
-*   h) Introduce a parameter for defining BORDER thickness 11/apr
+*  d) Introduce a smart way of saving frames for gifs (configurable frame interval and intelligent file numbering)
+*  e) Learn how to build a 'library' of predefined DNA objects (presets) that are loaded into fixed positions in the strains arraylist
+*  g) Introduce a new spawn-pattern of concentric rings
+*  h) Fix better naming for output files, it's a MESS!
+*    1) When done, fix path & naming of genepool_output.csv (it should not be in data)
+*    2) Remove DNA logging to settings.txt, it isn't needed there any more
+*  i) Cell style could be a variant of it's DNA, based on a single DNA (e.g. striped/stepped/nucleus) EXPLORE
+*  j) Nucleus should be moved to the DNA
+*    1) Nucleus colour might need to be hard-coded, to avoid yet more DNA. or?
+*    2) Same goes for stripe colour
+*  k) Populate the library with some 'favourite' cell genotypes from older sketches
+*  l) Try to recreate the twitter/tumblrbot classic styles?
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -28,7 +33,7 @@ int maxCycles = 20;
 int maxFrames = 5000;
 int frameCounter = maxFrames;
 String versionName = "sandbox";
-String batchName = "batch-154.3";
+String batchName = "batch-155.0";
 String outputName = nf(runCycle, 3);
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)

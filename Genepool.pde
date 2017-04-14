@@ -42,6 +42,7 @@ class Genepool {
       newgenes[26]= random(1, 6);   // 26=noise_tep
       newgenes[27]= random(1000);   // 27=noise_xOff
       newgenes[28]= random(1000);   // 28=noise_yOff
+      newgenes[31]= random(100, 200);   // 31=lifespan
 
       // Add a new DNA object to the genepool using the array newgenes[] with data from .csv row
       genepool.add(new DNA(newgenes));
