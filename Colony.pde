@@ -87,8 +87,8 @@ void cartesian_pattern() {
     //vel = PVector.fromAngle(0).mult(1);
     
     for (int c = 0; c <= gs.cols; c++) {
-      //DNA dna = gpl.genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
-      DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
+      DNA dna = gpl.genepool.get(int(random(gs.numStrains))+7); // Get's a random strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
       //dna.genes[0] = n; //n is transferred to gene 0
       n ++;
       float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
