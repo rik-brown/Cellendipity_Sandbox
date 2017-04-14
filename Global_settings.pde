@@ -56,7 +56,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     
     borderWidth = width * 0.2;   // Width of the vertical borders
     borderHeight = height * 0.2; // Height of the horisontal borders
