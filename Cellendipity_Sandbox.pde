@@ -23,7 +23,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 
 int runCycle = 1;
-int maxCycles = 1;
+int maxCycles = 20;
 //int maxFrames = int(random(1300,1600));
 int maxFrames = 5000;
 int frameCounter = maxFrames;
@@ -43,11 +43,11 @@ void setup() {
   ellipseMode(RADIUS);
   smooth();
   //size(200, 200);
-  size(500, 500);
+  //size(500, 500);
   //size(1000, 1000);
-  //size(1500, 1500);
+  size(1500, 1500);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   pathName = "../../output/" + versionName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(width) + "/"; //local
@@ -95,6 +95,7 @@ void manageColony() {
     //background (0,0,255); //white
     startSettingsFile();
     gs = new Global_settings();
+    gpl = new Genepool();
     colony = new Colony();
 }
 
