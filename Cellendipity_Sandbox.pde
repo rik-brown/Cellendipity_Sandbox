@@ -33,7 +33,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 
 String batchName = "batch-156.0";
-int maxCycles = 2;
+int maxCycles = 1;
 int runCycle = 1;
 
 
@@ -51,8 +51,8 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
-  size(1500, 1500);
+  size(1000, 1000);
+  //size(1500, 1500);
   //size(2000, 2000);
   //size(4000, 4000);
   //size(6000, 6000);

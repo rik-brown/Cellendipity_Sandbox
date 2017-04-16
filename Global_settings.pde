@@ -53,7 +53,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = false;
+    debug = true;
     
     borderWidth = int(width * 0.2);   // Width of the vertical borders
     borderHeight = int(height * 0.2); // Height of the horisontal borders
@@ -68,34 +68,34 @@ class Global_settings {
     numStrains = 2;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
-    populationMaxSize = 500;  // Not really used when 'breeding' is disabled
+    populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 10;
+    seeds = 500;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
-    rows = int(random(4,15));
-	  //rows = 14;
+    //rows = int(random(4,15));
+	  rows = 1;
     cols = rows;
     //cols = 12;
     
-    //orx = int(widthUsed * random (0.3, 0.7));  // Random but kept roughly within the pattern
-    //ory = int(heightUsed * random (0.3, 0.7)); // Random but kept roughly within the pattern
-    //orx = int(widthUsed * random (0.4, 0.6));  // Random but kept roughly within the pattern
-    //ory = int(heightUsed * random (0.4, 0.6)); // Random but kept roughly within the pattern
-    //orx = int(widthUsed * random (1));  // Fully random
-    //ory = int(heightUsed * random (1)); // Fully random
-    orx = int(widthUsed * 0.5) + borderWidth +1;  // Centered
-    ory = int(heightUsed * 0.5) + borderHeight +1; // Centered
+    //orx = int(widthUsed * random (0.3, 0.7)) + borderWidth;  // Random but kept roughly within the pattern
+    //ory = int(heightUsed * random (0.3, 0.7)) + borderHeight; // Random but kept roughly within the pattern
+    //orx = int(widthUsed * random (0.4, 0.6)) + borderWidth;  // Random but kept roughly within the pattern
+    //ory = int(heightUsed * random (0.4, 0.6)) + borderHeight; // Random but kept roughly within the pattern
+    orx = int(widthUsed * random (1)) + borderWidth;  // Fully random
+    ory = int(heightUsed * random (1)) + borderHeight; // Fully random
+    //orx = int(widthUsed * 0.5) + borderWidth +1;  // Centered
+    //ory = int(heightUsed * 0.5) + borderHeight +1; // Centered
 
     stepped = false;
     stepSize = 15;
     stepSizeN = int(random (55, 82));
     
-    //bkg_H = random(360);
-    bkg_H = 230;
+    bkg_H = random(360);
+    //bkg_H = 230;
     //bkg_S = random(128,164);
-    bkg_S = 100; // last 105, 55, 255, 225
+    bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
     bkg_B = 200; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);

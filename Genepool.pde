@@ -21,12 +21,14 @@ class Genepool {
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   Table genetable; // A table of gene data
+  int numPredefined; // The number of predefined DNA in the genepool
   
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Genepool() {
     genepool = new ArrayList<DNA>();
     
-    Table genetable = loadTable("genepool.csv", "header");
+    genetable = loadTable("genepool.csv", "header");
+    numPredefined = genetable.getRowCount(); // Count the number of rows initially (minus header)
     
     for (TableRow row : genetable.rows()) {
       float[] newgenes = new float[genetable.getColumnCount()];
@@ -69,13 +71,9 @@ class Genepool {
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {
+        int gene = 22;
         DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[0]);
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[17]);
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[25]);
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[26]);
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[27]);
-        println("Genepool entry " + i + ": contains ID value" + debugDNA.genes[28]);
+        println("Genepool entry " + i + ": contains gene [" + gene + "] value" + debugDNA.genes[gene]);
       }
     }
     
