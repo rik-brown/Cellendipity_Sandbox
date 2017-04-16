@@ -210,10 +210,10 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start = map(oDist, 0, gs.widthUsed, 80, 40) * gs.widthUsed * 0.001;
-    lifespan = map(oDist, 0, gs.widthUsed, 100, 200) * gs.widthUsed * 0.001;
-    noisePercent_start = map(oDist, 0, gs.widthUsed, 0, 0.5);
-    noisePercent_end = map(oDist, 0, gs.widthUsed, 0, 0.5);
+    radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
+    lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
+    noisePercent_start = map(oDist, 0, gs.widthUsed, 0, 0.6);
+    noisePercent_end = map(oDist, 0, gs.widthUsed, 0, 0.3);
     fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
     fill_B_start = map(position.x, 0, gs.widthUsed, 128, 0);
     fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
