@@ -32,7 +32,7 @@ Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 
-String batchName = "batch-156.0";
+String batchName = "batch-156.2";
 int maxCycles = 5;
 int runCycle = 1;
 

@@ -217,8 +217,10 @@ class Cell {
     fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
     fill_B_start = map(position.x, 0, gs.widthUsed, 128, 0);
     fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
-    fill_S_start = map(position.x, 0, gs.widthUsed, 255, 0);
-    fill_S_end = map(position.x, 0, gs.widthUsed, 30, 0);
+    //fill_S_start = map(position.x, 0, gs.widthUsed, 255, 0);
+    //fill_S_end = map(position.x, 0, gs.widthUsed, 30, 0);
+    fill_S_start = map(oDist, 0, gs.widthUsed, 0, 255);
+    fill_S_end = map(oDist, 0, gs.widthUsed, 0, 30);
     //twist_start = map(oDist, 0, gs.widthUsed, 0, 30);
     //twist_end = map(oDist, 0, gs.widthUsed, 0, 30);
     

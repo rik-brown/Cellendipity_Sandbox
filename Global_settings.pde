@@ -55,8 +55,8 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = int(width * 0.0);   // Width of the vertical borders
-    borderHeight = int(height * 0.0); // Height of the horisontal borders
+    borderWidth = int(width * 0.2);   // Width of the vertical borders
+    borderHeight = int(height * 0.2); // Height of the horisontal borders
     
     widthUsed = int(width - (2*borderWidth));    //Calculate width of usable area (inside border)
     heightUsed = int(height - (2*borderHeight)); //Calculate height of usable area (inside border)
@@ -75,7 +75,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 1;
+	  rows = 11;
     cols = rows;
     //cols = 12;
     
@@ -97,7 +97,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 200; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
