@@ -53,10 +53,10 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     
-    borderWidth = int(width * 0.2);   // Width of the vertical borders
-    borderHeight = int(height * 0.2); // Height of the horisontal borders
+    borderWidth = int(width * 0.0);   // Width of the vertical borders
+    borderHeight = int(height * 0.0); // Height of the horisontal borders
     
     widthUsed = int(width - (2*borderWidth));    //Calculate width of usable area (inside border)
     heightUsed = int(height - (2*borderHeight)); //Calculate height of usable area (inside border)
