@@ -37,13 +37,14 @@ class Colony {
 void random_pattern() {
   // Here is the code which fills the 'cells' arraylist with cells at random positions
   for (int n = 0; n <= gs.seeds; n++) {
+    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
     pos = new PVector(random(gs.widthUsed)+gs.borderWidth, random(gs.heightUsed)+gs.borderHeight); // random position
     origin = new PVector (gs.orx, gs.ory);
     PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = gpl.genepool.get(int(random(gs.numStrains+6))); // Get's a random strain of dna from the genepool
+    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
     //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
     dna.genes[0] = n; //n is transferred to gene 0
     
@@ -57,6 +58,7 @@ void random_pattern() {
 void center_pattern() {
   // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
   for (int n = 0; n <= gs.seeds; n++) {
+    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
     pos = new PVector(width*0.5, height*0.5); // random position
     
     vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
@@ -65,9 +67,9 @@ void center_pattern() {
     //vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
-    DNA dna = gpl.genepool.get(int(random(gs.numStrains))); // Get's a random strain of dna from the genepool
+    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
     //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    dna.genes[0] = n; //n is transferred to gene 28
+    //dna.genes[0] = n; //n is transferred to gene 28
     
     for (int s = 0; s < gs.strainSize; s ++) {
       population.add(new Cell(pos, vel, dna));
@@ -168,9 +170,10 @@ void phyllotaxic_pattern() {
     PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-    int str = ((n) % 2) + 3;
+    //int strain = ((n) % 2) + 3;
+    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
     //DNA dna = gpl.genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-    DNA dna = gpl.genepool.get(str); // Get's a random strain of dna from the genepool
+    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
     //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
     
     dna.genes[0] = n; //n is transferred to gene 0

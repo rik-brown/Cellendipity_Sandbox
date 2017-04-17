@@ -25,14 +25,22 @@
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
 *  o) SPAWNING new cells - does it still work?
 *    1) Add recombined DNA to the genepool?
+*  
+*  p) Use an image in /data as a seed for colours at spawn positions
+*    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
+*    2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette)
+*    3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern)
+*    4) Add a new class to handle this?
+*    5) The output of one iteration could provide the input for the next?
 *
 */
 
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
+PImage img;
 
-String batchName = "batch-156.4";
+String batchName = "batch-157.0";
 int maxCycles = 15;
 int runCycle = 1;
 
@@ -49,6 +57,7 @@ String framedumpPath;  // Name & location of saved output (individual frames)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
+  //img = loadImage("output.png");
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
@@ -79,6 +88,7 @@ void draw() {
 // What happens when the colony goes extinct
 void manageColony() {
     saveFrame(screendumpPath); // Save an image 
+    saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
     endSettingsFile(); // Complete the settings logfile & close
     //exit();
     //colony.population.clear(); //Kill all cells. Still necessary?
@@ -93,6 +103,7 @@ void manageColony() {
 }
 
 void getReady() {
+  img = loadImage("output.png");
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
@@ -109,6 +120,7 @@ void getReady() {
   gpl = new Genepool();
   colony = new Colony();
   background(gs.bkgColor);
+  image(img,0,0);
 }
 
 void startSettingsFile() {
