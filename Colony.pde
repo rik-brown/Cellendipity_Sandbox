@@ -98,6 +98,14 @@ void cartesian_pattern() {
       float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
       float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
       pos = new PVector(xpos, ypos);
+      // Set the start & end color of the strain according to the colour at the same location in the source image
+      color colorFromPixel = pixelColour(pos);
+      dna.genes[1] = hue(colorFromPixel);
+      dna.genes[2] = hue(colorFromPixel);
+      dna.genes[3] = saturation(colorFromPixel);
+      dna.genes[4] = saturation(colorFromPixel);
+      dna.genes[5] = brightness(colorFromPixel);
+      dna.genes[6] = brightness(colorFromPixel);
       
       origin = new PVector (gs.orx, gs.ory);
 
@@ -188,9 +196,12 @@ void phyllotaxic_pattern() {
 }
 
 // Method which receives a position PVector & returns a color object matching the color of the pixel in /data/input.png
-color pixelColour(pos) {
-  int pixelPos = pos.x + pos.y * width; // Position of pixel to be used for colour-sample
+color pixelColour(PVector pos) {
+  int pixelX = int(map(pos.x, gs.borderWidth, gs.borderWidth + gs.widthUsed, 0, img.width-1));
+  int pixelY = int(map(pos.y, gs.borderHeight, gs.borderHeight + gs.heightUsed, 0, img.height-1));
+  int pixelPos = pixelX + pixelY * img.width; // Position of pixel to be used for colour-sample
   img.loadPixels(); // Load the pixel array for the input image
+  //println("pos.X: " + pos.x + " pos.Y:" + pos.y + "img.width:" + img.width + " img.Height:" + img.height + " PixelX: " + pixelX + " PixelY: " + pixelY + " pixelPos: " + pixelPos +" pixels.length: " + img.pixels.length); // DEBUG
   float h = hue(img.pixels[pixelPos]);
   float s = saturation(img.pixels[pixelPos]);
   float b = brightness(img.pixels[pixelPos]);

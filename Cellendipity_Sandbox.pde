@@ -33,6 +33,9 @@
 *    4) Add a new class to handle this?
 *    5) The output of one iteration could provide the input for the next?
 *
+*  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
+*    1) The longer you wait, the more work this will be!
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -51,6 +54,7 @@ int frameCounter;
 
 String iterationNum;
 String applicationName = "sandbox";
+//String inputFile = "input.jpg"; // First run will use /data/input.png, which will not be overwritten
 String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -104,7 +108,7 @@ void manageColony() {
 
 void getReady() {
   img = loadImage(inputFile);
-  inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
+  //inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
@@ -121,7 +125,7 @@ void getReady() {
   gpl = new Genepool();
   colony = new Colony();
   background(gs.bkgColor);
-  //image(img,0,0); // Displays the image file /data/output.png
+  //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 
 void startSettingsFile() {

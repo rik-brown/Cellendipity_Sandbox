@@ -210,17 +210,21 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
+    //radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
+    radius_start = map(oDist, 0, gs.widthUsed, 50, 30) * gs.widthUsed * 0.001;
     lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
     noisePercent_start = map(oDist, 0, gs.widthUsed, 0, 0.6);
     noisePercent_end = map(oDist, 0, gs.widthUsed, 0, 0.3);
-    fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
-    fill_B_start = map(position.x, 0, gs.widthUsed, 128, 48);
-    fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
+    
+    //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
+    //fill_B_start = map(position.x, 0, gs.widthUsed, 128, 48);
+    //fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
+    fill_B_end = fill_B_start * map(oDist, 0, gs.widthUsed, 1, 2);
     //fill_S_start = map(position.x, 0, gs.widthUsed, 255, 0);
     //fill_S_end = map(position.x, 0, gs.widthUsed, 30, 0);
-    fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
-    fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
+    //fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
+    //fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
+    fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
     //twist_start = map(oDist, 0, gs.widthUsed, 0, 30);
     //twist_end = map(oDist, 0, gs.widthUsed, 0, 30);
     
