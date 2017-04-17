@@ -40,7 +40,8 @@ void random_pattern() {
     int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
     pos = new PVector(random(gs.widthUsed)+gs.borderWidth, random(gs.heightUsed)+gs.borderHeight); // random position
     origin = new PVector (gs.orx, gs.ory);
-    PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+    //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
+    PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
     vel.normalize();
     //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
 
@@ -186,6 +187,15 @@ void phyllotaxic_pattern() {
   }
 }
 
+// Method which receives a position PVector & returns a color object matching the color of the pixel in /data/input.png
+color pixelColour(pos) {
+  int pixelPos = pos.x + pos.y * width; // Position of pixel to be used for colour-sample
+  img.loadPixels(); // Load the pixel array for the input image
+  float h = hue(img.pixels[pixelPos]);
+  float s = saturation(img.pixels[pixelPos]);
+  float b = brightness(img.pixels[pixelPos]);
+  return color (h, s, b);
+}
 
 
 // Spawn a new cell

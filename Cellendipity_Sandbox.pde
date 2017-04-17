@@ -40,8 +40,8 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.0";
-int maxCycles = 15;
+String batchName = "batch-157.1";
+int maxCycles = 5;
 int runCycle = 1;
 
 
@@ -51,13 +51,13 @@ int frameCounter;
 
 String iterationNum;
 String applicationName = "sandbox";
+String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
 String framedumpPath;  // Name & location of saved output (individual frames)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
-  //img = loadImage("output.png");
   //size(200, 200);
   //size(500, 500);
   //size(1000, 1000);
@@ -103,7 +103,8 @@ void manageColony() {
 }
 
 void getReady() {
-  img = loadImage("output.png");
+  img = loadImage(inputFile);
+  inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
@@ -120,7 +121,7 @@ void getReady() {
   gpl = new Genepool();
   colony = new Colony();
   background(gs.bkgColor);
-  image(img,0,0);
+  //image(img,0,0); // Displays the image file /data/output.png
 }
 
 void startSettingsFile() {
