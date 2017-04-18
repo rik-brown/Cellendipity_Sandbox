@@ -190,7 +190,7 @@ class Cell {
   //fill_B_end = map(oDist, 0, gs.widthUsed*0.5, 250, 48);
   //fill_B_start *= map(oDist, 0, gs.widthUsed, 1, 0);
   //fill_B_start *= map(position.x, 0, gs.widthUsed, 1, 0);
-  //fill_B_end *= map(oDist, 0, gs.widthUsed, 0.9, 1.0);
+  //fill_B_end *= map(oDist, 0, gs.widthUsed, 0.7, 0.2);
   //stripeSize *= map(oDist, 0, gs.widthUsed, 1.0, 0.6);
   //stripeRatio = map(oDist, 0, gs.widthUsed, 0.3, 0.7);
   
@@ -211,20 +211,20 @@ class Cell {
   void coralMods() {
     // MODULATED BY POSITION
     //radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
-    radius_start = map(oDist, 0, gs.widthUsed, 50, 30) * gs.widthUsed * 0.001;
-    lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
-    noisePercent_start = map(oDist, 0, gs.widthUsed, 0, 0.6);
-    noisePercent_end = map(oDist, 0, gs.widthUsed, 0, 0.3);
+    radius_start = map(oDist, 0, gs.widthUsed, 10, 20) * gs.widthUsed * 0.001;
+    //lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
+    noisePercent_start = map(oDist, 0, gs.widthUsed, 0.6, 0.8);
+    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.2, 0.4);
     
     //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
     //fill_B_start = map(position.x, 0, gs.widthUsed, 128, 48);
     //fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
-    fill_B_end = fill_B_start * map(oDist, 0, gs.widthUsed, 1, 2);
+    //fill_B_end = fill_B_start * map(oDist, 0, gs.widthUsed, 1, 2);
     //fill_S_start = map(position.x, 0, gs.widthUsed, 255, 0);
     //fill_S_end = map(position.x, 0, gs.widthUsed, 30, 0);
     //fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
     //fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
-    fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
+    //fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
     //twist_start = map(oDist, 0, gs.widthUsed, 0, 30);
     //twist_end = map(oDist, 0, gs.widthUsed, 0, 30);
     
@@ -530,18 +530,18 @@ void displayRect() {
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
     //text("Stripe:" + stripe, position.x, position.y + rowHeight * 6);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
-    //text("fill_H_start:" + fill_H_start, position.x, position.y + rowHeight * 3);
-    //text("fill_H_end:" + fill_H_end, position.x, position.y + rowHeight * 4);
+    text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 1);
+    text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
     //text("radius_end:" + radius_end, position.x, position.y + rowHeight * 2);
     //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
-    //text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
+    text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 3);
     //text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
     //text("fill_A:" + fill_A, position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
-    text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
+    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
     //text("age:" + age, position.x, position.y + rowHeight * 8);
-    text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
+    //text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
     //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
