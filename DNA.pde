@@ -67,19 +67,19 @@ class DNA {
       //genes[2]= genes[1];   // 2=fill_H_end
       //genes[2]= genes[1] * random (0.80, 0.97);   // 2=fill_H_end
       //genes[2]= (gs.bkg_H + 10) % 360;   // 2=fill_H_end
-      //genes[2]= gs.bkg_H * random (0.85, 0.97);   // 2=fill_H_end
+      genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
-      genes[2]= 300;   // 2=fill_H_end
+      //genes[2]= 300;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 0;   // 3=fill_S_start
+      genes[3]= 128;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 0;   // 4=fill_S_end
+      genes[4]= 128;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 255;   // 5=fill_B_start
+      genes[5]= 64;   // 5=fill_B_start
       genes[6]= 255;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
@@ -95,10 +95,10 @@ class DNA {
       
       genes[11]= 0;   // 11=stroke_S_start
       //genes[11]= gs.bkg_S;   // 11=stroke_S_start
-      genes[12]= 0;   // 12=stroke_S_end
+      genes[12]= 255;   // 12=stroke_S_end
       
-      genes[13]= 0;   // 13=stroke_B_start
-      genes[14]= 64;   // 14=stroke_B_end
+      genes[13]= 255;   // 13=stroke_B_start
+      genes[14]= 255;   // 14=stroke_B_end
       
       genes[15]= 0;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
@@ -140,10 +140,10 @@ class DNA {
       genes[31]= 50;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 10000;   // 32=StripeSize
+      genes[32]= 30;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
-      //genes[33]= 0.5;   // 33=StripeRatio
-      genes[33] = random(0.4, 0.8);  // 33=StripeRatio
+      genes[33]= 0.5;   // 33=StripeRatio
+      //genes[33] = random(0.4, 0.8);  // 33=StripeRatio
    }
 
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents

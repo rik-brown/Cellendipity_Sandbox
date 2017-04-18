@@ -145,7 +145,7 @@ class Cell {
   drawStep = 1;
   drawStepN = 1;
   stripeStep = dna.genes[32];
-  stripeSize = dna.genes[32];
+  stripeSize = dna.genes[32] * gs.widthUsed * 0.001;
   stripeRatio = dna.genes[33];
 
   // COLOUR
@@ -211,10 +211,13 @@ class Cell {
   void coralMods() {
     // MODULATED BY POSITION
     //radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
-    radius_start = map(oDist, 0, gs.widthUsed, 10, 20) * gs.widthUsed * 0.001;
+    radius_start = map(oDist, 0, gs.widthUsed * 0.5, 60, 30) * gs.widthUsed * 0.001;
     //lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
-    noisePercent_start = map(oDist, 0, gs.widthUsed, 0.6, 0.8);
-    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.2, 0.4);
+    noisePercent_start = map(oDist, 0, gs.widthUsed, 0.05, 0.1);
+    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.0, 0.05);
+    
+    //stroke_H_start = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
+    //stroke_H_end = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
     
     //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
     //fill_B_start = map(position.x, 0, gs.widthUsed, 128, 48);
@@ -225,8 +228,8 @@ class Cell {
     //fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
     //fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
     //fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
-    //twist_start = map(oDist, 0, gs.widthUsed, 0, 30);
-    //twist_end = map(oDist, 0, gs.widthUsed, 0, 30);
+    twist_start = map(oDist, 0, gs.widthUsed, 0, 10);
+    twist_end = map(oDist, 0, gs.widthUsed, 0, 5);
     
   }
 
@@ -258,7 +261,7 @@ class Cell {
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
     if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
     stripeStep--;
-    float stripeStepStart = map(stripeSize, 0, 100, 0, r*2);
+    float stripeStepStart = map(stripeSize, 0, 100 * gs.widthUsed * 0.001, 0, r*2);
     if (stripe) {stripeStepStart *= stripeRatio;} else {stripeStepStart *= (1-stripeRatio);}
     if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
   }

@@ -43,7 +43,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.101";
+String batchName = "batch-157.2";
 int maxCycles = 1;
 int runCycle = 1;
 
@@ -54,8 +54,8 @@ int frameCounter;
 
 String iterationNum;
 String applicationName = "sandbox";
-//String inputFile = "input.jpg"; // First run will use /data/input.png, which will not be overwritten
-String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
+String inputFile = "input.jpg"; // First run will use /data/input.png, which will not be overwritten
+//String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
 String framedumpPath;  // Name & location of saved output (individual frames)

@@ -106,6 +106,8 @@ void cartesian_pattern() {
       dna.genes[4] = saturation(colorFromPixel);
       //dna.genes[5] = brightness(colorFromPixel);
       dna.genes[6] = brightness(colorFromPixel);
+      dna.genes[11] = brightness(colorFromPixel);
+      dna.genes[12] = brightness(colorFromPixel);
       
       origin = new PVector (gs.orx, gs.ory);
 
@@ -186,12 +188,28 @@ void phyllotaxic_pattern() {
     DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
     //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
     
-    dna.genes[0] = n; //n is transferred to gene 0
+    // Set the start & end color of the strain according to the colour at the same location in the source image
+    color colorFromPixel = pixelColour(pos);
+    //dna.genes[1] = hue(colorFromPixel);
+    //dna.genes[2] = hue(colorFromPixel);
+    //dna.genes[3] = saturation(colorFromPixel);
+    //dna.genes[4] = saturation(colorFromPixel);
+    //dna.genes[5] = brightness(colorFromPixel);
+    //dna.genes[6] = brightness(colorFromPixel);
+    dna.genes[9] = hue(colorFromPixel);
+    dna.genes[10] = hue(colorFromPixel);
+    dna.genes[11] = saturation(colorFromPixel);
+    dna.genes[12] = saturation(colorFromPixel);
+    dna.genes[13] = brightness(colorFromPixel);
+    dna.genes[14] = brightness(colorFromPixel);
+    
+    //dna.genes[0] = n; //n is transferred to gene 0
     
     for (int s = 0; s < gs.strainSize; s ++) {
+      //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
       population.add(new Cell(pos, vel, dna));
     }
-   c *= 1.0015;
+   c *= 1.000001;
    //c += width * 0.00003;
   }
 }
