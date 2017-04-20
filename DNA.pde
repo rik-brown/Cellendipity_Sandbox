@@ -140,7 +140,7 @@ class DNA {
       genes[31]= 150;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 30000;   // 32=StripeSize
+      genes[32]= 30;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       genes[33]= 0.5;   // 33=StripeRatio
       //genes[33] = random(0.4, 0.8);  // 33=StripeRatio

@@ -95,9 +95,9 @@ class Global_settings {
     //bkg_H = random(360);
     bkg_H = 230;
     //bkg_S = random(128,164);
-    bkg_S = 30; // last 105, 55, 255, 225
+    bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 200; // last 160, 50, 128, 255
+    bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

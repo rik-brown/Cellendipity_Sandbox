@@ -148,6 +148,23 @@ void cartesian_pattern_alt() {
       float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
       float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
       pos = new PVector(xpos, ypos);
+      color colorFromPixel = pixelColour(pos);
+      //dna.genes[1] = hue(colorFromPixel);
+      //dna.genes[2] = hue(colorFromPixel);
+      //dna.genes[3] = saturation(colorFromPixel);
+      //dna.genes[4] = saturation(colorFromPixel);
+      //dna.genes[5] = brightness(colorFromPixel);
+      //dna.genes[6] = brightness(colorFromPixel);
+      dna.genes[7] = alpha(colorFromPixel);
+      dna.genes[9] = hue(colorFromPixel);
+      dna.genes[10] = hue(colorFromPixel);
+      dna.genes[11] = saturation(colorFromPixel);
+      dna.genes[12] = saturation(colorFromPixel);
+      dna.genes[13] = brightness(colorFromPixel);
+      dna.genes[14] = brightness(colorFromPixel);
+      //dna.genes[15] = alpha(colorFromPixel);
+      dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 500/gs.rows*4, 500/gs.rows);
+      dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 50);
       
       origin = new PVector (gs.orx, gs.ory);
 
@@ -203,9 +220,9 @@ void phyllotaxic_pattern() {
     dna.genes[12] = saturation(colorFromPixel);
     dna.genes[13] = brightness(colorFromPixel);
     dna.genes[14] = brightness(colorFromPixel);
-    dna.genes[15] = alpha(colorFromPixel);
-    dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 500/gs.rows*4, 500/gs.rows);
-    dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 50);
+    //dna.genes[15] = alpha(colorFromPixel);
+    dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 10, 300);
+    dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
     
     //dna.genes[0] = n; //n is transferred to gene 0
     

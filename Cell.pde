@@ -179,8 +179,8 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  radius_start *= map(oDist, 0, gs.widthUsed, 0.5, 1);
-  flatness_start *= map(oDist, 0, gs.widthUsed, 0.4, 1.0);
+  //radius_start *= map(oDist, 0, gs.widthUsed, 0.5, 1);
+  //flatness_start *= map(oDist, 0, gs.widthUsed, 0.4, 1.0);
   lifespan *= map(oDist, 0, gs.widthUsed, 0.7, 5);
   noisePercent_start *= map(oDist, 0, gs.widthUsed, 0.7, 0.5);
   //twist_start *= map(oDist, 0, gs.widthUsed, 0.3, 0.5);
@@ -212,7 +212,7 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    //radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
+    radius_start *= map(oDist, 0, gs.widthUsed, 1, 0.2);
     //radius_start = map(oDist, 0, gs.widthUsed * 0.5, 60, 30) * gs.widthUsed * 0.001;
     lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
     noisePercent_start = map(oDist, 0, gs.widthUsed, 1, 0.1);
@@ -246,9 +246,9 @@ class Cell {
     //updateStrokeColorByRadius();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
-    if (stripe) {updateStripes();}
     updateFillColorByPosition();
-    updateStrokeColorByPosition();
+    //updateStrokeColorByPosition();
+    if (stripe) {updateStripes();}
     display();
     //displayRect();
     //displayText();
