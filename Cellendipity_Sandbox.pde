@@ -42,6 +42,9 @@
 *  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
 *    1) The longer you wait, the more work this will be!
 *
+*  r) pixelHue at seed position determines initial velocity (direction)
+*    .... which in turn influences changes
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -70,10 +73,10 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   
