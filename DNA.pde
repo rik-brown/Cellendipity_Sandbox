@@ -109,7 +109,7 @@ class DNA {
       genes[17]= 500/gs.rows;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 15;   // 18=radius_end
+      genes[18]= 1;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
       genes[19]= 100;   // 19=flatness_start
@@ -137,7 +137,7 @@ class DNA {
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 200);   // 31=lifespan
       //genes[31]= 100;   // 31=lifespan
-      genes[31]= 50;   // 31=lifespan
+      genes[31]= 150;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
       genes[32]= 30000;   // 32=StripeSize

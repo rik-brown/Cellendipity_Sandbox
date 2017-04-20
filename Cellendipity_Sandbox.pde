@@ -12,7 +12,11 @@
 
 *  g) Introduce a new spawn-pattern of concentric rings
 
-*  i) Cell style could be a variant of it's DNA, based on a single DNA (e.g. striped/stepped/nucleus) EXPLORE
+*  i) Cell STYLE could be a variant of it's DNA, based on a single gene  EXPLORE
+*    Examples could be:
+*    1) Striped or not  (today handled by having stripe size > lifespan) (which incidentally is a neat way of calculating it)
+*    2) Stepped or not (maybe stepsize could be managed in a similar way, so "always stepped" but "step interval is double the lifetime")
+*    3) Show/don't show nucles (again, maybe it's just a question of interval size?)
 
 *  j) Nucleus should be moved to the DNA
 *    1) Nucleus colour might need to be hard-coded, to avoid yet more DNA. or?
@@ -26,12 +30,14 @@
 *  o) SPAWNING new cells - does it still work?
 *    1) Add recombined DNA to the genepool?
 *  
-*  p) Use an image in /data as a seed for colours at spawn positions
+*  p) Use an image file in /data as a seed for colours (or other parameters) at spawn positions
 *    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
 *    2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette) <DONE AS DEMO 157.1>
 *    3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern) <DONE AS DEMO 157.100 & 2>
-*    4) Add a new class to handle this?
+*    4) Add a new class to handle this? Need to think about how to enable this feature.
 *    5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
+*    6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
+*    6a) Could just use hue while allowing B & S to continue as normal
 *
 *  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
 *    1) The longer you wait, the more work this will be!
@@ -43,8 +49,8 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.3";
-int maxCycles = 1;
+String batchName = "batch-157.4";
+int maxCycles = 10;
 int runCycle = 1;
 
 
@@ -64,10 +70,10 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   
@@ -91,24 +97,21 @@ void draw() {
 
 // What happens when the colony goes extinct
 void manageColony() {
-    saveFrame(screendumpPath); // Save an image 
-    saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
-    endSettingsFile(); // Complete the settings logfile & close
-    //exit();
-    //colony.population.clear(); //Kill all cells. Still necessary?
-    if (runCycle == maxCycles) {exit();}
-    else {
+  saveFrame(screendumpPath); // Save an image 
+  saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
+  endSettingsFile(); // Complete the settings logfile & close
+  //exit();
+  if (runCycle >= maxCycles) {exit();}
+  else {
     // get ready for a new cycle
     runCycle ++;
     getReady();
-    }
-    //screendumpPath = pathName + "/png/" + applicationName + "." + iterationNum + ".png";
-    //output = createWriter(pathName + applicationName + "." + iterationNum +"_settings.txt");
+  }
 }
 
 void getReady() {
   img = loadImage(inputFile);
-  //inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
+  inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local

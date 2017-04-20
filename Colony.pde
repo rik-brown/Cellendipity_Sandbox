@@ -196,19 +196,23 @@ void phyllotaxic_pattern() {
     //dna.genes[4] = saturation(colorFromPixel);
     //dna.genes[5] = brightness(colorFromPixel);
     //dna.genes[6] = brightness(colorFromPixel);
+    dna.genes[7] = alpha(colorFromPixel);
     dna.genes[9] = hue(colorFromPixel);
     dna.genes[10] = hue(colorFromPixel);
     dna.genes[11] = saturation(colorFromPixel);
     dna.genes[12] = saturation(colorFromPixel);
     dna.genes[13] = brightness(colorFromPixel);
     dna.genes[14] = brightness(colorFromPixel);
+    dna.genes[15] = alpha(colorFromPixel);
+    dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 500/gs.rows*4, 500/gs.rows);
+    dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 50);
     
     //dna.genes[0] = n; //n is transferred to gene 0
     
     for (int s = 0; s < gs.strainSize; s ++) {
-      //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
-      if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
-      //population.add(new Cell(pos, vel, dna));
+      //if (brightness(colorFromPixel) > 100) {population.add(new Cell(pos, vel, dna));}
+      //if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
+      population.add(new Cell(pos, vel, dna));
     }
    c *= 1.000001;
    //c += width * 0.00003;
@@ -225,7 +229,8 @@ color pixelColour(PVector pos) {
   float h = hue(img.pixels[pixelPos]);
   float s = saturation(img.pixels[pixelPos]);
   float b = brightness(img.pixels[pixelPos]);
-  return color (h, s, b);
+  float a = alpha(img.pixels[pixelPos]);
+  return color (h, s, b, a);
 }
 
 

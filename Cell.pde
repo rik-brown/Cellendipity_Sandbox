@@ -158,6 +158,7 @@ class Cell {
   fill_A_start = dna.genes[7];
   fill_A_end = dna.genes[8];
   fillColor = color(fill_H_start, fill_S_start, fill_B_start); // Initial color is set
+  fill_A = fill_A_start;
 
   stroke_H_start = dna.genes[9];
   stroke_H_end = dna.genes[10];
@@ -168,6 +169,7 @@ class Cell {
   stroke_A_start = dna.genes[15];
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
+  stroke_A = stroke_A_start;
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
@@ -179,9 +181,9 @@ class Cell {
   // MODULATED BY POSITION
   radius_start *= map(oDist, 0, gs.widthUsed, 0.5, 1);
   flatness_start *= map(oDist, 0, gs.widthUsed, 0.4, 1.0);
-  lifespan *= map(oDist, 0, gs.widthUsed, 0.3, 0.7);
+  lifespan *= map(oDist, 0, gs.widthUsed, 0.7, 5);
   noisePercent_start *= map(oDist, 0, gs.widthUsed, 0.7, 0.5);
-  twist_start *= map(oDist, 0, gs.widthUsed, 0.3, 0.5);
+  //twist_start *= map(oDist, 0, gs.widthUsed, 0.3, 0.5);
   //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 40, 0));
   //fill_S_start *= map(position.x, 0, gs.widthUsed, 1, 0);
   //fill_S_start *= map(oDist, 0, gs.widthUsed, 0, 0);
@@ -211,10 +213,10 @@ class Cell {
   void coralMods() {
     // MODULATED BY POSITION
     //radius_start = map(oDist, 0, gs.widthUsed, 90, 50) * gs.widthUsed * 0.001;
-    radius_start = map(oDist, 0, gs.widthUsed * 0.5, 60, 30) * gs.widthUsed * 0.001;
-    //lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
-    noisePercent_start = map(oDist, 0, gs.widthUsed, 0.05, 0.1);
-    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.0, 0.05);
+    //radius_start = map(oDist, 0, gs.widthUsed * 0.5, 60, 30) * gs.widthUsed * 0.001;
+    lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
+    noisePercent_start = map(oDist, 0, gs.widthUsed, 1, 0.1);
+    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.5, 0.5);
     
     //stroke_H_start = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
     //stroke_H_end = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
@@ -228,8 +230,8 @@ class Cell {
     //fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
     //fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
     //fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
-    twist_start = map(oDist, 0, gs.widthUsed, 0, 10);
-    twist_end = map(oDist, 0, gs.widthUsed, 0, 5);
+    twist_start = map(oDist, 0, gs.widthUsed, 0, 5);
+    twist_end = map(oDist, 0, gs.widthUsed, 0, 1);
     
   }
 
@@ -240,11 +242,13 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColorByRadius();
-    updateStrokeColorByRadius();
+    //updateFillColorByRadius();
+    //updateStrokeColorByRadius();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     if (stripe) {updateStripes();}
+    updateFillColorByPosition();
+    updateStrokeColorByPosition();
     display();
     //displayRect();
     //displayText();
@@ -364,6 +368,14 @@ class Cell {
     stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
     strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
   }
+  
+  void updateFillColorByPosition() {
+  fillColor = colony.pixelColour(position);
+  }
+  
+  void updateStrokeColorByPosition() {
+  strokeColor = colony.pixelColour(position);
+  }
 
   void updateStripes() {
     //fillColor = color(34, 255, 255); // RED
@@ -381,7 +393,7 @@ class Cell {
     //if (r > (gs.widthUsed*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
     //if (position.x > gs.widthUsed + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
-    //if (position.x > gs.widthUsed * 0.9 || position.x < gs.widthUsed * 0.1 || position.y > height * 0.9 || position.y < height * 0.1) {return true;} // Death if move beyond border
+    if (position.x > width || position.x < 0 || position.y > height || position.y < 0) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death
   }
@@ -533,14 +545,14 @@ void displayRect() {
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
     //text("Stripe:" + stripe, position.x, position.y + rowHeight * 6);
     //text("range:" + range, position.x, position.y + rowHeight * 0);
-    text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 1);
-    text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
+    //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 1);
+    //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
     //text("radius_end:" + radius_end, position.x, position.y + rowHeight * 2);
-    //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
-    text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 3);
-    //text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
-    //text("fill_A:" + fill_A, position.x, position.y + rowHeight * 4);
+    text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
+    text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
+    text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
+    text("fill_A:" + fill_A, position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
     //text("age:" + age, position.x, position.y + rowHeight * 8);
