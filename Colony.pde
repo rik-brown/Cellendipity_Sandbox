@@ -207,7 +207,8 @@ void phyllotaxic_pattern() {
     
     for (int s = 0; s < gs.strainSize; s ++) {
       //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
-      population.add(new Cell(pos, vel, dna));
+      if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
+      //population.add(new Cell(pos, vel, dna));
     }
    c *= 1.000001;
    //c += width * 0.00003;

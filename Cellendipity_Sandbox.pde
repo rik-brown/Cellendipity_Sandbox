@@ -28,10 +28,10 @@
 *  
 *  p) Use an image in /data as a seed for colours at spawn positions
 *    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
-*    2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette)
-*    3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern)
+*    2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette) <DONE AS DEMO 157.1>
+*    3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern) <DONE AS DEMO 157.100 & 2>
 *    4) Add a new class to handle this?
-*    5) The output of one iteration could provide the input for the next?
+*    5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
 *
 *  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
 *    1) The longer you wait, the more work this will be!
@@ -43,7 +43,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.2";
+String batchName = "batch-157.3";
 int maxCycles = 1;
 int runCycle = 1;
 

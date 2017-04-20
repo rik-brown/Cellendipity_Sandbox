@@ -7,15 +7,7 @@ class Genepool {
 *  3) Any new genotypes that might arise during the lifetime of a colony
 *
 *  TO DO:
-*  A) Iterate through the following for all the rows in /data/genepool.csv:
-*    a) Fill an array with the data from one row in the table <DONE>
-*    b) Create a new DNA object using this array <DONE>
-*    c) Add this DNA object to the Genepool arraylist <DONE>
 *
-*  B) Add new DNA to the table in csv format. CONSIDER CHANGING THIS TO A SEPERATE "OUTPUT" FILE?
-*    1) Get the first 'added-later' DNA from the genepool arraylist
-*    2) Append a new row to the end of the table
-*    3) Fill the new row with the data the genes array in the DNA object
 */
 
   // VARIABLES
