@@ -69,7 +69,6 @@ class Cell {
   float fill_S_end;
   float fill_B_start;
   float fill_B_end;
-  float fill_A;      // Transparency (HSB & RGB)
   float fill_A_start;
   float fill_A_end;
 
@@ -81,7 +80,6 @@ class Cell {
   float stroke_S_end;
   float stroke_B_start;
   float stroke_B_end;
-  float stroke_A;    // Transparency (HSB & RGB)
   float stroke_A_start;
   float stroke_A_end;
   
@@ -129,13 +127,13 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = dna.genes[31] * gs.widthUsed * 0.001;
+  lifespan = dna.genes[31] * width * 0.001;
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
 
   // SIZE AND SHAPE
-  radius_start = dna.genes[17] * gs.widthUsed * 0.001;
+  radius_start = dna.genes[17] * width * 0.001;
   radius_end = radius_start * dna.genes[18] * 0.01;
   r = radius_start; // Initial value for radius
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
@@ -145,7 +143,7 @@ class Cell {
   drawStep = 1;
   drawStepN = 1;
   stripeStep = dna.genes[32];
-  stripeSize = dna.genes[32] * gs.widthUsed * 0.001;
+  stripeSize = dna.genes[32] * width * 0.001;
   stripeRatio = dna.genes[33];
 
   // COLOUR
@@ -157,8 +155,7 @@ class Cell {
   fill_B_end = dna.genes[6];
   fill_A_start = dna.genes[7];
   fill_A_end = dna.genes[8];
-  fillColor = color(fill_H_start, fill_S_start, fill_B_start); // Initial color is set
-  fill_A = fill_A_start;
+  fillColor = color(fill_H_start, fill_S_start, fill_B_start, fill_A_start); // Initial color is set
 
   stroke_H_start = dna.genes[9];
   stroke_H_end = dna.genes[10];
@@ -168,8 +165,7 @@ class Cell {
   stroke_B_end = dna.genes[14];
   stroke_A_start = dna.genes[15];
   stroke_A_end = dna.genes[16];
-  strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start); // Initial color is set
-  stroke_A = stroke_A_start;
+  strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
@@ -179,59 +175,59 @@ class Cell {
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  //radius_start *= map(oDist, 0, gs.widthUsed, 0.5, 1);
-  //flatness_start *= map(oDist, 0, gs.widthUsed, 0.4, 1.0);
-  lifespan *= map(oDist, 0, gs.widthUsed, 0.7, 5);
-  noisePercent_start *= map(oDist, 0, gs.widthUsed, 0.7, 0.5);
-  //twist_start *= map(oDist, 0, gs.widthUsed, 0.3, 0.5);
-  //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 40, 0));
-  //fill_S_start *= map(position.x, 0, gs.widthUsed, 1, 0);
-  //fill_S_start *= map(oDist, 0, gs.widthUsed, 0, 0);
-  //fill_S_end *= map(position.x, 0, gs.widthUsed, 1, 0);
-  //fill_S_end *= map(oDist, 0, gs.widthUsed, 0, 0);
-  //fill_B_end = map(oDist, 0, gs.widthUsed*0.5, 250, 48);
-  //fill_B_start *= map(oDist, 0, gs.widthUsed, 1, 0);
-  //fill_B_start *= map(position.x, 0, gs.widthUsed, 1, 0);
-  //fill_B_end *= map(oDist, 0, gs.widthUsed, 0.7, 0.2);
-  //stripeSize *= map(oDist, 0, gs.widthUsed, 1.0, 0.6);
-  //stripeRatio = map(oDist, 0, gs.widthUsed, 0.3, 0.7);
+  //radius_start *= map(oDist, 0, width, 0.5, 1);
+  //flatness_start *= map(oDist, 0, width, 0.4, 1.0);
+  lifespan *= map(oDist, 0, width, 0.7, 5);
+  noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
+  //twist_start *= map(oDist, 0, width, 0.3, 0.5);
+  //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 40, 0));
+  //fill_S_start *= map(position.x, 0, width, 1, 0);
+  //fill_S_start *= map(oDist, 0, width, 0, 0);
+  //fill_S_end *= map(position.x, 0, width, 1, 0);
+  //fill_S_end *= map(oDist, 0, width, 0, 0);
+  //fill_B_end = map(oDist, 0, width*0.5, 250, 48);
+  //fill_B_start *= map(oDist, 0, width, 1, 0);
+  //fill_B_start *= map(position.x, 0, width, 1, 0);
+  //fill_B_end *= map(oDist, 0, width, 0.7, 0.2);
+  //stripeSize *= map(oDist, 0, width, 1.0, 0.6);
+  //stripeRatio = map(oDist, 0, width, 0.3, 0.7);
   
   // MODULATED BY POSITION (Cartesian/Random)
-  //lifespan = gs.widthUsed * 0.001 * map(oDist, 0, gs.widthUsed*0.7, 18, 12);
+  //lifespan = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);
 
-  //twist_start = map(oDist, 0, gs.widthUsed, 0, 15);
-  //fill_B_end = dna.genes[5] * map(oDist, 0, gs.widthUsed*0.7, 0.7, 1);
-  //fill_A_start = map(oDist, 0, gs.widthUsed*0.7, 255, 20);
+  //twist_start = map(oDist, 0, width, 0, 15);
+  //fill_B_end = dna.genes[5] * map(oDist, 0, width*0.7, 0.7, 1);
+  //fill_A_start = map(oDist, 0, width*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
   stripeSize = map(id, 0, gs.seeds, 60, 10);
   //lifespan = map(id, 0, gs.seeds, 0, 360);
-  //lifespan = gs.widthUsed * 0.001 * map(id, 0, gs.seeds, 1, 500);
+  //lifespan = width * 0.001 * map(id, 0, gs.seeds, 1, 500);
   //twist_start = map(id, 0, gs.seeds, 0, 15);
   }
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, gs.widthUsed, 1, 0.2);
-    //radius_start = map(oDist, 0, gs.widthUsed * 0.5, 60, 30) * gs.widthUsed * 0.001;
-    lifespan = map(oDist, 0, gs.widthUsed, 80, 200) * gs.widthUsed * 0.001;
-    noisePercent_start = map(oDist, 0, gs.widthUsed, 1, 0.1);
-    noisePercent_end = map(oDist, 0, gs.widthUsed, 0.5, 0.5);
+    //radius_start *= map(oDist, 0, width, 1, 0.2);
+    //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
+    lifespan = map(oDist, 0, width, 80, 200) * width * 0.001;
+    noisePercent_start = map(oDist, 0, width, 1, 0.1);
+    noisePercent_end = map(oDist, 0, width, 0.5, 0.5);
     
-    //stroke_H_start = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
-    //stroke_H_end = map(oDist, 0, gs.widthUsed * 0.5, 0, 360);
+    //stroke_H_start = map(oDist, 0, width * 0.5, 0, 360);
+    //stroke_H_end = map(oDist, 0, width * 0.5, 0, 360);
     
-    //fill_H_end = (gs.bkg_H + map(oDist, 0, gs.widthUsed, 30, 0));
-    //fill_B_start = map(position.x, 0, gs.widthUsed, 128, 48);
-    //fill_B_end = map(oDist, 0, gs.widthUsed, 200, 255);
-    //fill_B_end = fill_B_start * map(oDist, 0, gs.widthUsed, 1, 2);
-    //fill_S_start = map(position.x, 0, gs.widthUsed, 255, 0);
-    //fill_S_end = map(position.x, 0, gs.widthUsed, 30, 0);
-    //fill_S_start = map(oDist, 0, gs.widthUsed, 255, 0);
-    //fill_S_end = map(oDist, 0, gs.widthUsed, 30, 0);
-    //fill_S_end = fill_S_start * map(oDist, 0, gs.widthUsed, 0.8, 0.6);
-    twist_start = map(oDist, 0, gs.widthUsed, 0, 5);
-    twist_end = map(oDist, 0, gs.widthUsed, 0, 1);
+    //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 30, 0));
+    //fill_B_start = map(position.x, 0, width, 128, 48);
+    //fill_B_end = map(oDist, 0, width, 200, 255);
+    //fill_B_end = fill_B_start * map(oDist, 0, width, 1, 2);
+    //fill_S_start = map(position.x, 0, width, 255, 0);
+    //fill_S_end = map(position.x, 0, width, 30, 0);
+    //fill_S_start = map(oDist, 0, width, 255, 0);
+    //fill_S_end = map(oDist, 0, width, 30, 0);
+    //fill_S_end = fill_S_start * map(oDist, 0, width, 0.8, 0.6);
+    twist_start = map(oDist, 0, width, 0, 5);
+    twist_end = map(oDist, 0, width, 0, 1);
     
   }
 
@@ -242,8 +238,8 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    //updateFillColorByRadius();
-    //updateStrokeColorByRadius();
+    updateFillColorBySize();
+    //updateStrokeColorBySize();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     updateFillColorByPosition();
@@ -265,7 +261,7 @@ class Cell {
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
     if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
     stripeStep--;
-    float stripeStepStart = map(stripeSize, 0, 100 * gs.widthUsed * 0.001, 0, r*2);
+    float stripeStepStart = map(stripeSize, 0, 100 * width * 0.001, 0, r*2);
     if (stripe) {stripeStepStart *= stripeRatio;} else {stripeStepStart *= (1-stripeRatio);}
     if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
   }
@@ -312,7 +308,7 @@ class Cell {
 
   void updateSize() {
     // I should introduce an selector-toggle here!
-    PVector center = new PVector(gs.widthUsed/2, height/2);
+    PVector center = new PVector(width/2, height/2);
     PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
     float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
@@ -335,44 +331,44 @@ class Cell {
   flatness = map(maturity, 1, 0, flatness_start, flatness_end);
   }
 
-  void updateFillColorByRadius() {
+  void updateFillColorBySize() {
     // START > END
     float fill_H = map(r, radius_start, radius_end, fill_H_start, fill_H_end) % 360;
     float fill_S = map(r, radius_start, radius_end, fill_S_start, fill_S_end);
     float fill_B = map(r, radius_start, radius_end, fill_B_start, fill_B_end);
-    fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
-    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
-  void updateStrokeColorByRadius() {
+  void updateStrokeColorBySize() {
     // START > END
     float stroke_H = map(r, radius_start, radius_end, stroke_H_start, stroke_H_end) % 360;
     float stroke_S = map(r, radius_start, radius_end, stroke_S_start, stroke_S_end);
     float stroke_B = map(r, radius_start, radius_end, stroke_B_start, stroke_B_end);
-    stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
-    strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
+    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
+    strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
 
   void updateFillColorByDirection() {
     float fill_H = map(directionDiff, 0, PI, fill_H_start, fill_H_end) % 360;
     float fill_S = map(directionDiff, 0, PI, fill_S_start, fill_S_end);
     float fill_B = map(directionDiff, 0, PI, fill_B_start, fill_B_end);
-    fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
-    fillColor = color(fill_H, fill_S, fill_B); //fill colour is updated with new values
+    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
   void updateStrokeColorByDirection() {
     float stroke_H = map(directionDiff, 0, PI, stroke_H_start, stroke_H_end) % 360;
     float stroke_S = map(directionDiff, 0, PI, stroke_S_start, stroke_S_end);
     float stroke_B = map(directionDiff, 0, PI, stroke_B_start, stroke_B_end);
-    stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
-    strokeColor = color(stroke_H, stroke_S, stroke_B); //stroke colour is updated with new values
+    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
+    strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
   
   void updateFillColorByPosition() {
   //fillColor = colony.pixelColour(position);
   float fill_H = hue(colony.pixelColour(position));
-  fillColor = color(fill_H, saturation(fillColor), brightness(fillColor)); //fill colour is updated with new values
+  fillColor = color(fill_H, saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
   }
   
   void updateStrokeColorByPosition() {
@@ -392,9 +388,9 @@ class Cell {
   boolean dead() {
     //if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < radius_end) {return true;} // Death by too little radius
-    //if (r > (gs.widthUsed*0.1)) {return true;} // Death by too much radius
+    //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
-    //if (position.x > gs.widthUsed + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
+    //if (position.x > width + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
     if (position.x > width || position.x < 0 || position.y > height || position.y < 0) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death
@@ -402,8 +398,13 @@ class Cell {
 
   void display() {
     strokeWeight(1);
-    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
-    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
+    //stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
+    //fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
+    fill(fillColor);
+    stroke(strokeColor);
+    
+    position.x = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
+    position.y = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
 
     float angle = velocity.heading();
     pushMatrix();
@@ -440,8 +441,8 @@ class Cell {
 
 void displayRect() {
     strokeWeight(3);
-    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
-    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
+    stroke(strokeColor);
+    fill(fillColor);
 
     float angle = velocity.heading();
     pushMatrix();
@@ -477,8 +478,8 @@ void displayRect() {
 //void displayText() {
 //    textSize(r*0.5);
 //    strokeWeight(1);
-//    stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
-//    fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
+//    stroke(strokeColor);
+//    fill(fillColor);
 
 //    float angle = velocity.heading();
 //    pushMatrix();
@@ -554,7 +555,7 @@ void displayRect() {
     text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
     text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
     text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
-    text("fill_A:" + fill_A, position.x, position.y + rowHeight * 4);
+    text("fill_A:" + alpha(fillColor), position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
     //text("age:" + age, position.x, position.y + rowHeight * 8);

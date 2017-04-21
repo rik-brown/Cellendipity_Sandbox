@@ -39,9 +39,6 @@
 *    6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
 *    6a) Could just use hue while allowing B & S to continue as normal
 *
-*  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
-*    1) The longer you wait, the more work this will be!
-*
 *  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI
 *    .... which in turn influences later changes
 *  s) pixelHue at current seed position determines heading (or heading offset from initial velocity)
@@ -58,7 +55,7 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
 String batchName = "batch-157.5";
-int maxCycles = 10;
+int maxCycles = 1;
 int runCycle = 1;
 
 

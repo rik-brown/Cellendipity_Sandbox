@@ -21,10 +21,9 @@ class Colony {
   Colony() {
     population = new ArrayList<Cell>();
     
-
-    if (gs.patternSelector == 1) {random_pattern();}
-    else
     if (gs.patternSelector == 0) {center_pattern();}
+    else
+    if (gs.patternSelector == 1) {random_pattern();}
     else
     if (gs.patternSelector == 2) {cartesian_pattern();}
     else
@@ -33,71 +32,43 @@ class Colony {
     else {phyllotaxic_pattern();}
   }
 
-// 0) Spawn cells in a random pattern
-void random_pattern() {
-  // Here is the code which fills the 'cells' arraylist with cells at random positions
-  for (int n = 0; n <= gs.seeds; n++) {
-    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-    pos = new PVector(random(gs.widthUsed)+gs.borderWidth, random(gs.heightUsed)+gs.borderHeight); // random position
-    origin = new PVector (gs.orx, gs.ory);
-    //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
-    PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
-    vel.normalize();
-    //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
-    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
-    //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    dna.genes[0] = n; //n is transferred to gene 0
-    
-    for (int s = 0; s < gs.strainSize; s ++) {
-      population.add(new Cell(pos, vel, dna));
-    }
-  }
-}
-
-// 1) Spawn cells at the center of the screen
-void center_pattern() {
-  // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
-  for (int n = 0; n <= gs.seeds; n++) {
-    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-    pos = new PVector(width*0.5, height*0.5); // random position
-    
-    vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    origin = new PVector (gs.orx, gs.ory);
-    //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-    //vel.normalize();
-    //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
-    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
-    //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
-    //dna.genes[0] = n; //n is transferred to gene 28
-    
-    for (int s = 0; s < gs.strainSize; s ++) {
-      population.add(new Cell(pos, vel, dna));
-    }
-  }
-}
-
-// 2) Spawn cells in a cartesian grid pattern
-void cartesian_pattern() {
-  //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-
-  // Here is the code which fills the 'cells' arraylist with cells at given positions
-  int n = 0;
-  for (int r = 0; r <= gs.rows; r++) {      
-    //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    //a = map(r, 0, gs.rows, 0, TWO_PI);
-    //vel = PVector.fromAngle(0).mult(1);
-    
-    for (int c = 0; c <= gs.cols; c++) {
+  // 0) Spawn cells at the center of the screen
+  void center_pattern() {
+    // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
+    for (int n = 0; n <= gs.seeds; n++) {
       int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-      DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
-      //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      //dna.genes[0] = n; //n is transferred to gene 0
-      n ++;
-      float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
-      float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
-      pos = new PVector(xpos, ypos);
+      pos = new PVector(width*0.5, height*0.5); // random position
+      
+      vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      origin = new PVector (gs.orx, gs.ory);
+      //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+      //vel.normalize();
+      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+  
+      DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
+      //dna.genes[0] = n; //n is transferred to gene 28
+      
+      for (int s = 0; s < gs.strainSize; s ++) {
+        population.add(new Cell(pos, vel, dna));
+      }
+    }
+  }
+  
+  // 1) Spawn cells in a random pattern
+  void random_pattern() {
+    // Here is the code which fills the 'cells' arraylist with cells at random positions
+    for (int n = 0; n <= gs.seeds; n++) {
+      pos = new PVector(random(width), random(height)); // random position
+      origin = new PVector (gs.orx, gs.ory);
+      //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
+      PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
+      vel.normalize();
+      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
+      
       // Set the start & end color of the strain according to the colour at the same location in the source image
       color colorFromPixel = pixelColour(pos);
       //dna.genes[1] = hue(colorFromPixel);
@@ -109,45 +80,143 @@ void cartesian_pattern() {
       dna.genes[11] = brightness(colorFromPixel);
       dna.genes[12] = brightness(colorFromPixel);
       
-      origin = new PVector (gs.orx, gs.ory);
-
-      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-      vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-      //vel = new PVector(1,0);
-      vel.normalize();
-      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
       for (int s = 0; s < gs.strainSize; s ++) {
-        //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-        //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
-        //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
         population.add(new Cell(pos, vel, dna));
       }
     }
   }
-}
-
-// 3) Spawn cells in a cartesian grid pattern with alternating strains
-void cartesian_pattern_alt() {
-  //vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
-
-  // Here is the code which fills the 'cells' arraylist with cells at given positions
-  int n = 0;
-  for (int r = 0; r <= gs.rows; r++) {      
+  
+  
+  
+  
+  
+  // 2) Spawn cells in a cartesian grid pattern
+  void cartesian_pattern() {
     //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-    //a = map(r, 0, gs.rows, 0, TWO_PI);
-    //vel = PVector.fromAngle(0).mult(1);
-    
-    for (int c = 0; c <= gs.cols; c++) {
-      //int str = ((r + c) % int(random(1,gpl.genepool.size()))) + 0;
-      int str = ((r + c) % 2) + int(random(7));
-      DNA dna = gpl.genepool.get(str); // Get's the appropriate strain of dna from the genepool
-      //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
-      //dna.genes[0] = n; //n is transferred to gene 0
-      n ++;
-      float xpos = (gs.widthUsed * map (c, 0, gs.cols, 0, 1)) + gs.borderWidth;
-      float ypos = (gs.heightUsed * map (r, 0, gs.rows, 0, 1)) + gs.borderHeight;
+  
+    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    int n = 0;
+    for (int r = 0; r <= gs.rows; r++) {      
+      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //a = map(r, 0, gs.rows, 0, TWO_PI);
+      //vel = PVector.fromAngle(0).mult(1);
+      
+      for (int c = 0; c <= gs.cols; c++) {
+        int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+        DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
+        //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
+         n ++;
+        float xpos = width * map (c, 0, gs.cols, 0, 1);
+        float ypos = height * map (r, 0, gs.rows, 0, 1);
+        pos = new PVector(xpos, ypos);
+        // Set the start & end color of the strain according to the colour at the same location in the source image
+        color colorFromPixel = pixelColour(pos);
+        //dna.genes[1] = hue(colorFromPixel);
+        dna.genes[2] = hue(colorFromPixel);
+        //dna.genes[3] = saturation(colorFromPixel);
+        dna.genes[4] = saturation(colorFromPixel);
+        //dna.genes[5] = brightness(colorFromPixel);
+        dna.genes[6] = brightness(colorFromPixel);
+        dna.genes[11] = brightness(colorFromPixel);
+        dna.genes[12] = brightness(colorFromPixel);
+        
+        origin = new PVector (gs.orx, gs.ory);
+  
+        //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+        vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+        //vel = new PVector(1,0);
+        vel.normalize();
+        //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+  
+        for (int s = 0; s < gs.strainSize; s ++) {
+          //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+          //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
+          //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
+          population.add(new Cell(pos, vel, dna));
+        }
+      }
+    }
+  }
+  
+  // 3) Spawn cells in a cartesian grid pattern with alternating strains
+  void cartesian_pattern_alt() {
+    //vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
+  
+    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    int n = 0;
+    for (int r = 0; r <= gs.rows; r++) {      
+      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //a = map(r, 0, gs.rows, 0, TWO_PI);
+      //vel = PVector.fromAngle(0).mult(1);
+      
+      for (int c = 0; c <= gs.cols; c++) {
+        //int strain = ((r + c) % int(random(1,gpl.genepool.size()))) + 0;
+        //int strain = ((r + c) % 2) + int(random(7));
+        int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+        DNA dna = gpl.genepool.get(strain); // Get's the appropriate strain of dna from the genepool
+        //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
+        n ++;
+        float xpos = width * map (c, 0, gs.cols, 0, 1);
+        float ypos = height * map (r, 0, gs.rows, 0, 1);
+        pos = new PVector(xpos, ypos);
+        color colorFromPixel = pixelColour(pos);
+        //dna.genes[1] = hue(colorFromPixel);
+        //dna.genes[2] = hue(colorFromPixel);
+        //dna.genes[3] = saturation(colorFromPixel);
+        //dna.genes[4] = saturation(colorFromPixel);
+        //dna.genes[5] = brightness(colorFromPixel);
+        //dna.genes[6] = brightness(colorFromPixel);
+        dna.genes[7] = alpha(colorFromPixel);
+        dna.genes[9] = hue(colorFromPixel);
+        dna.genes[10] = hue(colorFromPixel);
+        dna.genes[11] = saturation(colorFromPixel);
+        dna.genes[12] = saturation(colorFromPixel);
+        dna.genes[13] = brightness(colorFromPixel);
+        dna.genes[14] = brightness(colorFromPixel);
+        //dna.genes[15] = alpha(colorFromPixel);
+        dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 500/gs.rows*2, 500/gs.rows*2);
+        dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
+        
+        origin = new PVector (gs.orx, gs.ory);
+  
+        //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+        vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+        vel.normalize();
+        //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+  
+        for (int s = 0; s < gs.strainSize; s ++) {
+          //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+          //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
+          population.add(new Cell(pos, vel, dna));
+        }
+      }
+    }
+  }
+  
+  // 4) Spawn cells in a phyllotaxic spiral pattern
+  void phyllotaxic_pattern() {
+    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    for (int n = 0; n <= gs.seeds; n++) {
+      
+      // Simple Phyllotaxis formula:
+      float a = n * radians(137.5);
+      float r = c * sqrt(n);   
+      float xpos = r * cos(a) + width * 0.5;
+      float ypos = r * sin(a) + height * 0.5;
       pos = new PVector(xpos, ypos);
+      
+      
+      origin = new PVector (gs.orx, gs.ory);
+      PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+      vel.normalize();
+      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+      //int strain = ((n) % 2) + 3;
+      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      //DNA dna = gpl.genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
+      DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
+      //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
+      
+      // Set the start & end color of the strain according to the colour at the same location in the source image
       color colorFromPixel = pixelColour(pos);
       //dna.genes[1] = hue(colorFromPixel);
       //dna.genes[2] = hue(colorFromPixel);
@@ -158,105 +227,46 @@ void cartesian_pattern_alt() {
       dna.genes[7] = alpha(colorFromPixel);
       dna.genes[9] = hue(colorFromPixel);
       dna.genes[10] = hue(colorFromPixel);
-      dna.genes[11] = saturation(colorFromPixel);
-      dna.genes[12] = saturation(colorFromPixel);
-      dna.genes[13] = brightness(colorFromPixel);
-      dna.genes[14] = brightness(colorFromPixel);
+      //dna.genes[11] = saturation(colorFromPixel);
+      //dna.genes[12] = saturation(colorFromPixel);
+      //dna.genes[13] = brightness(colorFromPixel);
+      //dna.genes[14] = brightness(colorFromPixel);
       //dna.genes[15] = alpha(colorFromPixel);
-      dna.genes[17] = map(saturation(colorFromPixel), 0, 255, 500/gs.rows*4, 500/gs.rows);
-      dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 50);
+      dna.genes[17] = map(hue(colorFromPixel), 0, 255, 10, 300);
+      dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
       
-      origin = new PVector (gs.orx, gs.ory);
-
-      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-      vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-      vel.normalize();
-      //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-
       for (int s = 0; s < gs.strainSize; s ++) {
-        //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-        //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
+        //if (brightness(colorFromPixel) > 100) {population.add(new Cell(pos, vel, dna));}
+        //if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
         population.add(new Cell(pos, vel, dna));
       }
+     c *= 1.000001;
+     //c += width * 0.00003;
     }
   }
-}
-
-// 4) Spawn cells in a phyllotaxic spiral pattern
-void phyllotaxic_pattern() {
-  // Here is the code which fills the 'cells' arraylist with cells at given positions
-  for (int n = 0; n <= gs.seeds; n++) {
-    
-    // Simple Phyllotaxis formula:
-    float a = n * radians(137.5);
-    float r = c * sqrt(n);   
-    float xpos = r * cos(a) + gs.widthUsed * 0.5 + gs.borderWidth;
-    float ypos = r * sin(a) + gs.heightUsed * 0.5 + gs.borderHeight;
-    pos = new PVector(xpos, ypos);
-    
-    
-    origin = new PVector (gs.orx, gs.ory);
-    PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-    vel.normalize();
-    //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-    //int strain = ((n) % 2) + 3;
-    int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-    //DNA dna = gpl.genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
-    DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
-    //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
-    
-    // Set the start & end color of the strain according to the colour at the same location in the source image
-    color colorFromPixel = pixelColour(pos);
-    //dna.genes[1] = hue(colorFromPixel);
-    //dna.genes[2] = hue(colorFromPixel);
-    //dna.genes[3] = saturation(colorFromPixel);
-    //dna.genes[4] = saturation(colorFromPixel);
-    //dna.genes[5] = brightness(colorFromPixel);
-    //dna.genes[6] = brightness(colorFromPixel);
-    dna.genes[7] = alpha(colorFromPixel);
-    dna.genes[9] = hue(colorFromPixel);
-    dna.genes[10] = hue(colorFromPixel);
-    //dna.genes[11] = saturation(colorFromPixel);
-    //dna.genes[12] = saturation(colorFromPixel);
-    //dna.genes[13] = brightness(colorFromPixel);
-    //dna.genes[14] = brightness(colorFromPixel);
-    //dna.genes[15] = alpha(colorFromPixel);
-    dna.genes[17] = map(hue(colorFromPixel), 0, 255, 10, 300);
-    dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
-    
-    //dna.genes[0] = n; //n is transferred to gene 0
-    
-    for (int s = 0; s < gs.strainSize; s ++) {
-      //if (brightness(colorFromPixel) > 100) {population.add(new Cell(pos, vel, dna));}
-      //if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
-      population.add(new Cell(pos, vel, dna));
-    }
-   c *= 1.000001;
-   //c += width * 0.00003;
+  
+  // Method which receives a position PVector & returns a color object matching the color of the pixel in /data/input.png
+  color pixelColour(PVector pos) {
+    int pixelX = int(map(pos.x, -1, width+1, 0, img.width-1));
+    int pixelY = int(map(pos.y, -1, height+1, 0, img.height-1));
+    int pixelPos = pixelX + pixelY * img.width; // Position of pixel to be used for colour-sample
+    img.loadPixels(); // Load the pixel array for the input image
+    //println("pos.X: " + pos.x + " pos.Y:" + pos.y + "img.width:" + img.width + " img.Height:" + img.height + " PixelX: " + pixelX + " PixelY: " + pixelY + " pixelPos: " + pixelPos +" pixels.length: " + img.pixels.length); // DEBUG
+    //float h = hue(img.pixels[pixelPos]);
+    //float s = saturation(img.pixels[pixelPos]);
+    //float b = brightness(img.pixels[pixelPos]);
+    //float a = alpha(img.pixels[pixelPos]);
+    //return color (h, s, b, a);
+    return color (hue(img.pixels[pixelPos]), saturation(img.pixels[pixelPos]), brightness(img.pixels[pixelPos]), alpha(img.pixels[pixelPos]));
   }
-}
-
-// Method which receives a position PVector & returns a color object matching the color of the pixel in /data/input.png
-color pixelColour(PVector pos) {
-  int pixelX = int(map(pos.x, gs.borderWidth, gs.borderWidth + gs.widthUsed, 0, img.width-1));
-  int pixelY = int(map(pos.y, gs.borderHeight, gs.borderHeight + gs.heightUsed, 0, img.height-1));
-  int pixelPos = pixelX + pixelY * img.width; // Position of pixel to be used for colour-sample
-  img.loadPixels(); // Load the pixel array for the input image
-  //println("pos.X: " + pos.x + " pos.Y:" + pos.y + "img.width:" + img.width + " img.Height:" + img.height + " PixelX: " + pixelX + " PixelY: " + pixelY + " pixelPos: " + pixelPos +" pixels.length: " + img.pixels.length); // DEBUG
-  float h = hue(img.pixels[pixelPos]);
-  float s = saturation(img.pixels[pixelPos]);
-  float b = brightness(img.pixels[pixelPos]);
-  float a = alpha(img.pixels[pixelPos]);
-  return color (h, s, b, a);
-}
-
-
-// Spawn a new cell
+  
+  
+  // Spawn a new cell
   void spawn(PVector pos, PVector vel, DNA dna_) {
     population.add(new Cell(pos, vel, dna_));
   }
 
-// Run the colony
+  // Run the colony
   void run() {
     if (gs.debug) {colonyDebugger();}
     for (int i = population.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items

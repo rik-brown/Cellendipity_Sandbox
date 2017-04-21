@@ -19,10 +19,8 @@ class Global_settings {
   boolean nucleus;
   boolean stepped;
 
-  int borderWidth;
-  int borderHeight;
-  int widthUsed;
-  int heightUsed;
+  float borderWidth;
+  float borderHeight;
 
   int patternSelector;
   
@@ -55,14 +53,11 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = int(width * 0.0);   // Width of the vertical borders
-    borderHeight = int(height * 0.0); // Height of the horisontal borders
-    
-    widthUsed = int(width - (2*borderWidth));    //Calculate width of usable area (inside border)
-    heightUsed = int(height - (2*borderHeight)); //Calculate height of usable area (inside border)
-       
+    borderWidth = 0.0;
+    borderHeight = 0.0;
+           
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 3; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 10;
@@ -75,18 +70,18 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 49;
+	  rows = 14;
     cols = rows;
     //cols = 12;
     
-    //orx = int(widthUsed * random (0.3, 0.7)) + borderWidth;  // Random but kept roughly within the pattern
-    //ory = int(heightUsed * random (0.3, 0.7)) + borderHeight; // Random but kept roughly within the pattern
-    orx = int(widthUsed * random (0.4, 0.6)) + borderWidth;  // Random but kept roughly within the pattern
-    ory = int(heightUsed * random (0.4, 0.6)) + borderHeight; // Random but kept roughly within the pattern
-    //orx = int(widthUsed * random (1)) + borderWidth;  // Fully random
-    //ory = int(heightUsed * random (1)) + borderHeight; // Fully random
-    //orx = int(widthUsed * 0.5) + borderWidth +1;  // Centered
-    //ory = int(heightUsed * 0.5) + borderHeight +1; // Centered
+    //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
+    //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
+    //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
+    //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
+    //orx = int(width * random (1));  // Fully random
+    //ory = int(height * random (1)); // Fully random
+    orx = int(width * 0.5) +1;  // Centered
+    ory = int(height * 0.5) +1; // Centered
 
     stepped = false;
     stepSize = 15;
@@ -111,8 +106,8 @@ class Global_settings {
   }
   
   void logSettings() {
-    output.println("borderW = " + borderWidth);
-    output.println("borderH = " + borderHeight);
+    output.println("borderWidth = " + borderWidth);
+    output.println("borderHeight = " + borderHeight);
     output.println("Pattern = " + patternSelector);
     output.println("numStrains = " + numStrains);
     output.println("strainSize = " + strainSize);
