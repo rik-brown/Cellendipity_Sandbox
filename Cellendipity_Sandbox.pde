@@ -42,8 +42,13 @@
 *  q) Consider re-doing the borders so everything works inside the full canvas area, but is scaled appropriately before drawing
 *    1) The longer you wait, the more work this will be!
 *
-*  r) pixelHue at seed position determines initial velocity (direction)
-*    .... which in turn influences changes
+*  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI
+*    .... which in turn influences later changes
+*  s) pixelHue at current seed position determines heading (or heading offset from initial velocity)
+*
+*  t) (If cell arrives at pixel of a given colour) {do this()} where this = die, spawn, stop moving, etc.
+*
+*  u) When (cell spawns or splits) {another cell dies}
 *
 */
 
@@ -52,7 +57,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.4";
+String batchName = "batch-157.5";
 int maxCycles = 10;
 int runCycle = 1;
 
@@ -73,10 +78,10 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(6000, 6000);
   //size(8000, 8000);
   

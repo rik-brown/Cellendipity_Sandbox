@@ -370,7 +370,9 @@ class Cell {
   }
   
   void updateFillColorByPosition() {
-  fillColor = colony.pixelColour(position);
+  //fillColor = colony.pixelColour(position);
+  float fill_H = hue(colony.pixelColour(position));
+  fillColor = color(fill_H, saturation(fillColor), brightness(fillColor)); //fill colour is updated with new values
   }
   
   void updateStrokeColorByPosition() {

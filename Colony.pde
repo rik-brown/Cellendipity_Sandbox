@@ -216,10 +216,10 @@ void phyllotaxic_pattern() {
     dna.genes[7] = alpha(colorFromPixel);
     dna.genes[9] = hue(colorFromPixel);
     dna.genes[10] = hue(colorFromPixel);
-    dna.genes[11] = saturation(colorFromPixel);
-    dna.genes[12] = saturation(colorFromPixel);
-    dna.genes[13] = brightness(colorFromPixel);
-    dna.genes[14] = brightness(colorFromPixel);
+    //dna.genes[11] = saturation(colorFromPixel);
+    //dna.genes[12] = saturation(colorFromPixel);
+    //dna.genes[13] = brightness(colorFromPixel);
+    //dna.genes[14] = brightness(colorFromPixel);
     //dna.genes[15] = alpha(colorFromPixel);
     dna.genes[17] = map(hue(colorFromPixel), 0, 255, 10, 300);
     dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
