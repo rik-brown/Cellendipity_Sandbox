@@ -70,7 +70,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 24;
+	  rows = 49;
     cols = rows;
     //cols = 12;
     
@@ -93,7 +93,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 255; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White

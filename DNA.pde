@@ -72,9 +72,9 @@ class DNA {
       //genes[2]= 300;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 0;   // 3=fill_S_start
+      genes[3]= 64;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 255;   // 4=fill_S_end
+      genes[4]= 128;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
@@ -109,7 +109,7 @@ class DNA {
       genes[17]= 500/gs.rows;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 100;   // 18=radius_end
+      genes[18]= 1;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
       genes[19]= 100;   // 19=flatness_start
@@ -137,7 +137,7 @@ class DNA {
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 200);   // 31=lifespan
       //genes[31]= 100;   // 31=lifespan
-      genes[31]= 150;   // 31=lifespan
+      genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
       genes[32]= 30000;   // 32=StripeSize
