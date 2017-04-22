@@ -120,6 +120,7 @@ class Colony {
         //dna.genes[6] = brightness(colorFromPixel);
         //dna.genes[11] = brightness(colorFromPixel);
         //dna.genes[12] = brightness(colorFromPixel);
+        dna.genes[17]= 500/gs.rows*map(brightness(colorFromPixel), 0, 255, 1, 3);
         
         vel = PVector.fromAngle(radians(hue(colorFromPixel)));
         //origin = new PVector (gs.orx, gs.ory);

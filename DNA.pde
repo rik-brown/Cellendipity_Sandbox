@@ -135,9 +135,9 @@ class DNA {
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 2;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
-      //genes[31]= random(100, 200);   // 31=lifespan
-      //genes[31]= 100;   // 31=lifespan
-      genes[31]= 450;   // 31=lifespan
+      genes[31]= random(100, 300);   // 31=lifespan
+      //genes[31]= 200;   // 31=lifespan
+      //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
       genes[32]= 30000;   // 32=StripeSize
