@@ -53,8 +53,8 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = 0.0;
-    borderHeight = 0.0;
+    borderWidth = 0.15;
+    borderHeight = 0.15;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
     patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
@@ -84,8 +84,8 @@ class Global_settings {
     ory = int(height * 0.5) +1; // Centered
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = false;
-    stepSize = 15;
+    stepped = true;
+    stepSize = 20;
     stepSizeN = int(random (55, 82));
     
     //bkg_H = random(360);

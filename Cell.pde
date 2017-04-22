@@ -239,8 +239,8 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColorBySize();
-    //updateStrokeColorBySize();
+    //updateFillColorBySize();
+    updateStrokeColorBySize();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     updateFillColorByPosition();
@@ -293,6 +293,10 @@ class Cell {
   void updateVelocityByHue() {
     float fill_H = hue(colony.pixelColour(position));
     velocity = PVector.fromAngle(radians(fill_H));
+    twist = TWO_PI * map(maturity, 0, 1, twist_start, twist_end);
+    float twistAngle = map(maturity, 0, 1, 0, twist);
+    //velocity.mult(vFactor);
+    velocity.rotate(twistAngle);
   }
   
   
@@ -375,9 +379,9 @@ class Cell {
   }
   
   void updateFillColorByPosition() {
-  //fillColor = colony.pixelColour(position);
-  float fill_H = hue(colony.pixelColour(position));
-  fillColor = color(fill_H, saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
+  fillColor = colony.pixelColour(position);
+  //float fill_H = hue(colony.pixelColour(position));
+  //fillColor = color(fill_H, saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
   }
   
   void updateStrokeColorByPosition() {
