@@ -53,8 +53,8 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = 0.15;
-    borderHeight = 0.15;
+    borderWidth = 0.1;
+    borderHeight = 0.1;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
     patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
@@ -70,7 +70,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 29;
+	  rows = 14;
     cols = rows;
     //cols = 12;
     

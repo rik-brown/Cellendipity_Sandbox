@@ -246,8 +246,8 @@ class Cell {
     updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
-    display();
-    //displayRect();
+    //display();
+    displayRect();
     //displayText();
     if (gs.debug) {cellDebugger();}
   }
