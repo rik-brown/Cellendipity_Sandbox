@@ -68,10 +68,7 @@ class Genepool {
         println("Genepool entry " + i + ": contains gene [" + gene + "] value" + debugDNA.genes[gene]);
       }
     }
-    
-    
-    
-    
+       
   }
 
 }

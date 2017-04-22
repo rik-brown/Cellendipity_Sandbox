@@ -57,10 +57,10 @@ class Global_settings {
     borderHeight = 0.0;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 3; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 10;
+    numStrains = 1;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
@@ -70,7 +70,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,15));
-	  rows = 14;
+	  rows = 24;
     cols = rows;
     //cols = 12;
     
@@ -83,7 +83,8 @@ class Global_settings {
     orx = int(width * 0.5) +1;  // Centered
     ory = int(height * 0.5) +1; // Centered
 
-    stepped = true;
+    // I kept this as a boolean because if size was set to zero to disable it looked steppy
+    stepped = false;
     stepSize = 15;
     stepSizeN = int(random (55, 82));
     
@@ -92,11 +93,12 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 0; // last 160, 50, 128, 255
+    bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
 
+    // I kept this as a boolean to avoid unnecessary work when nucleus is not required
     nucleus = false;
     nucleusColorU = color(0, 0, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red

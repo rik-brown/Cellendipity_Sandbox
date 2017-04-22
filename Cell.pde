@@ -168,7 +168,7 @@ class Cell {
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
+  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
   }
@@ -226,8 +226,8 @@ class Cell {
     //fill_S_start = map(oDist, 0, width, 255, 0);
     //fill_S_end = map(oDist, 0, width, 30, 0);
     //fill_S_end = fill_S_start * map(oDist, 0, width, 0.8, 0.6);
-    twist_start = map(oDist, 0, width, 0, 5);
-    twist_end = map(oDist, 0, width, 0, 1);
+    //twist_start = map(oDist, 0, width, 0, 5);
+    //twist_end = map(oDist, 0, width, 0, 1);
     
   }
 
@@ -319,7 +319,9 @@ class Cell {
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
     //r -= growth;
-    size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
+    //size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
+    size = map(age, 0, lifespan, 0, 1); // HACK!!!!
+    
   }
 
   void updateFertility() {
@@ -333,18 +335,18 @@ class Cell {
 
   void updateFillColorBySize() {
     // START > END
-    float fill_H = map(r, radius_start, radius_end, fill_H_start, fill_H_end) % 360;
-    float fill_S = map(r, radius_start, radius_end, fill_S_start, fill_S_end);
-    float fill_B = map(r, radius_start, radius_end, fill_B_start, fill_B_end);
+    float fill_H = map(size, 0, 1, fill_H_start, fill_H_end) % 360;
+    float fill_S = map(size, 0, 1, fill_S_start, fill_S_end);
+    float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
     float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
   void updateStrokeColorBySize() {
     // START > END
-    float stroke_H = map(r, radius_start, radius_end, stroke_H_start, stroke_H_end) % 360;
-    float stroke_S = map(r, radius_start, radius_end, stroke_S_start, stroke_S_end);
-    float stroke_B = map(r, radius_start, radius_end, stroke_B_start, stroke_B_end);
+    float stroke_H = map(size, 0, 1, stroke_H_start, stroke_H_end) % 360;
+    float stroke_S = map(size, 0, 1, stroke_S_start, stroke_S_end);
+    float stroke_B = map(size, 0, 1, stroke_B_start, stroke_B_end);
     float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
     strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
@@ -376,9 +378,9 @@ class Cell {
   }
 
   void updateStripes() {
-    //fillColor = color(34, 255, 255); // RED
-    fillColor = strokeColor; // RED
-    //fillColor = color(0, 0, 0); // BLACK
+    //fillColor = color(34, 255, 255, 255); // RED
+    fillColor = strokeColor;
+    //fillColor = color(0, 0, 0, 255); // BLACK
     //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
@@ -403,12 +405,12 @@ class Cell {
     fill(fillColor);
     stroke(strokeColor);
     
-    position.x = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
-    position.y = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
+    float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
+    float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
 
     float angle = velocity.heading();
     pushMatrix();
-    translate(position.x,position.y);
+    translate(x_scaled, y_scaled);
     //line(0, 0, velocityRef.x*100, velocityRef.y*100); // DEBUG
     //line(0, 0, velocity.x*100, velocity.y*100); // DEBUG
     rotate(angle);

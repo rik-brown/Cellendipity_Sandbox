@@ -109,23 +109,24 @@ class Colony {
         float xpos = width * map (c, 0, gs.cols, 0, 1);
         float ypos = height * map (r, 0, gs.rows, 0, 1);
         pos = new PVector(xpos, ypos);
+        
         // Set the start & end color of the strain according to the colour at the same location in the source image
         color colorFromPixel = pixelColour(pos);
         //dna.genes[1] = hue(colorFromPixel);
-        dna.genes[2] = hue(colorFromPixel);
+        //dna.genes[2] = hue(colorFromPixel);
         //dna.genes[3] = saturation(colorFromPixel);
-        dna.genes[4] = saturation(colorFromPixel);
+        //dna.genes[4] = saturation(colorFromPixel);
         //dna.genes[5] = brightness(colorFromPixel);
-        dna.genes[6] = brightness(colorFromPixel);
-        dna.genes[11] = brightness(colorFromPixel);
-        dna.genes[12] = brightness(colorFromPixel);
+        //dna.genes[6] = brightness(colorFromPixel);
+        //dna.genes[11] = brightness(colorFromPixel);
+        //dna.genes[12] = brightness(colorFromPixel);
         
-        origin = new PVector (gs.orx, gs.ory);
-  
+        vel = PVector.fromAngle(radians(hue(colorFromPixel)));
+        //origin = new PVector (gs.orx, gs.ory);
         //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-        vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+        //vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
         //vel = new PVector(1,0);
-        vel.normalize();
+        //vel.normalize();
         //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
   
         for (int s = 0; s < gs.strainSize; s ++) {

@@ -47,6 +47,11 @@
 *
 *  u) When (cell spawns or splits) {another cell dies}
 *
+*  v) REFACTORING: rather than size, remoteness, age etc should have "fillcolormodulator" "strokecolormodulator" "sizemodulator" "noisemodulator" "shapemodulator"
+*      Each of these can in turn be linked to age, oDist, pixelColor etc.
+*      e.g. fill_H = map(fillMod, 0, 1, fill_H_start, fill_H_end) % 360;
+*      where fillmod could be map(range, 0, lifespan, 1, 0) or (age, 0, lifespan, 1, 0) etc. MORE ECONOMICAL
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -54,7 +59,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-157.6";
+String batchName = "batch-158.1";
 int maxCycles = 1;
 int runCycle = 1;
 
@@ -65,7 +70,7 @@ int frameCounter;
 
 String iterationNum;
 String applicationName = "sandbox";
-String inputFile = "input.jpg"; // First run will use /data/input.png, which will not be overwritten
+String inputFile = "flower.jpg"; // First run will use /data/input.png, which will not be overwritten
 //String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
@@ -75,10 +80,11 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
+  //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
   
