@@ -57,10 +57,10 @@ class Global_settings {
     borderHeight = 0.1;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 4; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 10;
+    numStrains = 1;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
@@ -69,8 +69,8 @@ class Global_settings {
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
-    //rows = int(random(4,15));
-	  rows = 14;
+    //rows = int(random(4,118));
+	  rows = 8;
     cols = rows;
     //cols = 12;
     
@@ -84,7 +84,7 @@ class Global_settings {
     ory = int(height * 0.5) +1; // Centered
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = true;
+    stepped = false;
     stepSize = 20;
     stepSizeN = int(random (55, 82));
     

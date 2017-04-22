@@ -120,8 +120,8 @@ class Colony {
         //dna.genes[6] = brightness(colorFromPixel);
         //dna.genes[11] = brightness(colorFromPixel);
         //dna.genes[12] = brightness(colorFromPixel);
-        dna.genes[17]= 500/gs.rows*map(brightness(colorFromPixel), 0, 255, 1, 1.8);
-        dna.genes[31]= map(saturation(colorFromPixel), 0, 255, 25, 50);
+        dna.genes[17]= 500/gs.rows*map(brightness(colorFromPixel), 0, 255, 1.3, 0.8);
+        dna.genes[31]= map(saturation(colorFromPixel), 0, 255, 40, 60);
         
         vel = PVector.fromAngle(radians(hue(colorFromPixel)));
         //origin = new PVector (gs.orx, gs.ory);
@@ -135,8 +135,8 @@ class Colony {
           //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
           //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
           //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
-          if (saturation(colorFromPixel) > 3) {population.add(new Cell(pos, vel, dna));}
-          //population.add(new Cell(pos, vel, dna));
+          //if (saturation(colorFromPixel) > 3) {population.add(new Cell(pos, vel, dna));}
+          population.add(new Cell(pos, vel, dna));
         }
       }
     }

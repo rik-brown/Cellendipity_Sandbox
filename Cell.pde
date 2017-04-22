@@ -239,15 +239,15 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    //updateFillColorBySize();
-    updateStrokeColorBySize();
+    updateFillColorBySize();
+    //updateStrokeColorBySize();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
-    //display();
-    displayRect();
+    display();
+    //displayRect();
     //displayText();
     if (gs.debug) {cellDebugger();}
   }
@@ -346,11 +346,11 @@ class Cell {
 
   void updateFillColorBySize() {
     // START > END
-    float fill_H = map(size, 0, 1, fill_H_start, fill_H_end) % 360;
-    float fill_S = map(size, 0, 1, fill_S_start, fill_S_end);
-    float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
+    //float fill_H = map(size, 0, 1, fill_H_start, fill_H_end) % 360;
+    //float fill_S = map(size, 0, 1, fill_S_start, fill_S_end);
+    //float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
     float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
-    fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
+    //fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
   void updateStrokeColorBySize() {
@@ -379,9 +379,11 @@ class Cell {
   }
   
   void updateFillColorByPosition() {
-  fillColor = colony.pixelColour(position);
-  //float fill_H = hue(colony.pixelColour(position));
-  //fillColor = color(fill_H, saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
+  //fillColor = colony.pixelColour(position);
+  float fill_H = hue(colony.pixelColour(position));
+  float fill_S = saturation(colony.pixelColour(position));
+  float fill_B = brightness(colony.pixelColour(position));
+  fillColor = color(fill_H, fill_S, fill_B, alpha(fillColor)); //fill colour is updated with new values
   }
   
   void updateStrokeColorByPosition() {
@@ -415,6 +417,10 @@ class Cell {
     //fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
     fill(fillColor);
     stroke(strokeColor);
+    println("a:" + alpha(strokeColor));
+    //stroke(0,0,0,0);
+    //noStroke();
+    noFill();
     
     float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
     float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
@@ -453,14 +459,17 @@ class Cell {
   }
 
 void displayRect() {
-    strokeWeight(3);
+    strokeWeight(1);
     stroke(strokeColor);
     fill(fillColor);
+    
+    float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
+    float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
 
     float angle = velocity.heading();
     pushMatrix();
-    translate(position.x,position.y);
-    rotate(angle);
+    translate(x_scaled, y_scaled);
+    //rotate(angle);
     if (!gs.stepped) {
       rect(0, 0, r, r * flatness);
       if (gs.nucleus && drawStepN < 1) {
@@ -553,7 +562,7 @@ void displayRect() {
 
   void cellDebugger() { // For debug only
     int rowHeight = 12;
-    fill(120, 0, 255);
+    fill(120, 0, 0);
     textSize(rowHeight);
     text("id:" + id, position.x, position.y + rowHeight * 0);
     //text("r:" + r, position.x, position.y + rowHeight * 5);
@@ -565,10 +574,14 @@ void displayRect() {
     //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
     //text("radius_end:" + radius_end, position.x, position.y + rowHeight * 2);
-    text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
-    text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
-    text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
-    text("fill_A:" + alpha(fillColor), position.x, position.y + rowHeight * 4);
+    //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
+    //text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
+    //text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
+    //text("fill_A:" + alpha(fillColor), position.x, position.y + rowHeight * 4);
+    text("stroke_H:" + hue(strokeColor), position.x, position.y + rowHeight * 1);
+    text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
+    text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
+    text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 3);
     //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
     //text("age:" + age, position.x, position.y + rowHeight * 8);

@@ -100,9 +100,9 @@ class DNA {
       genes[13]= 0;   // 13=stroke_B_start
       genes[14]= 0;   // 14=stroke_B_end
       
-      genes[15]= 50;   // 15=stroke_A_start
+      genes[15]= 0;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 50;   // 16=stroke_A_end
+      genes[16]= 0;   // 16=stroke_A_end
       
       //genes[17]= random(75, 200);   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
