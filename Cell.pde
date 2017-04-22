@@ -233,7 +233,8 @@ class Cell {
 
   void run() {
     live();
-    updateVelocity();
+    //updateVelocity();
+    updateVelocityByHue();
     updatePosition();
     updateSize();
     updateShape();
@@ -288,6 +289,12 @@ class Cell {
     
     directionDiff = PVector.angleBetween(velocityRef, velocity); // Float in range 0-PI
   }
+  
+  void updateVelocityByHue() {
+    float fill_H = hue(colony.pixelColour(position));
+    velocity = PVector.fromAngle(radians(fill_H));
+  }
+  
   
   void updatePosition() { //Update parameters linked to the position
     position.add(velocity); //<>// //<>// //<>//
@@ -388,7 +395,7 @@ class Cell {
 
   // Death
   boolean dead() {
-    //if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
+    if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < radius_end) {return true;} // Death by too little radius
     //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
