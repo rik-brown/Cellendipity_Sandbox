@@ -63,7 +63,7 @@ class Genepool {
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {
-        int gene = 22;
+        int gene = 15;
         DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
         println("Genepool entry " + i + ": contains gene [" + gene + "] value" + debugDNA.genes[gene]);
       }

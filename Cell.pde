@@ -8,11 +8,11 @@ class Cell {
   boolean stripe;
 
   // GROWTH AND REPRODUCTION
-  float age;       // Age (nr. of frames since birth)
-  float lifespan;
+  int age;       // Age (nr. of frames since birth)
+  int lifespan;
   float fertility; // Condition for becoming fertile
   float maturity;
-  float spawnLimit;
+  int spawnLimit;
 
   // SIZE AND SHAPE
   float radius_start;
@@ -63,25 +63,25 @@ class Cell {
 
   // FILL COLOUR
   color fillColor;   // For HSB you need Hue to be the heading of a PVector
-  float fill_H_start;
-  float fill_H_end;
-  float fill_S_start;
-  float fill_S_end;
-  float fill_B_start;
-  float fill_B_end;
-  float fill_A_start;
-  float fill_A_end;
+  int fill_H_start;
+  int fill_H_end;
+  int fill_S_start;
+  int fill_S_end;
+  int fill_B_start;
+  int fill_B_end;
+  int fill_A_start;
+  int fill_A_end;
 
   // STROKE COLOUR
   color strokeColor; // For HSB you need Hue to be the heading of a PVector
-  float stroke_H_start;
-  float stroke_H_end;
-  float stroke_S_start;
-  float stroke_S_end;
-  float stroke_B_start;
-  float stroke_B_end;
-  float stroke_A_start;
-  float stroke_A_end;
+  int stroke_H_start;
+  int stroke_H_end;
+  int stroke_S_start;
+  int stroke_S_end;
+  int stroke_B_start;
+  int stroke_B_end;
+  int stroke_A_start;
+  int stroke_A_end;
   
   // STRAIN
   int id;
@@ -127,10 +127,10 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = dna.genes[31] * width * 0.001;
+  lifespan = int(dna.genes[31] * width * 0.001);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
-  spawnLimit = dna.genes[30]; // Max. number of spawns
+  spawnLimit = int(dna.genes[30]); // Max. number of spawns
 
   // SIZE AND SHAPE
   radius_start = dna.genes[17] * width * 0.001;
@@ -147,24 +147,24 @@ class Cell {
   stripeRatio = dna.genes[33];
 
   // COLOUR
-  fill_H_start = dna.genes[1];
-  fill_H_end = dna.genes[2];
-  fill_S_start = dna.genes[3];
-  fill_S_end = dna.genes[4];
-  fill_B_start = dna.genes[5];
-  fill_B_end = dna.genes[6];
-  fill_A_start = dna.genes[7];
-  fill_A_end = dna.genes[8];
+  fill_H_start = int(dna.genes[1]);
+  fill_H_end = int(dna.genes[2]);
+  fill_S_start = int(dna.genes[3]);
+  fill_S_end = int(dna.genes[4]);
+  fill_B_start = int(dna.genes[5]);
+  fill_B_end = int(dna.genes[6]);
+  fill_A_start = int(dna.genes[7]);
+  fill_A_end = int(dna.genes[8]);
   fillColor = color(fill_H_start, fill_S_start, fill_B_start, fill_A_start); // Initial color is set
 
-  stroke_H_start = dna.genes[9];
-  stroke_H_end = dna.genes[10];
-  stroke_S_start = dna.genes[11];
-  stroke_S_end = dna.genes[12];
-  stroke_B_start = dna.genes[13];
-  stroke_B_end = dna.genes[14];
-  stroke_A_start = dna.genes[15];
-  stroke_A_end = dna.genes[16];
+  stroke_H_start = int(dna.genes[9]);
+  stroke_H_end = int(dna.genes[10]);
+  stroke_S_start = int(dna.genes[11]);
+  stroke_S_end = int(dna.genes[12]);
+  stroke_B_start = int(dna.genes[13]);
+  stroke_B_end = int(dna.genes[14]);
+  stroke_A_start = int(dna.genes[15]);
+  stroke_A_end = int(dna.genes[16]);
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
@@ -210,7 +210,7 @@ class Cell {
     // MODULATED BY POSITION
     radius_start *= map(oDist, 0, width, 1, 0.2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = map(oDist, 0, width, 100, 50) * width * 0.001;
+    lifespan = int(map(oDist, 0, width, 100, 50) * width * 0.001);
     noisePercent_start = map(oDist, 0, width, 1, 0.1);
     noisePercent_end = map(oDist, 0, width, 0.5, 0.5);
     
@@ -240,10 +240,10 @@ class Cell {
     updateShape();
     updateFertility();
     updateFillColorBySize();
-    //updateStrokeColorBySize();
+    updateStrokeColorBySize();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
-    updateFillColorByPosition();
+    //updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
     display();
@@ -330,8 +330,8 @@ class Cell {
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
     //r -= growth;
-    //size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
-    size = map(age, 0, lifespan, 0, 1); // HACK!!!!
+    size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
+    //size = map(age, 0, lifespan, 0, 1); // HACK!!!!
     
   }
 
@@ -346,43 +346,43 @@ class Cell {
 
   void updateFillColorBySize() {
     // START > END
-    //float fill_H = map(size, 0, 1, fill_H_start, fill_H_end) % 360;
-    //float fill_S = map(size, 0, 1, fill_S_start, fill_S_end);
-    //float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
-    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    //int fill_H = int(map(size, 0, 1, fill_H_start, fill_H_end)) % 360;
+    //int fill_S = int(map(size, 0, 1, fill_S_start, fill_S_end));
+    //int fill_B = int(map(size, 0, 1, fill_B_start, fill_B_end));
+    int fill_A = int(map(size, 0, 1, fill_A_start, fill_A_end));
     //fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
   void updateStrokeColorBySize() {
     // START > END
-    float stroke_H = map(size, 0, 1, stroke_H_start, stroke_H_end) % 360;
-    float stroke_S = map(size, 0, 1, stroke_S_start, stroke_S_end);
-    float stroke_B = map(size, 0, 1, stroke_B_start, stroke_B_end);
-    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
+    int stroke_H = int(map(size, 0, 1, stroke_H_start, stroke_H_end)) % 360;
+    int stroke_S = int(map(size, 0, 1, stroke_S_start, stroke_S_end));
+    int stroke_B = int(map(size, 0, 1, stroke_B_start, stroke_B_end));
+    int stroke_A = int(map(size, 0, 1, stroke_A_start, stroke_A_end));    
     strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
 
   void updateFillColorByDirection() {
-    float fill_H = map(directionDiff, 0, PI, fill_H_start, fill_H_end) % 360;
-    float fill_S = map(directionDiff, 0, PI, fill_S_start, fill_S_end);
-    float fill_B = map(directionDiff, 0, PI, fill_B_start, fill_B_end);
-    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    int fill_H = int(map(directionDiff, 0, PI, fill_H_start, fill_H_end)) % 360;
+    int fill_S = int(map(directionDiff, 0, PI, fill_S_start, fill_S_end));
+    int fill_B = int(map(directionDiff, 0, PI, fill_B_start, fill_B_end));
+    int fill_A = int(map(size, 0, 1, fill_A_start, fill_A_end));
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
   void updateStrokeColorByDirection() {
-    float stroke_H = map(directionDiff, 0, PI, stroke_H_start, stroke_H_end) % 360;
-    float stroke_S = map(directionDiff, 0, PI, stroke_S_start, stroke_S_end);
-    float stroke_B = map(directionDiff, 0, PI, stroke_B_start, stroke_B_end);
-    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
+    int stroke_H = int(map(directionDiff, 0, PI, stroke_H_start, stroke_H_end)) % 360;
+    int stroke_S = int(map(directionDiff, 0, PI, stroke_S_start, stroke_S_end));
+    int stroke_B = int(map(directionDiff, 0, PI, stroke_B_start, stroke_B_end));
+    int stroke_A = int(map(size, 0, 1, stroke_A_start, stroke_A_end));
     strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
   
   void updateFillColorByPosition() {
   //fillColor = colony.pixelColour(position);
-  float fill_H = hue(colony.pixelColour(position));
-  float fill_S = saturation(colony.pixelColour(position));
-  float fill_B = brightness(colony.pixelColour(position));
+  int fill_H = int(hue(colony.pixelColour(position)));
+  int fill_S = int(saturation(colony.pixelColour(position)));
+  int fill_B = int(brightness(colony.pixelColour(position)));
   fillColor = color(fill_H, fill_S, fill_B, alpha(fillColor)); //fill colour is updated with new values
   }
   
@@ -417,10 +417,6 @@ class Cell {
     //fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
     fill(fillColor);
     stroke(strokeColor);
-    println("a:" + alpha(strokeColor));
-    //stroke(0,0,0,0);
-    //noStroke();
-    noFill();
     
     float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
     float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
@@ -564,41 +560,44 @@ void displayRect() {
     int rowHeight = 12;
     fill(120, 0, 0);
     textSize(rowHeight);
-    text("id:" + id, position.x, position.y + rowHeight * 0);
-    //text("r:" + r, position.x, position.y + rowHeight * 5);
-    //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
-    //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
-    //text("Stripe:" + stripe, position.x, position.y + rowHeight * 6);
-    //text("range:" + range, position.x, position.y + rowHeight * 0);
-    //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 1);
-    //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
-    //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
-    //text("radius_end:" + radius_end, position.x, position.y + rowHeight * 2);
-    //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
-    //text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
-    //text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
-    //text("fill_A:" + alpha(fillColor), position.x, position.y + rowHeight * 4);
-    text("stroke_H:" + hue(strokeColor), position.x, position.y + rowHeight * 1);
-    text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
-    text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
-    text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
-    //text("growth:" + growth, position.x, position.y + rowHeight * 3);
-    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 2);
-    //text("age:" + age, position.x, position.y + rowHeight * 8);
-    //text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
-    //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
-    //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
-    //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
-    //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 2);
-    //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 3);
-    //text("dirDiff:" + directionDiff, position.x, position.y + rowHeight * 2);
-    //text("twist_Start:" + twist_start, position.x, position.y + rowHeight * 2);
-    //text("twist_End:" + twist_end, position.x, position.y + rowHeight * 3);
-    //text("twist:" + twist, position.x, position.y + rowHeight * 4);
-    //text("oDist:" + oDist, position.x, position.y + rowHeight * 2);
-    //text("noise%:" + noisePercent, position.x, position.y + rowHeight * 3);
-    //text("noise%S:" + noisePercent_start, position.x, position.y + rowHeight * 4);
-    //text("noise%E:" + noisePercent_end, position.x, position.y + rowHeight * 5);
+    float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
+    float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
+    //text("id:" + id, x_scaled, y_scaled + rowHeight * 0);
+    //text("r:" + r, x_scaled, y_scaled + rowHeight * 5);
+    //text("pos:" + x_scaled + "," + y_scaled, x_scaled, y_scaled + rowHeight * 0);
+    //text("stripeStep:" + stripeStep, x_scaled, y_scaled + rowHeight * 8);
+    //text("Stripe:" + stripe, x_scaled, y_scaled + rowHeight * 6);
+    //text("range:" + range, x_scaled, y_scaled + rowHeight * 0);
+    //text("fill_B_start:" + fill_B_start, x_scaled, y_scaled + rowHeight * 1);
+    //text("fill_B_end:" + fill_B_end, x_scaled, y_scaled + rowHeight * 2);
+    //text("radius_start:" + radius_start, x_scaled, y_scaled + rowHeight * 1);
+    //text("radius_end:" + radius_end, x_scaled, y_scaled + rowHeight * 2);
+    //text("fill_H:" + hue(fillColor), x_scaled, y_scaled + rowHeight * 1);
+    //text("fill_S:" + saturation(fillColor), x_scaled, y_scaled + rowHeight * 2);
+    //text("fill_B:" + brightness(fillColor), x_scaled, y_scaled + rowHeight * 3);
+    //text("fill_A:" + alpha(fillColor), x_scaled, y_scaled + rowHeight * 4);
+    text("stroke_H:" + int(hue(strokeColor)), x_scaled, y_scaled + rowHeight * 4);
+    text("stroke_S:" + int(saturation(strokeColor)), x_scaled, y_scaled + rowHeight * 5);
+    text("stroke_B:" + int(brightness(strokeColor)), x_scaled, y_scaled + rowHeight * 6);
+    text("stroke_A:" + int(alpha(strokeColor)), x_scaled, y_scaled + rowHeight * 7);
+    //text("growth:" + growth, x_scaled, y_scaled + rowHeight * 3);
+    text("lifespan:" + lifespan, x_scaled, y_scaled + rowHeight * 0);
+    text("age:" + age, x_scaled, y_scaled + rowHeight * 1);
+    text("maturity:" + maturity, x_scaled, y_scaled + rowHeight * 2);
+    text("size:" + size, x_scaled, y_scaled + rowHeight * 3);
+    //text("fertile:" + fertile, x_scaled, y_scaled + rowHeight * 2);
+    //text("fertility:" + fertility, x_scaled, y_scaled + rowHeight * 3);
+    //text("spawnLimit:" + spawnLimit, x_scaled, y_scaled + rowHeight * 4);
+    //text("vel.x:" + velocity.x, x_scaled, y_scaled + rowHeight * 2);
+    //text("vel.x:" + velocity.y, x_scaled, y_scaled + rowHeight * 3);
+    //text("dirDiff:" + directionDiff, x_scaled, y_scaled + rowHeight * 2);
+    //text("twist_Start:" + twist_start, x_scaled, y_scaled + rowHeight * 2);
+    //text("twist_End:" + twist_end, x_scaled, y_scaled + rowHeight * 3);
+    //text("twist:" + twist, x_scaled, y_scaled + rowHeight * 4);
+    //text("oDist:" + oDist, x_scaled, y_scaled + rowHeight * 2);
+    //text("noise%:" + noisePercent, x_scaled, y_scaled + rowHeight * 3);
+    //text("noise%S:" + noisePercent_start, x_scaled, y_scaled + rowHeight * 4);
+    //text("noise%E:" + noisePercent_end, x_scaled, y_scaled + rowHeight * 5);
   }
   
   void cellDNALogger() {

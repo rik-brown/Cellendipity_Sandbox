@@ -58,7 +58,7 @@ class Colony {
   // 1) Spawn cells in a random pattern
   void random_pattern() {
     // Here is the code which fills the 'cells' arraylist with cells at random positions
-    for (int n = 0; n <= gs.seeds; n++) {
+    for (int n = 0; n < gs.seeds; n++) {
       pos = new PVector(random(width), random(height)); // random position
       origin = new PVector (gs.orx, gs.ory);
       //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
@@ -72,13 +72,13 @@ class Colony {
       // Set the start & end color of the strain according to the colour at the same location in the source image
       color colorFromPixel = pixelColour(pos);
       //dna.genes[1] = hue(colorFromPixel);
-      dna.genes[2] = hue(colorFromPixel);
+      //dna.genes[2] = hue(colorFromPixel);
       //dna.genes[3] = saturation(colorFromPixel);
-      dna.genes[4] = saturation(colorFromPixel);
+      //dna.genes[4] = saturation(colorFromPixel);
       //dna.genes[5] = brightness(colorFromPixel);
-      dna.genes[6] = brightness(colorFromPixel);
-      dna.genes[11] = brightness(colorFromPixel);
-      dna.genes[12] = brightness(colorFromPixel);
+      //dna.genes[6] = brightness(colorFromPixel);
+      //dna.genes[11] = brightness(colorFromPixel);
+      //dna.genes[12] = brightness(colorFromPixel);
       
       for (int s = 0; s < gs.strainSize; s ++) {
         population.add(new Cell(pos, vel, dna));

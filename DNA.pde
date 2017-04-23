@@ -59,45 +59,45 @@ class DNA {
       
       //genes[1]= random(180, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      //genes[1]= 230;   // 1=fill_H_start
-      genes[1]= gs.bkg_H;   // 1=fill_H_start
+      genes[1]= 1;   // 1=fill_H_start
+      //genes[1]= gs.bkg_H;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + random(170, 210)) % 360;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + 240) % 360;   // 1=fill_H_start
       //genes[1]= (gs.bkg_H + 0) % 360;   // 1=fill_H_start
-      //genes[2]= genes[1];   // 2=fill_H_end
+      genes[2]= 180;   // 2=fill_H_end
       //genes[2]= genes[1] * random (0.80, 0.97);   // 2=fill_H_end
       //genes[2]= (gs.bkg_H + 10) % 360;   // 2=fill_H_end
-      genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
+      //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
       //genes[2]= 300;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 64;   // 3=fill_S_start
+      genes[3]= 255;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
       genes[4]= 128;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 32;   // 5=fill_B_start
-      genes[6]= 255;   // 6=fill_B_end
+      genes[5]= 255;   // 5=fill_B_start
+      genes[6]= 128;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 15;   // 7=fill_A_start
-      genes[8]= 35;   // 8=fill_A_end
+      genes[7]= 3;   // 7=fill_A_start
+      genes[8]= 25;   // 8=fill_A_end
       
-      genes[9]= 0;   // 9=stroke_H_start
+      genes[9]= 240;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
       //genes[9]= gs.bkg_H;   // 9=stroke_H_start
       genes[10]= 0;   // 10=stroke_H_end
       //genes[10]= gs.bkg_H;   // 10=stroke_H_end
       
-      genes[11]= 128;   // 11=stroke_S_start
+      genes[11]= 255;   // 11=stroke_S_start
       //genes[11]= gs.bkg_S;   // 11=stroke_S_start
       genes[12]= 255;   // 12=stroke_S_end
       
-      genes[13]= 0;   // 13=stroke_B_start
+      genes[13]= 255;   // 13=stroke_B_start
       genes[14]= 0;   // 14=stroke_B_end
       
       genes[15]= 0;   // 15=stroke_A_start
@@ -135,8 +135,8 @@ class DNA {
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 2;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
-      genes[31]= random(100, 300);   // 31=lifespan
-      //genes[31]= 200;   // 31=lifespan
+      //genes[31]= random(100, 300);   // 31=lifespan
+      genes[31]= 255;   // 31=lifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
