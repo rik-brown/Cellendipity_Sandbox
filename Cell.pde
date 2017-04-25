@@ -83,6 +83,9 @@ class Cell {
   float stroke_A_start;
   float stroke_A_end;
   
+  // PIXEL COLOR = color of pixel in source image at cell's current location
+  color pixelColor;
+  
   // STRAIN
   int id;
 
@@ -303,6 +306,8 @@ class Cell {
   void updatePosition() { //Update parameters linked to the position
     position.add(velocity); //<>// //<>// //<>//
     
+    pixelColor = colony.pixelColour(position);
+    
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
     range = toHome.mag(); // range is how far the cell is from home at any time
     
@@ -380,15 +385,16 @@ class Cell {
   
   void updateFillColorByPosition() {
   //fillColor = colony.pixelColour(position);
-  float fill_H = hue(colony.pixelColour(position));
-  float fill_S = saturation(colony.pixelColour(position));
-  float fill_B = brightness(colony.pixelColour(position));
-  float fill_A = alpha(fillColor);
-  fillColor = color(fill_H, saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
+  //float fill_H = hue(pixelColor);
+  //float fill_S = saturation(pixelColor);
+  //float fill_B = brightness(pixelColor);
+  //float fill_A = alpha(fillColor); // alpha from pixelColor is not used as it is always 100%
+  //fillColor = color(hue(pixelColor), saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
+  fillColor = pixelColor;
   }
   
   void updateStrokeColorByPosition() {
-  strokeColor = colony.pixelColour(position);
+  strokeColor = pixelColor;
   }
 
   void updateStripes() {
@@ -449,7 +455,7 @@ void displayRect() {
     stroke(strokeColor);
     fill(fillColor);
     
-    println("A:" + age + " Lifesp:" + lifespan + " Death" + int(dead()) + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor));
+    //println("A:" + age + " Lifesp:" + lifespan + " Death" + int(dead()) + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor));
     
     float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
     float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));

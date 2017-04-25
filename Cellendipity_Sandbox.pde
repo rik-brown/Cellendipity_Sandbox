@@ -27,6 +27,7 @@
 *  m) DNA modifiers need to take spwan-pattern into account (e.g. centered)
 *
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
+*
 *  o) SPAWNING new cells - does it still work?
 *    1) Add recombined DNA to the genepool?
 *  
@@ -37,9 +38,9 @@
 *    4) Add a new class to handle this? Need to think about how to enable this feature.
 *    5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
 *    6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
-*    6a) Could just use hue while allowing B & S to continue as normal
+*    6a) Could just use hue while allowing B & S to continue as normal <DONE>
 *
-*  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI
+*  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI <DONE>
 *    .... which in turn influences later changes
 *  s) pixelHue at current seed position determines heading (or heading offset from initial velocity)
 *
@@ -59,7 +60,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.11";
+String batchName = "batch-158.11.1";
 int maxCycles = 1;
 int runCycle = 1;
 
