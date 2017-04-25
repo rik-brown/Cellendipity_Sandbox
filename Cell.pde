@@ -171,7 +171,7 @@ class Cell {
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
+  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
   }
@@ -213,7 +213,7 @@ class Cell {
     // MODULATED BY POSITION
     radius_start *= map(oDist, 0, width, 1, 0.2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = int(map(oDist, 0, width, 100, 50) * width * 0.001);
+    lifespan = int(map(oDist, 0, width, 250, 50) * width * 0.001);
     noisePercent_start = map(oDist, 0, width, 1, 0.1);
     noisePercent_end = map(oDist, 0, width, 0.5, 0.5);
     
@@ -243,14 +243,14 @@ class Cell {
     updateShape();
     updateFertility();
     updateFillColorBySize();
-    updateStrokeColorBySize();
+    //updateStrokeColorBySize();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
-    updateFillColorByPosition();
-    //updateStrokeColorByPosition();
+    //updateFillColorByPosition();
+    updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
-    //display();
-    displayRect();
+    display();
+    //displayRect();
     //displayText();
     if (gs.debug) {cellDebugger();}
   }
@@ -294,12 +294,12 @@ class Cell {
   }
   
   void updateVelocityByHue() {
-    float fill_H = hue(colony.pixelColour(position));
-    velocity = PVector.fromAngle(radians(fill_H));
+    velocity = PVector.fromAngle(radians(hue(pixelColor)));
     twist = TWO_PI * map(maturity, 0, 1, twist_start, twist_end);
     float twistAngle = map(maturity, 0, 1, 0, twist);
     //velocity.mult(vFactor);
     velocity.rotate(twistAngle);
+    directionDiff = PVector.angleBetween(velocityRef, velocity); // Float in range 0-PI
   }
   
   
@@ -330,13 +330,14 @@ class Cell {
     //stroke(0,255);
     //r = map(remoteness, 0, 1, radius_start, radius_end);
     //r = map(directionDiff, 0, PI, radius_start, radius_end);
+    //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
     r = map(age, 0, lifespan, radius_start, radius_end);
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
     //r -= growth;
-    size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
-    //size = map(age, 0, lifespan, 0, 1); // HACK!!!!
+    //size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
+    size = map(age, 0, lifespan, 0, 1); // HACK!!!!
     
   }
 
@@ -389,12 +390,13 @@ class Cell {
   //float fill_S = saturation(pixelColor);
   //float fill_B = brightness(pixelColor);
   //float fill_A = alpha(fillColor); // alpha from pixelColor is not used as it is always 100%
-  //fillColor = color(hue(pixelColor), saturation(fillColor), brightness(fillColor), alpha(fillColor)); //fill colour is updated with new values
-  fillColor = pixelColor;
+  fillColor = color(hue(fillColor), saturation(fillColor), brightness(pixelColor), alpha(fillColor)); //fill colour is updated with new values
+  //fillColor = pixelColor;
   }
   
   void updateStrokeColorByPosition() {
-  strokeColor = pixelColor;
+    strokeColor = color(hue(pixelColor), saturation(pixelColor), brightness(pixelColor), alpha(strokeColor));
+    //strokeColor = pixelColor;
   }
 
   void updateStripes() {
@@ -412,7 +414,7 @@ class Cell {
     //fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
     fill(fillColor);
     stroke(strokeColor);
-    println("A:" + age + " Lifesp:" + lifespan + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor)); 
+    //println("A:" + age + " Lifesp:" + lifespan + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor)); 
     
     float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
     float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));

@@ -120,8 +120,8 @@ class Colony {
         //dna.genes[6] = brightness(colorFromPixel);
         //dna.genes[11] = brightness(colorFromPixel);
         //dna.genes[12] = brightness(colorFromPixel);
-        dna.genes[17]= 500/gs.rows*map(brightness(colorFromPixel), 0, 255, 1.3, 0.8);
-        dna.genes[31]= map(saturation(colorFromPixel), 0, 255, 40, 60);
+        //dna.genes[17]= 500/gs.rows*map(saturation(colorFromPixel), 0, 255, 0.5, 1.8);
+        //dna.genes[31]= map(saturation(colorFromPixel), 0, 255, 40, 60);
         
         vel = PVector.fromAngle(radians(hue(colorFromPixel)));
         //origin = new PVector (gs.orx, gs.ory);
@@ -228,16 +228,16 @@ class Colony {
       //dna.genes[4] = saturation(colorFromPixel);
       //dna.genes[5] = brightness(colorFromPixel);
       //dna.genes[6] = brightness(colorFromPixel);
-      dna.genes[7] = alpha(colorFromPixel);
-      dna.genes[9] = hue(colorFromPixel);
-      dna.genes[10] = hue(colorFromPixel);
+      //dna.genes[7] = alpha(colorFromPixel);
+      //dna.genes[9] = hue(colorFromPixel);
+      //dna.genes[10] = hue(colorFromPixel);
       //dna.genes[11] = saturation(colorFromPixel);
       //dna.genes[12] = saturation(colorFromPixel);
       //dna.genes[13] = brightness(colorFromPixel);
       //dna.genes[14] = brightness(colorFromPixel);
       //dna.genes[15] = alpha(colorFromPixel);
-      dna.genes[17] = map(hue(colorFromPixel), 0, 255, 10, 300);
-      dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
+      dna.genes[17] = map(hue(colorFromPixel), 0, 360, 10, 200);
+      //dna.genes[18] = map(brightness(colorFromPixel), 0, 255, 0, 5);
       
       for (int s = 0; s < gs.strainSize; s ++) {
         //if (brightness(colorFromPixel) > 100) {population.add(new Cell(pos, vel, dna));}
