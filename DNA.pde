@@ -84,7 +84,7 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 3;   // 7=fill_A_start
+      genes[7]= 25;   // 7=fill_A_start
       genes[8]= 25;   // 8=fill_A_end
       
       genes[9]= 240;   // 9=stroke_H_start
@@ -93,16 +93,16 @@ class DNA {
       genes[10]= 0;   // 10=stroke_H_end
       //genes[10]= gs.bkg_H;   // 10=stroke_H_end
       
-      genes[11]= 255;   // 11=stroke_S_start
+      genes[11]= 0;   // 11=stroke_S_start
       //genes[11]= gs.bkg_S;   // 11=stroke_S_start
-      genes[12]= 255;   // 12=stroke_S_end
+      genes[12]= 0;   // 12=stroke_S_end
       
-      genes[13]= 255;   // 13=stroke_B_start
-      genes[14]= 0;   // 14=stroke_B_end
+      genes[13]= 1;   // 13=stroke_B_start
+      genes[14]= 1;   // 14=stroke_B_end
       
-      genes[15]= 0;   // 15=stroke_A_start
+      genes[15]= 15;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 0;   // 16=stroke_A_end
+      genes[16]= 15;   // 16=stroke_A_end
       
       //genes[17]= random(75, 200);   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
@@ -136,7 +136,7 @@ class DNA {
       genes[30]= 2;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 300);   // 31=lifespan
-      genes[31]= 255;   // 31=lifespan
+      genes[31]= 100;   // 31=lifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize

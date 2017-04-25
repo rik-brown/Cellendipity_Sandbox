@@ -59,7 +59,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.10.0";
+String batchName = "batch-158.11";
 int maxCycles = 1;
 int runCycle = 1;
 
@@ -70,9 +70,9 @@ int frameCounter;
 
 String iterationNum;
 String applicationName = "sandbox";
-String inputFile = "flower.jpg"; // First run will use /data/input.png, which will not be overwritten
+//String inputFile = "flower.jpg"; // First run will use /data/input.png, which will not be overwritten
 //String inputFile = "badger.jpg"; // First run will use /data/input.png, which will not be overwritten
-//String inputFile = "sushi.jpg"; // First run will use /data/input.png, which will not be overwritten
+String inputFile = "sushi.jpg"; // First run will use /data/input.png, which will not be overwritten
 //String inputFile = "bananas.jpg"; // First run will use /data/input.png, which will not be overwritten
 //String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
@@ -97,7 +97,7 @@ void setup() {
   ellipseMode(RADIUS);
   smooth();
   getReady();
-  if (gs.debug) {frameRate(1);}
+  if (gs.debug) {frameRate(5);}
 }
 
 void draw() {
