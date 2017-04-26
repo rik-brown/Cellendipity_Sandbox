@@ -513,8 +513,8 @@ void displayRect() {
 
   void checkCollision(Cell other) {       // Method receives a Cell object 'other' to get the required info about the collidee
       PVector distVect = PVector.sub(other.position, position); // Static vector to get distance between the cell & other
-      //float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
-      //if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
+      float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
+      if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
   }
 
   void conception(Cell other, PVector distVect) {

@@ -57,15 +57,15 @@ class Global_settings {
     borderHeight = 0.1;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 0; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
+    numStrains = 3;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 250;
+    seeds = 10;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -99,7 +99,7 @@ class Global_settings {
     //bkgColor = 360; // White
 
     // I kept this as a boolean to avoid unnecessary work when nucleus is not required
-    nucleus = false;
+    nucleus = true;
     nucleusColorU = color(0, 0, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0); // Black
