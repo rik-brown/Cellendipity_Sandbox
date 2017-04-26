@@ -60,7 +60,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.11.5";
+String batchName = "batch-158.12";
 int maxCycles = 1;
 int runCycle = 1;
 

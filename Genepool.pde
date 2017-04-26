@@ -7,6 +7,11 @@ class Genepool {
 *  3) Any new genotypes that might arise during the lifetime of a colony
 *
 *  TO DO:
+*  For 3) I need a 'genepool.spawn' function that adds a new genotype to the pool when a new cell is created
+*  It must somehow be linked to the colony.spawn function
+*  It must receive some new DNA and push it to the genepool arraylist
+*  It must be written to the genepool.csv output file
+*  Maybe 'write to .csv' is a function that is called once, at the end of a colony, rather than in the constructor itself?
 *
 */
 
