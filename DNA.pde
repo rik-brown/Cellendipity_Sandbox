@@ -72,9 +72,9 @@ class DNA {
       //genes[2]= 300;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 255;   // 3=fill_S_start
+      genes[3]= 225;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 205;   // 4=fill_S_end
+      genes[4]= 128;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
@@ -106,7 +106,7 @@ class DNA {
       
       //genes[17]= 2;   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
-      genes[17]= 500/gs.rows*1.5;   // 17=radius_start CARTESIAN GRID
+      genes[17]= 500/gs.rows*1.0;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
       genes[18]= 5;   // 18=radius_end
@@ -118,7 +118,7 @@ class DNA {
       
       genes[21]= 0;   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
-      genes[22]= 2;   // 22=twist_end
+      genes[22]= 1;   // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
       genes[23]= 0;   // 23=noisePercent_start
@@ -140,7 +140,7 @@ class DNA {
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 30000;   // 32=StripeSize
+      genes[32]= 30;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       genes[33]= 0.5;   // 33=StripeRatio
       //genes[33] = random(0.4, 0.8);  // 33=StripeRatio

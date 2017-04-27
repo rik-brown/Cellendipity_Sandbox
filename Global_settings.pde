@@ -53,8 +53,8 @@ class Global_settings {
     
     debug = false;
     
-    borderWidth = 0.0;
-    borderHeight = 0.0;
+    borderWidth = 0.1;
+    borderHeight = 0.1;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
     patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
@@ -70,7 +70,7 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 19;
+	  rows = 8;
     cols = rows;
     //cols = 12;
     
@@ -93,7 +93,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 128; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 200; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
