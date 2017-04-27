@@ -124,13 +124,13 @@ class Colony {
         //dna.genes[17]= 500/gs.rows*map(saturation(colorFromPixel), 0, 255, 0.5, 1.8);
         //dna.genes[31]= map(saturation(colorFromPixel), 0, 255, 40, 60);
         
-        vel = PVector.fromAngle(radians(hue(colorFromPixel)));
-        //origin = new PVector (gs.orx, gs.ory);
+        //vel = PVector.fromAngle(radians(hue(colorFromPixel)));
+        origin = new PVector (gs.orx, gs.ory);
         //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-        //vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
+        vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
         //vel = new PVector(1,0);
-        //vel.normalize();
-        //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+        vel.normalize();
+        vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
   
         for (int s = 0; s < gs.strainSize; s ++) {
           //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
