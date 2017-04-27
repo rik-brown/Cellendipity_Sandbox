@@ -39,6 +39,7 @@
 *    5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
 *    6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
 *    6a) Could just use hue while allowing B & S to continue as normal <DONE>
+*    7) Continue on original path until pixelColor hue is more than X degrees different. If diff>x, adopt new hue & direction
 *
 *  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI <DONE>
 *    .... which in turn influences later changes
@@ -61,7 +62,7 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
 String batchName = "batch-158.12";
-int maxCycles = 1;
+int maxCycles = 3;
 int runCycle = 1;
 
 

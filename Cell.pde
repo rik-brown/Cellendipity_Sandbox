@@ -171,7 +171,7 @@ class Cell {
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
+  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
   }
@@ -211,11 +211,11 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, width, 1, 0.2);
+    //radius_start *= map(oDist, 0, width, 1, 0.2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
     lifespan = int(map(oDist, 0, width, 250, 50) * width * 0.001);
-    noisePercent_start = map(oDist, 0, width, 1, 0.1);
-    noisePercent_end = map(oDist, 0, width, 0.5, 0.5);
+    //noisePercent_start = map(oDist, 0, width, 1, 0.1);
+    //noisePercent_end = map(oDist, 0, width, 0.5, 0.5);
     
     //stroke_H_start = map(oDist, 0, width * 0.5, 0, 360);
     //stroke_H_end = map(oDist, 0, width * 0.5, 0, 360);
@@ -236,18 +236,18 @@ class Cell {
 
   void run() {
     live();
-    //updateVelocity();
-    updateVelocityByHue();
+    updateVelocity();
+    //updateVelocityByHue();
     updatePosition();
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColorBySize();
-    //updateStrokeColorBySize();
-    //updateFillColorByDirection();
+    //updateFillColorBySize();
+    updateStrokeColorBySize();
+    updateFillColorByDirection();
     //updateStrokeColorByDirection();
     //updateFillColorByPosition();
-    updateStrokeColorByPosition();
+    //updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
     display();
     //displayRect();
@@ -538,14 +538,14 @@ void displayRect() {
 
     // Genes for color require special treatment as I want childColor to be a 50/50 blend of parents colors
     // I will therefore overwrite color genes with reverse-engineered values after lerping:
-    childDNA.genes[1] = hue(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[3] = saturation(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[5] = brightness(childFillColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[9] = hue(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[11] = saturation(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
-    childDNA.genes[13] = brightness(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[1] = hue(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[3] = saturation(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[5] = brightness(childFillColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[9] = hue(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[11] = saturation(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
+    //childDNA.genes[13] = brightness(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
 
-    childDNA.genes[17] = (r + other.r) / 2; // Child radius_start is set at average of parents current radii
+    childDNA.genes[17] = (r + other.r) *0.5; // Child radius_start is set at average of parents current radii
 
     colony.spawn(position, spawnVel, childDNA);
 

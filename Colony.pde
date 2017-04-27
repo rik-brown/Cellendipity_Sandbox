@@ -35,8 +35,9 @@ class Colony {
   // 0) Spawn cells at the center of the screen
   void center_pattern() {
     // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
-    for (int n = 0; n <= gs.seeds; n++) {
+    for (int n = 0; n < gs.seeds; n++) {
       int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined + gs.numStrains));
       pos = new PVector(width*0.5, height*0.5); // random position
       
       vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
