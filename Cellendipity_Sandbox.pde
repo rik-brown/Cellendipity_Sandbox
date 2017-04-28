@@ -24,7 +24,8 @@
 
 *  k) Populate the library with some 'favourite' cell genotypes from older sketches
 *  l) Try to recreate the twitter/tumblrbot classic styles?
-*  m) DNA modifiers need to take spwan-pattern into account (e.g. centered)
+*
+*  m) DNA modifiers need to take spwan-pattern into account (e.g. centered). What are the implications of this?
 *
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
 *
@@ -61,7 +62,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.15";
+String batchName = "batch-158.16";
 int maxCycles = 1;
 int runCycle = 1;
 
