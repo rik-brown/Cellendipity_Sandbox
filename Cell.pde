@@ -171,7 +171,7 @@ class Cell {
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
+  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
   }

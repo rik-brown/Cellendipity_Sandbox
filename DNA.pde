@@ -72,14 +72,14 @@ class DNA {
       //genes[2]= 300;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 225;   // 3=fill_S_start
+      genes[3]= 0;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 128;   // 4=fill_S_end
+      genes[4]= 0;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 48;   // 5=fill_B_start
+      genes[5]= 255;   // 5=fill_B_start
       genes[6]= 255;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
@@ -118,12 +118,12 @@ class DNA {
       
       genes[21]= 0;   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
-      genes[22]= 200;   // 22=twist_end
+      genes[22]= 0;   // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 0;   // 23=noisePercent_start
+      genes[23]= 100;   // 23=noisePercent_start
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End
+      genes[24]= 100;   // 24=noisePercent_End
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       genes[25]= random(2, 4);   // 25=noise_vMax

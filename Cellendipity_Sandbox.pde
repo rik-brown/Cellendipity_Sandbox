@@ -11,6 +11,7 @@
 *  d) Improve functionality for saving frames for gifs (configurable frame interval and intelligent file numbering)
 
 *  g) Introduce a new spawn-pattern of concentric rings
+*    1) Also variable spacing between rows/columns or rings (binomial, sine etc.)
 
 *  i) Cell STYLE could be a variant of it's DNA, based on a single gene  EXPLORE
 *    Examples could be:
@@ -44,7 +45,7 @@
 *
 *  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI <DONE>
 *    .... which in turn influences later changes
-*  s) pixelHue at current seed position determines heading (or heading offset from initial velocity)
+*  s) pixelHue at current seed position determines heading (or heading offset from initial velocity) <DONE>
 *
 *  t) (If cell arrives at pixel of a given colour) {do this()} where this = die, spawn, stop moving, etc.
 *
@@ -55,6 +56,8 @@
 *      e.g. fill_H = map(fillMod, 0, 1, fill_H_start, fill_H_end) % 360;
 *      where fillmod could be map(range, 0, lifespan, 1, 0) or (age, 0, lifespan, 1, 0) etc. MORE ECONOMICAL
 *
+*  w) Mods in cell() are done to DNA before assignment to parameters, so values remain with the original range
+*
 */
 
 Colony colony;        // A Colony object called 'colony'
@@ -62,7 +65,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.16";
+String batchName = "batch-158.17";
 int maxCycles = 1;
 int runCycle = 1;
 
@@ -86,10 +89,11 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
+  size(800, 800);
   //size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
