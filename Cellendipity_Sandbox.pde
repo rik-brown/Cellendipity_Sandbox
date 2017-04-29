@@ -65,8 +65,8 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.17";
-int maxCycles = 1;
+String batchName = "batch-158.18";
+int maxCycles = 100;
 int runCycle = 1;
 
 
@@ -89,8 +89,8 @@ PrintWriter output;    // Object for writing to the settings logfile
 void setup() {
   //size(200, 200);
   //size(500, 500);
-  size(800, 800);
-  //size(1000, 1000);
+  //size(800, 800);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2000, 2000);
   //size(4000, 4000);
@@ -104,11 +104,12 @@ void setup() {
   ellipseMode(RADIUS);
   smooth();
   getReady();
+  background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);}
 }
 
 void draw() {
-  if (colony.population.size() == 0 || frameCounter < 0 ) {manageColony();}
+  if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
   if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
   colony.run();
@@ -132,6 +133,7 @@ void manageColony() {
 
 void getReady() {
   img = loadImage(inputFile);
+  println("Iteration: " + runCycle);
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
@@ -148,7 +150,7 @@ void getReady() {
   gs = new Global_settings();
   gpl = new Genepool();
   colony = new Colony();
-  background(gs.bkgColor);
+  //background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 

@@ -40,15 +40,17 @@ class Colony {
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
       pos = new PVector(width*0.5, height*0.5); // random position
       
-      vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      vel = new PVector(1,-1);
+      
       origin = new PVector (gs.orx, gs.ory);
       //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
-      //vel.normalize();
+      vel.normalize();
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
   
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
-      //dna.genes[0] = n; //n is transferred to gene 28
+      //dna.genes[0] = n; //n is transferred to gene 0
       
       for (int s = 0; s < gs.strainSize; s ++) {
         population.add(new Cell(pos, vel, dna));
@@ -297,7 +299,7 @@ class Colony {
     rect(0,0,250,40);
     fill(360);
     textSize(16);
-    text("frames" + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
+    text("Cycle: " + runCycle + " Cycle frame: " + frameCounter + " Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
   }
 
 }

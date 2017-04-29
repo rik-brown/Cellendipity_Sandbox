@@ -125,7 +125,8 @@ class Cell {
   noise_step = dna.genes[26] * 0.001; //Step-size for noise
   noisePercent_start = dna.genes[23] * 0.01; // How much influence on velocity does Perlin noise have? (initial value)
   noisePercent_end = dna.genes[24] * 0.01; // How much influence on velocity does Perlin noise have? (final value)
-  noise_xoff = dna.genes[27]; //Seed for noise
+  //noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noise
+  noise_xoff = map(runCycle, 1, maxCycles, 0, 1); //Seed for noise
   noise_yoff = dna.genes[28]; //Seed for noise
   
   // GROWTH AND REPRODUCTION
@@ -286,6 +287,7 @@ class Cell {
     
     //Interpolate between the linear and noise vectors
     velocity = PVector.lerp(velocityLinear.rotate(twist), velocityNoise, noisePercent); //<>// //<>// //<>//
+    velocity.normalize(); // TEST. To see how this looks, velocity only contributes direction, is always a unit vector.
     
     //Rotate the resulting vector by the current twist angle
     
@@ -573,14 +575,14 @@ void displayRect() {
 
   void cellDebugger() { // For debug only
     int rowHeight = 12;
-    fill(120, 0, 0);
+    fill(120, 0, 128);
     textSize(rowHeight);
     text("id:" + id, position.x, position.y + rowHeight * 0);
     //text("r:" + r, position.x, position.y + rowHeight * 5);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 8);
     //text("Stripe:" + stripe, position.x, position.y + rowHeight * 6);
-    //text("range:" + range, position.x, position.y + rowHeight * 0);
+    text("range:" + int(range), position.x, position.y + rowHeight * 6);
     //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 1);
     //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 2);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
@@ -589,19 +591,19 @@ void displayRect() {
     //text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);
     //text("fill_B:" + brightness(fillColor), position.x, position.y + rowHeight * 3);
     //text("fill_A:" + alpha(fillColor), position.x, position.y + rowHeight * 4);
-    text("stroke_H:" + hue(strokeColor), position.x, position.y + rowHeight * 1);
-    text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
-    text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
-    text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
+    //text("stroke_H:" + hue(strokeColor), position.x, position.y + rowHeight * 1);
+    //text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
+    //text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
+    //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
     //text("growth:" + growth, position.x, position.y + rowHeight * 5);
-    text("lifespan:" + lifespan, position.x, position.y + rowHeight * 5);
-    text("age:" + age, position.x, position.y + rowHeight * 6);
-    //text("maturity:" + maturity, position.x, position.y + rowHeight * 1);
+    text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);
+    text("age:" + age, position.x, position.y + rowHeight * 2);
+    text("maturity:" + maturity, position.x, position.y + rowHeight * 3);
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
     //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
-    //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 2);
-    //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 3);
+    text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 4);
+    text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 5);
     //text("dirDiff:" + directionDiff, position.x, position.y + rowHeight * 2);
     //text("twist_Start:" + twist_start, position.x, position.y + rowHeight * 2);
     //text("twist_End:" + twist_end, position.x, position.y + rowHeight * 3);

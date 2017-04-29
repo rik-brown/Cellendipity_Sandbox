@@ -84,8 +84,8 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 255;   // 7=fill_A_start
-      genes[8]= 255;   // 8=fill_A_end
+      genes[7]= 128;   // 7=fill_A_start
+      genes[8]= 64;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -104,12 +104,12 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      genes[17]= 2;   // 17=radius_start
+      genes[17]= 1;   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 5;   // 18=radius_end
+      genes[18]= 100;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
       genes[19]= 100;   // 19=flatness_start
@@ -126,17 +126,22 @@ class DNA {
       genes[24]= 100;   // 24=noisePercent_End
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
-      genes[25]= random(2, 4);   // 25=noise_vMax
-      genes[26]= random(1, 6);   // 26=noise_tep
-      genes[27]= random(1000);   // 27=noise_xOff
-      genes[28]= random(1000);   // 28=noise_yOff
+      ///genes[25]= random(2, 4);   // 25=noise_vMax
+      genes[25]= 2;
+      //genes[26]= random(1, 6);   // 26=noise_tep
+      genes[26]= 3;
+      genes[27]= random(500, 501);   // 27=noise_xOff
+      //genes[27]= 500;
+      //genes[28]= random(1000);   // 28=noise_yOff
+      genes[28]= 0;
+
                   
       genes[29]= 1;   // 29=fertility
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 300);   // 31=lifespan
-      genes[31]= 1200;   // 31=lifespan
+      genes[31]= 500;   // 31=lifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
