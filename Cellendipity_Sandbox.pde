@@ -65,8 +65,8 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.18";
-int maxCycles = 100;
+String batchName = "batch-158.20";
+int maxCycles = 10;
 int runCycle = 1;
 
 
@@ -83,6 +83,7 @@ String inputFile = "badger.jpg"; // First run will use /data/input.png, which wi
 //String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
+String screendumpPath2; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
 String framedumpPath;  // Name & location of saved output (individual frames)
 PrintWriter output;    // Object for writing to the settings logfile
 
@@ -104,7 +105,7 @@ void setup() {
   ellipseMode(RADIUS);
   smooth();
   getReady();
-  background(gs.bkgColor); // TEST ONLY
+  //background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);}
 }
 
@@ -137,10 +138,12 @@ void getReady() {
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
+  String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
   
   screendumpPath = pathName + "/png/" + batchName + "-" + iterationNum + ".png";
+  screendumpPath2 = pathName + "/png/" + batchName + "-" + iterationNum2 + ".png";
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
   
@@ -150,7 +153,7 @@ void getReady() {
   gs = new Global_settings();
   gpl = new Genepool();
   colony = new Colony();
-  //background(gs.bkgColor);
+  background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 

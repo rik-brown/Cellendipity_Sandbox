@@ -126,7 +126,7 @@ class Cell {
   noisePercent_start = dna.genes[23] * 0.01; // How much influence on velocity does Perlin noise have? (initial value)
   noisePercent_end = dna.genes[24] * 0.01; // How much influence on velocity does Perlin noise have? (final value)
   //noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noise
-  noise_xoff = map(runCycle, 1, maxCycles, 0, 1); //Seed for noise
+  noise_xoff = map(runCycle, 1, maxCycles, 0, 3); //Seed for noise
   noise_yoff = dna.genes[28]; //Seed for noise
   
   // GROWTH AND REPRODUCTION
