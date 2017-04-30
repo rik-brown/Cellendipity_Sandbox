@@ -36,8 +36,9 @@ class Colony {
   void center_pattern() {
     // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
     for (int n = 0; n < gs.seeds; n++) {
-      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
+      int strain = gpl.numPredefined + n;
       pos = new PVector(width*0.5, height*0.5); // random position
       
       //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
@@ -68,7 +69,8 @@ class Colony {
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
       vel.normalize();
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      int strain = gpl.numPredefined + n;
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
       

@@ -8,7 +8,8 @@
 *
 * Development Goals:
 *
-*  d) Improve functionality for saving frames for gifs (configurable frame interval and intelligent file numbering)
+*  d) Improve functionality for saving frames for gifs:
+    1) Configurable frame interval
 
 *  g) Introduce a new spawn-pattern of concentric rings
 *    1) Also variable spacing between rows/columns or rings (binomial, sine etc.)
@@ -65,7 +66,7 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.20";
+String batchName = "batch-158.21";
 int maxCycles = 10;
 int runCycle = 1;
 
@@ -105,7 +106,7 @@ void setup() {
   ellipseMode(RADIUS);
   smooth();
   getReady();
-  //background(gs.bkgColor); // TEST ONLY
+  background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);}
 }
 
@@ -120,8 +121,9 @@ void draw() {
 
 // What happens when the colony goes extinct
 void manageColony() {
-  saveFrame(screendumpPath); // Save an image 
-  saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
+  saveFrame(screendumpPath); // Save an image
+  //saveFrame(screendumpPath2); // Save a duplicate image with alternative iteration number 
+  //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
   if (runCycle >= maxCycles) {exit();}
@@ -153,7 +155,7 @@ void getReady() {
   gs = new Global_settings();
   gpl = new Genepool();
   colony = new Colony();
-  background(gs.bkgColor);
+  //background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 
