@@ -172,7 +172,7 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
-  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
@@ -182,8 +182,8 @@ class Cell {
   // MODULATED BY POSITION
   //radius_start *= map(oDist, 0, width, 0.5, 1);
   //flatness_start *= map(oDist, 0, width, 0.4, 1.0);
-  lifespan *= map(oDist, 0, width, 0.7, 5);
-  noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
+  //lifespan *= map(oDist, 0, width, 0.7, 5);
+  //noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
   //twist_start *= map(oDist, 0, width, 0.3, 0.5);
   //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 40, 0));
   //fill_S_start *= map(position.x, 0, width, 1, 0);
@@ -205,8 +205,9 @@ class Cell {
   //fill_A_start = map(oDist, 0, width*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
-  stripeSize = map(id, 0, gs.seeds, 60, 10);
-  //lifespan = map(id, 0, gs.seeds, 0, 360);
+  //stripeSize = map(id, 0, gs.seeds, 60, 10);
+  lifespan = int(map(id, 0, gs.rows * gs.cols, 10, 50));
+  radius_end = radius_start * map(id, 0, gs.rows * gs.cols, 0.05, 0.2);
   //lifespan = width * 0.001 * map(id, 0, gs.seeds, 1, 500);
   //twist_start = map(id, 0, gs.seeds, 0, 15);
   }

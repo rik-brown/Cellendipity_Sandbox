@@ -110,7 +110,8 @@ class Colony {
         //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         int strain = (n % gs.numStrains) + gpl.numPredefined;
         DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
-        //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
+        //DNA dna = gpl.genepool.get(0);          // Get's a specific strain of dna from the genepool
+        dna.genes[0] = n;
          n ++;
         float xpos = width * map (c, 0, gs.cols, 0, 1);
         float ypos = height * map (r, 0, gs.rows, 0, 1);
