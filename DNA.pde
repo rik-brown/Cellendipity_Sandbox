@@ -59,7 +59,7 @@ class DNA {
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      genes[1]= 220;   // 1=fill_H_start
+      genes[1]= 0;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
@@ -69,18 +69,18 @@ class DNA {
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
-      genes[2]= 220;   // 2=fill_H_end
+      genes[2]= 0;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 24;   // 3=fill_S_start
+      genes[3]= 0;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 128;   // 4=fill_S_end
+      genes[4]= 0;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       genes[5]= 255;   // 5=fill_B_start
-      genes[6]= 255;   // 6=fill_B_end
+      genes[6]= 200;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
@@ -100,9 +100,9 @@ class DNA {
       genes[13]= 1;   // 13=stroke_B_start
       genes[14]= 1;   // 14=stroke_B_end
       
-      genes[15]= 2;   // 15=stroke_A_start
+      genes[15]= 255;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 25;   // 16=stroke_A_end
+      genes[16]= 255;   // 16=stroke_A_end
       
       genes[17]= 40;   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
