@@ -209,10 +209,12 @@ class Cell {
   lifespan = int(map(id, 0, gs.numStrains, 5, 500));
   radius_start = width * 0.001 * map(id, 0, gs.numStrains, 20, 40);
   r = radius_start;
-  radius_end = radius_start * map(id, 0, gs.numStrains, 0.05, 0.1);
+  radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
   //flatness_start = map(id, 0, gs.rows * gs.cols, 1, 1.5);
-  //lifespan = width * 0.001 * map(id, 0, gs.seeds, 1, 500);
+  //lifespan = width * .001 * map(id, 0, gs.seeds, 1, 500);
   twist_start = map(id, 0, gs.numStrains, 0, 3);
+  //fill_H_start =  map(id, 0, gs.numStrains, 0, 360);
+  //fill_H_end =  fill_H_start;
   }
   
   void coralMods() {
