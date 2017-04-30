@@ -74,7 +74,7 @@ class DNA {
       //genes[3]= random(130,180);   // 3=fill_S_start
       genes[3]= 24;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 64;   // 4=fill_S_end
+      genes[4]= 128;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
@@ -84,7 +84,7 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 128;   // 7=fill_A_start
+      genes[7]= 255;   // 7=fill_A_start
       genes[8]= 255;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
