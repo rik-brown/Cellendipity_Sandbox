@@ -206,10 +206,11 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan = int(map(id, 0, gs.rows * gs.cols, 10, 50));
-  radius_end = radius_start * map(id, 0, gs.rows * gs.cols, 0.05, 0.2);
+  lifespan = int(map(id, 0, gs.rows * gs.cols, 10, 60));
+  radius_end = radius_start * map(id, 0, gs.rows * gs.cols, 0.05, 0.1);
+  //flatness_start = map(id, 0, gs.rows * gs.cols, 1, 1.5);
   //lifespan = width * 0.001 * map(id, 0, gs.seeds, 1, 500);
-  //twist_start = map(id, 0, gs.seeds, 0, 15);
+  twist_start = map(id, 0, gs.rows * gs.cols, 0, 25);
   }
   
   void coralMods() {

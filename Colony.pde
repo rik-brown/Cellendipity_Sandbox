@@ -136,14 +136,15 @@ class Colony {
         vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
         //vel = new PVector(1,0);
         vel.normalize();
-        vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+        //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
   
         for (int s = 0; s < gs.strainSize; s ++) {
           //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
           //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
           //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
           //if (saturation(colorFromPixel) > 3) {population.add(new Cell(pos, vel, dna));}
-          population.add(new Cell(pos, vel, dna));
+          if (n <= gs.numStrains) {population.add(new Cell(pos, vel, dna));}
+          //population.add(new Cell(pos, vel, dna));
         }
       }
     }
