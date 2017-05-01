@@ -8,9 +8,6 @@
 *
 * Development Goals:
 *
-*  a) Export to .pdf for printing
-*    1) Reference here: https://processing.org/reference/libraries/pdf/index.html
-
 *  d) Improve functionality for saving frames for gifs:
     1) Configurable frame interval
 
@@ -71,8 +68,8 @@ Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.30";
-int maxCycles = 10;
+String batchName = "batch-158.31";
+int maxCycles = 30;
 int runCycle = 1;
 
 
@@ -89,7 +86,8 @@ String inputFile = "badger.jpg"; // First run will use /data/input.png, which wi
 //String inputFile = "input.png"; // First run will use /data/input.png, which will not be overwritten
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
-String screendumpPath2; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
+String screendumpPathGIF1; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
+String screendumpPathGIF2; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
 String screendumpPathPDF; // Name & location of saved output (pdf file)
 String framedumpPath;  // Name & location of saved output (individual frames)
 PrintWriter output;    // Object for writing to the settings logfile
@@ -127,7 +125,7 @@ void draw() {
 // What happens when the colony goes extinct
 void manageColony() {
   saveFrame(screendumpPath); // Save an image
-  if (gs.makeGIF) {saveFrame(screendumpPath2);} // Save a duplicate image with alternative iteration number 
+  if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   if (gs.makePDF) {endRecord();}
   endSettingsFile(); // Complete the settings logfile & close
@@ -151,7 +149,8 @@ void getReady() {
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
   
   screendumpPath = pathName + "/png/" + batchName + "-" + iterationNum + ".png";
-  screendumpPath2 = pathName + "/png/" + batchName + "-" + iterationNum2 + ".png";
+  screendumpPathGIF1 = pathName + "/jpg/" + batchName + "-" + iterationNum + ".jpg";
+  screendumpPathGIF2 = pathName + "/jpg/" + batchName + "-" + iterationNum2 + ".jpg";
   screendumpPathPDF = pathName + "/pdf/" + batchName + "-" + iterationNum + ".pdf";
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
@@ -163,7 +162,7 @@ void getReady() {
   if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   gpl = new Genepool();
   colony = new Colony();
-  //background(gs.bkgColor);
+  background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 

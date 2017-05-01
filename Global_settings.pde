@@ -54,7 +54,7 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
-    makePDF = true;
+    makePDF = false;
     makeGIF = true;
     
     borderWidth = 0.15;
