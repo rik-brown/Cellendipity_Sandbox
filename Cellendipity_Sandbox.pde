@@ -8,6 +8,9 @@
 *
 * Development Goals:
 *
+*  a) Export to .pdf for printing
+*    1) Reference here: https://processing.org/reference/libraries/pdf/index.html
+
 *  d) Improve functionality for saving frames for gifs:
     1) Configurable frame interval
 
@@ -61,17 +64,19 @@
 *
 */
 
+import processing.pdf.*;
+
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 
-String batchName = "batch-158.27";
-int maxCycles = 1;
+String batchName = "batch-158.30";
+int maxCycles = 10;
 int runCycle = 1;
 
 
-int maxFrames = 5000;
+int maxFrames = 1000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 
@@ -85,28 +90,28 @@ String inputFile = "badger.jpg"; // First run will use /data/input.png, which wi
 String pathName;
 String screendumpPath; // Name & location of saved output (final image)
 String screendumpPath2; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
+String screendumpPathPDF; // Name & location of saved output (pdf file)
 String framedumpPath;  // Name & location of saved output (individual frames)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
-  //size(200, 200);
-  //size(500, 500);
-  //size(800, 800);
-  //size(1000, 1000);
-  //size(1500, 1500);
-  //size(2000, 2000);
-  size(4000, 4000);
-  //size(5000, 5000);
-  //size(6000, 6000);
-  //size(8000, 8000);
-  
   colorMode(HSB, 360, 255, 255, 255);
   //blendMode(DIFFERENCE);
   rectMode(RADIUS);
   ellipseMode(RADIUS);
   smooth();
   getReady();
-  background(gs.bkgColor); // TEST ONLY
+  //size(200, 200);
+  size(500, 500);
+  //size(800, 800);
+  //size(1000, 1000);
+  //size(1500, 1500);
+  //size(2000, 2000);
+  //size(4000, 4000);
+  //size(5000, 5000);
+  //size(6000, 6000);
+  //size(8000, 8000);
+  //background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);}
 }
 
@@ -122,8 +127,9 @@ void draw() {
 // What happens when the colony goes extinct
 void manageColony() {
   saveFrame(screendumpPath); // Save an image
-  //saveFrame(screendumpPath2); // Save a duplicate image with alternative iteration number 
+  if (gs.makeGIF) {saveFrame(screendumpPath2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
+  if (gs.makePDF) {endRecord();}
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
   if (runCycle >= maxCycles) {exit();}
@@ -146,13 +152,15 @@ void getReady() {
   
   screendumpPath = pathName + "/png/" + batchName + "-" + iterationNum + ".png";
   screendumpPath2 = pathName + "/png/" + batchName + "-" + iterationNum2 + ".png";
+  screendumpPathPDF = pathName + "/pdf/" + batchName + "-" + iterationNum + ".pdf";
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
   
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
-  
+    
   startSettingsFile();
   gs = new Global_settings();
+  if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   gpl = new Genepool();
   colony = new Colony();
   //background(gs.bkgColor);

@@ -206,13 +206,13 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan = int(map(id, 0, gs.numStrains, 5, 500));
-  radius_start = width * 0.001 * map(id, 0, gs.numStrains, 5, 50);
-  r = radius_start;
+  lifespan = int(map(id, 0, gs.numStrains, 5, 250));
+  //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
+  //r = radius_start;
   radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
   //flatness_start = map(id, 0, gs.rows * gs.cols, 1, 1.5);
   //lifespan = width * .001 * map(id, 0, gs.seeds, 1, 500);
-  twist_start = map(id, 0, gs.numStrains, 0, 3);
+  twist_start = map(id, 0, gs.numStrains, -3, 3);
   //fill_H_start =  map(id, 0, gs.numStrains, 0, 360);
   //fill_H_end =  fill_H_start;
   }

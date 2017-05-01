@@ -98,13 +98,13 @@ class DNA {
       genes[12]= 0;   // 12=stroke_S_end
       
       genes[13]= 1;   // 13=stroke_B_start
-      genes[14]= 1;   // 14=stroke_B_end
+      genes[14]= 2;   // 14=stroke_B_end
       
       genes[15]= 255;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 255;   // 16=stroke_A_end
       
-      genes[17]= 40;   // 17=radius_start
+      genes[17]= 50;   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start

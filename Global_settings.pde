@@ -15,6 +15,8 @@
 class Global_settings {
 
   boolean debug;
+  boolean makePDF;
+  boolean makeGIF;
   
   boolean nucleus;
   boolean stepped;
@@ -52,6 +54,8 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
+    makePDF = true;
+    makeGIF = true;
     
     borderWidth = 0.15;
     borderHeight = 0.15;
@@ -85,7 +89,7 @@ class Global_settings {
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
     stepped = true;
-    stepSize = 20;
+    stepSize = 25;
     stepSizeN = int(random (55, 82));
     
     //bkg_H = random(360);
@@ -126,5 +130,7 @@ class Global_settings {
     output.println("bkg_H = " + bkg_H);
     output.println("bkg_S = " + bkg_S);
     output.println("bkg_B = " + bkg_B);
+    output.println("makePDF = " + makePDF);
+    output.println("makeGIF = " + makeGIF);
   }
 }
