@@ -128,8 +128,8 @@ class Cell {
   noise_step = dna.genes[26] * 0.001; //Step-size for noise
   noisePercent_start = dna.genes[23] * 0.01; // How much influence on velocity does Perlin noise have? (initial value)
   noisePercent_end = dna.genes[24] * 0.01; // How much influence on velocity does Perlin noise have? (final value)
-  //noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
-  noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
+  noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
+  //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
   //noise_yoff = dna.genes[28]; //Seed for noise
   noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000); //Strain ID is seed for noiseY
   
@@ -417,9 +417,9 @@ class Cell {
   void updateStripes() {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
-    //fillColor = color(0, 0, 0, 255); // BLACK
+    fillColor = color(0, 0, 0, 255); // BLACK
     //fillColor = gs.bkgColor; // Background
-    fillColor = color(0, 0, 255); // WHITE
+    //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
   }
 
