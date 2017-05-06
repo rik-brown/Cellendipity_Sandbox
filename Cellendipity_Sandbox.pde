@@ -62,14 +62,16 @@
 */
 
 import processing.pdf.*;
+import com.hamoid.*;
 
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
+VideoExport videoExport;
 
-String batchName = "batch-158.32";
-int maxCycles = 30;
+String batchName = "batch-158.34";
+int maxCycles = 240;
 int runCycle = 1;
 
 
@@ -89,7 +91,8 @@ String screendumpPath; // Name & location of saved output (final image)
 String screendumpPathGIF1; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
 String screendumpPathGIF2; // Name & location of saved output (final image) (reverse numbering for cyclic GIFs)
 String screendumpPathPDF; // Name & location of saved output (pdf file)
-String framedumpPath;  // Name & location of saved output (individual frames)
+String framedumpPath; // Name & location of saved output (individual frames)
+String videoPath; // Name & location of video output (.mp4 file)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
@@ -111,6 +114,8 @@ void setup() {
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);}
+  videoExport = new VideoExport(this, videoPath + ".mp4");
+  videoExport.startMovie();
 }
 
 void draw() {
@@ -119,18 +124,20 @@ void draw() {
   //background(gs.bkgColor);
   colony.run();
   //frameSave(); // Saves each frame as a .png (for GIFs etc.)
+  //if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save every frame in the sketch
   frameCounter --;
 }
 
 // What happens when the colony goes extinct
 void manageColony() {
-  saveFrame(screendumpPath); // Save an image
+  if (gs.savePNG) {saveFrame(screendumpPath);} // Save an image
   if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   if (gs.makePDF) {endRecord();}
+  if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
-  if (runCycle >= maxCycles) {exit();}
+  if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
   else {
     // get ready for a new cycle
     runCycle ++;
@@ -154,6 +161,9 @@ void getReady() {
   screendumpPathPDF = pathName + "/pdf/" + batchName + "-" + iterationNum + ".pdf";
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
+  videoPath = pathName + "/" + batchName + "-" + iterationNum;
+  
+  //videoExport = new VideoExport(this, videoPath + ".mp4");
   
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
     

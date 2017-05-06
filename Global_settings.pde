@@ -15,8 +15,10 @@
 class Global_settings {
 
   boolean debug;
+  boolean savePNG;
   boolean makePDF;
   boolean makeGIF;
+  boolean makeMPEG;
   
   boolean nucleus;
   boolean stepped;
@@ -54,8 +56,10 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
+    savePNG = false;
     makePDF = false;
-    makeGIF = true;
+    makeGIF = false;
+    makeMPEG = true;
     
     borderWidth = 0.15;
     borderHeight = 0.15;
