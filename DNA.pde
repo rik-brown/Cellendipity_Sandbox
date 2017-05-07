@@ -79,8 +79,8 @@ class DNA {
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 255;   // 5=fill_B_start
-      genes[6]= 180;   // 6=fill_B_end
+      genes[5]= 160;   // 5=fill_B_start
+      genes[6]= 255;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
@@ -141,7 +141,7 @@ class DNA {
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 300);   // 31=lifespan
-      genes[31]= 50;   // 31=lifespan
+      genes[31]= 300;   // 31=lifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize

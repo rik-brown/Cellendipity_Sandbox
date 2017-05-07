@@ -8,7 +8,7 @@
 *
 * Development Goals:
 *
-*  d) Improve functionality for saving frames for gifs:
+*  d) Improve functionality for saving frames for gifs/mp4 videos:
     1) Configurable frame interval
 
 *  g) Introduce a new spawn-pattern of concentric rings
@@ -27,7 +27,7 @@
 *  k) Populate the library with some 'favourite' cell genotypes from older sketches
 *  l) Try to recreate the twitter/tumblrbot classic styles?
 *
-*  m) DNA modifiers need to take spwan-pattern into account (e.g. centered). What are the implications of this?
+*  m) DNA modifiers need to take spawn-pattern into account (e.g. centered). What are the implications of this?
 *
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
 *
@@ -70,8 +70,8 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-158.39";
-int maxCycles = 240;
+String batchName = "batch-159.0";
+int maxCycles = 20;
 int runCycle = 1;
 float cycleGen;
 

@@ -9,7 +9,7 @@ class Cell {
 
   // GROWTH AND REPRODUCTION
   int age;       // Age (nr. of frames since birth)
-  int lifespan;
+  float lifespan;
   float fertility; // Condition for becoming fertile
   float maturity;
   float spawnLimit;
@@ -137,7 +137,8 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = int(dna.genes[31] * width * 0.001);
+  //lifespan = dna.genes[31] * width * 0.001;
+  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.01, 1);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -211,7 +212,7 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan = int(map(id, 0, gs.numStrains, 25, 300));
+  lifespan *= map(id, 0, gs.numStrains, 0.1, 1);
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
