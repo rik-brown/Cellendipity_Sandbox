@@ -70,9 +70,10 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-158.34";
+String batchName = "batch-158.39";
 int maxCycles = 240;
 int runCycle = 1;
+float cycleGen;
 
 
 int maxFrames = 1000;
@@ -151,6 +152,7 @@ void getReady() {
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
+  cycleGen = sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)); // cyclic generator value in range 0-1 
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB

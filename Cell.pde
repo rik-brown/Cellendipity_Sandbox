@@ -120,7 +120,8 @@ class Cell {
   vFactor = dna.genes[29] * 0.01;
   
   //twist_start = dna.genes[21] * 0.01; // twist_start screw amount
-  twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
+  //twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
+  twist_start = map(cycleGen, -1, 1, 0, 10); // twist_end screw amount
   twist_end = dna.genes[22] * 0.01; // twist_end screw amount
   
   //twist_end = map(runCycle, 1, maxCycles, -3, 3) * 0.01; // twist_end screw amount
@@ -128,6 +129,7 @@ class Cell {
   noise_step = dna.genes[26] * 0.001; //Step-size for noise
   noisePercent_start = dna.genes[23] * 0.01; // How much influence on velocity does Perlin noise have? (initial value)
   noisePercent_end = dna.genes[24] * 0.01; // How much influence on velocity does Perlin noise have? (final value)
+  //noisePercent_end =map(cycleGen, -1, 1, 0, 100);
   noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
   //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
   //noise_yoff = dna.genes[28]; //Seed for noise
@@ -209,7 +211,7 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan = int(map(id, 0, gs.numStrains, 5, 250));
+  lifespan = int(map(id, 0, gs.numStrains, 25, 300));
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
