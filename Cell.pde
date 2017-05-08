@@ -119,9 +119,9 @@ class Cell {
   
   vFactor = dna.genes[29] * 0.01;
   
-  //twist_start = dna.genes[21] * 0.01; // twist_start screw amount
+  twist_start = dna.genes[21] * 0.01; // twist_start screw amount
   //twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
-  twist_start = map(cycleGen, -1, 1, 0, 1); // twist_end screw amount
+  //twist_start = map(cycleGen, -1, 1, 0, 1); // twist_end screw amount
   twist_end = dna.genes[22] * 0.01; // twist_end screw amount
   
   //twist_end = map(runCycle, 1, maxCycles, -3, 3) * 0.01; // twist_end screw amount
@@ -138,7 +138,7 @@ class Cell {
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
   //lifespan = dna.genes[31] * width * 0.001;
-  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.1, 1);
+  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.5, 1);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -178,7 +178,7 @@ class Cell {
   stroke_A_end = dna.genes[16];
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
-  cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
+  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
