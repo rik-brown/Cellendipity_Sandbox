@@ -137,8 +137,8 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  //lifespan = dna.genes[31] * width * 0.001;
-  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.5, 1);
+  lifespan = dna.genes[31] * width * 0.001;
+  //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.5, 1);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -188,7 +188,7 @@ class Cell {
   // MODULATED BY POSITION
   //radius_start *= map(oDist, 0, width, 0.5, 1);
   //flatness_start *= map(oDist, 0, width, 0.4, 1.0);
-  //lifespan *= map(oDist, 0, width, 0.7, 5);
+  //lifespan *= map(oDist, 0, width, 0.7, 3);
   //noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
   //twist_start *= map(oDist, 0, width, 0.3, 0.5);
   //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 40, 0));
@@ -227,7 +227,7 @@ class Cell {
     // MODULATED BY POSITION
     radius_start *= map(oDist, 0, width, 1, 0.2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    //lifespan = int(map(oDist, 0, width * 0.5, 100, 400) * width * 0.001);
+    lifespan = map(oDist, 0, width * 0.5, 100, 400) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
     //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
