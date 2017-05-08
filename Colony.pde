@@ -221,6 +221,7 @@ class Colony {
       origin = new PVector (gs.orx, gs.ory);
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       vel.normalize();
+      vel.rotate(PI * map(cycleGen, -1, 1, 0, 2));
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //int strain = ((n) % 2) + 3;
       //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
@@ -228,6 +229,7 @@ class Colony {
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
       //DNA dna = gpl.genepool.get(int(random(gs.numStrains+3))); // Get's a random strain of dna from the genepool
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
+      dna.genes[0] = n;
       //DNA dna = gpl.genepool.get(0); // Get's a specific strain of dna from the genepool
       
       // Set the start & end color of the strain according to the colour at the same location in the source image

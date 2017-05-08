@@ -179,7 +179,7 @@ class Cell {
   strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
+  coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
   cellDNALogger(); //Print the DNA for this cell
   }
@@ -225,11 +225,11 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    //radius_start *= map(oDist, 0, width, 1, 0.2);
+    radius_start *= map(oDist, 0, width, 1, 0.2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = int(map(oDist, 0, width * 0.5, 100, 400) * width * 0.001);
-    noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
-    noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
+    //lifespan = int(map(oDist, 0, width * 0.5, 100, 400) * width * 0.001);
+    //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
+    //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
     //stroke_H_start = map(oDist, 0, width * 0.5, 0, 360);
     //stroke_H_end = map(oDist, 0, width * 0.5, 0, 360);
@@ -244,7 +244,7 @@ class Cell {
     //fill_S_end = map(oDist, 0, width, 30, 0);
     //fill_S_end = fill_S_start * map(oDist, 0, width, 0.8, 0.6);
     //twist_start = map(oDist, 0, width, 0, 20) * 0.01;
-    twist_end = map(oDist, 0, width * 0.5, 250, 0) * 0.01;
+    //twist_end = map(oDist, 0, width * 0.5, 250, 0) * 0.01;
     
   }
 
