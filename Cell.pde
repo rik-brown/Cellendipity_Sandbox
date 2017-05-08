@@ -121,7 +121,7 @@ class Cell {
   
   //twist_start = dna.genes[21] * 0.01; // twist_start screw amount
   //twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
-  twist_start = map(cycleGen, -1, 1, 0, 10); // twist_end screw amount
+  twist_start = map(cycleGen, -1, 1, 0, 1); // twist_end screw amount
   twist_end = dna.genes[22] * 0.01; // twist_end screw amount
   
   //twist_end = map(runCycle, 1, maxCycles, -3, 3) * 0.01; // twist_end screw amount
