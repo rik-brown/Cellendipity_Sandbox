@@ -59,7 +59,7 @@ class DNA {
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      genes[1]= 0;   // 1=fill_H_start
+      genes[1]= 300;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
@@ -69,17 +69,17 @@ class DNA {
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
-      genes[2]= 0;   // 2=fill_H_end
+      genes[2]= 240;   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 0;   // 3=fill_S_start
+      genes[3]= 64;   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 0;   // 4=fill_S_end
+      genes[4]= 192;   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 64;   // 5=fill_B_start
+      genes[5]= 32;   // 5=fill_B_start
       genes[6]= 255;   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
@@ -109,21 +109,21 @@ class DNA {
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 0.1;   // 18=radius_end
+      genes[18]= 15;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
       genes[19]= 100;   // 19=flatness_start
       //genes[19]= random (100, 120);   // 19=flatness_start
       genes[20]= 100;   // 20=flatness_end
       
-      genes[21]= 0;   // 21=twist_start
+      genes[21]= 4;   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
       genes[22]= 0;   // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 80;   // 23=noisePercent_start
+      genes[23]= 70;   // 23=noisePercent_start
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 80;   // 24=noisePercent_End
+      genes[24]= 70;   // 24=noisePercent_End
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       ///genes[25]= random(2, 4);   // 25=noise_vMax
@@ -136,7 +136,7 @@ class DNA {
       genes[28]= 1;
 
                   
-      genes[29]= 1;   // 29=fertility
+      genes[29]= 0;   // 29=fertility
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit

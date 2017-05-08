@@ -70,8 +70,8 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-159.10";
-int maxCycles = 120;
+String batchName = "batch-159.12";
+int maxCycles = 240;
 int runCycle = 1;
 float cycleGen;
 
