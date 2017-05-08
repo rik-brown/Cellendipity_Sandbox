@@ -225,9 +225,9 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, width, 1, 0.2);
-    //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = map(oDist, 0, width * 0.5, 100, 400) * width * 0.001;
+    //radius_start *= map(oDist, 0, width, 1, 0.2);
+    radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
+    lifespan = map(oDist, 0, width * 0.5, 25, 50) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
     //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
