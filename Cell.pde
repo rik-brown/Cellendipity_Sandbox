@@ -130,10 +130,11 @@ class Cell {
   noisePercent_start = dna.genes[23] * 0.01; // How much influence on velocity does Perlin noise have? (initial value)
   noisePercent_end = dna.genes[24] * 0.01; // How much influence on velocity does Perlin noise have? (final value)
   //noisePercent_end =map(cycleGen, -1, 1, 0, 100);
-  noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
+  //noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
   //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
+  noise_xoff = map(cycleGen, -1, 1, 1, 6); //Seed for noiseX
   //noise_yoff = dna.genes[28]; //Seed for noise
-  noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000); //Strain ID is seed for noiseY
+  noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000) + map(cycleGen, -1, 1, 10, 16); //Strain ID is seed for noiseY
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
@@ -225,9 +226,9 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    //radius_start *= map(oDist, 0, width, 1, 0.2);
-    radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
+    radius_start *= map(oDist, 0, width, 1, 0.05);
+    //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
+    //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
     //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
