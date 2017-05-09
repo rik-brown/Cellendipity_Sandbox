@@ -59,7 +59,7 @@ class DNA {
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      genes[1]= 300 + map(runCycle, 1, maxCycles, 0, 30);   // 1=fill_H_start
+      genes[1]= 300 + map(cycleGen, -1, 1, 0, 30);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
@@ -72,15 +72,15 @@ class DNA {
       genes[2]= 240 + map(cycleGen, -1, 1, 0, 30);   // 2=fill_H_end
 
       //genes[3]= random(130,180);   // 3=fill_S_start
-      genes[3]= 64;   // 3=fill_S_start
+      genes[3]= map(cycleGen, -1, 1, 0, 192);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 192;   // 4=fill_S_end
+      genes[4]= map(cycleGen, -1, 1, 48, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      genes[5]= 32;   // 5=fill_B_start
-      genes[6]= 255;   // 6=fill_B_end
+      genes[5]= map(cycleGen, -1, 1, 164, 200);   // 5=fill_B_start
+      genes[6]= map(cycleGen, -1, 1, 255, 255);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
