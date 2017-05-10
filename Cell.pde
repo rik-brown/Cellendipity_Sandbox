@@ -228,7 +228,7 @@ class Cell {
     // MODULATED BY POSITION
     radius_start *= map(oDist, 0, width * 0.5, 0.02, 1);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
+    lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
     //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
@@ -274,7 +274,8 @@ class Cell {
     age ++;
     maturity = map(age, 0, lifespan, 1, 0);
     drawStep --;
-    float drawStepStart = map(gs.stepSize, 0, 100, 0 , (r *2 + growth));
+    //float drawStepStart = map(gs.stepSize, 0, 100, 0 , (r *2 + growth));
+    float drawStepStart = lifespan * 0.2;
     if (drawStep < 0) {drawStep = drawStepStart;}
     drawStepN--;
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
