@@ -257,8 +257,8 @@ class Colony {
         //if (hue(colorFromPixel) < 90) {population.add(new Cell(pos, vel, dna));}
         population.add(new Cell(pos, vel, dna));
       }
-     c *= 1.000003;
-     //c += width * 0.00003;
+     //c *= 1.000003;
+     c += width * 0.0003;
     }
   }
   

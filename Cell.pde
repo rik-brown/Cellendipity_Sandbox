@@ -132,14 +132,14 @@ class Cell {
   //noisePercent_end =map(cycleGen, -1, 1, 0, 100);
   //noise_xoff = dna.genes[27] + dna.genes[0]; //Seed for noiseX
   //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
-  noise_xoff = map(cycleGen, -1, 1, 1, 6); //Seed for noiseX
+  noise_xoff = map(cycleGen, -1, 1, 1, 1.5); //Seed for noiseX
   //noise_yoff = dna.genes[28]; //Seed for noise
-  noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000) + map(cycleGen, -1, 1, 10, 16); //Strain ID is seed for noiseY
+  noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000) + map(cycleGen, -1, 1, 10, 10.5); //Strain ID is seed for noiseY
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  lifespan = dna.genes[31] * width * 0.001;
-  //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.5, 1);
+  //lifespan = dna.genes[31] * width * 0.001;
+  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -213,7 +213,7 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan *= map(id, 0, gs.numStrains, 0.2, 1);
+  lifespan *= map(id, 0, gs.numStrains, 0.3, 1);
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
@@ -226,7 +226,7 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, width, 1, 0.05);
+    radius_start *= map(oDist, 0, width * 0.5, 0.1, 1);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
     //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
