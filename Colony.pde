@@ -222,7 +222,7 @@ class Colony {
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       vel.normalize();
       //vel.rotate(PI * map(cycleGen, -1, 1, 0, 2));
-      //vel.rotate(PI * map(runCycle, 1, maxCycles, 0, 2));
+      vel.rotate(PI * map(runCycle, 1, maxCycles, 0, 2));
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //int strain = ((n) % 2) + 3;
       //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
@@ -258,7 +258,8 @@ class Colony {
         population.add(new Cell(pos, vel, dna));
       }
      //c *= 1.000003;
-     c += width * 0.0003;
+     //c += width * 0.0003;
+     c += width * map(cycleGen, -1, 1, 0.0005, 0.001);
     }
   }
   

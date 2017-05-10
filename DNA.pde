@@ -59,7 +59,8 @@ class DNA {
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      genes[1]= 300 + map(cycleGen, -1, 1, 0, 30);   // 1=fill_H_start
+      //genes[1]= 300 + map(cycleGen, -1, 1, 0, 30);   // 1=fill_H_start
+      genes[1]= map(runCycle, 1, maxCycles, 0, 360);
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
@@ -69,27 +70,28 @@ class DNA {
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
-      genes[2]= 240 + map(cycleGen, -1, 1, 0, 30);   // 2=fill_H_end
+      //genes[2]= 240 + map(cycleGen, -1, 1, 0, 30);   // 2=fill_H_end
+      genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      //genes[3]= 0;
+      genes[3]= 255;
       //genes[3]= random(130,180);   // 3=fill_S_start  
-      genes[3]= map(cycleGen, -1, 1, 0, 100);   // 3=fill_S_start
+      //genes[3]= map(cycleGen, -1, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      //genes[4]= 0;
-      genes[4]= map(cycleGen, -1, 1, 100, 255);   // 4=fill_S_end
+      genes[4]= 255;
+      //genes[4]= map(cycleGen, -1, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0;
+      genes[5]= 255;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGen, -1, 1, 164, 200);   // 5=fill_B_start
-      //genes[6]= 255;
-      genes[6]= map(cycleGen, -1, 1, 255,64);   // 6=fill_B_end
+      genes[6]= 255;
+      //genes[6]= map(cycleGen, -1, 1, 255,64);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 255;   // 7=fill_A_start
-      genes[8]= 255;   // 8=fill_A_end
+      genes[7]= 32;   // 7=fill_A_start
+      genes[8]= 32;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -108,7 +110,7 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      genes[17]= 150;   // 17=radius_start
+      genes[17]= 100;   // 17=radius_start
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
@@ -116,18 +118,18 @@ class DNA {
       genes[18]= 15;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
-      genes[19]= 100;   // 19=flatness_start
+      genes[19]= map(cycleGen, -1, 1, 100, 150);   // 19=flatness_start
       //genes[19]= random (100, 120);   // 19=flatness_start
-      genes[20]= 100;   // 20=flatness_end
+      genes[20]= map(cycleGen, -1, 1, 0, 150);   // 20=flatness_end
       
-      genes[21]= 00;   // 21=twist_start
+      genes[21]= map(cycleGen, -1, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
-      genes[22]= 0;   // 22=twist_end
+      genes[22]= map(cycleGen, -1, 1, -3, 3);   // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 100;   // 23=noisePercent_start
+      genes[23]= 0;   // 23=noisePercent_start
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 100;   // 24=noisePercent_End
+      genes[24]= 0;   // 24=noisePercent_End
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       ///genes[25]= random(2, 4);   // 25=noise_vMax
@@ -145,7 +147,7 @@ class DNA {
       genes[30]= 1;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 300);   // 31=lifespan
-      genes[31]= 200;   // 31=lifespan
+      genes[31]= 100;   // 31=lifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize

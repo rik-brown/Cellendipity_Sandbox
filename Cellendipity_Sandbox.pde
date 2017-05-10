@@ -70,7 +70,7 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-159.18";
+String batchName = "batch-159.20";
 int maxCycles = 300;
 int runCycle = 1;
 float cycleGen;
@@ -167,9 +167,7 @@ void getReady() {
   screendumpPathPDF = pathName + "/pdf/" + batchName + "-" + iterationNum + ".pdf";
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
-  videoPath = pathName + "/" + batchName + "-" + iterationNum;
-  
-  //videoExport = new VideoExport(this, videoPath + ".mp4");
+  videoPath = pathName + "/" + batchName;
   
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
     

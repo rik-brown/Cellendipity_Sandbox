@@ -93,7 +93,7 @@ class Global_settings {
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
     stepped = true;
-    stepSize = 5;
+    stepSize = 20;
     stepSizeN = int(random (55, 82));
     
     //bkg_H = random(360);

@@ -138,8 +138,8 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is 'number of frames since birth'. A new cell always starts with age = 0. From age comes maturity
-  //lifespan = dna.genes[31] * width * 0.001;
-  lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
+  lifespan = dna.genes[31] * width * 0.001;
+  //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
   fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
   maturity = map(age, 0, lifespan, 1, 0);
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -226,7 +226,7 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, width * 0.5, 0.1, 1);
+    radius_start *= map(oDist, 0, width * 0.5, 0.02, 1);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
     //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
