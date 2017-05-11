@@ -213,7 +213,7 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan *= map(id, 0, gs.numStrains, 0.3, 1);
+  lifespan *= map(id, 0, gs.numStrains, 0.1, 1);
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
@@ -226,9 +226,11 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    radius_start *= map(oDist, 0, width * 0.5, 0.02, 1);
+    radius_start *= map(oDist, 0, width * 0.5, 0.01, 1);
+    radius_end = radius_start * dna.genes[18] * 0.01;
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
+    //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
+    lifespan = radius_start * 1.732;
     //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
     //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
     
@@ -264,7 +266,8 @@ class Cell {
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripe) {updateStripes();}
-    display();
+    //display();
+    displayLine();
     //displayRect();
     //displayText();
     if (gs.debug) {cellDebugger();}
@@ -430,20 +433,12 @@ class Cell {
 
   void display() {
     strokeWeight(1);
-    //stroke(hue(strokeColor), saturation(strokeColor), brightness(strokeColor), stroke_A);
-    //fill(hue(fillColor), saturation(fillColor), brightness(fillColor), fill_A);
     fill(fillColor);
     stroke(strokeColor);
-    //println("A:" + age + " Lifesp:" + lifespan + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor)); 
-    
-    float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
-    float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
 
     float angle = velocity.heading();
     pushMatrix();
-    translate(x_scaled, y_scaled);
-    //line(0, 0, velocityRef.x*100, velocityRef.y*100); // DEBUG
-    //line(0, 0, velocity.x*100, velocity.y*100); // DEBUG
+    translate(position.x, position.y);
     rotate(angle);
     if (!gs.stepped) {
       ellipse(0, 0, r, r * flatness);
@@ -477,14 +472,9 @@ void displayRect() {
     stroke(strokeColor);
     fill(fillColor);
     
-    //println("A:" + age + " Lifesp:" + lifespan + " Death" + int(dead()) + " Fill H:" + hue(fillColor) + " S:" + saturation(fillColor) + " B:" + brightness(fillColor) + " Stroke H:" + hue(strokeColor) + " S:" + saturation(strokeColor) + " B:" + brightness(strokeColor));
-    
-    float x_scaled = map (position.x, 0, width, width * gs.borderWidth, width * (1-gs.borderWidth));
-    float y_scaled = map (position.y, 0, height, height * gs.borderHeight, height * (1-gs.borderHeight));
-
     float angle = velocity.heading();
     pushMatrix();
-    translate(x_scaled, y_scaled);
+    translate(position.x, position.y);
     //rotate(angle);
     if (!gs.stepped) {
       rect(0, 0, r, r * flatness);
@@ -511,7 +501,21 @@ void displayRect() {
       else {popMatrix();} //F
     }
    else {popMatrix();} //G
-  }
+}
+
+void displayLine() {
+  strokeWeight(3);
+  fill(fillColor);
+  stroke(fillColor);
+  
+  float angle = velocity.heading();
+  pushMatrix();
+  translate(position.x, position.y);
+  rotate(angle);
+  line(0, -r, 0, r);
+  //line(0, 0, 0, -r);
+  popMatrix();
+}
 
 //void displayText() {
 //    textSize(r*0.5);
