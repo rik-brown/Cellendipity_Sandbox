@@ -67,11 +67,12 @@ class DNA {
       //genes[2]= gs.bkg_H + 60;   // 1=fill_H_start
       //genes[2]= 90;   // 2=fill_H_end
       //genes[2]= genes[1] * random (0.80, 1.2);   // 2=fill_H_end
+      genes[2]= genes[1] + 60;   // 2=fill_H_end
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
       //genes[2]= 240 + map(cycleGen, -1, 1, 0, 30);   // 2=fill_H_end
-      genes[2]= map(runCycle, 1, maxCycles, 360, 719);
+      //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
       genes[3]= 255;
       //genes[3]= random(130,180);   // 3=fill_S_start  
@@ -82,7 +83,7 @@ class DNA {
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 255;
+      genes[5]= 128;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGen, -1, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 255;
@@ -90,8 +91,8 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 32;   // 7=fill_A_start
-      genes[8]= 32;   // 8=fill_A_end
+      genes[7]= 255;   // 7=fill_A_start
+      genes[8]= 255;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -115,7 +116,7 @@ class DNA {
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 25;   // 18=radius_end
+      genes[18]= 0;   // 18=radius_end
       //genes[18]= random(15, 30);   // 18=radius_end
       
       genes[19]= map(cycleGen, -1, 1, 100, 150);   // 19=flatness_start
@@ -152,7 +153,7 @@ class DNA {
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 25000;   // 32=StripeSize
+      genes[32]= 10;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       genes[33]= 0.5;   // 33=StripeRatio
       //genes[33] = random(0.4, 0.8);  // 33=StripeRatio

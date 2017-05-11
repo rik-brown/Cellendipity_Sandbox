@@ -15,7 +15,7 @@ class Colony {
   float a;
 
   float w = width * 0.001;  // For convinience
-  float c = w * 20; // Scaling factor
+  float c = w * 5; // Scaling factor
 
   // CONSTRUCTOR: Create a 'Colony' object containing an initial population of cells
   Colony() {
@@ -259,7 +259,8 @@ class Colony {
       }
      //c *= 1.000003;
      //c += width * 0.0003;
-     c += width * map(cycleGen, -1, 1, 0.0005, 0.001);
+     //c += width * map(cycleGen, -1, 1, 0.00001, 0.0001);
+     c *= map(cycleGen, -1, 1, 1.005, 1.01);
     }
   }
   
