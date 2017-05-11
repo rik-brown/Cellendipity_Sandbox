@@ -74,16 +74,16 @@ class DNA {
       //genes[2]= 240 + map(cycleGen, -1, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      genes[3]= 255;
+      genes[3]= 0;
       //genes[3]= random(130,180);   // 3=fill_S_start  
       //genes[3]= map(cycleGen, -1, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 255;
+      genes[4]= 0;
       //genes[4]= map(cycleGen, -1, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 128;
+      genes[5]= 64;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGen, -1, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 255;
@@ -153,7 +153,7 @@ class DNA {
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 10;   // 32=StripeSize
+      genes[32]= 20;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       genes[33]= 0.5;   // 33=StripeRatio
       //genes[33] = random(0.4, 0.8);  // 33=StripeRatio
