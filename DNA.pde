@@ -123,9 +123,10 @@ class DNA {
       //genes[19]= random (100, 120);   // 19=flatness_start
       genes[20]= map(cycleGen, -1, 1, 100, 150);   // 20=flatness_end
       
-      genes[21]= map(cycleGen, -1, 1, -5, 5);   // 21=twist_start
+      //genes[21]= map(cycleGen, -1, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
       //genes[22]= map(cycleGen, -1, 1, -3, 3);   // 22=twist_end
+      genes[21]= 0;
       genes[22]= 0;
       //genes[22]= random(0, 50);   // 22=twist_end
 
@@ -153,7 +154,7 @@ class DNA {
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 20;   // 32=StripeSize
+      genes[32]= 50;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       genes[33]= 0.5;   // 33=StripeRatio
       //genes[33] = random(0.4, 0.8);  // 33=StripeRatio

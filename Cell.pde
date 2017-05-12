@@ -154,9 +154,9 @@ class Cell {
   growth = (radius_start-radius_end)/lifespan; // Should work for both large>small and small>large
   drawStep = 1;
   drawStepN = 1;
-  stripeStep = dna.genes[32];
-  stripeSize = dna.genes[32] * width * 0.001;
+  stripeSize = dna.genes[32];
   stripeRatio = dna.genes[33];
+  stripeStep = map(stripeSize, 0, 100, 0, r*2);
 
   // COLOUR
   fill_H_start = dna.genes[1];
@@ -228,6 +228,8 @@ class Cell {
     // MODULATED BY POSITION
     radius_start *= map(oDist, 0, width * 0.5, 0.01, 1);
     radius_end = radius_start * dna.genes[18] * 0.01;
+    r = radius_start; // Initial value for radius
+    stripeStep = map(stripeSize, 0, 100, 0, r*2);
     //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
     //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
     lifespan = radius_start * 1.732;
@@ -284,9 +286,15 @@ class Cell {
     float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
     if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
     stripeStep--;
-    float stripeStepStart = map(stripeSize, 0, 100 * width * 0.001, 0, r*2);
+    float stripeStepStart = map(stripeSize, 0, 100, 0, r*2);
     if (stripe) {stripeStepStart *= stripeRatio;} else {stripeStepStart *= (1-stripeRatio);}
     if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
+  }
+  
+  void updateSteps() {
+  
+  
+  
   }
 
   void updateVelocity() {

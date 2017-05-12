@@ -71,7 +71,7 @@ PImage img;
 VideoExport videoExport;
 
 String batchName = "batch-159.25";
-int maxCycles = 300;
+int maxCycles = 240;
 int runCycle = 1;
 float cycleGen;
 
@@ -106,10 +106,10 @@ void setup() {
   //size(200, 200);
   //size(400, 400);
   //size(500, 500);
-  //size(800, 800);
+  size(800, 800);
   //size(1024, 1024);
   //size(1500, 1500);
-  size(2048, 2048);
+  //size(2048, 2048);
   //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
