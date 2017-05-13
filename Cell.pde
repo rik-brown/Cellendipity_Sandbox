@@ -512,7 +512,8 @@ void displayRect() {
 }
 
 void displayLine() {
-  strokeWeight(3);
+  float t = constrain (r * 0.2, 1, radius_start);
+  strokeWeight(t);
   fill(fillColor);
   stroke(fillColor);
   
@@ -521,6 +522,10 @@ void displayLine() {
   translate(position.x, position.y);
   rotate(angle);
   line(0, -r, 0, r);
+  fill(0);
+  noStroke();
+  ellipse(0,-r, t, t);
+  ellipse(0, r, t, t);
   //line(0, 0, 0, -r);
   popMatrix();
 }
