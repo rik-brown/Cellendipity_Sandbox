@@ -118,7 +118,7 @@ class Colony {
         pos = new PVector(xpos, ypos);
         
         // Set the start & end color of the strain according to the colour at the same location in the source image
-        color colorFromPixel = pixelColour(pos);
+        //color colorFromPixel = pixelColour(pos);
         //dna.genes[1] = hue(colorFromPixel);
         //dna.genes[2] = hue(colorFromPixel);
         //dna.genes[3] = saturation(colorFromPixel);
@@ -143,8 +143,8 @@ class Colony {
           //if ( random(1) > 0.2) {population.add(new Cell(pos, vel, dna));
           //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
           //if (saturation(colorFromPixel) > 3) {population.add(new Cell(pos, vel, dna));}
-          if (n <= gs.numStrains) {population.add(new Cell(pos, vel, dna));}
-          //population.add(new Cell(pos, vel, dna));
+          //if (n <= gs.numStrains) {population.add(new Cell(pos, vel, dna));}
+          population.add(new Cell(pos, vel, dna));
         }
       }
     }
