@@ -56,10 +56,10 @@ class Global_settings {
   Global_settings() {
     
     debug = false;
-    savePNG = false;
+    savePNG = true;
     makePDF = false;
     makeGIF = false;
-    makeMPEG = true;
+    makeMPEG = false;
     
     borderWidth = 0.15;
     borderHeight = 0.15;
@@ -92,7 +92,7 @@ class Global_settings {
     ory = int(height * 0.5) +1; // Centered
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = true;
+    stepped = false;
     stepSize = 20;
     stepSizeN = int(random (55, 82));
     

@@ -70,8 +70,8 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-159.28";
-int maxCycles = 240;
+String batchName = "batch-160.0";
+int maxCycles = 2;
 int runCycle = 1;
 float cycleGen;
 
@@ -115,7 +115,7 @@ void setup() {
   //size(6000, 6000);
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
-  if (gs.debug) {frameRate(5);} else {frameRate(1000);}
+  if (gs.debug) {frameRate(5);} else {frameRate(10);}
   videoExport = new VideoExport(this, videoPath + ".mp4");
   videoExport.setFrameRate(30);
   videoExport.setQuality(70, 128);
