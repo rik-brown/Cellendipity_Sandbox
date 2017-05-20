@@ -58,7 +58,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     savePNG = true;
     makePDF = false;
     makeGIF = false;

@@ -115,7 +115,7 @@ void setup() {
   //size(6000, 6000);
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
-  if (gs.debug) {frameRate(5);} else {frameRate(10);}
+  if (gs.debug) {frameRate(2);} else {frameRate(10);}
   videoExport = new VideoExport(this, videoPath + ".mp4");
   videoExport.setFrameRate(30);
   videoExport.setQuality(70, 128);

@@ -281,7 +281,7 @@ class Cell {
     //updateStrokeColorByDirection();
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
-    if (stripe) {updateStripes();}
+    //if (stripe) {updateStripes();}
     display();
     //displayLine();
     //displayRect();
@@ -374,9 +374,9 @@ class Cell {
 
   void updateSize() {
     // I should introduce an selector-toggle here!
-    PVector center = new PVector(width/2, height/2);
-    PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
-    float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
+    //PVector center = new PVector(width/2, height/2);
+    //PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
+    //float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
     //stroke(0,255);
     //r = map(remoteness, 0, 1, radius_start, radius_end);
     //r = map(directionDiff, 0, PI, radius_start, radius_end);
@@ -409,6 +409,7 @@ class Cell {
     float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
     float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
+    println(fill_B);
   }
   
   void updateStrokeColorBySize() {
@@ -455,6 +456,7 @@ class Cell {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
     fillColor = color(0, 0, 0, 255); // BLACK
+    println("STRIPE!");
     //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
