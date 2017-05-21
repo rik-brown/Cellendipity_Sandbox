@@ -58,7 +58,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = false;
+    debug = true;
     savePNG = true;
     makePDF = false;
     makeGIF = false;
@@ -81,8 +81,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 8;
-    cols = 8;
+	  rows = 2;
+    cols = 2;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
@@ -91,8 +91,11 @@ class Global_settings {
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
-    orx = int(width * 0.5) +1;  // Centered
-    ory = int(height * 0.5) +1; // Centered
+    //orx = int(width * 0.5);  // Centered
+    //ory = int(height * 0.5); // Centered
+    orx = 0; // @origin
+    ory = 0; // @origin
+    
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
     stepped = false;
@@ -143,5 +146,6 @@ class Global_settings {
     output.println("makePDF = " + makePDF);
     output.println("makeGIF = " + makeGIF);
     output.println("maxRadius = " + maxRadius);
+    output.println("maxLifespan = " + maxLifespan);
   }
 }
