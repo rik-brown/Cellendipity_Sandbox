@@ -64,8 +64,8 @@ class Global_settings {
     makeGIF = false;
     makeMPEG = false;
     
-    borderWidth = 0.15;
-    borderHeight = 0.15;
+    borderWidth = 0.5;
+    borderHeight = 0.5;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
     patternSelector = 2; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic

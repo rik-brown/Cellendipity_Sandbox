@@ -106,6 +106,8 @@ class Cell {
   // id
   id = int(dna.genes[0]);
   
+  println("Debug#1 id: " + id + "    [17]: " + dna.genes[17]);
+  
   // GROWTH AND REPRODUCTION
   age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
   spawnLimit = dna.genes[30]; // Max. number of spawns
@@ -125,6 +127,8 @@ class Cell {
   oDist = toOrigin.mag(); // distance from pos to origin
   
   updateModulators();
+  dna.genes[17] *= map(oDist, 0, width * 0.5, 0.01, 1);
+  println("Debug#2 id: " + id + "    [17]: " + dna.genes[17]);
   
   velocityLinear = vel.copy(); //cell has unique basic velocity component
   velocityRef = vel.copy(); //keep a copy of the inital velocity for reference
@@ -153,7 +157,7 @@ class Cell {
   radius_start = dna.genes[17];
   radius_end = dna.genes[17] * dna.genes[18];
   
-  oDistMods();
+  //oDistMods();
   
   r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
@@ -193,7 +197,7 @@ class Cell {
   
   void oDistMods() {
     println("ID: " + dna.genes[0] + " oDist: " + oDist + "radius_start_IN: " + radius_start);
-    radius_start *= map(oDist, 0, width*1.4, 0.5, 1);
+    radius_start *= map(oDist, 0, width*1.4, 0.1, 1);
     println("new rs: " + radius_start);
   }
 
@@ -385,7 +389,8 @@ class Cell {
     //r = map(directionDiff, 0, PI, radius_start, radius_end);
     //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
     //r = map(age, 0, lifespan, radius_start, radius_end);
-    r = modulator(maturity, dna.genes[17], dna.genes[18]) * gs.maxRadius;
+    //println("Frame: " + frameCount + " id: " + id + " doing updateSize()");
+    r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
@@ -636,13 +641,14 @@ void displayLine() {
     int rowHeight = 15;
     fill(120, 0, 255);
     textSize(rowHeight);
-    //text("id:" + id, position.x, position.y + rowHeight * 0);
-    text("r:" + r, position.x, position.y + rowHeight * 3);
+    text("id:" + id, position.x, position.y + rowHeight * 0);
+    text("r:" + r, position.x, position.y + rowHeight * 5);
+    text("gene[17]:" + dna.genes[17], position.x, position.y + rowHeight * 4);
     //text("size:" + size, position.x, position.y + rowHeight * 5);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 5);
     //text("Stripe:" + stripe, position.x, position.y + rowHeight * 4);
-    text("range:" + int(range), position.x, position.y + rowHeight * 4);
+    //text("range:" + int(range), position.x, position.y + rowHeight * 4);
     //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 7);
     //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 8);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
@@ -655,8 +661,8 @@ void displayLine() {
     //text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
     //text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
     //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
-    text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);
-    text("age:" + age, position.x, position.y + rowHeight * 0);
+    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);
+    text("age:" + age, position.x, position.y + rowHeight * 1);
     text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
     //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
@@ -667,7 +673,7 @@ void displayLine() {
     //text("twist_Start:" + twist_start, position.x, position.y + rowHeight * 2);
     //text("twist_End:" + twist_end, position.x, position.y + rowHeight * 3);
     //text("twist:" + twist, position.x, position.y + rowHeight * 4);
-    text("oDist:" + oDist, position.x, position.y + rowHeight * 5);
+    text("oDist:" + oDist, position.x, position.y + rowHeight * 3);
     //text("noise%:" + noisePercent, position.x, position.y + rowHeight * 3);
     //text("noise%S:" + noisePercent_start, position.x, position.y + rowHeight * 4);
     //text("noise%E:" + noisePercent_end, position.x, position.y + rowHeight * 5);
@@ -684,7 +690,7 @@ void displayLine() {
   
   float modulator (float scalar, float start, float end) {
     float modulated = map (scalar, 0, 1, start, end);
-    if (gs.debug) {println("ID: " + id + " scalar = " + scalar + " start = " + start + " end = " + end + " MODULATED = " + modulated);}
+    //if (gs.debug) {println("ID: " + id + " scalar = " + scalar + " start = " + start + " end = " + end + " MODULATED = " + modulated);}
     return modulated;
   }
 

@@ -76,7 +76,7 @@ int runCycle = 1;
 float cycleGen;
 
 
-int maxFrames = 1000;
+int maxFrames = 100;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 

@@ -36,7 +36,7 @@ class Genepool {
       }
       
       // This code is needed to inject some random into specific genes in the DNA stored in genepool.csv
-      newgenes[17]= 500/gs.rows;
+      //newgenes[17]= 500/gs.rows;
       newgenes[25]= random(2, 4);   // 25=noise_vMax
       newgenes[26]= random(1, 6);   // 26=noise_tep
       newgenes[27]= random(1000);   // 27=noise_xOff
@@ -68,7 +68,7 @@ class Genepool {
     
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {
-        int gene = 15;
+        int gene = 17;
         DNA debugDNA = genepool.get(i); //get the DNA that you just put in back out again
         println("Genepool entry " + i + ": contains gene [" + gene + "] value" + debugDNA.genes[gene]);
       }
