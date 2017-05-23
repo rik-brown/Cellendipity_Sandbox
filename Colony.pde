@@ -12,6 +12,9 @@ class Colony {
   PVector pos;
   PVector origin;
   
+  DNA dnx;
+  DNA dna;
+  
   float a;
 
   float w = width * 0.001;  // For convinience
@@ -109,8 +112,11 @@ class Colony {
       for (int c = 0; c <= gs.cols; c++) {
         //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         int strain = (n % gs.numStrains) + gpl.numPredefined;
-        DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
+        DNA dnx = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
         //DNA dna = gpl.genepool.get(0);          // Get's a specific strain of dna from the genepool
+        
+        DNA dna = new DNA();
+        //DNA dna = dnx;
         dna.genes[0] = n;
          n ++;
         float xpos = width * map (c, 0, gs.cols, 0, 1);
