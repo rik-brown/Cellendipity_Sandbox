@@ -106,7 +106,7 @@ class Cell {
   // id
   id = int(dna.genes[0]);
   
-  println("Debug#1 id: " + id + "    [17]: " + dna.genes[17]);
+  println("Debug#1 Cell id: " + id + "    dna.genes[17] IN  : " + dna.genes[17]);
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
@@ -127,8 +127,8 @@ class Cell {
   oDist = toOrigin.mag(); // distance from pos to origin
   
   //updateModulators();
-  dna.genes[17] *= map(oDist, 0, width * 0.5, 0.01, 1);
-  println("Debug#2 id: " + id + "    [17]: " + dna.genes[17]);
+  dna.genes[17] = map(id, 0, 8, 0, 88);
+  println("Debug#2 Cell id: " + id + "    dna.genes[17] OUT : " + dna.genes[17]);
   
   velocityLinear = vel.copy(); //cell has unique basic velocity component
   velocityRef = vel.copy(); //keep a copy of the inital velocity for reference
