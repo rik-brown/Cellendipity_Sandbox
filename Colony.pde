@@ -61,7 +61,7 @@ class Colony {
   
   // 1) Spawn cells in a random pattern
   void random_pattern() {
-    // Here is the code which fills the 'cells' arraylist with cells at random positions
+    // Here is the code which fills the 'population' arraylist with cells at random positions
     for (int n = 0; n < gs.seeds; n++) {
       pos = new PVector(random(width), random(height)); // random position
       origin = new PVector (gs.orx, gs.ory);
@@ -99,7 +99,7 @@ class Colony {
   void cartesian_pattern() {
     //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
   
-    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    // Here is the code which fills the 'population' arraylist with cells at given positions
     int n = 0;
     for (int r = 0; r <= gs.rows; r++) {      
       //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
@@ -154,7 +154,7 @@ class Colony {
   void cartesian_pattern_alt() {
     //vel = PVector.random2D();   // Initial velocity vector is random & identical for each cell
   
-    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    // Here is the code which fills the 'population' arraylist with cells at given positions
     int n = 0;
     for (int r = 0; r <= gs.rows; r++) {      
       //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
@@ -207,7 +207,7 @@ class Colony {
   
   // 4) Spawn cells in a phyllotaxic spiral pattern
   void phyllotaxic_pattern() {
-    // Here is the code which fills the 'cells' arraylist with cells at given positions
+    // Here is the code which fills the 'population' arraylist with cells at given positions
     for (int n = 0; n <= gs.seeds; n++) {
       
       // Simple Phyllotaxis formula:

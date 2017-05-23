@@ -126,7 +126,7 @@ class Cell {
   toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
   oDist = toOrigin.mag(); // distance from pos to origin
   
-  updateModulators();
+  //updateModulators();
   dna.genes[17] *= map(oDist, 0, width * 0.5, 0.01, 1);
   println("Debug#2 id: " + id + "    [17]: " + dna.genes[17]);
   
