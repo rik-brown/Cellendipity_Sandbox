@@ -58,7 +58,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     savePNG = true;
     makePDF = false;
     makeGIF = false;
@@ -81,8 +81,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 2;
-    cols = 2;
+	  rows = 8;
+    cols = 8;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern

@@ -19,12 +19,8 @@ class Cell {
   float spawnLimit;
 
   // SIZE AND SHAPE
-  float radius_start;
-  float radius_end;
-  float r;         // Radius
-  float flatness; // To make flatter ellipses (1 = circle)
-  float flatness_start;  
-  float flatness_end;
+  float r, radius_start, radius_end;
+  float flatness, flatness_start, flatness_end;  // To make flatter ellipses (1 = circle)
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
   float stripeStep;// Countdown to toggle between stripe and !stripe
@@ -43,18 +39,13 @@ class Cell {
   PVector velocityNoise;
   PVector velocity;
   
-  float noisePercent;
-  float noisePercent_start;
-  float noisePercent_end;
+  float noisePercent, noisePercent_start, noisePercent_end;
   float noise_vMax;   // multiplication factor for velocity
-  float noise_xoff;   // x offset
-  float noise_yoff;   // y offset
+  float noise_xoff, noise_yoff;   // y offset
   float noise_step;   // step size
   
   
-  float twist;
-  float twist_start;
-  float twist_end;
+  float twist, twist_start, twist_end;
   
   float range;      // How far is the cell from it's home position?
   float remoteness; // How close is the cell to it's maximum range?
@@ -64,25 +55,17 @@ class Cell {
 
   // FILL COLOUR
   color fillColor;   // For HSB you need Hue to be the heading of a PVector
-  float fill_H_start;
-  float fill_H_end;
-  float fill_S_start;
-  float fill_S_end;
-  float fill_B_start;
-  float fill_B_end;
-  float fill_A_start;
-  float fill_A_end;
+  float fill_H_start, fill_H_end;
+  float fill_S_start, fill_S_end;
+  float fill_B_start, fill_B_end;
+  float fill_A_start, fill_A_end;
 
   // STROKE COLOUR
   color strokeColor; // For HSB you need Hue to be the heading of a PVector
-  float stroke_H_start;
-  float stroke_H_end;
-  float stroke_S_start;
-  float stroke_S_end;
-  float stroke_B_start;
-  float stroke_B_end;
-  float stroke_A_start;
-  float stroke_A_end;
+  float stroke_H_start, stroke_H_end;
+  float stroke_S_start, stroke_S_end;
+  float stroke_B_start, stroke_B_end;
+  float stroke_A_start, stroke_A_end;
   
   // PIXEL COLOR = color of pixel in source image at cell's current location
   color pixelColor;
@@ -93,12 +76,13 @@ class Cell {
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
+  
   // OBJECTS
-  dna = dna_;
-  
-  
-
-  
+  dna = new DNA();
+  for (int i = 0; i < dna_.genes.length; i++) {
+    dna.genes[i] = dna_.genes[i]; // Copy the contents of the referenced dnx genes into the local dna genes
+  }
+    
   // BOOLEAN
   fertile = false; // A new cell always starts off infertile
   stripe = false; // A new cell always starts off displaying it's normal colour 
@@ -126,8 +110,10 @@ class Cell {
   toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
   oDist = toOrigin.mag(); // distance from pos to origin
   
+  oDistMods();
+  
   //updateModulators();
-  dna.genes[17] = map(id, 0, 8, 0, 88);
+  //dna.genes[17] = map(id, 0, 8, 0, 88);
   println("Debug#2 Cell id: " + id + "    dna.genes[17] OUT : " + dna.genes[17]);
   
   velocityLinear = vel.copy(); //cell has unique basic velocity component
@@ -150,14 +136,9 @@ class Cell {
   //noise_yoff = dna.genes[28]; //Seed for noise
   noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000) + map(cycleGen, -1, 1, 10, 10.5); //Strain ID is seed for noiseY
   
-  
-  
-  
   // SIZE AND SHAPE
   radius_start = dna.genes[17];
   radius_end = dna.genes[17] * dna.genes[18];
-  
-  //oDistMods();
   
   r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
@@ -197,8 +178,9 @@ class Cell {
   
   void oDistMods() {
     println("ID: " + dna.genes[0] + " oDist: " + oDist + "radius_start_IN: " + radius_start);
-    radius_start *= map(oDist, 0, width*1.4, 0.1, 1);
-    println("new rs: " + radius_start);
+    dna.genes[17] *= map(oDist, 0, width*1.4, 0.1, 1.0);
+    //radius_start *= map(oDist, 0, width*1.4, 0.1, 1);
+    //println("new rs: " + radius_start);
   }
 
   void cartesianMods() {
