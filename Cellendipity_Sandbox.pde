@@ -62,13 +62,13 @@
 */
 
 import processing.pdf.*;
-import com.hamoid.*;
+//import com.hamoid.*;
 
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
-VideoExport videoExport;
+//VideoExport videoExport;
 
 String batchName = "batch-161.0";
 int maxCycles = 2;
@@ -115,12 +115,12 @@ void setup() {
   //size(6000, 6000);
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
-  if (gs.debug) {frameRate(1);} else {frameRate(1000);}
-  videoExport = new VideoExport(this, videoPath + ".mp4");
-  videoExport.setFrameRate(30);
-  videoExport.setQuality(70, 128);
-  videoExport.setDebugging(false);
-  videoExport.startMovie();
+  if (gs.debug) {frameRate(5);} else {frameRate(1000);}
+  //videoExport = new VideoExport(this, videoPath + ".mp4");
+  //videoExport.setFrameRate(30);
+  //videoExport.setQuality(70, 128);
+  //videoExport.setDebugging(false);
+  //videoExport.startMovie();
 }
 
 void draw() {
@@ -139,10 +139,11 @@ void manageColony() {
   if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   if (gs.makePDF) {endRecord();}
-  if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
+  //if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
-  if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
+  //if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
+  if (runCycle >= maxCycles) {exit();}
   else {
     // get ready for a new cycle
     runCycle ++;
@@ -156,7 +157,7 @@ void getReady() {
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
   cycleGen = sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)); // cyclic generator value in range 0-1
-  println("Iteration: " + runCycle + " cycleGen: " + cycleGen);
+  //println("Iteration: " + runCycle + " cycleGen: " + cycleGen);
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB

@@ -5,7 +5,11 @@ class Cell {
 
   // BOOLEAN
   boolean fertile;
-  boolean stripe;
+  boolean stripeON;
+  boolean stepON;
+  boolean drawCell;
+  boolean nucleusON;
+  boolean drawNucleus;
   
   // MODULATORS
   float noiseMod;
@@ -19,14 +23,17 @@ class Cell {
   float spawnLimit;
 
   // SIZE AND SHAPE
-  float r, radius_start, radius_end;
+  float r;
+  //, radius_start, radius_end;
   float flatness, flatness_start, flatness_end;  // To make flatter ellipses (1 = circle)
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
-  float stripeStep;// Countdown to toggle between stripe and !stripe
+  float stripeStep;// Countdown to toggle between stripeON and !stripeON
   float stripeSize;
   float stripeRatio;
-  float size; // A value between 0-1 indicating how large the cell is proportional to it's limits
+  
+  // SAWTEETH
+  int period_1, period_2;
 
   // MOVEMENT
   PVector position; // cell's current position
@@ -85,12 +92,14 @@ class Cell {
     
   // BOOLEAN
   fertile = false; // A new cell always starts off infertile
-  stripe = false; // A new cell always starts off displaying it's normal colour 
-
+  drawCell = true;
+  drawNucleus = false;
+  stepON = gs.stepped;
+  nucleusON = gs.nucleus;
+  stripeON = false; // A new cell always starts off displaying it's normal colour
+  
   // id
   id = int(dna.genes[0]);
-  
-  println("Debug#1 Cell id: " + id + "    dna.genes[17] IN  : " + dna.genes[17]);
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
@@ -114,7 +123,6 @@ class Cell {
   
   //updateModulators();
   //dna.genes[17] = map(id, 0, 8, 0, 88);
-  println("Debug#2 Cell id: " + id + "    dna.genes[17] OUT : " + dna.genes[17]);
   
   velocityLinear = vel.copy(); //cell has unique basic velocity component
   velocityRef = vel.copy(); //keep a copy of the inital velocity for reference
@@ -137,10 +145,11 @@ class Cell {
   noise_yoff = map (dna.genes[0], 0, gpl.genepool.size(), 1, 1000) + map(cycleGen, -1, 1, 10, 10.5); //Strain ID is seed for noiseY
   
   // SIZE AND SHAPE
-  radius_start = dna.genes[17];
-  radius_end = dna.genes[17] * dna.genes[18];
+  //radius_start = dna.genes[17];
+  //radius_end = dna.genes[17] * dna.genes[18];
   
-  r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
+  //r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
+  updateSize();
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
   flatness_end = dna.genes[20] * 0.01; // To make circles into ellipses
   drawStep = 1;
@@ -148,6 +157,11 @@ class Cell {
   stripeSize = dna.genes[32];
   stripeRatio = dna.genes[33];
   stripeStep = map(stripeSize, 0, 100, 0, r*2);
+  
+  // SAWTOOTH WAVES (for Michael)
+  period_1 = ceil(r);
+  period_2 = ceil(r);
+  
 
   // COLOUR
   fill_H_start = dna.genes[1];
@@ -177,10 +191,8 @@ class Cell {
   }
   
   void oDistMods() {
-    println("ID: " + dna.genes[0] + " oDist: " + oDist + "radius_start_IN: " + radius_start);
     dna.genes[17] *= map(oDist, 0, width*1.4, 0.1, 1.0);
     //radius_start *= map(oDist, 0, width*1.4, 0.1, 1);
-    //println("new rs: " + radius_start);
   }
 
   void cartesianMods() {
@@ -256,27 +268,26 @@ class Cell {
   void run() {
     defineDrivers();
     updateModulators();
-    updateSteps();
     updateVelocity();
-    //display();
     //updateVelocityByHue();
     updatePosition();
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColorBySize();
-    updateStrokeColorBySize();
+    updateFillColorByMaturity();
+    updateStrokeColorByMaturity();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
-    if (stripe) {updateStripes();}
+    if (stripeON) {updateStripeColor();}
+    if (stepON) {updateSawtooth_1();}
+    if (nucleusON) {updateSawtooth_2();}
     display();
     //displayLine();
-    //displayRect();
     //displayText();
-    increment();
     if (gs.debug) {cellDebugger();}
+    increment();
   }
 
   void increment() {
@@ -286,6 +297,8 @@ class Cell {
     drawStep --;
     drawStepN--;
     stripeStep--;
+    period_1 --;
+    period_2 --;
     position.add(velocity);
   }
   
@@ -299,21 +312,17 @@ class Cell {
     //directionDiff = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()
     remoteness = map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). MODULATOR 
     oDist = toOrigin.mag(); // distance from pos to origin. In constructor & updatePosition
+    
   }
   
   
   
-  void updateSteps() {
-    
-    float drawStepStart = lifespan * 0.2;
-    if (drawStep < 0) {drawStep = drawStepStart;}
-    
-    float drawStepNStart = map(gs.stepSizeN, 0, 100, 0 , r *2);
-    if (drawStepN < 0) {drawStepN = drawStepNStart;} // Stripe follows Nucleus Step interval
-    
-    float stripeStepStart = map(stripeSize, 0, 100, 0, r*2);
-    if (stripe) {stripeStepStart *= stripeRatio;} else {stripeStepStart *= (1-stripeRatio);}
-    if (stripeStep < 0) {stripeStep = stripeStepStart; stripe = !stripe;}
+  void updateSawtooth_1() {
+    if (period_1 <1) {period_1 = ceil(r); drawCell = true;} else {drawCell = false;}
+  }
+  
+  void updateSawtooth_2() {
+    if (period_2 <1) {period_2 = ceil(r); drawNucleus = true;} else {drawNucleus = false;}
   }
 
   void updateVelocity() {
@@ -371,15 +380,11 @@ class Cell {
     //r = map(directionDiff, 0, PI, radius_start, radius_end);
     //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
     //r = map(age, 0, lifespan, radius_start, radius_end);
-    //println("Frame: " + frameCount + " id: " + id + " doing updateSize()");
-    r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
+    r = modulator(maturity, dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
     //r -= growth;
-    //size = map(r, radius_start, radius_end, 0, 1); // size indicates how large the cell is in proportion to it's limits
-    size = map(age, 0, lifespan, 0, 1); // HACK!!!!
-    
   }
 
   void updateFertility() {
@@ -391,21 +396,21 @@ class Cell {
   flatness = map(maturity, 0, 1, flatness_start, flatness_end);
   }
 
-  void updateFillColorBySize() {
+  void updateFillColorByMaturity() {
     // START > END
-    float fill_H = map(size, 0, 1, fill_H_start, fill_H_end) % 360;
-    float fill_S = map(size, 0, 1, fill_S_start, fill_S_end);
-    float fill_B = map(size, 0, 1, fill_B_start, fill_B_end);
-    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    float fill_H = map(maturity, 0, 1, fill_H_start, fill_H_end) % 360;
+    float fill_S = map(maturity, 0, 1, fill_S_start, fill_S_end);
+    float fill_B = map(maturity, 0, 1, fill_B_start, fill_B_end);
+    float fill_A = map(maturity, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
-  void updateStrokeColorBySize() {
+  void updateStrokeColorByMaturity() {
     // START > END
-    float stroke_H = map(size, 0, 1, stroke_H_start, stroke_H_end) % 360;
-    float stroke_S = map(size, 0, 1, stroke_S_start, stroke_S_end);
-    float stroke_B = map(size, 0, 1, stroke_B_start, stroke_B_end);
-    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);    
+    float stroke_H = map(maturity, 0, 1, stroke_H_start, stroke_H_end) % 360;
+    float stroke_S = map(maturity, 0, 1, stroke_S_start, stroke_S_end);
+    float stroke_B = map(maturity, 0, 1, stroke_B_start, stroke_B_end);
+    float stroke_A = map(maturity, 0, 1, stroke_A_start, stroke_A_end);    
     strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
 
@@ -413,7 +418,7 @@ class Cell {
     float fill_H = map(directionDiff, 0, PI, fill_H_start, fill_H_end) % 360;
     float fill_S = map(directionDiff, 0, PI, fill_S_start, fill_S_end);
     float fill_B = map(directionDiff, 0, PI, fill_B_start, fill_B_end);
-    float fill_A = map(size, 0, 1, fill_A_start, fill_A_end);
+    float fill_A = map(maturity, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
   
@@ -421,7 +426,7 @@ class Cell {
     float stroke_H = map(directionDiff, 0, PI, stroke_H_start, stroke_H_end) % 360;
     float stroke_S = map(directionDiff, 0, PI, stroke_S_start, stroke_S_end);
     float stroke_B = map(directionDiff, 0, PI, stroke_B_start, stroke_B_end);
-    float stroke_A = map(size, 0, 1, stroke_A_start, stroke_A_end);
+    float stroke_A = map(maturity, 0, 1, stroke_A_start, stroke_A_end);
     strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
   }
   
@@ -440,7 +445,7 @@ class Cell {
     //strokeColor = pixelColor;
   }
 
-  void updateStripes() {
+  void updateStripeColor() {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
     fillColor = color(0, 0, 0, 255); // BLACK
@@ -448,80 +453,30 @@ class Cell {
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
   }
-
-  void display() {
-    strokeWeight(1);
-    fill(fillColor);
-    stroke(strokeColor);
-
-    float angle = velocity.heading();
-    float radius_end = dna.genes[18] * gs.maxRadius;
-    pushMatrix();
-    translate(position.x, position.y);
-    rotate(angle);
-    if (!gs.stepped) {
-      ellipse(0, 0, r, r * flatness);
-      if (gs.nucleus && drawStepN < 1) {
-        if (fertile) {
-        fill(gs.nucleusColorF); ellipse(0, 0, radius_end/2, radius_end/2 * flatness);
-        popMatrix(); //A
-        //line(position.x, position.y, home.x, home.y);
-        }
-        else {fill(gs.nucleusColorU); ellipse(0, 0, radius_end/2, radius_end/2 * flatness); popMatrix();} //B
-      }
-      else {popMatrix();} //C
-    }
-    else if (drawStep < 1) { // stepped=true, step-counter is active for cell, draw only when counter=0
-      ellipse(0, 0, r, r*flatness);
-      if (gs.nucleus && drawStepN < 1) { // Nucleus is always drawn when cell is drawn (no step-counter for nucleus)
-        if (fertile) {
-          fill(gs.nucleusColorF); ellipse(0, 0, radius_end/2, radius_end/2 * flatness);
-          popMatrix(); //D
-          //line(position.x, position.y, home.x, home.y);
-        }
-        else {fill(gs.nucleusColorU); ellipse(0, 0, radius_end/2, radius_end/2 * flatness); popMatrix();} //E
-      }
-      else {popMatrix();} //F
-    }
-   else {popMatrix();} //G
+  
+  void updateNucleusColor() {
+    if (fertile) {fillColor = gs.nucleusColorF;} else {fillColor = gs.nucleusColorU;}
+    strokeColor = color(1,1,1,0);
   }
 
-void displayRect() {
-    strokeWeight(1);
-    stroke(strokeColor);
-    fill(fillColor);
-    
-    float angle = velocity.heading();
-    float radius_end = dna.genes[18] * gs.maxRadius;
+  void display() {
     pushMatrix();
     translate(position.x, position.y);
-    //rotate(angle);
-    if (!gs.stepped) {
-      rect(0, 0, r, r * flatness);
-      if (gs.nucleus && drawStepN < 1) {
-        if (fertile) {
-        fill(gs.nucleusColorF); rect(0, 0, radius_end/2, radius_end/2 * flatness);
-        popMatrix(); //A
-        //line(position.x, position.y, home.x, home.y);
-        }
-        else {fill(gs.nucleusColorU); rect(0, 0, radius_end/2, radius_end/2 * flatness); popMatrix();} //B
-      }
-      else {popMatrix();} //C
-    }
-    else if (drawStep < 1) { // stepped=true, step-counter is active for cell, draw only when counter=0
-      rect(0, 0, r, r*flatness);
-      if (gs.nucleus && drawStepN < 1) { // Nucleus is always drawn when cell is drawn (no step-counter for nucleus)
-        if (fertile) {
-          fill(gs.nucleusColorF); rect(0, 0, radius_end/2, radius_end/2 * flatness);
-          popMatrix(); //D
-          //line(position.x, position.y, home.x, home.y);
-        }
-        else {fill(gs.nucleusColorU); rect(0, 0, radius_end/2, radius_end/2 * flatness); popMatrix();} //E
-      }
-      else {popMatrix();} //F
-    }
-   else {popMatrix();} //G
-}
+    float angle = velocity.heading();
+    rotate(angle);
+    if (drawCell) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
+    //if (drawNucleus) {updateNucleusColor(); println("nucleus color = " + brightness(fillColor)); drawSomething(fillColor, strokeColor, dna.genes[18] * gs.maxRadius * 0.5, dna.genes[18] * gs.maxRadius * 0.5 * flatness, 1);}
+    if (drawNucleus) {updateNucleusColor(); ; drawSomething(fillColor, strokeColor, 10, 10, 1);}
+    popMatrix(); 
+  }
+  
+  void drawSomething(color fillCol, color strokeCol, float xSize, float ySize, int type) {
+    strokeWeight(1);
+    fill(fillCol);
+    stroke(strokeCol);
+    if (type == 1) {ellipse(0, 0, xSize, ySize);}
+    if (type == 2) {rect(0, 0, xSize, ySize);}  
+  }
 
 void displayLine() {
   float radius_start = dna.genes[17] * gs.maxRadius;
@@ -610,7 +565,7 @@ void displayLine() {
   boolean dead() {
     float radius_end = dna.genes[18] * gs.maxRadius;
     if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
-    if (r < radius_end) {return true;} // Death by too little radius
+    if (r < dna.genes[17]*dna.genes[18]*gs.maxRadius) {return true;} // Death by too little radius
     //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
     //if (position.x > width + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
@@ -623,13 +578,20 @@ void displayLine() {
     int rowHeight = 15;
     fill(120, 0, 255);
     textSize(rowHeight);
-    text("id:" + id, position.x, position.y + rowHeight * 0);
-    text("r:" + r, position.x, position.y + rowHeight * 5);
+    text("id: " + id, position.x, position.y + rowHeight * 0);
+    text("age: " + age, position.x, position.y + rowHeight * 1);
+    text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
+    text("r: " + r, position.x, position.y + rowHeight * 3);
+    //text("period_1: " + period_1, position.x, position.y + rowHeight * 1);
+    //text("drawCell: " + drawCell, position.x, position.y + rowHeight * 5);
+    //text("period_2: " + period_2, position.x, position.y + rowHeight * 6);
+    //text("drawNucleus: " + drawNucleus, position.x, position.y + rowHeight * 8);
     text("gene[17]:" + dna.genes[17], position.x, position.y + rowHeight * 4);
-    //text("size:" + size, position.x, position.y + rowHeight * 5);
+    text("gene[18]:" + dna.genes[18], position.x, position.y + rowHeight * 5);
+    text("gene[17*18]:" + dna.genes[17]*dna.genes[17], position.x, position.y + rowHeight * 6);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 5);
-    //text("Stripe:" + stripe, position.x, position.y + rowHeight * 4);
+    //text(stripeON:" + stripeON, position.x, position.y + rowHeight * 4);
     //text("range:" + int(range), position.x, position.y + rowHeight * 4);
     //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 7);
     //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 8);
@@ -643,10 +605,8 @@ void displayLine() {
     //text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
     //text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
     //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
-    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);
-    text("age:" + age, position.x, position.y + rowHeight * 1);
-    text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
-    //text("fertile:" + fertile, position.x, position.y + rowHeight * 2);
+    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);  
+    //text("fertile:" + fertile, position.x, position.y + rowHeight * 4);
     //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 4);
@@ -655,7 +615,7 @@ void displayLine() {
     //text("twist_Start:" + twist_start, position.x, position.y + rowHeight * 2);
     //text("twist_End:" + twist_end, position.x, position.y + rowHeight * 3);
     //text("twist:" + twist, position.x, position.y + rowHeight * 4);
-    text("oDist:" + oDist, position.x, position.y + rowHeight * 3);
+    //text("oDist:" + oDist, position.x, position.y + rowHeight * 3);
     //text("noise%:" + noisePercent, position.x, position.y + rowHeight * 3);
     //text("noise%S:" + noisePercent_start, position.x, position.y + rowHeight * 4);
     //text("noise%E:" + noisePercent_end, position.x, position.y + rowHeight * 5);

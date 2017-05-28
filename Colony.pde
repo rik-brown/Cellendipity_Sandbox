@@ -109,12 +109,7 @@ class Colony {
       for (int c = 0; c <= gs.cols; c++) {
         //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         int strain = (n % gs.numStrains) + gpl.numPredefined;
-        //DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
-        //DNA dna = gpl.genepool.get(0);          // Get's a specific strain of dna from the genepool
-        
-        DNA dna = new DNA();
-        println("DEBUG#1 in colony, n = " + n + " and dna.genes[17] = " + dna.genes[17]);
-        //DNA dna = dnx;
+        DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
         dna.genes[0] = n;
         float xpos = width * map (c, 0, gs.cols, 0, 1);
         float ypos = height * map (r, 0, gs.rows, 0, 1);
@@ -147,10 +142,7 @@ class Colony {
           //if (brightness(colorFromPixel) < 10) {population.add(new Cell(pos, vel, dna));}
           //if (saturation(colorFromPixel) > 3) {population.add(new Cell(pos, vel, dna));}
           //if (n <= gs.numStrains) {population.add(new Cell(pos, vel, dna));}
-          println("DEBUG#2 in colony, n = " + n + " and dna.genes[17] = " + dna.genes[17]);
           population.add(new Cell(pos, vel, dna));
-          println("DEBUG#3 in colony, n = " + n + " and dna.genes[17] = " + dna.genes[17]);
-          println();
         }
       n ++;
       }

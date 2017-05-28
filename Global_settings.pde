@@ -81,8 +81,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 8;
-    cols = 8;
+	  rows = 12;
+    cols = 12;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
@@ -91,16 +91,16 @@ class Global_settings {
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
-    //orx = int(width * 0.5);  // Centered
-    //ory = int(height * 0.5); // Centered
-    orx = 0; // @origin
-    ory = 0; // @origin
+    orx = int(width * 0.5);  // Centered
+    ory = int(height * 0.5); // Centered
+    //orx = 0; // @origin
+    //ory = 0; // @origin
     
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
     stepped = false;
     stepSize = 20;
-    stepSizeN = int(random (55, 82));
+    
     
     //bkg_H = random(360);
     bkg_H = 240;
@@ -113,10 +113,11 @@ class Global_settings {
     //bkgColor = 360; // White
 
     // I kept this as a boolean to avoid unnecessary work when nucleus is not required
-    nucleus = false;
-    nucleusColorU = color(0, 0, 255); // White
+    nucleus = true;
+    stepSizeN = int(random (55, 82));
+    nucleusColorU = color(0, 0, 255, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
-    nucleusColorF = color(0, 255, 0); // Black
+    nucleusColorF = color(0, 255, 0, 255); // Black
     
     maxRadius = width * 0.5;
     maxLifespan = width * 0.1;
