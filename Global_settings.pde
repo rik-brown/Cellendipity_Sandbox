@@ -58,7 +58,7 @@ class Global_settings {
 
   Global_settings() {
     
-    debug = true;
+    debug = false;
     savePNG = true;
     makePDF = false;
     makeGIF = false;
@@ -68,7 +68,7 @@ class Global_settings {
     borderHeight = 0.5;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 0; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 1; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 1;
@@ -76,7 +76,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 10;
+    seeds = 200;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -85,14 +85,14 @@ class Global_settings {
     cols = 12;
     //cols = 12;
     
-    //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
-    //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
+    orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
+    ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
     //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
-    orx = int(width * 0.5);  // Centered
-    ory = int(height * 0.5); // Centered
+    //orx = int(width * 0.5);  // Centered
+    //ory = int(height * 0.5); // Centered
     //orx = 0; // @origin
     //ory = 0; // @origin
     
@@ -105,7 +105,7 @@ class Global_settings {
     //bkg_H = random(360);
     bkg_H = 240;
     //bkg_S = random(128,164);
-    bkg_S = 255; // last 105, 55, 255, 225
+    bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
     bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
@@ -120,7 +120,7 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0, 255); // Black
     
     maxRadius = width * 0.5;
-    maxLifespan = width * 0.1;
+    maxLifespan = width * 0.5;
     
     logSettings();
   }

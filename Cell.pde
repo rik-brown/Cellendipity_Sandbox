@@ -150,7 +150,7 @@ class Cell {
   
   //r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
   updateSize();
-  println("New cell with id: " + id + " and size: " + r);
+  //println("New cell with id: " + id + " and size: " + r);
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
   flatness_end = dna.genes[20] * 0.01; // To make circles into ellipses
   drawStep = 1;
@@ -551,7 +551,7 @@ void displayLine() {
     //childDNA.genes[11] = saturation(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
     //childDNA.genes[13] = brightness(childStrokeColor); // Get the  lerped hue value and map it back to gene-range
 
-    childDNA.genes[17] = (r + other.r) *0.5; // Child radius_start is set at average of parents current radii
+    childDNA.genes[17] = (r + other.r) * 0.5 / gs.maxRadius; // Child radius_start is set at average of parents current radii
 
     colony.spawn(position, spawnVel, childDNA);
 

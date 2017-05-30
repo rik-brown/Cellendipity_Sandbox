@@ -62,21 +62,21 @@
 */
 
 import processing.pdf.*;
-//import com.hamoid.*;
+import com.hamoid.*;
 
 Colony colony;        // A Colony object called 'colony'
 Global_settings gs;   // A Global_settings object called 'gs'
 Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
-//VideoExport videoExport;
+VideoExport videoExport;
 
 String batchName = "batch-161.0";
-int maxCycles = 2;
+int maxCycles = 120;
 int runCycle = 1;
 float cycleGen;
 
 
-int maxFrames = 100;
+int maxFrames = 5000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 
@@ -116,14 +116,14 @@ void setup() {
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(5);} else {frameRate(1000);}
-  //videoExport = new VideoExport(this, videoPath + ".mp4");
-  //videoExport.setFrameRate(30);
-  //videoExport.setQuality(70, 128);
-  //videoExport.setDebugging(false);
-  //videoExport.startMovie();
+  videoExport = new VideoExport(this, videoPath + ".mp4");
+  videoExport.setFrameRate(30);
+  videoExport.setQuality(70, 128);
+  videoExport.setDebugging(false);
+  videoExport.startMovie();
 }
 
-void draw() {
+void draw() { //<>//
   if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
   if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
@@ -139,11 +139,11 @@ void manageColony() {
   if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   if (gs.makePDF) {endRecord();}
-  //if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
+  if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
-  //if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
-  if (runCycle >= maxCycles) {exit();}
+  if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
+  //if (runCycle >= maxCycles) {exit();}
   else {
     // get ready for a new cycle
     runCycle ++;
