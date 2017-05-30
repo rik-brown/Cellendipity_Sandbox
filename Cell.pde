@@ -150,6 +150,7 @@ class Cell {
   
   //r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
   updateSize();
+  println("New cell with id: " + id + " and size: " + r);
   flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
   flatness_end = dna.genes[20] * 0.01; // To make circles into ellipses
   drawStep = 1;
@@ -265,7 +266,7 @@ class Cell {
     
   }
 
-  void run() {
+  void run() { //<>//
     defineDrivers();
     updateModulators();
     updateVelocity();
@@ -338,7 +339,7 @@ class Cell {
     twist = radians(map(twistMod, 1, 0, twist_start, twist_end));
     
     //Interpolate between the linear and noise vectors
-    velocity = PVector.lerp(velocityLinear.rotate(twist), velocityNoise, noisePercent); //<>//
+    velocity = PVector.lerp(velocityLinear.rotate(twist), velocityNoise, noisePercent);
     velocity.normalize(); // TEST. To see how this looks, velocity only contributes direction, is always a unit vector.
     
     directionDiff = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR

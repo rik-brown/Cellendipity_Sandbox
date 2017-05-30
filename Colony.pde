@@ -38,13 +38,14 @@ class Colony {
     for (int n = 0; n < gs.seeds; n++) {
       //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
-      int strain = gpl.numPredefined + n;
+      //int strain = gpl.numPredefined + n;
+      int strain = (n % gs.numStrains) + gpl.numPredefined;
       pos = new PVector(width*0.5, height*0.5); // random position
       
-      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-      vel = new PVector(1,-1);
+      vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //vel = new PVector(1,-1);
       
-      origin = new PVector (gs.orx, gs.ory);
+      //origin = new PVector (gs.orx, gs.ory);
       //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       vel.normalize();
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
@@ -68,14 +69,16 @@ class Colony {
       //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
       vel.normalize();
+      vel.rotate(PI * map(cycleGen, -1, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-      int strain = gpl.numPredefined + n;
+      //int strain = gpl.numPredefined + n;
+      int strain = (n % gs.numStrains) + gpl.numPredefined;
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
       
       // Set the start & end color of the strain according to the colour at the same location in the source image
-      color colorFromPixel = pixelColour(pos);
+      //color colorFromPixel = pixelColour(pos);
       //dna.genes[1] = hue(colorFromPixel);
       //dna.genes[2] = hue(colorFromPixel);
       //dna.genes[3] = saturation(colorFromPixel);
@@ -284,10 +287,10 @@ class Colony {
     population.add(new Cell(pos, vel, dna_));
   }
 
-  // Run the colony
+  // Run the colony //<>//
   void run() {
-    if (gs.debug) {colonyDebugger();}
     for (int i = population.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items
+      if (gs.debug) {colonyDebugger();}
       Cell c = population.get(i);                     // Get one cell at a time
       c.run();                                   // Run the cell (grow, move, spawn, check position vs boundaries etc.)
       if (c.dead()) {population.remove(i);}           // If the cell has died, remove it from the array
@@ -306,10 +309,11 @@ class Colony {
   void colonyDebugger() {  // Displays some values as text at the top left corner (for debug only)
     noStroke();
     fill(0);
-    rect(0,0,250,40);
+    rect(0,0,400,40);
     fill(360);
     textSize(16);
-    text("Cycle: " + runCycle + " Cycle frame: " + frameCounter + " Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
+    //text("Cycle: " + runCycle + " Cycle frame: " + frameCounter + " Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
+    text(" Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize, 10, 18);
   }
 
 }
