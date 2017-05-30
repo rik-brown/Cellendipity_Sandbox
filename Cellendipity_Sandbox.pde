@@ -97,7 +97,7 @@ String videoPath; // Name & location of video output (.mp4 file)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
-  colorMode(HSB, 360, 255, 255, 255);
+  colorMode(HSB, 255, 255, 255, 255);
   //blendMode(DIFFERENCE);
   rectMode(RADIUS);
   ellipseMode(RADIUS);

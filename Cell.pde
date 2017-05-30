@@ -1,6 +1,7 @@
 class Cell {
 
   float[] modulators;  // 'modulators' is an array of float values in the range (0-1)
+  color[] colors; // 'colors' is an array of color objects (fillColor, strokeColor & possibly nucleusColor too)
   
   //  Objects
   DNA dna;         // DNA
@@ -56,9 +57,9 @@ class Cell {
   
   float twist, twist_start, twist_end;
   
-  float range;      // How far is the cell from it's home position?
+  float distanceFromHome;      // How far is the cell from it's home position?
   float remoteness; // How close is the cell to it's maximum range?
-  float oDist;      // How far is the cell from the arbitrary origin?
+  float distanceFromOrigin;      // How far is the cell from the arbitrary origin?
   
   float directionDiff; // The difference between the current and the initial velocity heading. Range 0-1 where 1 = max diff. = 180 degrees
 
@@ -87,6 +88,7 @@ class Cell {
   Cell (PVector pos, PVector vel, DNA dna_) {
     
     modulators = new float[3];
+    colors = new color[2]; // 0 = fillColor, 1 = strokeColor
   
   // OBJECTS
   dna = new DNA();
@@ -118,12 +120,12 @@ class Cell {
   origin = new PVector(gs.orx, gs.ory); //arbitrary origin
   
   toHome = PVector.sub(home, position); // static vector pointing from cell to home
-  range = toHome.mag(); // range is how far the cell is from home at any time
+  distanceFromHome = toHome.mag(); // distanceFromHome is how far the cell is from home at any time
   
   toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
-  oDist = toOrigin.mag(); // distance from pos to origin
+  distanceFromOrigin = toOrigin.mag(); // distance from pos to origin
   
-  oDistMods();
+  distanceFromOriginMods();
   
   //updateModulators();
   //dna.genes[17] = map(id, 0, 8, 0, 88);
@@ -177,7 +179,8 @@ class Cell {
   fill_B_end = dna.genes[6];
   fill_A_start = dna.genes[7];
   fill_A_end = dna.genes[8];
-  fillColor = color(fill_H_start, fill_S_start, fill_B_start, fill_A_start); // Initial color is set
+  //fillColor = color(fill_H_start, fill_S_start, fill_B_start, fill_A_start); // Initial color is set
+  fillColor = color(dna.genes[1]*360, dna.genes[3]*255, dna.genes[5]*255, dna.genes[7]*255); // Initial color is set
 
   stroke_H_start = dna.genes[9];
   stroke_H_end = dna.genes[10];
@@ -195,36 +198,36 @@ class Cell {
   cellDNALogger(); //Print the DNA for this cell
   }
   
-  void oDistMods() {
-    dna.genes[17] *= map(oDist, 0, width*1.4, 0.1, 1.0);
-    //radius_start *= map(oDist, 0, width*1.4, 0.1, 1);
+  void distanceFromOriginMods() {
+    dna.genes[17] *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1.0);
+    //radius_start *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1);
   }
 
   void cartesianMods() {
   // MODULATED BY POSITION
-  //radius_start *= map(oDist, 0, width, 0.5, 1);
-  //flatness_start *= map(oDist, 0, width, 0.4, 1.0);
-  //lifespan *= map(oDist, 0, width, 0.7, 3);
-  //noisePercent_start *= map(oDist, 0, width, 0.7, 0.5);
-  //twist_start *= map(oDist, 0, width, 0.3, 0.5);
-  //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 40, 0));
+  //radius_start *= map(distanceFromOrigin, 0, width, 0.5, 1);
+  //flatness_start *= map(distanceFromOrigin, 0, width, 0.4, 1.0);
+  //lifespan *= map(distanceFromOrigin, 0, width, 0.7, 3);
+  //noisePercent_start *= map(distanceFromOrigin, 0, width, 0.7, 0.5);
+  //twist_start *= map(distanceFromOrigin, 0, width, 0.3, 0.5);
+  //fill_H_end = (gs.bkg_H + map(distanceFromOrigin, 0, width, 40, 0));
   //fill_S_start *= map(position.x, 0, width, 1, 0);
-  //fill_S_start *= map(oDist, 0, width, 0, 0);
+  //fill_S_start *= map(distanceFromOrigin, 0, width, 0, 0);
   //fill_S_end *= map(position.x, 0, width, 1, 0);
-  //fill_S_end *= map(oDist, 0, width, 0, 0);
-  //fill_B_end = map(oDist, 0, width*0.5, 250, 48);
-  //fill_B_start *= map(oDist, 0, width, 1, 0);
+  //fill_S_end *= map(distanceFromOrigin, 0, width, 0, 0);
+  //fill_B_end = map(distanceFromOrigin, 0, width*0.5, 250, 48);
+  //fill_B_start *= map(distanceFromOrigin, 0, width, 1, 0);
   //fill_B_start *= map(position.x, 0, width, 1, 0);
-  //fill_B_end *= map(oDist, 0, width, 0.7, 0.2);
-  //stripeSize *= map(oDist, 0, width, 1.0, 0.6);
-  //stripeRatio = map(oDist, 0, width, 0.3, 0.7);
+  //fill_B_end *= map(distanceFromOrigin, 0, width, 0.7, 0.2);
+  //stripeSize *= map(distanceFromOrigin, 0, width, 1.0, 0.6);
+  //stripeRatio = map(distanceFromOrigin, 0, width, 0.3, 0.7);
   
   // MODULATED BY POSITION (Cartesian/Random)
-  //lifespan = width * 0.001 * map(oDist, 0, width*0.7, 18, 12);
+  //lifespan = width * 0.001 * map(distanceFromOrigin, 0, width*0.7, 18, 12);
 
-  //twist_start = map(oDist, 0, width, 0, 15);
-  //fill_B_end = dna.genes[5] * map(oDist, 0, width*0.7, 0.7, 1);
-  //fill_A_start = map(oDist, 0, width*0.7, 255, 20);
+  //twist_start = map(distanceFromOrigin, 0, width, 0, 15);
+  //fill_B_end = dna.genes[5] * map(distanceFromOrigin, 0, width*0.7, 0.7, 1);
+  //fill_A_start = map(distanceFromOrigin, 0, width*0.7, 255, 20);
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
@@ -241,32 +244,32 @@ class Cell {
   
   void coralMods() {
     // MODULATED BY POSITION
-    //radius_start *= map(oDist, 0, width * 0.5, 0.01, 1);
+    //radius_start *= map(distanceFromOrigin, 0, width * 0.5, 0.01, 1);
     
     r = modulator(maturity, dna.genes[17], dna.genes[18]) * gs.maxRadius;
     //radius_end = radius_start * dna.genes[18] * 0.01;
     //r = radius_start; // Initial value for radius
     stripeStep = map(stripeSize, 0, 100, 0, r*2);
-    //radius_start = map(oDist, 0, width * 0.5, 60, 30) * width * 0.001;
-    //lifespan = map(oDist, 0, width * 0.5, 50, 100) * width * 0.001;
+    //radius_start = map(distanceFromOrigin, 0, width * 0.5, 60, 30) * width * 0.001;
+    //lifespan = map(distanceFromOrigin, 0, width * 0.5, 50, 100) * width * 0.001;
     //lifespan = r * 1.732;
-    //noisePercent_start = map(oDist, 0, width * 0.5, 1, 0);
-    //noisePercent_end = map(oDist, 0, width * 0.5, 0, 1);
+    //noisePercent_start = map(distanceFromOrigin, 0, width * 0.5, 1, 0);
+    //noisePercent_end = map(distanceFromOrigin, 0, width * 0.5, 0, 1);
     
-    //stroke_H_start = map(oDist, 0, width * 0.5, 0, 360);
-    //stroke_H_end = map(oDist, 0, width * 0.5, 0, 360);
+    //stroke_H_start = map(distanceFromOrigin, 0, width * 0.5, 0, 360);
+    //stroke_H_end = map(distanceFromOrigin, 0, width * 0.5, 0, 360);
     
-    //fill_H_end = (gs.bkg_H + map(oDist, 0, width, 30, 0));
+    //fill_H_end = (gs.bkg_H + map(distanceFromOrigin, 0, width, 30, 0));
     //fill_B_start = map(position.x, 0, width, 128, 48);
-    //fill_B_end = map(oDist, 0, width, 200, 255);
-    //fill_B_end = fill_B_start * map(oDist, 0, width, 1, 2);
+    //fill_B_end = map(distanceFromOrigin, 0, width, 200, 255);
+    //fill_B_end = fill_B_start * map(distanceFromOrigin, 0, width, 1, 2);
     //fill_S_start = map(position.x, 0, width, 255, 0);
     //fill_S_end = map(position.x, 0, width, 30, 0);
-    //fill_S_start = map(oDist, 0, width, 255, 0);
-    //fill_S_end = map(oDist, 0, width, 30, 0);
-    //fill_S_end = fill_S_start * map(oDist, 0, width, 0.8, 0.6);
-    //twist_start = map(oDist, 0, width, 0, 20) * 0.01;
-    //twist_end = map(oDist, 0, width * 0.5, 250, 0) * 0.01;
+    //fill_S_start = map(distanceFromOrigin, 0, width, 255, 0);
+    //fill_S_end = map(distanceFromOrigin, 0, width, 30, 0);
+    //fill_S_end = fill_S_start * map(distanceFromOrigin, 0, width, 0.8, 0.6);
+    //twist_start = map(distanceFromOrigin, 0, width, 0, 20) * 0.01;
+    //twist_end = map(distanceFromOrigin, 0, width * 0.5, 250, 0) * 0.01;
     
   }
 
@@ -279,8 +282,10 @@ class Cell {
     updateSize();
     updateShape();
     updateFertility();
-    updateFillColorByMaturity();
-    updateStrokeColorByMaturity();
+    updateFillColor();
+    updateStrokeColor();
+    //updateFillColorByMaturity();
+    //updateStrokeColorByMaturity();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     //updateFillColorByPosition();
@@ -308,18 +313,18 @@ class Cell {
   }
   
   void defineDrivers() {
-    noiseMod = maturity; // noise is driven by maturity
-    twistMod = maturity; // twist is driven by maturity
+    noiseMod = modulators[0]; // noise is driven by maturity
+    twistMod = modulators[0]; // twist is driven by maturity
   }
   
   void updateModulators() {
     //maturity = map(age, 0, lifespan, 0, 1); // maturity is the driver tied to the aging process
     modulators[0] = map(age, 0, lifespan, 0, 1); // maturity is the driver tied to the aging process 'MATURITY'
     
-    //remoteness = map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). MODULATOR 
-    modulators[1]= map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). 'REMOTENESS'
+    //remoteness = map(distanceFromHome, 0, lifespan, 0, 1); // distanceFromHome = distance to seed-position (home). MODULATOR 
+    modulators[1]= map(distanceFromHome, 0, lifespan, 0, 1); // distanceFromHome = distance to seed-position (home). 'REMOTENESS'
     
-    modulators[2] = map(oDist, 0, width, 0, 1);  // oDist = distance to origin. 'REMOTENESS2'
+    modulators[2] = map(distanceFromOrigin, 0, width, 0, 1);  // distanceFromOrigin = distance to origin. 'REMOTENESS2'
     
     //directionDiff = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()    
   }
@@ -368,14 +373,14 @@ class Cell {
     //pixelColor = colony.pixelColour(position);
     
     toHome = PVector.sub(home, position); // static vector pointing from cell to home
-    range = toHome.mag(); // range is how far the cell is from home at any time. MODULATOR
+    distanceFromHome = toHome.mag(); // distanceFromHome is how far the cell is from home at any time. MODULATOR
     
     toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
-    oDist = toOrigin.mag(); // distance from pos to origin. MODULATOR
+    distanceFromOrigin = toOrigin.mag(); // distance from pos to origin. MODULATOR
     
     
-    //remoteness = sq(map(range, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
-    //remoteness = sq(map(oDist, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
+    //remoteness = sq(map(distanceFromHome, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
+    //remoteness = sq(map(distanceFromOrigin, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
     
   }
 
@@ -398,13 +403,33 @@ class Cell {
   }
 
   void updateFertility() {
-    if ((1-maturity) <= fertility) {fertile = true; } else {fertile = false; }
+    if ((1-modulators[0]) <= fertility) {fertile = true; } else {fertile = false; }
     if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
 
   void updateShape() {
   flatness = map(maturity, 0, 1, flatness_start, flatness_end);
   }
+  
+  void updateFillColor() {
+    // START > END
+    float h = modulator(modulators[0], dna.genes[1], dna.genes[2]) * 255;
+    float s = modulator(modulators[0], dna.genes[3], dna.genes[4]) * 255;
+    float b = modulator(modulators[0], dna.genes[5], dna.genes[6]) * 255;
+    float a = modulator(modulators[0], dna.genes[7], dna.genes[8]) * 255;
+    fillColor = color(h, s, b, a); //fill colour is updated with new values
+  }
+  
+  void updateStrokeColor() {
+    // START > END
+    float h = modulator(modulators[0], dna.genes[9], dna.genes[10]) * 255;
+    float s = modulator(modulators[0], dna.genes[11], dna.genes[12]) * 255;
+    float b = modulator(modulators[0], dna.genes[13], dna.genes[14]) * 255;
+    float a = modulator(modulators[0], dna.genes[15], dna.genes[16]) * 255;
+    strokeColor = color(h, s, b, a); //fill colour is updated with new values
+  }
+
+
 
   void updateFillColorByMaturity() {
     // START > END
@@ -604,7 +629,7 @@ void displayLine() {
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
     //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 5);
     //text(stripeON:" + stripeON, position.x, position.y + rowHeight * 4);
-    //text("range:" + int(range), position.x, position.y + rowHeight * 4);
+    //text("distanceFromHome:" + int(distanceFromHome), position.x, position.y + rowHeight * 4);
     //text("fill_B_start:" + fill_B_start, position.x, position.y + rowHeight * 7);
     //text("fill_B_end:" + fill_B_end, position.x, position.y + rowHeight * 8);
     //text("radius_start:" + radius_start, position.x, position.y + rowHeight * 1);
@@ -627,7 +652,7 @@ void displayLine() {
     //text("twist_Start:" + twist_start, position.x, position.y + rowHeight * 2);
     //text("twist_End:" + twist_end, position.x, position.y + rowHeight * 3);
     //text("twist:" + twist, position.x, position.y + rowHeight * 4);
-    //text("oDist:" + oDist, position.x, position.y + rowHeight * 3);
+    //text("distanceFromOrigin:" + distanceFromOrigin, position.x, position.y + rowHeight * 3);
     //text("noise%:" + noisePercent, position.x, position.y + rowHeight * 3);
     //text("noise%S:" + noisePercent_start, position.x, position.y + rowHeight * 4);
     //text("noise%E:" + noisePercent_end, position.x, position.y + rowHeight * 5);
