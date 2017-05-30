@@ -1,5 +1,7 @@
 class Cell {
 
+  float[] modulators;  // 'modulators' is an array of float values in the range (0-1)
+  
   //  Objects
   DNA dna;         // DNA
 
@@ -7,9 +9,9 @@ class Cell {
   boolean fertile;
   boolean stripeON;
   boolean stepON;
-  boolean drawCell;
+  boolean drawCellON;
   boolean nucleusON;
-  boolean drawNucleus;
+  boolean drawNucleusON;
   
   // MODULATORS
   float noiseMod;
@@ -83,6 +85,8 @@ class Cell {
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
+    
+    modulators = new float[3];
   
   // OBJECTS
   dna = new DNA();
@@ -92,8 +96,8 @@ class Cell {
     
   // BOOLEAN
   fertile = false; // A new cell always starts off infertile
-  drawCell = true;
-  drawNucleus = false;
+  drawCellON = true;
+  drawNucleusON = false;
   stepON = gs.stepped;
   nucleusON = gs.nucleus;
   stripeON = false; // A new cell always starts off displaying it's normal colour
@@ -309,21 +313,25 @@ class Cell {
   }
   
   void updateModulators() {
-    maturity = map(age, 0, lifespan, 0, 1); // maturity is the driver tied to the aging process
-    //directionDiff = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()
-    remoteness = map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). MODULATOR 
-    oDist = toOrigin.mag(); // distance from pos to origin. In constructor & updatePosition
+    //maturity = map(age, 0, lifespan, 0, 1); // maturity is the driver tied to the aging process
+    modulators[0] = map(age, 0, lifespan, 0, 1); // maturity is the driver tied to the aging process 'MATURITY'
     
+    //remoteness = map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). MODULATOR 
+    modulators[1]= map(range, 0, lifespan, 0, 1); // range = distance to seed-position (home). 'REMOTENESS'
+    
+    modulators[2] = map(oDist, 0, width, 0, 1);  // oDist = distance to origin. 'REMOTENESS2'
+    
+    //directionDiff = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()    
   }
   
   
   
   void updateSawtooth_1() {
-    if (period_1 <1) {period_1 = ceil(r); drawCell = true;} else {drawCell = false;}
+    if (period_1 <1) {period_1 = ceil(r); drawCellON = true;} else {drawCellON = false;}
   }
   
   void updateSawtooth_2() {
-    if (period_2 <1) {period_2 = ceil(r); drawNucleus = true;} else {drawNucleus = false;}
+    if (period_2 <1) {period_2 = ceil(r); drawNucleusON = true;} else {drawNucleusON = false;}
   }
 
   void updateVelocity() {
@@ -381,7 +389,8 @@ class Cell {
     //r = map(directionDiff, 0, PI, radius_start, radius_end);
     //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
     //r = map(age, 0, lifespan, radius_start, radius_end);
-    r = modulator(maturity, dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
+    //r = modulator(maturity, dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
+    r = modulator(modulators[2], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
@@ -465,9 +474,9 @@ class Cell {
     translate(position.x, position.y);
     float angle = velocity.heading();
     rotate(angle);
-    if (drawCell) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
-    //if (drawNucleus) {updateNucleusColor(); println("nucleus color = " + brightness(fillColor)); drawSomething(fillColor, strokeColor, dna.genes[18] * gs.maxRadius * 0.5, dna.genes[18] * gs.maxRadius * 0.5 * flatness, 1);}
-    if (drawNucleus) {updateNucleusColor(); ; drawSomething(fillColor, strokeColor, 10, 10, 1);}
+    if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
+    //if (drawNucleusON) {updateNucleusColor(); println("nucleus color = " + brightness(fillColor)); drawSomething(fillColor, strokeColor, dna.genes[18] * gs.maxRadius * 0.5, dna.genes[18] * gs.maxRadius * 0.5 * flatness, 1);}
+    if (drawNucleusON) {updateNucleusColor(); ; drawSomething(fillColor, strokeColor, 10, 10, 1);}
     popMatrix(); 
   }
   
@@ -584,9 +593,9 @@ void displayLine() {
     text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
     text("r: " + r, position.x, position.y + rowHeight * 3);
     //text("period_1: " + period_1, position.x, position.y + rowHeight * 1);
-    //text("drawCell: " + drawCell, position.x, position.y + rowHeight * 5);
+    //text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 5);
     //text("period_2: " + period_2, position.x, position.y + rowHeight * 6);
-    //text("drawNucleus: " + drawNucleus, position.x, position.y + rowHeight * 8);
+    //text("drawNucleusON: " + drawNucleusON, position.x, position.y + rowHeight * 8);
     text("gene[17]:" + dna.genes[17], position.x, position.y + rowHeight * 4);
     text("gene[18]:" + dna.genes[18], position.x, position.y + rowHeight * 5);
     text("gene[17*18]:" + dna.genes[17]*dna.genes[17], position.x, position.y + rowHeight * 6);

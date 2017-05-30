@@ -68,7 +68,7 @@ class Global_settings {
     borderHeight = 0.5;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 1; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 0; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 1;
@@ -76,7 +76,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 200;
+    seeds = 5;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -85,16 +85,16 @@ class Global_settings {
     cols = 12;
     //cols = 12;
     
-    orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
-    ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
+    //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
+    //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
     //orx = int(width * random (0.4, 0.6));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
     //orx = int(width * 0.5);  // Centered
     //ory = int(height * 0.5); // Centered
-    //orx = 0; // @origin
-    //ory = 0; // @origin
+    orx = 0; // @origin
+    ory = 0; // @origin
     
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
