@@ -42,7 +42,8 @@ class Colony {
       int strain = (n % gs.numStrains) + gpl.numPredefined;
       pos = new PVector(width*0.5, height*0.5); // random position
       
-      vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      vel = PVector.fromAngle(map(n, 0, gs.seeds, 0, TWO_PI));
       //vel = new PVector(1,-1);
       
       //origin = new PVector (gs.orx, gs.ory);
@@ -286,8 +287,8 @@ class Colony {
   void spawn(PVector pos, PVector vel, DNA dna_) {
     population.add(new Cell(pos, vel, dna_));
   }
-
-  // Run the colony //<>//
+ //<>//
+  // Run the colony
   void run() {
     for (int i = population.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items
       if (gs.debug) {colonyDebugger();}

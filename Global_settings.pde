@@ -76,7 +76,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 5;
+    seeds = 25;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -91,10 +91,10 @@ class Global_settings {
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
-    //orx = int(width * 0.5);  // Centered
-    //ory = int(height * 0.5); // Centered
-    orx = 0; // @origin
-    ory = 0; // @origin
+    orx = int(width * 0.5);  // Centered
+    ory = int(height * 0.5); // Centered
+    //orx = 0; // @origin
+    //ory = 0; // @origin
     
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy

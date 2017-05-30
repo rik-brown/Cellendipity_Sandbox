@@ -116,7 +116,7 @@ class DNA {
       //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
       //genes[17]= random(25, 50);   // 17=radius_start
       
-      genes[18]= 0.3;   // 18=radius_end. Range 0-1, % of genes[17]
+      genes[18]= 0.5;   // 18=radius_end. Range 0-1, % of genes[17]
       //genes[18]= random(15, 30);   // 18=radius_end
       
       //genes[19]= map(cycleGen, -1, 1, 100, 150);   // 19=flatness_start
@@ -150,7 +150,7 @@ class DNA {
       genes[30]= 3;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit
       //genes[31]= random(100, 300);   // 31=lifespan
-      genes[31]= 1;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
+      genes[31]= 0.5;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize

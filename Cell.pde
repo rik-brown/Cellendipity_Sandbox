@@ -390,7 +390,7 @@ class Cell {
     //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
     //r = map(age, 0, lifespan, radius_start, radius_end);
     //r = modulator(maturity, dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
-    r = modulator(modulators[2], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
+    r = modulator(modulators[0], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
     //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
     //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
@@ -409,8 +409,10 @@ class Cell {
   void updateFillColorByMaturity() {
     // START > END
     float fill_H = map(maturity, 0, 1, fill_H_start, fill_H_end) % 360;
-    float fill_S = map(maturity, 0, 1, fill_S_start, fill_S_end);
-    float fill_B = map(maturity, 0, 1, fill_B_start, fill_B_end);
+    //float fill_S = map(maturity, 0, 1, fill_S_start, fill_S_end);
+    float fill_S = modulator(modulators[0], fill_S_start, fill_S_end);
+    //float fill_B = map(maturity, 0, 1, fill_B_start, fill_B_end);
+    float fill_B = modulator(modulators[0], fill_B_start, fill_B_end);
     float fill_A = map(maturity, 0, 1, fill_A_start, fill_A_end);
     fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
   }
