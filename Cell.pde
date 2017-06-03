@@ -28,7 +28,8 @@ class Cell {
   // SIZE AND SHAPE
   float r;
   //, radius_start, radius_end;
-  float flatness, flatness_start, flatness_end;  // To make flatter ellipses (1 = circle)
+  float flatness; // To make flatter ellipses (1 = circle)
+  //float flatness_start, flatness_end;
   float drawStep;  // To enable spacing of the drawn object (ellipse)
   float drawStepN;
   float stripeStep;// Countdown to toggle between stripeON and !stripeON
@@ -157,8 +158,8 @@ class Cell {
   //r = modulator(maturity, radius_start, radius_end) * gs.maxRadius;
   updateSize();
   //println("New cell with id: " + id + " and size: " + r);
-  flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
-  flatness_end = dna.genes[20] * 0.01; // To make circles into ellipses
+  //flatness_start = dna.genes[19] * 0.01; // To make circles into ellipses
+  //flatness_end = dna.genes[20] * 0.01; // To make circles into ellipses
   drawStep = 1;
   drawStepN = 1;
   stripeSize = dna.genes[32];
@@ -206,7 +207,7 @@ class Cell {
   void cartesianMods() {
   // MODULATED BY POSITION
   //radius_start *= map(distanceFromOrigin, 0, width, 0.5, 1);
-  //flatness_start *= map(distanceFromOrigin, 0, width, 0.4, 1.0);
+  //dna.genes[19] *= map(distanceFromOrigin, 0, width, 0.4, 1.0);
   //lifespan *= map(distanceFromOrigin, 0, width, 0.7, 3);
   //noisePercent_start *= map(distanceFromOrigin, 0, width, 0.7, 0.5);
   //twist_start *= map(distanceFromOrigin, 0, width, 0.3, 0.5);
@@ -235,7 +236,7 @@ class Cell {
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   //radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
-  //flatness_start = map(id, 0, gs.rows * gs.cols, 1, 1.5);
+  //dna.genes[19] = map(id, 0, gs.rows * gs.cols, 1, 1.5);
   //lifespan = width * .001 * map(id, 0, gs.seeds, 1, 500);
   //twist_start = map(id, 0, gs.numStrains, -3, 3);
   //fill_H_start =  map(id, 0, gs.numStrains, 0, 360);
@@ -284,8 +285,6 @@ class Cell {
     updateFertility();
     updateFillColor();
     updateStrokeColor();
-    //updateFillColorByMaturity();
-    //updateStrokeColorByMaturity();
     //updateFillColorByDirection();
     //updateStrokeColorByDirection();
     //updateFillColorByPosition();
@@ -408,7 +407,8 @@ class Cell {
   }
 
   void updateShape() {
-  flatness = map(maturity, 0, 1, flatness_start, flatness_end);
+  //flatness = map(maturity, 0, 1, flatness_start, flatness_end);
+  flatness = modulator(modulators[0], dna.genes[19], dna.genes[20]);
   }
   
   void updateFillColor() {
@@ -429,27 +429,6 @@ class Cell {
     strokeColor = color(h, s, b, a); //fill colour is updated with new values
   }
 
-
-
-  void updateFillColorByMaturity() {
-    // START > END
-    float fill_H = map(maturity, 0, 1, fill_H_start, fill_H_end) % 360;
-    //float fill_S = map(maturity, 0, 1, fill_S_start, fill_S_end);
-    float fill_S = modulator(modulators[0], fill_S_start, fill_S_end);
-    //float fill_B = map(maturity, 0, 1, fill_B_start, fill_B_end);
-    float fill_B = modulator(modulators[0], fill_B_start, fill_B_end);
-    float fill_A = map(maturity, 0, 1, fill_A_start, fill_A_end);
-    fillColor = color(fill_H, fill_S, fill_B, fill_A); //fill colour is updated with new values
-  }
-  
-  void updateStrokeColorByMaturity() {
-    // START > END
-    float stroke_H = map(maturity, 0, 1, stroke_H_start, stroke_H_end) % 360;
-    float stroke_S = map(maturity, 0, 1, stroke_S_start, stroke_S_end);
-    float stroke_B = map(maturity, 0, 1, stroke_B_start, stroke_B_end);
-    float stroke_A = map(maturity, 0, 1, stroke_A_start, stroke_A_end);    
-    strokeColor = color(stroke_H, stroke_S, stroke_B, stroke_A); //stroke colour is updated with new values
-  }
 
   void updateFillColorByDirection() {
     float fill_H = map(directionDiff, 0, PI, fill_H_start, fill_H_end) % 360;
@@ -605,7 +584,7 @@ void displayLine() {
     if (r < dna.genes[17]*dna.genes[18]*gs.maxRadius) {return true;} // Death by too little radius
     //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
-    //if (position.x > width + r * flatness_start || position.x < -r * flatness_start || position.y > height + r * flatness_start || position.y < -r * flatness_start) {return true;} // Death if move beyond canvas boundary
+    //if (position.x > width + r * dna.genes[19] || position.x < -r * dna.genes[19] || position.y > height + r * dna.genes[19] || position.y < -r * dna.genes[19] {return true;} // Death if move beyond canvas boundary
     //if (position.x > width || position.x < 0 || position.y > height || position.y < 0) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death

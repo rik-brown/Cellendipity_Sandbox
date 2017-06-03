@@ -120,8 +120,8 @@ class DNA {
       //genes[18]= random(15, 30);   // 18=radius_end
       
       //genes[19]= map(cycleGen, -1, 1, 100, 150);   // 19=flatness_start
-      genes[19]= random (100, 120);   // 19=flatness_start
-      genes[20]= map(cycleGen, -1, 1, 100, 150);   // 20=flatness_end
+      genes[19]= random (1, 1.2);   // 19=flatness_start
+      genes[20]= map(cycleGen, -1, 1, 1, 1.5);   // 20=flatness_end
       
       //genes[21]= map(cycleGen, -1, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
