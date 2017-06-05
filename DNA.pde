@@ -126,23 +126,23 @@ class DNA {
       //genes[21]= map(cycleGen, -1, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
       //genes[22]= map(cycleGen, -1, 1, -3, 3);   // 22=twist_end
-      genes[21]= 90;
-      genes[22]= 10;
+      genes[21]= 0.1;
+      genes[22]= 0.9;
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 0;   // 23=noisePercent_start
+      genes[23]= 0.1;   // 23=noisePercent_start (range: 0-1)
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End
+      genes[24]= 0.3;   // 24=noisePercent_End (range: 0-1)
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       ///genes[25]= random(2, 4);   // 25=noise_vMax
       genes[25]= 2;
       //genes[26]= random(1, 6);   // 26=noise_step
       genes[26]= 3;
-      //genes[27]= random(1000);   // 27=noise_xOff
+      genes[27]= random(1);   // 27=noise_xOff
       //genes[27]= 500;
-      //genes[28]= random(1000);   // 28=noise_yOff
-      genes[28]= 1;
+      genes[28]= random(1);   // 28=noise_yOff
+      //genes[28]= 1;
 
                   
       genes[29]= 50;   // 29=fertility
