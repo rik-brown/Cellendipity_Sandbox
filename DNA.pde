@@ -145,7 +145,7 @@ class DNA {
       //genes[28]= 1;
 
                   
-      genes[29]= 50;   // 29=fertility
+      genes[29]= 0.5;   // 29=fertility
       //genes[29]= random(65,85);   // 29=fertility
       genes[30]= 3;   // 30=spawnLimit
       //genes[30]= random(1,3);   // 30=spawnLimit

@@ -16,8 +16,8 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   int age;       // Age (nr. of frames since birth)
-  float lifespan;
-  float fertility; // Condition for becoming fertile
+  //float lifespan;
+  //float fertility; // Condition for becoming fertile
   float maturity;
   float spawnLimit;
 
@@ -108,9 +108,9 @@ class Cell {
   // GROWTH AND REPRODUCTION
   age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
   spawnLimit = dna.genes[30]; // Max. number of spawns
-  lifespan = dna.genes[31] * gs.maxLifespan;
+  //lifespan = dna.genes[31] * gs.maxLifespan;
   //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
-  fertility = dna.genes[29] * 0.01; // How soon will the cell become fertile?
+  //fertility = dna.genes[29]; // How soon will the cell become fertile?
 
   // POSITION & MOVEMENT
   position = pos.copy();                // cell has current position
@@ -168,29 +168,6 @@ class Cell {
   period_1 = ceil(r);
   period_2 = ceil(r);
   
-
-  // COLOUR
-  //fill_H_start = dna.genes[1];
-  //fill_H_end = dna.genes[2];
-  //fill_S_start = dna.genes[3];
-  //fill_S_end = dna.genes[4];
-  //fill_B_start = dna.genes[5];
-  //fill_B_end = dna.genes[6];
-  //fill_A_start = dna.genes[7];
-  //fill_A_end = dna.genes[8];
-  //fillColor = color(fill_H_start, fill_S_start, fill_B_start, fill_A_start); // Initial color is set
-  //fillColor = color(dna.genes[1]*360, dna.genes[3]*255, dna.genes[5]*255, dna.genes[7]*255); // Initial color is set
-
-  //stroke_H_start = dna.genes[9];
-  //stroke_H_end = dna.genes[10];
-  //stroke_S_start = dna.genes[11];
-  //stroke_S_end = dna.genes[12];
-  //stroke_B_start = dna.genes[13];
-  //stroke_B_end = dna.genes[14];
-  //stroke_A_start = dna.genes[15];
-  //stroke_A_end = dna.genes[16];
-  //strokeColor = color(stroke_H_start, stroke_S_start, stroke_B_start, stroke_A_start); // Initial color is set
-  
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
   
@@ -230,7 +207,7 @@ class Cell {
   
   // MODULATED BY INDEX NUMBER
   //stripeSize = map(id, 0, gs.seeds, 60, 10);
-  lifespan *= map(id, 0, gs.numStrains, 0.1, 1);
+  //lifespan *= map(id, 0, gs.numStrains, 0.1, 1);
   //radius_start = width * 0.001 * map(id, 0, gs.numStrains, 10, 50);
   //r = radius_start;
   //radius_end = radius_start * map(id, 0, gs.numStrains, 0.2, 0.05);
@@ -300,7 +277,7 @@ class Cell {
     age ++;
     noise_xoff += noise_step;
     noise_yoff += noise_step;
-    drawStep --;
+    drawStep--;
     drawStepN--;
     stripeStep--;
     period_1 --;
@@ -316,8 +293,13 @@ class Cell {
     modulators[4] = noise(dna.genes[27]*1000); // NOISE_X
     modulators[5] = noise(dna.genes[28]*1000); // NOISE_Y
     
+    // Experiments...
     //remoteness = sq(map(distanceFromHome, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
     //remoteness = sq(map(distanceFromOrigin, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
+    //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
+    //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
+    //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
+    //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
   }
   
   
@@ -369,26 +351,12 @@ class Cell {
   }
 
   void updateSize() {
-    // I should introduce an selector-toggle here!
-    //PVector center = new PVector(width/2, height/2);
-    //PVector distFromCenter = PVector.sub(center, position); // static vector to get distance between the cell & the center of the canvas
-    //float distMag = distFromCenter.mag();                         // calculate magnitude of the vector pointing to the center
-    //stroke(0,255);
-    //r = map(remoteness, 0, 1, radius_start, radius_end);
-    //r = map(directionDiff, 0, PI, radius_start, radius_end);
-    //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
-    //r = map(age, 0, lifespan, radius_start, radius_end);
-    //r = modulator(maturity, dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
     r = modulator(modulators[0], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
-    //r = ((sin(map(distMag, 0, 500, 0, PI)))+0)*radius_start;
-    //r = (((sin(map(remoteness, 0, 1, 0, PI*0.5)))+0)*radius_start) + radius_end;
-    //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
-    //r -= growth;
   }
 
   void updateFertility() {
-    if ((1-modulators[0]) <= fertility) {fertile = true; } else {fertile = false; }
-    if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
+    if ((1-modulators[0]) <= dna.genes[29]) {fertile = true; } else {fertile = false; }
+    if (spawnLimit == 0) {dna.genes[29] = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
 
   void updateShape() {
@@ -556,16 +524,16 @@ void displayLine() {
     colony.spawn(position, spawnVel, childDNA);
 
     //Reduce fertility for parent cells by squaring them
-    fertility *= fertility;
+    dna.genes[29] *= dna.genes[29];
     fertile = false;
-    other.fertility *= other.fertility;
+    other.dna.genes[29] *= other.dna.genes[29];
     other.fertile = false;
   }
 
   // Death
   boolean dead() {
     float radius_end = dna.genes[18] * gs.maxRadius;
-    if (age >= lifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
+    if (age >= dna.genes[31] * gs.maxLifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < dna.genes[17]*dna.genes[18]*gs.maxRadius) {return true;} // Death by too little radius
     //if (r > (width*0.1)) {return true;} // Death by too much radius
     if (spawnLimit <= 0) {return true;} // Death by too much babies
@@ -606,9 +574,9 @@ void displayLine() {
     //text("stroke_S:" + saturation(strokeColor), position.x, position.y + rowHeight * 2);
     //text("stroke_B:" + brightness(strokeColor), position.x, position.y + rowHeight * 3);
     //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
-    //text("lifespan:" + lifespan, position.x, position.y + rowHeight * 1);  
+    //text("lifespan:" + dna.genes[31] * gs.maxLifespan, position.x, position.y + rowHeight * 1);  
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 4);
-    //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
+    //text("fertility:" + dna.genes[29], position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 5);
