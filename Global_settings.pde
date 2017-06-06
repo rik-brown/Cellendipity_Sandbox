@@ -54,8 +54,6 @@ class Global_settings {
   
   float maxRadius;
   float maxLifespan;
-  float maxTwist;
-  
 
   Global_settings() {
     
@@ -122,7 +120,6 @@ class Global_settings {
     
     maxRadius = width * 0.5;
     maxLifespan = width * 0.5;
-    maxTwist = TWO_PI;
     
     logSettings();
   }
