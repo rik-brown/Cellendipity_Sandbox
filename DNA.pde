@@ -130,9 +130,9 @@ class DNA {
       genes[22]= 1; // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 0;   // 23=noisePercent_start (range: 0-1)
+      genes[23]= 0.4;   // 23=noisePercent_start (range: 0-1)
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End (range: 0-1)
+      genes[24]= 0.6;   // 24=noisePercent_End (range: 0-1)
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       ///genes[25]= random(2, 4);   // 25=noise_vMax
