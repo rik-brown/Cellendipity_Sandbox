@@ -53,7 +53,7 @@ class Colony {
   
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
-      //dna.genes[0] = n; //n is transferred to gene 0
+      dna.genes[0] = n; //n is transferred to gene 0
       
       for (int s = 0; s < gs.strainSize; s ++) {
         population.add(new Cell(pos, vel, dna));
@@ -170,6 +170,7 @@ class Colony {
         int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         DNA dna = gpl.genepool.get(strain); // Get's the appropriate strain of dna from the genepool
         //DNA dna = gpl.genepool.get(0);                        // Get's a specific strain of dna from the genepool
+        dna.genes[0] = n;
         n ++;
         float xpos = width * map (c, 0, gs.cols, 0, 1);
         float ypos = height * map (r, 0, gs.rows, 0, 1);

@@ -54,6 +54,7 @@ class Global_settings {
   
   float maxRadius;
   float maxLifespan;
+  float maxSpawns;
 
   Global_settings() {
     
@@ -75,7 +76,7 @@ class Global_settings {
     strainSize = 1;
     populationMaxSize = 200;  // Not really used when 'breeding' is disabled
     
-    seeds = 25;
+    seeds = 15;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -118,8 +119,9 @@ class Global_settings {
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0, 255); // Black
     
-    maxRadius = width * 0.5;
+    maxRadius = width * 0.2;
     maxLifespan = width * 0.5;
+    maxSpawns = 10;
     
     logSettings();
   }

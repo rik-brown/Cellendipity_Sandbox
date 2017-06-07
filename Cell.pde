@@ -92,6 +92,7 @@ class Cell {
   dna = new DNA();
   for (int i = 0; i < dna_.genes.length; i++) {
     dna.genes[i] = dna_.genes[i]; // Copy the contents of the referenced dnx genes into the local dna genes
+    //println("In constructor:  dna.genes[" + i + "] = " +  dna.genes[i]);
   }
     
   // BOOLEAN
@@ -107,7 +108,7 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
-  spawnLimit = dna.genes[30]; // Max. number of spawns
+  spawnLimit = dna.genes[30] * gs.maxSpawns; // Max. number of spawns
   //lifespan = dna.genes[31] * gs.maxLifespan;
   //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
   //fertility = dna.genes[29]; // How soon will the cell become fertile?
@@ -123,7 +124,7 @@ class Cell {
   toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
   distanceFromOrigin = toOrigin.mag(); // distance from pos to origin
   
-  distanceFromOriginMods();
+  //distanceFromOriginMods();
   
   //updateModulators();
   //dna.genes[17] = map(id, 0, 8, 0, 88);
@@ -175,7 +176,9 @@ class Cell {
   }
   
   void distanceFromOriginMods() {
-    dna.genes[17] *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1.0);
+    //println("In distanceFromOriginMods:   ID:" + id + " distanceFromOrigin: " + distanceFromOrigin);
+    dna.genes[17] *= map(distanceFromOrigin, 0, width*0.5, 1.0, 0.5);
+    //println("ID:" + id + " dna[17] now equals:" + dna.genes[17]);
     //radius_start *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1);
   }
 
@@ -351,6 +354,7 @@ class Cell {
   }
 
   void updateSize() {
+    //println("In updateSize()... ID:" + id + "  modulators[0]= " + modulators[0] + "  dna[17]= " + dna.genes[17] + " dna[17*18]:" + dna.genes[17] * dna.genes[18] + " gs.MaxR:" + gs.maxRadius);
     r = modulator(modulators[0], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxRadius;
   }
 
@@ -488,10 +492,10 @@ void displayLine() {
   void checkCollision(Cell other) {       // Method receives a Cell object 'other' to get the required info about the collidee
       PVector distVect = PVector.sub(other.position, position); // Static vector to get distance between the cell & other
       float distMag = distVect.mag();       // calculate magnitude of the vector separating the balls
-      if (distMag < (r + other.r)) { conception(other, distVect);} // Spawn a new cell
+      if (distMag < (r + other.r)) { conception(other);} // Spawn a new cell
   }
 
-  void conception(Cell other, PVector distVect) {
+  void conception(Cell other) {
     // Decrease spawn counters.
     spawnLimit --;
     other.spawnLimit --; //<>// //<>// //<>// //<>//
@@ -505,10 +509,10 @@ void displayLine() {
     DNA childDNA = dna.combine(other.dna);
 
     // Calculate new fill colour for child (a 50/50 blend of each parent cells)
-    color childFillColor = lerpColor(fillColor, other.fillColor, 0.5);
+    //color childFillColor = lerpColor(fillColor, other.fillColor, 0.5);
 
     // Calculate new stroke colour for child (a 50/50 blend of each parent cells)
-    color childStrokeColor = lerpColor(strokeColor, other.strokeColor, 0.5);
+    //color childStrokeColor = lerpColor(strokeColor, other.strokeColor, 0.5);
 
     // Genes for color require special treatment as I want childColor to be a 50/50 blend of parents colors
     // I will therefore overwrite color genes with reverse-engineered values after lerping:
@@ -532,7 +536,6 @@ void displayLine() {
 
   // Death
   boolean dead() {
-    float radius_end = dna.genes[18] * gs.maxRadius;
     if (age >= dna.genes[31] * gs.maxLifespan) {return true;} // Death by old age (regardless of size, which may remain constant)
     if (r < dna.genes[17]*dna.genes[18]*gs.maxRadius) {return true;} // Death by too little radius
     //if (r > (width*0.1)) {return true;} // Death by too much radius
