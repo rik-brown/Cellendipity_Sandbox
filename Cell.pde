@@ -371,7 +371,7 @@ class Cell {
   
   void updateFillColor() {
     // START > END
-    float h = modulator(modulators[0], dna.genes[1], dna.genes[2]) * 255;
+    float h = (modulator(modulators[0], dna.genes[1], dna.genes[2]) * 255) % 255;
     float s = modulator(modulators[0], dna.genes[3], dna.genes[4]) * 255;
     float b = modulator(modulators[0], dna.genes[5], dna.genes[6]) * 255;
     float a = modulator(modulators[0], dna.genes[7], dna.genes[8]) * 255;
@@ -380,7 +380,7 @@ class Cell {
   
   void updateStrokeColor() {
     // START > END
-    float h = modulator(modulators[0], dna.genes[9], dna.genes[10]) * 255;
+    float h = (modulator(modulators[0], dna.genes[9], dna.genes[10]) * 255) % 255;
     float s = modulator(modulators[0], dna.genes[11], dna.genes[12]) * 255;
     float b = modulator(modulators[0], dna.genes[13], dna.genes[14]) * 255;
     float a = modulator(modulators[0], dna.genes[15], dna.genes[16]) * 255;

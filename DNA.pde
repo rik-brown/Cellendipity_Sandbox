@@ -67,7 +67,7 @@ class DNA {
       //genes[2]= gs.bkg_H + 60;   // 1=fill_H_start
       //genes[2]= 90;   // 2=fill_H_end
       //genes[2]= genes[1] * random (0.80, 1.2);   // 2=fill_H_end
-      genes[2]= genes[1] + 0.2;   // 2=fill_H_end
+      genes[2]= genes[1] + 0.33;   // 2=fill_H_end
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
@@ -83,7 +83,7 @@ class DNA {
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0.2;
+      genes[5]= 0.4;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGen, -1, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 0.8;
