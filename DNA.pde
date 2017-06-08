@@ -146,6 +146,7 @@ class DNA {
 
                   
       genes[29]= 0.5;   // 29=fertility
+      //println("At " + frameCount + ", In DNA, genes[29]= " + genes[29]);
       //genes[29]= random(0.65, 0.85);   // 29=fertility
       genes[30]= 0.4;   // 30=spawnLimit
       //genes[30]= random(0.1, 0.3);   // 30=spawnLimit

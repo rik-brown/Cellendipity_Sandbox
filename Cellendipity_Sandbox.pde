@@ -31,8 +31,9 @@
 *
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
 *
-*  o) SPAWNING new cells - does it still work?
+*  o) SPAWNING new cells - does it still work? YES! Pretty much
 *    1) Add recombined DNA to the genepool?
+*      a) Why would I want to do this? What's the use-case. The genepool is currently only used initially, when seeding a new colony.
 *  
 *  p) Use an image file in /data as a seed for colours (or other parameters) at spawn positions
 *    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
@@ -70,13 +71,13 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-162.3";
+String batchName = "batch-162.4";
 int maxCycles = 10;
 int runCycle = 1;
 float cycleGen;
 
 
-int maxFrames = 1000;
+int maxFrames = 2000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 
@@ -107,9 +108,9 @@ void setup() {
   //size(400, 400);
   //size(500, 500);
   //size(800, 800);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
-  //size(2048, 2048);
+  size(2048, 2048);
   //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);

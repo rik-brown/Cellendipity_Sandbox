@@ -17,7 +17,7 @@ class Cell {
   // GROWTH AND REPRODUCTION
   int age;       // Age (nr. of frames since birth)
   //float lifespan;
-  //float fertility; // Condition for becoming fertile
+  float fertility; // Condition for becoming fertile
   float maturity;
   float spawnLimit;
 
@@ -111,7 +111,7 @@ class Cell {
   spawnLimit = dna.genes[30] * gs.maxSpawns; // Max. number of spawns
   //lifespan = dna.genes[31] * gs.maxLifespan;
   //lifespan= dna.genes[31] * width * 0.001 * map(cycleGen, -1, 1, 0.3, 0.7);
-  //fertility = dna.genes[29]; // How soon will the cell become fertile?
+  fertility = dna.genes[29]; // How soon will the cell become fertile?
 
   // POSITION & MOVEMENT
   position = pos.copy();                // cell has current position
@@ -359,8 +359,9 @@ class Cell {
   }
 
   void updateFertility() {
-    if ((1-modulators[0]) <= dna.genes[29]) {fertile = true; } else {fertile = false; }
-    if (spawnLimit == 0) {dna.genes[29] = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
+    //println("At " + frameCount + ", ID: " + id + " has fertility = " + fertility);
+    if ((1-modulators[0]) <= fertility) {fertile = true; } else {fertile = false; }
+    if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
 
   void updateShape() {
@@ -528,9 +529,9 @@ void displayLine() {
     colony.spawn(position, spawnVel, childDNA);
 
     //Reduce fertility for parent cells by squaring them
-    dna.genes[29] *= dna.genes[29];
+    fertility *= fertility;
     fertile = false;
-    other.dna.genes[29] *= other.dna.genes[29];
+    other.fertility *= other.fertility;
     other.fertile = false;
   }
 
@@ -579,7 +580,7 @@ void displayLine() {
     //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
     //text("lifespan:" + dna.genes[31] * gs.maxLifespan, position.x, position.y + rowHeight * 1);  
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 4);
-    //text("fertility:" + dna.genes[29], position.x, position.y + rowHeight * 3);
+    //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 5);
