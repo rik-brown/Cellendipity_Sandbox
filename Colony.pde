@@ -70,7 +70,7 @@ class Colony {
       //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
       vel.normalize();
-      vel.rotate(PI * map(cycleGen, -1, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+      vel.rotate(PI * map(cycleGenSin, -1, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = gpl.numPredefined + n;
@@ -112,7 +112,8 @@ class Colony {
       
       for (int c = 0; c <= gs.cols; c++) {
         //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
-        int strain = (n % gs.numStrains) + gpl.numPredefined;
+        //int strain = (n % gs.numStrains) + gpl.numPredefined;
+        int strain = 0;
         DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool (not a preset DNA)
         dna.genes[0] = n;
         float xpos = width * map (c, 0, gs.cols, 0, 1);
@@ -138,7 +139,7 @@ class Colony {
         vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
         //vel = new PVector(0,-1);
         vel.normalize();
-        vel.rotate(PI * map(cycleGen, -1, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+        vel.rotate(PI * map(cycleGenSin, -1, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
   
         for (int s = 0; s < gs.strainSize; s ++) {
           //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
@@ -225,7 +226,7 @@ class Colony {
       origin = new PVector (gs.orx, gs.ory);
       PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position to the arbitrary 'origin'
       vel.normalize();
-      //vel.rotate(PI * map(cycleGen, -1, 1, 0, 2));
+      //vel.rotate(PI * map(cycleGenSin, -1, 1, 0, 2));
       vel.rotate(radians(map(runCycle, 1, maxCycles, 0, 120)));
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //int strain = ((n) % 2) + 3;
@@ -263,8 +264,8 @@ class Colony {
       }
      //c *= 1.000003;
      //c += width * 0.0003;
-     //c += width * map(cycleGen, -1, 1, 0.00001, 0.0001);
-     c *= map(cycleGen, -1, 1, 1.005, 1.01);
+     //c += width * map(cycleGenSin, -1, 1, 0.00001, 0.0001);
+     c *= map(cycleGenSin, -1, 1, 1.005, 1.01);
     }
   }
   

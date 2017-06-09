@@ -71,10 +71,10 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-162.6";
-int maxCycles = 10;
+String batchName = "batch-162.7";
+int maxCycles = 24;
 int runCycle = 1;
-float cycleGen;
+float cycleGen, cycleGenSin;
 
 
 int maxFrames = 2000;
@@ -108,9 +108,9 @@ void setup() {
   //size(400, 400);
   //size(500, 500);
   //size(800, 800);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
-  size(2048, 2048);
+  //size(2048, 2048);
   //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
@@ -157,8 +157,9 @@ void getReady() {
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
-  cycleGen = sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)); // cyclic generator value in range 0-1
-  //println("Iteration: " + runCycle + " cycleGen: " + cycleGen);
+  cycleGen = map(runCycle, 1, maxCycles, 0, 1); // global linear modulator value in range 0-1
+  cycleGenSin = map(sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)), -1, 1, 0, 1); // global cyclic modulator value in range 0-1
+  //println("Iteration: " + runCycle + " cycleGenSin: " + cycleGenSin);
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
