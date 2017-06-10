@@ -23,31 +23,27 @@ class Cell {
   // SIZE AND SHAPE
   float r;
   float flatness;  // To make flatter ellipses (1 = circle)
-  float stripeRatio;
   
   // SAWTEETH
-  int sawtooth_1, sawtooth_2;
-  float sawtooth_1_limit, sawtooth_2_limit;
-  boolean sawtooth_1_Flag, sawtooth_2_Flag;
+  int sawtooth_1, sawtooth_2, sawtooth_3;
+  float sawtooth_1_limit, sawtooth_2_limit, sawtooth_3_limit;
+  boolean sawtooth_1_Flag, sawtooth_2_Flag, sawtooth_3_Flag;
 
   // MOVEMENT
   PVector position; // cell's current position
   PVector home;     // cell's initial position
-  PVector toHome;   // from current to initial (=sub(home, position) )
   PVector origin;   // arbitrary origin (e.g. center of screen)
-  PVector toOrigin; // from current to initial (=sub(origin, position) )
+  //PVector toHome;   // from current to initial (=sub(home, position) )
+  //PVector toOrigin; // from current to initial (=sub(origin, position) )
+  
   PVector velocityRef;
   PVector velocityLinear;
   PVector velocityNoise;
   PVector velocity;
   
-  float noise_vMax;   // multiplication factor for velocity
-  float noise_xoff, noise_yoff;   // y offset
-  float noise_x, noise_y; // perlin noise modulators
-  float noise_step;   // step size
+  float noise_xoff, noise_yoff; // x&y noise-offset
   
   float distanceFromHome;      // How far is the cell from it's home position?
-  float remoteness; // How close is the cell to it's maximum range?
   float distanceFromOrigin;      // How far is the cell from the arbitrary origin?
   
   float directionDiff; // The difference between the current and the initial velocity heading. Range 0-1 where 1 = max diff. = 180 degrees
@@ -61,109 +57,85 @@ class Cell {
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
+    modulators = new float[8];
     
-    modulators = new float[6];
-  
-  // OBJECTS
-  dna = new DNA();
-  for (int i = 0; i < dna_.genes.length; i++) {
-    dna.genes[i] = dna_.genes[i]; // Copy the contents of the referenced dnx genes into the local dna genes
-    //println("In constructor:  dna.genes[" + i + "] = " +  dna.genes[i]);
-  }
-  
-  // TEMPORARILY MOVING ALL DNA MODS HERE *************************************************************************
-  
-  // STATIC (ID)
-  //dna.genes[17] = map(id, 0, 8, 0, 88);
-  //noise_xoff = dna.genes[27] + id; //Seed for noiseX
-  
-  // LINEAR
-  //twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
-  //twist_end = map(runCycle, 1, maxCycles, -3, 3) * 0.01; // twist_end screw amount
-  //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
-  
-  // CYCLIC
-  //lifespan= dna.genes[31] * width * 0.001 * map(cycleGenSin, 0, 1, 0.3, 0.7);
-  //twist_start = map(cycleGenSin, 0, 1, 0, 1); // twist_end screw amount
-  //noisePercent_end =map(cycleGenSin, 0, 1, 0, 100);
-  //noise_xoff = modulator(cycleGenSin, 1, 1.5); // NOTE: max/min values are hard-coded
-  
-  // COMBINATION
-  //noise_yoff = map (id, 0, gpl.genepool.size(), 1, 1000) + map(cycleGenSin, 0, 1, 10, 10.5); //Strain ID is seed for noiseY
-  
-  // TEMPORARILY MOVING ALL DNA MODS HERE *************************************************************************
-  
-  // BOOLEAN
-  fertile = false; // A new cell always starts off infertile
-  drawCellON = true;
-  drawNucleusON = false;
-  stripeON = false; // A new cell always starts off displaying it's normal colour
-  
-  stepON = gs.stepped;
-  nucleusON = gs.nucleus;
-  
-  // id
-  id = int(dna.genes[0]);
-  
-  // GROWTH AND REPRODUCTION
-  age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
-  spawnLimit = dna.genes[30] * gs.maxSpawns; // Max. number of spawns
-
-  
-  fertility = dna.genes[29]; // How soon will the cell become fertile?
-
-  // POSITION & MOVEMENT
-  position = pos.copy();                // cell has current position
-  home = pos.copy();                    // home = initial position
-  origin = new PVector(gs.orx, gs.ory); //arbitrary origin
-  
-  toHome = PVector.sub(home, position); // static vector pointing from cell to home
-  distanceFromHome = toHome.mag(); // distanceFromHome is how far the cell is from home at any time
-  
-  toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
-  distanceFromOrigin = toOrigin.mag(); // distance from pos to origin
-  
-  //distanceFromOriginMods(); // IF ENABLED, IT WOULD HAVE TO BE HERE *******************************************
-  
-  //updateModulators(); // Why would I want to do that now? To PRIME them for any following DNA-mods
-  
-  velocityLinear = vel.copy(); //cell has unique basic velocity component
-  updateVelocity();
-  velocityRef = velocity.copy(); //keep a copy of the inital velocity for reference
-  
-  noise_vMax = dna.genes[25]; // Maximum magnitude in velocity components generated by noise
-  noise_step = dna.genes[26]; //Step-size for noise
-
-  noise_xoff = dna.genes[27]*1000; //Seed for noise-component (x)
-  noise_yoff = dna.genes[28]*1000; //Seed for noise-component (y)
-  //noise_xoff = modulator(cycleGenSin, 1, 1.5); // NOTE: max/min values are hard-coded
-  //noise_yoff = map (id, 0, gpl.genepool.size(), 1, 1000) + map(cycleGenSin, 0, 1, 10, 10.5); //Strain ID is seed for noiseY
-  
-  // SIZE AND SHAPE
-   updateSize();
-  //println("New cell with id: " + id + " and size: " + r);
-  //stripeSize = dna.genes[32];
-  stripeRatio = dna.genes[33];
-  
-  // SAWTOOTH WAVES (for Michael)
-  sawtooth_1 = 0;
-  sawtooth_2 = 0;
-  sawtooth_1_limit = r;
-  if (stripeON) {sawtooth_2_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_2_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
-  sawtooth_1_Flag = true;  // E.g. Step or Nucleus is drawn in first cycle
-  sawtooth_2_Flag = false; // E.g. The first colour is the not-stripe colour  
-  
-  //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
-  //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
-  
-  cellDNALogger(); //Print the DNA for this cell
+    // OBJECTS
+    dna = new DNA();
+    for (int i = 0; i < dna_.genes.length; i++) {
+      dna.genes[i] = dna_.genes[i]; // Copy the contents of the referenced dnx genes into the local dna genes
+    }
+    
+    // BOOLEAN
+    fertile = false;       // Cell always starts off infertile
+    drawCellON = true;     // Cell will always be drawn (unless otherwise)
+    drawNucleusON = false; // Nucleus will not be drawn unless enabled & conditions met
+    stripeON = false;      // Cell always starts off displaying it's normal colour
+    
+    stepON = gs.stepped;    // Currently still a colony-wide selection but could also be controlled by cell DNA 
+    nucleusON = gs.nucleus; // Currently still a colony-wide selection but could also be controlled by cell DNA
+    
+    id = int(dna.genes[0]);
+    age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
+    
+    // POSITION & MOVEMENT
+    position = pos.copy();                // cell has current position
+    home = pos.copy();                    // home = initial position
+    origin = new PVector(gs.orx, gs.ory); //arbitrary origin
+    
+    updatePosition();
+    
+    velocityLinear = vel.copy(); //cell has unique basic velocity component
+    updateVelocity();
+    velocityRef = velocity.copy(); //keep a copy of the inital velocity for reference
+        
+    noise_xoff = dna.genes[27]*1000; //Seed for noise-component (x)
+    noise_yoff = dna.genes[28]*1000; //Seed for noise-component (y)
+    //noise_xoff = modulator(cycleGenSin, 1, 1.5); // NOTE: max/min values are hard-coded
+    //noise_yoff = map (id, 0, gpl.genepool.size(), 1, 1000) + map(cycleGenSin, 0, 1, 10, 10.5); //Strain ID is seed for noiseY
+    
+    //updateModulators(); // Why would I want to do that now? To PRIME them for any following DNA-mods
+    //distanceFromOriginMods(); // IF ENABLED, IT WOULD HAVE TO BE HERE, ONCE POSITION & MODULATORS ARE INITIALISED  *******************************************
+    // TEMPORARILY MOVING ALL DNA MODS HERE *************************************************************************
+    
+    // STATIC (ID)
+    //dna.genes[17] = map(id, 0, 8, 0, 88);
+    //noise_xoff = dna.genes[27] + id; //Seed for noiseX
+    
+    // LINEAR
+    //twist_start = map(runCycle, 1, maxCycles, -2, 2); // twist_end screw amount
+    //twist_end = map(runCycle, 1, maxCycles, -3, 3) * 0.01; // twist_end screw amount
+    //noise_xoff = map(runCycle, 1, maxCycles, 1, 2); //Seed for noiseX
+    
+    // CYCLIC
+    //lifespan= dna.genes[31] * width * 0.001 * map(cycleGenSin, 0, 1, 0.3, 0.7);
+    //twist_start = map(cycleGenSin, 0, 1, 0, 1); // twist_end screw amount
+    //noisePercent_end =map(cycleGenSin, 0, 1, 0, 100);
+    //noise_xoff = modulator(cycleGenSin, 1, 1.5); // NOTE: max/min values are hard-coded
+    
+    // COMBINATION
+    //noise_yoff = map (id, 0, gpl.genepool.size(), 1, 1000) + map(cycleGenSin, 0, 1, 10, 10.5); //Strain ID is seed for noiseY
+    
+    // TEMPORARILY MOVING ALL DNA MODS HERE *************************************************************************
+    
+     updateSize(); // Uses a MODULATOR to calculate size. 
+    
+    // SAWTOOTH WAVES (for Michael)
+    sawtooth_1 = 0;
+    sawtooth_2 = 0;
+    sawtooth_3 = 0;
+    updateSawteeth(); // Dependant on size
+    
+    fertility = dna.genes[29]; // How soon will the cell become fertile?
+    spawnLimit = dna.genes[30] * gs.maxSpawns; // Max. number of spawns
+    
+    if (gs.debug) {cellDNALogger();} //Print the DNA for this cell
   }
   
   void distanceFromOriginMods() {
-    //println("In distanceFromOriginMods:   ID:" + id + " distanceFromOrigin: " + distanceFromOrigin);
-    dna.genes[17] *= map(distanceFromOrigin, 0, width*0.5, 1.0, 0.5);
-    //println("ID:" + id + " dna[17] now equals:" + dna.genes[17]);
-    //radius_start *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1);
+      //println("In distanceFromOriginMods:   ID:" + id + " distanceFromOrigin: " + distanceFromOrigin);
+      //dna.genes[17] *= map(distanceFromOrigin, 0, width*0.5, 1.0, 0.5);
+      //println("ID:" + id + " dna[17] now equals:" + dna.genes[17]);
+      //radius_start *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1);
   }
 
 
@@ -196,13 +168,11 @@ class Cell {
 
   void increment() {
     age ++;
-    noise_xoff += noise_step;
-    noise_yoff += noise_step;
     sawtooth_1 ++;
-    //if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
     sawtooth_2 ++;
-    //if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
-    
+    sawtooth_3 ++;
+    noise_xoff += dna.genes[26];
+    noise_yoff += dna.genes[26];
     position.add(velocity);
   }
   
@@ -213,8 +183,10 @@ class Cell {
     modulators[3] = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()
     modulators[4] = noise(noise_xoff); // NOISE_X
     modulators[5] = noise(noise_yoff); // NOISE_Y
+    modulators[6] = map(sawtooth_1, 0, sawtooth_1_limit, 0, 1);
+    modulators[7] = map(sawtooth_2, 0, sawtooth_2_limit, 0, 1);
     
-    // Experiments...
+    // Examples from earlier experiments...
     //remoteness = sq(map(distanceFromHome, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
     //remoteness = sq(map(distanceFromOrigin, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
     //r = map(hue(pixelColor), 360, 0, radius_start, radius_end); // Size from pixel brightness
@@ -227,8 +199,11 @@ class Cell {
     sawtooth_1_limit = r;
     if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
     
-    if (stripeON) {sawtooth_2_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_2_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
+    sawtooth_2_limit = r;
     if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
+    
+    if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
+    if (sawtooth_3 > sawtooth_3_limit) {sawtooth_3_Flag = true; sawtooth_3 = 0;} else {sawtooth_3_Flag = false;}
   }
   
   void updateStep() {
@@ -240,7 +215,7 @@ class Cell {
   }
   
   void updateStripe() {
-    if (sawtooth_2_Flag) {stripeON = !stripeON;}
+    if (sawtooth_3_Flag) {stripeON = !stripeON;}
   }
 
   void updateVelocity() {
@@ -262,37 +237,32 @@ class Cell {
   
   void updateVelocityByHue() {
     velocity = PVector.fromAngle(radians(hue(pixelColor)));
-    float twist = radians(modulator(modulators[0], dna.genes[21], dna.genes[22]));
+    float twist = radians(modulator(modulators[1], dna.genes[21], dna.genes[22]));
     velocity.rotate(twist);
   }
   
   
-  void updatePosition() { //Update parameters linked to the position
-    //position.add(velocity); //<>//
-    
+  void updatePosition() { //<>//
     //pixelColor = colony.pixelColour(position);
     
-    toHome = PVector.sub(home, position); // static vector pointing from cell to home
+    PVector toHome = PVector.sub(home, position); // static vector pointing from cell to home
     distanceFromHome = toHome.mag(); // distanceFromHome is how far the cell is from home at any time. MODULATOR
     
-    toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
+    PVector toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
     distanceFromOrigin = toOrigin.mag(); // distance from pos to origin. MODULATOR
   }
 
   void updateSize() {
-    //println("In updateSize()... ID:" + id + "  modulators[0]= " + modulators[0] + "  dna[17]= " + dna.genes[17] + " dna[17*18]:" + dna.genes[17] * dna.genes[18] + " gs.MaxR:" + gs.maxSize);
     r = modulator(modulators[0], dna.genes[17], dna.genes[17] * dna.genes[18]) * gs.maxSize;
   }
 
-  void updateFertility() {
-    //println("At " + frameCount + ", ID: " + id + " has fertility = " + fertility);
-    if ((1-modulators[0]) <= fertility) {fertile = true; } else {fertile = false; }
-    if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
-  }
-
   void updateShape() {
-  //flatness = map(maturity, 0, 1, flatness_start, flatness_end);
   flatness = modulator(modulators[0], dna.genes[19], dna.genes[20]);
+  }
+  
+  void updateFertility() {
+    if ((1-modulators[2]) <= fertility) {fertile = true; } else {fertile = false; }
+    if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
   
   void updateFillColor() {
@@ -365,7 +335,7 @@ class Cell {
     float angle = velocity.heading();
     rotate(angle);
     if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
-    if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, 10, 10, 1);}
+    if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, r*0.2, r*0.2, 1);}
     popMatrix(); 
   }
   
@@ -511,15 +481,12 @@ void displayLine() {
     //text("twist:" + twist, position.x, position.y + rowHeight * 4);
     //text("distanceFromOrigin:" + distanceFromOrigin, position.x, position.y + rowHeight * 3);
     //text("noise%:" + noisePercent, position.x, position.y + rowHeight * 3);
-
   }
   
   void cellDNALogger() {
-    if (gs.debug) {
-        for (int i = 0; i < dna.genes.length; i++) {
-          float value = dna.genes[i];
-          output.println("Gene:" + i + ": has value " + value);
-        }
+    for (int i = 0; i < dna.genes.length; i++) {
+      float value = dna.genes[i];
+      output.println("Gene:" + i + ": has value " + value);
     }
   }
   
@@ -527,10 +494,6 @@ void displayLine() {
     float modulated = map (scalar, 0, 1, start, end);
     //if (gs.debug) {println("ID: " + id + " scalar = " + scalar + " start = " + start + " end = " + end + " MODULATED = " + modulated);}
     return modulated;
-  }
-  
-  boolean sawtooth(float period) {
-    if (period <1) {return true;} else {return false;}
   }
 
 }

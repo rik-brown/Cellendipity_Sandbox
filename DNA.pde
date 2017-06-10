@@ -67,32 +67,32 @@ class DNA {
       //genes[2]= gs.bkg_H + 60;   // 1=fill_H_start
       //genes[2]= 90;   // 2=fill_H_end
       //genes[2]= genes[1] * random (0.80, 1.2);   // 2=fill_H_end
-      genes[2]= genes[1] + 0.33;   // 2=fill_H_end
+      genes[2]= genes[1] + 0.1;   // 2=fill_H_end
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
       //genes[2]= 240 + map(cycleGenSin, 0, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      genes[3]= 1;
+      genes[3]= 0.8;
       //genes[3]= random(130,180);   // 3=fill_S_start  
       //genes[3]= map(cycleGenSin, 0, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 0.2;
+      genes[4]= 0.8;
       //genes[4]= map(cycleGenSin, 0, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0.4;
+      genes[5]= 0.7;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
-      genes[6]= 0.8;
+      genes[6]= 0.9;
       //genes[6]= map(cycleGenSin, 0, 1, 255,64);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 1;   // 7=fill_A_start
-      genes[8]= 1;   // 8=fill_A_end
+      genes[7]= 0.01;   // 7=fill_A_start
+      genes[8]= 0.01;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -107,9 +107,9 @@ class DNA {
       genes[13]= 0.004;   // 13=stroke_B_start
       genes[14]= 0.008;   // 14=stroke_B_end
       
-      genes[15]= 0;   // 15=stroke_A_start
+      genes[15]= 0.1;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 0;   // 16=stroke_A_end
+      genes[16]= 0.1;   // 16=stroke_A_end
       
       genes[17]= 0.2;   // 17=size_start. Range 0-1, % of gs.maxSize
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=size_start CARTESIAN GRID
@@ -126,13 +126,13 @@ class DNA {
       //genes[21]= map(cycleGenSin, 0, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
       //genes[22]= map(cycleGenSin, 0, 1, -3, 3);   // 22=twist_end
-      genes[21]= 0; // 21=twist_start
-      genes[22]= 0; // 22=twist_end
+      genes[21]= 0.1; // 21=twist_start
+      genes[22]= 0.2; // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
-      genes[23]= 1;   // 23=noisePercent_start (range: 0-1)
+      genes[23]= 0.2;   // 23=noisePercent_start (range: 0-1)
       //genes[23]= random(0,100);   // 23=noisePercent_start
-      genes[24]= 0;   // 24=noisePercent_End (range: 0-1)
+      genes[24]= 0.6;   // 24=noisePercent_End (range: 0-1)
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
       ///genes[25]= random(2, 4);   // 25=noise_vMax
@@ -145,20 +145,20 @@ class DNA {
       //genes[28]= 1;
 
                   
-      genes[29]= 0.5;   // 29=fertility
+      genes[29]= 0.8;   // 29=fertility
       //println("At " + frameCount + ", In DNA, genes[29]= " + genes[29]);
       //genes[29]= random(0.65, 0.85);   // 29=fertility
-      genes[30]= 0.4;   // 30=spawnLimit
+      genes[30]= 0.2;   // 30=spawnLimit
       //genes[30]= random(0.1, 0.3);   // 30=spawnLimit
       //genes[31]= random(0.2, 0.6);   // 31=lifespan
-      genes[31]= 0.9;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
+      genes[31]= 0.3;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize
-      genes[32]= 0.5;   // 32=StripeSize
+      genes[32]= 10000.5;   // 32=StripeSize
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
-      genes[33]= 0.2;   // 33=StripeRatio
-      //genes[33] = random(0.4, 0.8);  // 33=StripeRatio
+      //genes[33]= 0.01;   // 33=StripeRatio
+      genes[33] = random(0.2, 0.4);  // 33=StripeRatio
    }
 
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents

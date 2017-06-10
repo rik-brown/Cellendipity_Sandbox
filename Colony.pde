@@ -36,15 +36,15 @@ class Colony {
   void center_pattern() {
     // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
     for (int n = 0; n < gs.seeds; n++) {
-      //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
       //int strain = gpl.numPredefined + n;
       //int strain = (n % gs.numStrains) + gpl.numPredefined;
-      int strain = int(random(gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined + gs.numStrains));
       pos = new PVector(width*0.5, height*0.5); // random position
       
-      //vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
-      vel = PVector.fromAngle(map(n, 0, gs.seeds, 0, TWO_PI));
+      vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
+      //vel = PVector.fromAngle(map(n, 0, gs.seeds, 0, TWO_PI));
       //vel = new PVector(1,-1);
       
       //origin = new PVector (gs.orx, gs.ory);
@@ -73,10 +73,10 @@ class Colony {
       vel.normalize();
       vel.rotate(PI * map(cycleGenSin, 0, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
-      //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = gpl.numPredefined + n;
       //int strain = (n % gs.numStrains) + gpl.numPredefined;
-      int strain = int(random(gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined + gs.numStrains));
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
       
@@ -115,7 +115,8 @@ class Colony {
       for (int c = 0; c <= gs.cols; c++) {
         //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         //int strain = (n % gs.numStrains) + gpl.numPredefined;
-        int strain = 7;
+        //int strain = 7;
+        int strain = int(random(7, 7));
         //int strain = int(random(2));
         //int strain = int(random(gpl.numPredefined + gs.numStrains));
         //int strain = c % 5;
