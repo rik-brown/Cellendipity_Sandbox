@@ -7,11 +7,11 @@ class Cell {
 
   // BOOLEAN
   boolean fertile;
+  
   boolean stripeON;
   boolean stepON;
   boolean nucleusON;
   
-  boolean sawtooth_1_Flag;
   boolean drawCellON;
   boolean drawNucleusON;
   
@@ -23,14 +23,12 @@ class Cell {
   // SIZE AND SHAPE
   float r;
   float flatness;  // To make flatter ellipses (1 = circle)
-  //float drawStep;  // To enable spacing of the drawn object (ellipse)
-  //float drawStepN;
-  float stripeStep;// Countdown to toggle between stripeON and !stripeON
-  float stripeSize;
   float stripeRatio;
   
   // SAWTEETH
-  int period_1, period_2;
+  int sawtooth_1, sawtooth_2;
+  float sawtooth_1_limit, sawtooth_2_limit;
+  boolean sawtooth_1_Flag, sawtooth_2_Flag;
 
   // MOVEMENT
   PVector position; // cell's current position
@@ -103,7 +101,6 @@ class Cell {
   
   stepON = gs.stepped;
   nucleusON = gs.nucleus;
-  sawtooth_1_Flag = false;
   
   // id
   id = int(dna.genes[0]);
@@ -145,15 +142,16 @@ class Cell {
   // SIZE AND SHAPE
    updateSize();
   //println("New cell with id: " + id + " and size: " + r);
-  //drawStep = 1;
-  //drawStepN = 1;
-  stripeSize = dna.genes[32];
+  //stripeSize = dna.genes[32];
   stripeRatio = dna.genes[33];
-  stripeStep = map(stripeSize, 0, 100, 0, r*2);
   
   // SAWTOOTH WAVES (for Michael)
-  period_1 = ceil(r);
-  period_2 = ceil(r);
+  sawtooth_1 = 0;
+  sawtooth_2 = 0;
+  sawtooth_1_limit = r;
+  if (stripeON) {sawtooth_2_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_2_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
+  sawtooth_1_Flag = true;  // E.g. Step or Nucleus is drawn in first cycle
+  sawtooth_2_Flag = false; // E.g. The first colour is the not-stripe colour  
   
   //cartesianMods(); // Modulate some properties in a way that is appropriate to a cartesian spawn pattern
   //coralMods(); // Modulate some properties in a way that is similar to batch-144.8g (tragedy of the corals)
@@ -177,6 +175,8 @@ class Cell {
     updatePosition();
     updateSize();
     updateShape();
+    updateSawteeth();
+    updateStripe();
     updateFertility();
     updateFillColor();
     updateStrokeColor();
@@ -185,8 +185,8 @@ class Cell {
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripeON) {updateStripeColor();}
-    if (stepON) {updateSawtooth_1();}
-    if (nucleusON) {updateSawtooth_2();}
+    if (stepON) {updateStep();}
+    if (nucleusON) {updateNucleus();}
     display();
     //displayLine();
     //displayText();
@@ -198,13 +198,11 @@ class Cell {
     age ++;
     noise_xoff += noise_step;
     noise_yoff += noise_step;
-    //drawStep--;
-    //drawStepN--;
-    stripeStep--;
-    period_1 --;
-    if (period_1 <1) {sawtooth_1_Flag = true; period_1 = ceil(r);} else {sawtooth_1_Flag = false;}
-    period_2 --;
-    if (period_2 <1) {period_2 = ceil(r);}
+    sawtooth_1 ++;
+    //if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
+    sawtooth_2 ++;
+    //if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
+    
     position.add(velocity);
   }
   
@@ -225,16 +223,24 @@ class Cell {
     //r = (((sin(map(age, 0, lifespan, 0, PI)))+0)*radius_start) + radius_end;
   }
   
+  void updateSawteeth() {
+    sawtooth_1_limit = r;
+    if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
+    
+    if (stripeON) {sawtooth_2_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_2_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
+    if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
+  }
   
-  
-  void updateSawtooth_1() {
-    //if (period_1 <1) {period_1 = ceil(r); drawCellON = true;} else {drawCellON = false;}
+  void updateStep() {
     if (sawtooth_1_Flag) {drawCellON = true;} else {drawCellON = false;}
   }
   
-  void updateSawtooth_2() {
-    //if (period_2 <1) {period_2 = ceil(r); drawNucleusON = true;} else {drawNucleusON = false;}
-    if (sawtooth_1_Flag) {drawNucleusON = true;} else {drawNucleusON = false;}
+  void updateNucleus() {
+    if (sawtooth_2_Flag) {drawNucleusON = true;} else {drawNucleusON = false;}
+  }
+  
+  void updateStripe() {
+    if (sawtooth_2_Flag) {stripeON = !stripeON;}
   }
 
   void updateVelocity() {
@@ -359,8 +365,7 @@ class Cell {
     float angle = velocity.heading();
     rotate(angle);
     if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
-    //if (drawNucleusON) {updateNucleusColor(); println("nucleus color = " + brightness(fillColor)); drawSomething(fillColor, strokeColor, dna.genes[18] * gs.maxSize * 0.5, dna.genes[18] * gs.maxSize * 0.5 * flatness, 1);}
-    if (drawNucleusON) {updateNucleusColor(); ; drawSomething(fillColor, strokeColor, 10, 10, 1);}
+    if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, 10, 10, 1);}
     popMatrix(); 
   }
   
@@ -474,17 +479,19 @@ void displayLine() {
     text("id: " + id, position.x, position.y + rowHeight * 0);
     text("age: " + age, position.x, position.y + rowHeight * 1);
     //text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
-    //text("r: " + r, position.x, position.y + rowHeight * 3);
-    text("period_1: " + period_1, position.x, position.y + rowHeight * 2);
-    text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 3);
-    //text("period_2: " + period_2, position.x, position.y + rowHeight * 6);
+    text("r: " + r, position.x, position.y + rowHeight * 2);
+    //text("sawtooth_1: " + sawtooth_1, position.x, position.y + rowHeight * 3);
+    //text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 4);
+    //text("sawtooth_1_Flag: " + sawtooth_1_Flag, position.x, position.y + rowHeight * 5);
+    text("sawtooth_2: " + sawtooth_2, position.x, position.y + rowHeight * 3);
+    text("sawtooth_2 limit: " + sawtooth_2_limit, position.x, position.y + rowHeight * 4);
+    text("sawtooth_2_Flag: " + sawtooth_2_Flag, position.x, position.y + rowHeight * 5);
+    text("stripeON:" + stripeON, position.x, position.y + rowHeight * 6);
     //text("drawNucleusON: " + drawNucleusON, position.x, position.y + rowHeight * 8);
     //text("gene[17]:" + dna.genes[17], position.x, position.y + rowHeight * 4);
     //text("gene[18]:" + dna.genes[18], position.x, position.y + rowHeight * 5);
     //text("gene[17*18]:" + dna.genes[17]*dna.genes[17], position.x, position.y + rowHeight * 6);
     //text("pos:" + position.x + "," + position.y, position.x, position.y + rowHeight * 0);
-    //text("stripeStep:" + stripeStep, position.x, position.y + rowHeight * 5);
-    //text(stripeON:" + stripeON, position.x, position.y + rowHeight * 4);
     //text("distanceFromHome:" + int(distanceFromHome), position.x, position.y + rowHeight * 4);
     //text("fill_H:" + hue(fillColor), position.x, position.y + rowHeight * 1);
     //text("fill_S:" + saturation(fillColor), position.x, position.y + rowHeight * 2);

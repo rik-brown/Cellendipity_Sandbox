@@ -41,9 +41,6 @@ class Global_settings {
   int orx;
   int ory; 
   
-  int stepSize;
-  int stepSizeN;
-  
   float bkg_H;
   float bkg_S;
   float bkg_B;
@@ -81,8 +78,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 6;
-    cols = 6;
+	  rows = 3;
+    cols = 3;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
@@ -95,13 +92,7 @@ class Global_settings {
     ory = int(height * 0.5); // Centered
     //orx = 0; // @origin
     //ory = 0; // @origin
-    
-
-    // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = true;
-    stepSize = 20;
-    
-    
+       
     //bkg_H = random(360);
     bkg_H = 240;
     //bkg_S = random(128,164);
@@ -111,15 +102,16 @@ class Global_settings {
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
-
-    // I kept this as a boolean to avoid unnecessary work when nucleus is not required
-    nucleus = false;
-    stepSizeN = int(random (55, 82));
+    
+    
+    stepped = false; // I kept this as a boolean because if size was set to zero to disable it looked steppy
+    
+    nucleus = false; // I kept this as a boolean to avoid unnecessary work when nucleus is not required
     nucleusColorU = color(0, 0, 255, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0, 255); // Black
     
-    maxSize = width * 0.4;
+    maxSize = width * 0.2;
     maxLifespan = width * 0.5;
     maxSpawns = 10;
     
@@ -139,9 +131,7 @@ class Global_settings {
     output.println("or.x = " + orx);
     output.println("or.y = " + ory);
     output.println("stepped = " + stepped);
-    output.println("stepSize = " + stepSize);
     output.println("nucleus = " + nucleus);
-    output.println("stepSizeN = " + stepSizeN);
     output.println("bkg_H = " + bkg_H);
     output.println("bkg_S = " + bkg_S);
     output.println("bkg_B = " + bkg_B);
