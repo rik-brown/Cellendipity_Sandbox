@@ -52,7 +52,7 @@ class Global_settings {
   color nucleusColorU;
   color nucleusColorF;
   
-  float maxRadius;
+  float maxSize;
   float maxLifespan;
   float maxSpawns;
 
@@ -62,7 +62,7 @@ class Global_settings {
     savePNG = true;
     makePDF = false;
     makeGIF = false;
-    makeMPEG = true;
+    makeMPEG = false;
     
     borderWidth = 0.5;
     borderHeight = 0.5;
@@ -81,8 +81,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 8;
-    cols = 8;
+	  rows = 6;
+    cols = 6;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
@@ -98,7 +98,7 @@ class Global_settings {
     
 
     // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = false;
+    stepped = true;
     stepSize = 20;
     
     
@@ -107,7 +107,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 255; // last 160, 50, 128, 255
+    bkg_B = 220; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -119,7 +119,7 @@ class Global_settings {
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0, 255); // Black
     
-    maxRadius = width * 0.2;
+    maxSize = width * 0.4;
     maxLifespan = width * 0.5;
     maxSpawns = 10;
     
@@ -147,7 +147,7 @@ class Global_settings {
     output.println("bkg_B = " + bkg_B);
     output.println("makePDF = " + makePDF);
     output.println("makeGIF = " + makeGIF);
-    output.println("maxRadius = " + maxRadius);
+    output.println("maxSize = " + maxSize);
     output.println("maxLifespan = " + maxLifespan);
   }
 }

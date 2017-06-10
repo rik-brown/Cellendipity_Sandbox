@@ -37,8 +37,8 @@ class Genepool {
       
       // This code is needed to inject some random into specific genes in the DNA stored in genepool.csv
       //newgenes[17]= 500/gs.rows;
-      newgenes[25]= random(2, 4);   // 25=noise_vMax
-      newgenes[26]= random(0.001, 0.006);   // 26=noise_step
+      //newgenes[25]= random(2, 4);   // 25=noise_vMax
+      //newgenes[26]= random(0.001, 0.006);   // 26=noise_step
       //newgenes[27]= random(1);   // 27=noise_xOff
       //newgenes[28]= random(1);   // 28=noise_yOff
       //newgenes[31]= random(1);   // 31=lifespan

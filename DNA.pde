@@ -17,7 +17,7 @@ class DNA {
       numGenes = 34;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [34] float values
 
-// ID, fill_H_start, fill_H_end, fill_S_start, fill_S_end, fill_B_start, fill_B_end, fill_A_start, fill_A_end, stroke_H_start, stroke_H_end, stroke_S_start, stroke_S_end, stroke_B_start, stroke_B_end, stroke_A_start, stroke_A_end, radius_start, radius_end, flatness_start, flatness_end, twist_Start, twist_End, noisePercent_Start, noisePercent_End, noise_vMax, noise_Step, noise_xOff, noise_yOff, fertility, spawnLimit, lifespan, StripeSize, StripeRatio
+// ID, fill_H_start, fill_H_end, fill_S_start, fill_S_end, fill_B_start, fill_B_end, fill_A_start, fill_A_end, stroke_H_start, stroke_H_end, stroke_S_start, stroke_S_end, stroke_B_start, stroke_B_end, stroke_A_start, stroke_A_end, size_start, size_end, flatness_start, flatness_end, twist_Start, twist_End, noisePercent_Start, noisePercent_End, noise_vMax, noise_Step, noise_xOff, noise_yOff, fertility, spawnLimit, lifespan, StripeSize, StripeRatio
 
       // DNA gene mapping (29 genes)
       // 0=ID
@@ -37,8 +37,8 @@ class DNA {
       // 14=stroke_B_end
       // 15=stroke_A_start
       // 16=stroke_A_end
-      // 17=radius_start (in units of 1/1000 of width, so if width = 1000, 1 = 1 pixel)
-      // 18=radius_end (expressed as % of radius_start)
+      // 17=size_start (in units of 1/1000 of width, so if width = 1000, 1 = 1 pixel)
+      // 18=size_end (expressed as % of size_start)
       // 19=flatness_start
       // 20=flatness_end
       // 21=twist_Start
@@ -59,8 +59,8 @@ class DNA {
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
       //genes[1]= random(360);   // 1=fill_H_start
-      //genes[1]= 300 + map(cycleGenSin, -1, 1, 0, 30);   // 1=fill_H_start
-      genes[1]= map(runCycle, 1, maxCycles, 0, 1);
+      //genes[1]= 300 + map(cycleGenSin, 0, 1, 0, 30);   // 1=fill_H_start
+      genes[1]= cycleGen;
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
@@ -71,23 +71,23 @@ class DNA {
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
-      //genes[2]= 240 + map(cycleGenSin, -1, 1, 0, 30);   // 2=fill_H_end
+      //genes[2]= 240 + map(cycleGenSin, 0, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
       genes[3]= 1;
       //genes[3]= random(130,180);   // 3=fill_S_start  
-      //genes[3]= map(cycleGenSin, -1, 1, 0, 100);   // 3=fill_S_start
+      //genes[3]= map(cycleGenSin, 0, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
       genes[4]= 0.2;
-      //genes[4]= map(cycleGenSin, -1, 1, 100, 255);   // 4=fill_S_end
+      //genes[4]= map(cycleGenSin, 0, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
       genes[5]= 0.4;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
-      //genes[5]= map(cycleGenSin, -1, 1, 164, 200);   // 5=fill_B_start
+      //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 0.8;
-      //genes[6]= map(cycleGenSin, -1, 1, 255,64);   // 6=fill_B_end
+      //genes[6]= map(cycleGenSin, 0, 1, 255,64);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
@@ -111,21 +111,21 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      genes[17]= 0.2;   // 17=radius_start. Range 0-1, % of gs.maxRadius
-      //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=radius_start CARTESIAN GRID
-      //genes[17]= (500/gs.rows)*0.5;   // 17=radius_start CARTESIAN GRID
-      //genes[17]= random(25, 50);   // 17=radius_start
+      genes[17]= 0.2;   // 17=size_start. Range 0-1, % of gs.maxSize
+      //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=size_start CARTESIAN GRID
+      //genes[17]= (500/gs.rows)*0.5;   // 17=size_start CARTESIAN GRID
+      //genes[17]= random(25, 50);   // 17=size_start
       
-      genes[18]= 0.2;   // 18=radius_end. Range 0-1, % of genes[17]
-      //genes[18]= random(15, 30);   // 18=radius_end
+      genes[18]= 0.2;   // 18=size_end. Range 0-1, % of genes[17]
+      //genes[18]= random(15, 30);   // 18=size_end
       
-      //genes[19]= map(cycleGenSin, -1, 1, 100, 150);   // 19=flatness_start
+      //genes[19]= map(cycleGenSin, 0, 1, 100, 150);   // 19=flatness_start
       genes[19]= random (1, 1.2);   // 19=flatness_start
-      genes[20]= map(cycleGenSin, -1, 1, 1, 1.5);   // 20=flatness_end
+      genes[20]= map(cycleGenSin, 0, 1, 1, 1.5);   // 20=flatness_end
       
-      //genes[21]= map(cycleGenSin, -1, 1, -5, 5);   // 21=twist_start
+      //genes[21]= map(cycleGenSin, 0, 1, -5, 5);   // 21=twist_start
       //genes[21]= random(0, 50);   // 21=twist_start
-      //genes[22]= map(cycleGenSin, -1, 1, -3, 3);   // 22=twist_end
+      //genes[22]= map(cycleGenSin, 0, 1, -3, 3);   // 22=twist_end
       genes[21]= 0; // 21=twist_start
       genes[22]= 0; // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
