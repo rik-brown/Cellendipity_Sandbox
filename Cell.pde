@@ -9,8 +9,10 @@ class Cell {
   boolean fertile;
   boolean stripeON;
   boolean stepON;
-  boolean drawCellON;
   boolean nucleusON;
+  
+  boolean sawtooth_1_Flag;
+  boolean drawCellON;
   boolean drawNucleusON;
   
   // GROWTH AND REPRODUCTION
@@ -97,9 +99,11 @@ class Cell {
   fertile = false; // A new cell always starts off infertile
   drawCellON = true;
   drawNucleusON = false;
+  stripeON = false; // A new cell always starts off displaying it's normal colour
+  
   stepON = gs.stepped;
   nucleusON = gs.nucleus;
-  stripeON = false; // A new cell always starts off displaying it's normal colour
+  sawtooth_1_Flag = false;
   
   // id
   id = int(dna.genes[0]);
@@ -198,7 +202,7 @@ class Cell {
     //drawStepN--;
     stripeStep--;
     period_1 --;
-    if (period_1 <1) {period_1 = ceil(r);}
+    if (period_1 <1) {sawtooth_1_Flag = true; period_1 = ceil(r);} else {sawtooth_1_Flag = false;}
     period_2 --;
     if (period_2 <1) {period_2 = ceil(r);}
     position.add(velocity);
@@ -225,12 +229,12 @@ class Cell {
   
   void updateSawtooth_1() {
     //if (period_1 <1) {period_1 = ceil(r); drawCellON = true;} else {drawCellON = false;}
-    drawCellON = sawtooth(period_1);
+    if (sawtooth_1_Flag) {drawCellON = true;} else {drawCellON = false;}
   }
   
   void updateSawtooth_2() {
     //if (period_2 <1) {period_2 = ceil(r); drawNucleusON = true;} else {drawNucleusON = false;}
-    drawNucleusON = sawtooth(period_2);
+    if (sawtooth_1_Flag) {drawNucleusON = true;} else {drawNucleusON = false;}
   }
 
   void updateVelocity() {
@@ -471,8 +475,8 @@ void displayLine() {
     text("age: " + age, position.x, position.y + rowHeight * 1);
     //text("maturity:" + maturity, position.x, position.y + rowHeight * 2);
     //text("r: " + r, position.x, position.y + rowHeight * 3);
-    //text("period_1: " + period_1, position.x, position.y + rowHeight * 1);
-    //text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 5);
+    text("period_1: " + period_1, position.x, position.y + rowHeight * 2);
+    text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 3);
     //text("period_2: " + period_2, position.x, position.y + rowHeight * 6);
     //text("drawNucleusON: " + drawNucleusON, position.x, position.y + rowHeight * 8);
     //text("gene[17]:" + dna.genes[17], position.x, position.y + rowHeight * 4);
