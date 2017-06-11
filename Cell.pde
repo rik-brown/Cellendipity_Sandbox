@@ -254,7 +254,7 @@ class Cell {
   }
   
   void updateFertility() {
-    if ((1-modulators[2]) <= fertility) {fertile = true; } else {fertile = false; }
+    if ((1-modulators[1]) <= fertility) {fertile = true; } else {fertile = false; }
     if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
   

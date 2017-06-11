@@ -93,8 +93,8 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 0.4;   // 7=fill_A_start
-      genes[8]= 0.9;   // 8=fill_A_end
+      genes[7]= 0.05;   // 7=fill_A_start
+      genes[8]= 0.6;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -153,7 +153,7 @@ class DNA {
       genes[30]= 0.2;   // 30=spawnLimit
       //genes[30]= random(0.1, 0.3);   // 30=spawnLimit
       //genes[31]= random(0.2, 0.6);   // 31=lifespan
-      genes[31]= 0.3;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
+      genes[31]= 0.8;   // 31=lifespan. Range 0-1, % of gs.maxLifespan
       //genes[31]= 450;   // 31=lifespan
       
       //genes[32]= random(20,60);   // 32=StripeSize

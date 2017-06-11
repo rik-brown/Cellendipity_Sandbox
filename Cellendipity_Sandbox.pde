@@ -71,13 +71,13 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-162.12";
+String batchName = "batch-162.14";
 int maxCycles = 2;
 int runCycle = 1;
 float cycleGen, cycleGenSin;
 
 
-int maxFrames = 2000;
+int maxFrames = 5000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 

@@ -105,7 +105,8 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0, 255); // Black
     
     maxSize = width * 0.3;
-    maxLifespan = width * 1.8;
+    //maxLifespan = width * 1.8;
+    maxLifespan = 1000;
     maxSpawns = 10;
     
     logSettings();
