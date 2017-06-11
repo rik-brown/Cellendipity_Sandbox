@@ -20,9 +20,6 @@ class Global_settings {
   boolean makeGIF;
   boolean makeMPEG;
   
-  boolean nucleus;
-  boolean stepped;
-
   float borderWidth;
   float borderHeight;
 
@@ -78,8 +75,8 @@ class Global_settings {
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
     //rows = int(random(4,118));
-	  rows = 8;
-    cols = 8;
+	  rows = 18;
+    cols = 18;
     //cols = 12;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
@@ -103,10 +100,6 @@ class Global_settings {
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
     
-    
-    stepped = false; // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    
-    nucleus = true; // I kept this as a boolean to avoid unnecessary work when nucleus is not required
     nucleusColorU = color(0, 0, 255, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
     nucleusColorF = color(0, 255, 0, 255); // Black
@@ -130,8 +123,6 @@ class Global_settings {
     output.println("cols = " + cols);
     output.println("or.x = " + orx);
     output.println("or.y = " + ory);
-    output.println("stepped = " + stepped);
-    output.println("nucleus = " + nucleus);
     output.println("bkg_H = " + bkg_H);
     output.println("bkg_S = " + bkg_S);
     output.println("bkg_B = " + bkg_B);

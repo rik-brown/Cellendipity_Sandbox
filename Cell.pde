@@ -9,7 +9,7 @@ class Cell {
   boolean fertile;
   
   boolean stripeON;
-  boolean stepON;
+  //boolean stepON;
   boolean nucleusON;
   
   boolean drawCellON;
@@ -26,7 +26,7 @@ class Cell {
   
   // SAWTEETH
   int sawtooth_1, sawtooth_2, sawtooth_3;
-  float sawtooth_1_limit, sawtooth_2_limit, sawtooth_3_limit;
+  float sawtooth_3_limit;
   boolean sawtooth_1_Flag, sawtooth_2_Flag, sawtooth_3_Flag;
 
   // MOVEMENT
@@ -57,7 +57,7 @@ class Cell {
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
-    modulators = new float[8];
+    modulators = new float[6];
     
     // OBJECTS
     dna = new DNA();
@@ -70,9 +70,6 @@ class Cell {
     drawCellON = true;     // Cell will always be drawn (unless otherwise)
     drawNucleusON = false; // Nucleus will not be drawn unless enabled & conditions met
     stripeON = false;      // Cell always starts off displaying it's normal colour
-    
-    stepON = gs.stepped;    // Currently still a colony-wide selection but could also be controlled by cell DNA 
-    nucleusON = gs.nucleus; // Currently still a colony-wide selection but could also be controlled by cell DNA
     
     id = int(dna.genes[0]);
     age = 0; // Age is number of frames a cell has existed. A new cell always starts with age = 0.
@@ -137,9 +134,7 @@ class Cell {
       //println("ID:" + id + " dna[17] now equals:" + dna.genes[17]);
       //radius_start *= map(distanceFromOrigin, 0, width*1.4, 0.1, 1);
   }
-
-
-
+  
   void run() { //<>//
     updateModulators();
     updateVelocity();
@@ -157,8 +152,8 @@ class Cell {
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripeON) {updateStripeColor();}
-    if (stepON) {updateStep();}
-    if (nucleusON) {updateNucleus();}
+    updateStep();
+    updateNucleus();
     display();
     //displayLine();
     //displayText();
@@ -183,8 +178,6 @@ class Cell {
     modulators[3] = map(PVector.angleBetween(velocityRef, velocity), 0, PI, 0, 1); // MODULATOR in updateVelocity()
     modulators[4] = noise(noise_xoff); // NOISE_X
     modulators[5] = noise(noise_yoff); // NOISE_Y
-    modulators[6] = map(sawtooth_1, 0, sawtooth_1_limit, 0, 1);
-    modulators[7] = map(sawtooth_2, 0, sawtooth_2_limit, 0, 1);
     
     // Examples from earlier experiments...
     //remoteness = sq(map(distanceFromHome, 0, lifespan, 0, 1)); // remoteness is a value between 0-1.
@@ -196,10 +189,10 @@ class Cell {
   }
   
   void updateSawteeth() {
-    sawtooth_1_limit = r;
+    float sawtooth_1_limit = r * dna.genes[34];
     if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
     
-    sawtooth_2_limit = r;
+    float sawtooth_2_limit = r * dna.genes[35];
     if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
     
     if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
@@ -454,7 +447,6 @@ void displayLine() {
     //text("drawCellON: " + drawCellON, position.x, position.y + rowHeight * 4);
     //text("sawtooth_1_Flag: " + sawtooth_1_Flag, position.x, position.y + rowHeight * 5);
     text("sawtooth_2: " + sawtooth_2, position.x, position.y + rowHeight * 3);
-    text("sawtooth_2 limit: " + sawtooth_2_limit, position.x, position.y + rowHeight * 4);
     text("sawtooth_2_Flag: " + sawtooth_2_Flag, position.x, position.y + rowHeight * 5);
     text("stripeON:" + stripeON, position.x, position.y + rowHeight * 6);
     //text("drawNucleusON: " + drawNucleusON, position.x, position.y + rowHeight * 8);

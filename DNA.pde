@@ -14,7 +14,7 @@ class DNA {
 
   // Constructor (makes a random DNA)
   DNA() {
-      numGenes = 34;
+      numGenes = 36;
       genes = new float[numGenes];  // DNA contains an array called 'genes' with [34] float values
 
 // ID, fill_H_start, fill_H_end, fill_S_start, fill_S_end, fill_B_start, fill_B_end, fill_A_start, fill_A_end, stroke_H_start, stroke_H_end, stroke_S_start, stroke_S_end, stroke_B_start, stroke_B_end, stroke_A_start, stroke_A_end, size_start, size_end, flatness_start, flatness_end, twist_Start, twist_End, noisePercent_Start, noisePercent_End, noise_vMax, noise_Step, noise_xOff, noise_yOff, fertility, spawnLimit, lifespan, StripeSize, StripeRatio
@@ -54,6 +54,8 @@ class DNA {
       // 31=lifespan (in units of 1/1000 of width, so if width = 1000, 100 = 100 frames)
       // 32=StripeSize
       // 33=StripeRatio
+      // 34=Sawtooth_1_scaling_factor
+      // 35=Sawtooth_2_scaling_factor
       
       genes[0] = 0;  // id
       
@@ -91,8 +93,8 @@ class DNA {
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
-      genes[7]= 0.01;   // 7=fill_A_start
-      genes[8]= 0.01;   // 8=fill_A_end
+      genes[7]= 0.4;   // 7=fill_A_start
+      genes[8]= 0.9;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start
@@ -159,6 +161,8 @@ class DNA {
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       //genes[33]= 0.01;   // 33=StripeRatio
       genes[33] = random(0.2, 0.4);  // 33=StripeRatio
+      genes[34] = 1.0;  // 34=Sawtooth_1_scaling_factor
+      genes[35] = 1.0;  // 35=Sawtooth_2_scaling_factor      
    }
 
   DNA combine(DNA otherDNA_) { // Returns a new set of DNA consisting of randomly selected genes from both parents
