@@ -94,7 +94,7 @@ class DNA {
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
       
       genes[7]= 0.05;   // 7=fill_A_start
-      genes[8]= 0.6;   // 8=fill_A_end
+      genes[8]= 0.3;   // 8=fill_A_end
       
       genes[9]= 0;   // 9=stroke_H_start
       //genes[9]= random(360);   // 9=stroke_H_start

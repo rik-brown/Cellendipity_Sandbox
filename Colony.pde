@@ -113,10 +113,10 @@ class Colony {
       //vel = PVector.fromAngle(0).mult(1);
       
       for (int c = 0; c <= gs.cols; c++) {
-        //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+        int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
         //int strain = (n % gs.numStrains) + gpl.numPredefined;
         //int strain = 7;
-        int strain = int(random(7, 7));
+        //int strain = int(random(7, 7));
         //int strain = int(random(2));
         //int strain = int(random(gpl.numPredefined + gs.numStrains));
         //int strain = c % 5;
