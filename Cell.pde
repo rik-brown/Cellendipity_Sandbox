@@ -158,7 +158,7 @@ class Cell {
     display();
     //displayLine();
     //displayText();
-    if (gs.debug) {cellDebugger();}
+    //if (gs.debug) {cellDebugger();}
     increment();
   }
 

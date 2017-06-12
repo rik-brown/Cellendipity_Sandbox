@@ -69,9 +69,9 @@ class Colony {
       pos = new PVector(random(width), random(height)); // random position
       origin = new PVector (gs.orx, gs.ory);
       //PVector vel = PVector.sub(origin, pos); // Static velocity vector pointing from cell position TOWARDS the arbitrary 'origin'
-      PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
-      vel.normalize();
-      vel.rotate(PI * map(cycleGenSin, 0, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
+      //PVector vel = PVector.sub(pos, origin); // Static velocity vector pointing from cell position AWAY FROM the arbitrary 'origin'
+      //vel.normalize();
+      //vel.rotate(PI * map(cycleGenSin, 0, 1, 0, 2)); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       //vel.rotate(PI * 1.5); // Velocity is rotated 270 degrees (to be at right-angle to the radial 'spoke')
       int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = gpl.numPredefined + n;
@@ -92,6 +92,7 @@ class Colony {
       //dna.genes[12] = brightness(colorFromPixel);
       
       for (int s = 0; s < gs.strainSize; s ++) {
+        vel = PVector.random2D();   // Initial velocity vector is random & unique for each cell
         population.add(new Cell(pos, vel, dna));
       }
     }
@@ -322,8 +323,9 @@ class Colony {
     rect(0,0,400,40);
     fill(360);
     textSize(16);
+    println(" Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize);
     //text("Cycle: " + runCycle + " Cycle frame: " + frameCounter + " Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
-    text(" Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize, 10, 18);
+    //text(" Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize, 10, 18);
   }
 
 }

@@ -71,7 +71,7 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-162.19";
+String batchName = "batch-162.20";
 int maxCycles = 10;
 int runCycle = 1;
 float cycleGen, cycleGenSin;
@@ -108,15 +108,15 @@ void setup() {
   //size(400, 400);
   //size(500, 500);
   //size(800, 800);
-  //size(1000, 1000);
+  size(1000, 1000);
   //size(1500, 1500);
   //size(2048, 2048);
-  size(4000, 4000);
+  //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
   //background(gs.bkgColor); // TEST ONLY
-  if (gs.debug) {frameRate(3);} else {frameRate(1000);}
+  if (gs.debug) {frameRate(1000);} else {frameRate(1000);}
   videoExport = new VideoExport(this, videoPath + ".mp4");
   videoExport.setFrameRate(30);
   videoExport.setQuality(70, 128);
@@ -126,7 +126,7 @@ void setup() {
 
 void draw() { //<>//
   if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
-  if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
+  //if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
   colony.run();
   //frameSave(); // Saves each frame as a .png (for GIFs etc.)
