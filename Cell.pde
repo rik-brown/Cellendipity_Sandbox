@@ -192,7 +192,8 @@ class Cell {
     float sawtooth_1_limit = r * dna.genes[34];
     if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
     
-    float sawtooth_2_limit = r * dna.genes[35];
+    //float sawtooth_2_limit = r * dna.genes[35];
+    float sawtooth_2_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5;
     if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
     
     if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
