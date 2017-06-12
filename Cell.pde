@@ -120,7 +120,7 @@ class Cell {
     sawtooth_1 = 0;
     sawtooth_2 = 0;
     sawtooth_3 = 0;
-    sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5;
+    sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.25;
     updateSawteeth(); // Dependant on size
     
     fertility = dna.genes[29]; // How soon will the cell become fertile?
@@ -202,7 +202,7 @@ class Cell {
     if (sawtooth_3 > sawtooth_3_limit) {
       sawtooth_3_Flag = true;
       sawtooth_3 = 0;
-      sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5;
+      sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.25;
     } 
     else {
       sawtooth_3_Flag = false;
