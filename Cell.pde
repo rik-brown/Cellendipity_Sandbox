@@ -120,6 +120,7 @@ class Cell {
     sawtooth_1 = 0;
     sawtooth_2 = 0;
     sawtooth_3 = 0;
+    if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
     updateSawteeth(); // Dependant on size
     
     fertility = dna.genes[29]; // How soon will the cell become fertile?
@@ -196,8 +197,16 @@ class Cell {
     float sawtooth_2_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5;
     if (sawtooth_2 > sawtooth_2_limit) {sawtooth_2_Flag = true; sawtooth_2 = 0;} else {sawtooth_2_Flag = false;}
     
-    if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
-    if (sawtooth_3 > sawtooth_3_limit) {sawtooth_3_Flag = true; sawtooth_3 = 0;} else {sawtooth_3_Flag = false;}
+    //if (stripeON) {sawtooth_3_limit = r * 2 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = r * 2 * dna.genes[32] * (1- dna.genes[33]);}
+    //if (sawtooth_3 > sawtooth_3_limit) {sawtooth_3_Flag = true; sawtooth_3 = 0;} else {sawtooth_3_Flag = false;}
+    if (sawtooth_3 > sawtooth_3_limit) {
+      sawtooth_3_Flag = true;
+      sawtooth_3 = 0;
+      if (stripeON) {sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5 * dna.genes[32] * dna.genes[33];} else {sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.5 * dna.genes[32] * (1- dna.genes[33]);}
+    } 
+    else {
+      sawtooth_3_Flag = false;
+    }
   }
   
   void updateStep() {
