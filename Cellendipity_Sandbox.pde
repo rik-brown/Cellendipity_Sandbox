@@ -77,7 +77,7 @@ int runCycle = 1;
 float cycleGen, cycleGenSin;
 
 
-int maxFrames = 5000;
+int maxFrames = 10000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 
@@ -108,10 +108,10 @@ void setup() {
   //size(400, 400);
   //size(500, 500);
   //size(800, 800);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2048, 2048);
-  //size(4000, 4000);
+  size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
@@ -126,7 +126,7 @@ void setup() {
 
 void draw() { //<>//
   if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
-  //if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
+  if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
   colony.run();
   //frameSave(); // Saves each frame as a .png (for GIFs etc.)

@@ -113,12 +113,12 @@ class DNA {
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
       genes[16]= 0;   // 16=stroke_A_end
       
-      genes[17]= 0.01;   // 17=size_start. Range 0-1, % of gs.maxSize
+      genes[17]= 0.2;   // 17=size_start. Range 0-1, % of gs.maxSize
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=size_start CARTESIAN GRID
       //genes[17]= (500/gs.rows)*0.5;   // 17=size_start CARTESIAN GRID
       //genes[17]= random(0.15, 0.4);   // 17=size_start
       
-      genes[18]= 0.95;   // 18=size_end. Range 0-1, % of genes[17]
+      genes[18]= 0.7;   // 18=size_end. Range 0-1, % of genes[17]
       //genes[18]= random(0.05, 0.25);   // 18=size_end
       
       //genes[19]= map(cycleGenSin, 0, 1, 100, 150);   // 19=flatness_start
@@ -129,7 +129,7 @@ class DNA {
       //genes[21]= random(0, 50);   // 21=twist_start
       //genes[22]= map(cycleGenSin, 0, 1, -3, 3);   // 22=twist_end
       genes[21]= 0; // 21=twist_start
-      genes[22]= 0; // 22=twist_end
+      genes[22]= 0.8; // 22=twist_end
       //genes[22]= random(0, 50);   // 22=twist_end
 
       genes[23]= 0;   // 23=noisePercent_start (range: 0-1)
@@ -150,7 +150,7 @@ class DNA {
       genes[29]= 0.8;   // 29=fertility
       //println("At " + frameCount + ", In DNA, genes[29]= " + genes[29]);
       //genes[29]= random(0.65, 0.85);   // 29=fertility
-      genes[30]= 0.2;   // 30=spawnLimit
+      genes[30]= 0.3;   // 30=spawnLimit
       //genes[30]= random(0.1, 0.3);   // 30=spawnLimit
       //genes[31]= random(0.2, 0.6);   // 31=lifespan
       //genes[31]= 0.8;   // 31=lifespan. Range 0-1, % of gs.maxLifespan

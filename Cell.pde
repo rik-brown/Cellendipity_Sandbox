@@ -158,7 +158,7 @@ class Cell {
     display();
     //displayLine();
     //displayText();
-    //if (gs.debug) {cellDebugger();}
+    if (gs.debug) {cellDebugger();}
     increment();
   }
 
@@ -403,6 +403,7 @@ void displayLine() {
     PVector spawnVel = velocity.copy(); // Create spawnVel as a copy of parent cell's velocity vector
     spawnVel.add(other.velocity);       // Add dad's velocity
     spawnVel.normalize();               // Normalize to leave just the direction and magnitude of 1 (will be multiplied later)
+    spawnVel.rotate(random(PI));
 
     // Combine the DNA of the parent cells
     DNA childDNA = dna.combine(other.dna);
@@ -440,7 +441,7 @@ void displayLine() {
     //if (r > (width*0.1)) {return true;} // Death by too much size
     if (spawnLimit <= 0) {return true;} // Death by too much babies
     //if (position.x > width + r * dna.genes[19] || position.x < -r * dna.genes[19] || position.y > height + r * dna.genes[19] || position.y < -r * dna.genes[19] {return true;} // Death if move beyond canvas boundary
-    //if (position.x > width || position.x < 0 || position.y > height || position.y < 0) {return true;} // Death if move beyond border
+    if (position.x > width || position.x < 0 || position.y > height || position.y < 0) {return true;} // Death if move beyond border
     else { return false; }
     //return false; // Use to disable death
   }
