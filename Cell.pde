@@ -17,7 +17,8 @@ class Cell {
   
   // GROWTH AND REPRODUCTION
   int age;         // Age (nr. of frames since birth)
-  float fertility; // Condition for becoming fertile
+  float fertilityThreshold; // Condition for becoming fertile
+  float fertility;
   float spawnLimit;
 
   // SIZE AND SHAPE
@@ -123,7 +124,7 @@ class Cell {
     sawtooth_3_limit = ((dna.genes[31] * gs.maxLifespan) - age) * 0.25;
     updateSawteeth(); // Dependant on size
     
-    fertility = dna.genes[29]; // How soon will the cell become fertile?
+    fertilityThreshold = dna.genes[29]; // How soon will the cell become fertile?
     spawnLimit = dna.genes[30] * gs.maxSpawns; // Max. number of spawns
     
     if (gs.debug) {cellDNALogger();} //Print the DNA for this cell
@@ -214,11 +215,11 @@ class Cell {
   }
   
   void updateNucleus() {
-    if (sawtooth_2_Flag) {drawNucleusON = true;} else {drawNucleusON = false;}
+    if (sawtooth_1_Flag) {drawNucleusON = true;} else {drawNucleusON = false;}
   }
   
   void updateStripe() {
-    if (sawtooth_3_Flag) {stripeON = !stripeON;}
+    if (sawtooth_2_Flag) {stripeON = !stripeON;}
   }
 
   void updateVelocity() {
@@ -264,8 +265,9 @@ class Cell {
   }
   
   void updateFertility() {
-    if ((1-modulators[1]) <= fertility) {fertile = true; } else {fertile = false; }
-    if (spawnLimit == 0) {fertility = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
+    fertility = (1-modulators[1]);
+    if (fertility <= fertilityThreshold) {fertile = true; } else {fertile = false; }
+    if (spawnLimit == 0) {fertilityThreshold = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
   
   void updateFillColor() {
@@ -321,7 +323,7 @@ class Cell {
   void updateStripeColor() {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
-    fillColor = color(0, 0, 0, 255); // BLACK
+    fillColor = color(0, 0, 0, 1); // BLACK
     //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
@@ -428,9 +430,9 @@ void displayLine() {
     colony.spawn(position, spawnVel, childDNA);
 
     //Reduce fertility for parent cells by squaring them
-    fertility *= fertility;
+    fertilityThreshold *= fertility;
     fertile = false;
-    other.fertility *= other.fertility;
+    other.fertilityThreshold *= other.fertility;
     other.fertile = false;
   }
 
@@ -476,7 +478,7 @@ void displayLine() {
     //text("stroke_A:" + alpha(strokeColor), position.x, position.y + rowHeight * 4);
     //text("lifespan:" + dna.genes[31] * gs.maxLifespan, position.x, position.y + rowHeight * 1);  
     //text("fertile:" + fertile, position.x, position.y + rowHeight * 4);
-    //text("fertility:" + fertility, position.x, position.y + rowHeight * 3);
+    //text("fertilityThreshold:" + fertilityThreshold, position.x, position.y + rowHeight * 3);
     //text("spawnLimit:" + spawnLimit, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.x, position.x, position.y + rowHeight * 4);
     //text("vel.x:" + velocity.y, position.x, position.y + rowHeight * 5);
