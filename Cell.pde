@@ -265,7 +265,7 @@ class Cell {
   }
   
   void updateFertility() {
-    fertility = (1-modulators[1]);
+    fertility = (1-modulators[0]);
     if (fertility <= fertilityThreshold) {fertile = true; } else {fertile = false; }
     if (spawnLimit == 0) {fertilityThreshold = 0;} // Once spawnLimit has counted down to zero, the cell will spawn no more
   }
@@ -275,7 +275,7 @@ class Cell {
     float h = (modulator(modulators[0], dna.genes[1], dna.genes[2]) * 255) % 255;
     float s = modulator(modulators[0], dna.genes[3], dna.genes[4]) * 255;
     float b = modulator(modulators[0], dna.genes[5], dna.genes[6]) * 255;
-    float a = modulator(modulators[0], dna.genes[7], dna.genes[8]) * 255;
+    float a = modulator(modulators[0], dna.genes[7], dna.genes[8]);
     fillColor = color(h, s, b, a); //fill colour is updated with new values
   }
   
@@ -284,7 +284,7 @@ class Cell {
     float h = (modulator(modulators[0], dna.genes[9], dna.genes[10]) * 255) % 255;
     float s = modulator(modulators[0], dna.genes[11], dna.genes[12]) * 255;
     float b = modulator(modulators[0], dna.genes[13], dna.genes[14]) * 255;
-    float a = modulator(modulators[0], dna.genes[15], dna.genes[16]) * 255;
+    float a = modulator(modulators[0], dna.genes[15], dna.genes[16]);
     strokeColor = color(h, s, b, a); //fill colour is updated with new values
   }
 
@@ -323,7 +323,7 @@ class Cell {
   void updateStripeColor() {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
-    fillColor = color(0, 0, 0, 1); // BLACK
+    //fillColor = color(0, 0, 1, 0); // BLACK
     //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  

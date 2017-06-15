@@ -85,7 +85,7 @@ class DNA {
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0.8;
+      genes[5]= 1.0;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 1.0;
@@ -106,8 +106,8 @@ class DNA {
       //genes[11]= gs.bkg_S;   // 11=stroke_S_start
       genes[12]= 0;   // 12=stroke_S_end
       
-      genes[13]= 0.004;   // 13=stroke_B_start
-      genes[14]= 0.008;   // 14=stroke_B_end
+      genes[13]= 1;   // 13=stroke_B_start
+      genes[14]= 1;   // 14=stroke_B_end
       
       genes[15]= 0;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
@@ -118,19 +118,19 @@ class DNA {
       //genes[17]= (500/gs.rows)*0.5;   // 17=size_start CARTESIAN GRID
       //genes[17]= random(0.15, 0.4);   // 17=size_start
       
-      genes[18]= 0.7;   // 18=size_end. Range 0-1, % of genes[17]
+      genes[18]= 0.2;   // 18=size_end. Range 0-1, % of genes[17]
       //genes[18]= random(0.05, 0.25);   // 18=size_end
       
       //genes[19]= map(cycleGenSin, 0, 1, 100, 150);   // 19=flatness_start
-      genes[19]= random (1, 1.2);   // 19=flatness_start
+      genes[19]= random (1, 1.5);   // 19=flatness_start
       genes[20]= map(cycleGenSin, 0, 1, 1, 1.5);   // 20=flatness_end
       
       //genes[21]= map(cycleGenSin, 0, 1, -5, 5);   // 21=twist_start
-      //genes[21]= random(0, 50);   // 21=twist_start
+      genes[21]= random(-1, -1);   // 21=twist_start
       //genes[22]= map(cycleGenSin, 0, 1, -3, 3);   // 22=twist_end
-      genes[21]= 0; // 21=twist_start
-      genes[22]= 0.8; // 22=twist_end
-      //genes[22]= random(0, 50);   // 22=twist_end
+      //genes[21]= 0; // 21=twist_start
+      //genes[22]= 0.8; // 22=twist_end
+      genes[22]= random(-1, 1);   // 22=twist_end
 
       genes[23]= 0;   // 23=noisePercent_start (range: 0-1)
       //genes[23]= random(0,100);   // 23=noisePercent_start
@@ -147,7 +147,7 @@ class DNA {
       //genes[28]= 1;
 
                   
-      genes[29]= 0.8;   // 29=fertility
+      genes[29]= 0.5;   // 29=fertility
       //println("At " + frameCount + ", In DNA, genes[29]= " + genes[29]);
       //genes[29]= random(0.65, 0.85);   // 29=fertility
       genes[30]= 0.3;   // 30=spawnLimit
@@ -161,7 +161,7 @@ class DNA {
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       //genes[33]= 0.01;   // 33=StripeRatio
       genes[33] = random(0.2, 0.4);  // 33=StripeRatio
-      genes[34] = 0.0;  // 34=Sawtooth_1_scaling_factor
+      genes[34] = 0.5;  // 34=Sawtooth_1_scaling_factor
       genes[35] = 1000.0;  // 35=Sawtooth_2_scaling_factor      
    }
 
