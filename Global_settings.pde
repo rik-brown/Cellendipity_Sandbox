@@ -20,6 +20,8 @@ class Global_settings {
   boolean makeGIF;
   boolean makeMPEG;
   
+  PVector origin;   // arbitrary origin (e.g. center of screen)
+  
   float borderWidth;
   float borderHeight;
 
@@ -89,6 +91,7 @@ class Global_settings {
     ory = int(height * 0.5); // Centered
     //orx = 0; // @origin
     //ory = 0; // @origin
+    origin = new PVector(orx, ory); //arbitrary origin
        
     //bkg_H = random(360);
     bkg_H = 150;

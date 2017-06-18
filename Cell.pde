@@ -33,7 +33,7 @@ class Cell {
   // MOVEMENT
   PVector position; // cell's current position
   PVector home;     // cell's initial position
-  PVector origin;   // arbitrary origin (e.g. center of screen)
+  //PVector origin;   // arbitrary origin (e.g. center of screen)
   //PVector toHome;   // from current to initial (=sub(home, position) )
   //PVector toOrigin; // from current to initial (=sub(origin, position) )
   
@@ -78,7 +78,7 @@ class Cell {
     // POSITION & MOVEMENT
     position = pos.copy();                // cell has current position
     home = pos.copy();                    // home = initial position
-    origin = new PVector(gs.orx, gs.ory); //arbitrary origin
+    //origin = new PVector(gs.orx, gs.ory); //arbitrary origin
     
     updatePosition();
     
@@ -252,7 +252,7 @@ class Cell {
     PVector toHome = PVector.sub(home, position); // static vector pointing from cell to home
     distanceFromHome = toHome.mag(); // distanceFromHome is how far the cell is from home at any time. MODULATOR
     
-    PVector toOrigin = PVector.sub(origin, position); // static vector pointing from cell to origin
+    PVector toOrigin = PVector.sub(gs.origin, position); // static vector pointing from cell to origin
     distanceFromOrigin = toOrigin.mag(); // distance from pos to origin. MODULATOR
   }
 
