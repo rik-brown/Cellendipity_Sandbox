@@ -39,7 +39,7 @@ class Cell {
   
   PVector velocityRef;
   PVector velocityLinear;
-  PVector velocityNoise;
+  //PVector velocityNoise;
   PVector velocity;
   
   float noise_xoff, noise_yoff; // x&y noise-offset
@@ -145,7 +145,7 @@ class Cell {
     updateSize();
     updateShape();
     updateSawteeth();
-    updateStripe();
+    //updateStripe();
     updateFertility();
     updateFillColor();
     updateStrokeColor();
@@ -226,7 +226,7 @@ class Cell {
     //Update Perlin noise vector 
     float vx = modulator(modulators[4], -dna.genes[25], dna.genes[25]);
     float vy = modulator(modulators[5], -dna.genes[25], dna.genes[25]);
-    velocityNoise = new PVector(vx,vy);
+    PVector velocityNoise = new PVector(vx,vy);
     
     //Update noisePercent
     float noisePercent = modulator(modulators[0], dna.genes[23], dna.genes[24]);
@@ -323,7 +323,7 @@ class Cell {
   void updateStripeColor() {
     //fillColor = color(34, 255, 255, 255); // RED
     //fillColor = strokeColor;
-    //fillColor = color(0, 0, 1, 0); // BLACK
+    fillColor = color(0, 0, 0, 0); // BLACK
     //fillColor = gs.bkgColor; // Background
     //fillColor = color(0, 0, 255); // WHITE
     //strokeColor = color(0, 0, 0);  
