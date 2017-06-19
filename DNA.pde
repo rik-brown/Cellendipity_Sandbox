@@ -88,7 +88,7 @@ class DNA {
       genes[5]= 0.0;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
-      genes[6]= 0.5;
+      genes[6]= 1.0;
       //genes[6]= map(cycleGenSin, 0, 1, 255,64);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
@@ -109,9 +109,9 @@ class DNA {
       genes[13]= 1;   // 13=stroke_B_start
       genes[14]= 1;   // 14=stroke_B_end
       
-      genes[15]= 25;   // 15=stroke_A_start
+      genes[15]= 0;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 18;   // 16=stroke_A_end
+      genes[16]= 0;   // 16=stroke_A_end
       
       genes[17]= 0.2;   // 17=size_start. Range 0-1, % of gs.maxSize
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=size_start CARTESIAN GRID
