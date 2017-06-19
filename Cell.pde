@@ -154,7 +154,7 @@ class Cell {
     //updateFillColorByPosition();
     //updateStrokeColorByPosition();
     if (stripeON) {updateStripeColor();}
-    updateStep();
+    //updateStep();
     updateNucleus();
     display();
     //displayLine();
