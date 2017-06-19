@@ -60,27 +60,27 @@ class DNA {
       genes[0] = 0;  // id
       
       //genes[1]= random(200, 260);   // 1=fill_H_start
-      //genes[1]= random(360);   // 1=fill_H_start
+      genes[1]= random(255);   // 1=fill_H_start
       //genes[1]= 300 + map(cycleGenSin, 0, 1, 0, 30);   // 1=fill_H_start
-      genes[1]= cycleGen;
+      //genes[1]= cycleGen;
       //genes[1]= gs.bkg_H + 180;   // 1=fill_H_start
       //genes[1]= gs.bkg_H + random(170, 210);   // 1=fill_H_start
       //genes[1]= gs.bkg_H + 240;   // 1=fill_H_start
       //genes[2]= gs.bkg_H + 60;   // 1=fill_H_start
       //genes[2]= 90;   // 2=fill_H_end
-      //genes[2]= genes[1] * random (0.80, 1.2);   // 2=fill_H_end
-      genes[2]= genes[1] + 0.1;   // 2=fill_H_end
+      genes[2]= genes[1] * random (0.80, 1.2);   // 2=fill_H_end
+      //genes[2]= genes[1] + 0.1;   // 2=fill_H_end
       //genes[2]= gs.bkg_H + 10;   // 2=fill_H_end
       //genes[2]= gs.bkg_H * random (0.75, 1.2);   // 2=fill_H_end
       //genes[2]= gs.bkg_H;   // 2=fill_H_end
       //genes[2]= 240 + map(cycleGenSin, 0, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      genes[3]= 0;
+      genes[3]= 1;
       //genes[3]= random(130,180);   // 3=fill_S_start  
       //genes[3]= map(cycleGenSin, 0, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 0;
+      genes[4]= 1;
       //genes[4]= map(cycleGenSin, 0, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
@@ -118,7 +118,7 @@ class DNA {
       //genes[17]= (500/gs.rows)*0.5;   // 17=size_start CARTESIAN GRID
       //genes[17]= random(0.15, 0.4);   // 17=size_start
       
-      genes[18]= 0.2;   // 18=size_end. Range 0-1, % of genes[17]
+      genes[18]= 0.5;   // 18=size_end. Range 0-1, % of genes[17]
       //genes[18]= random(0.05, 0.25);   // 18=size_end
       
       //genes[19]= map(cycleGenSin, 0, 1, 100, 150);   // 19=flatness_start
@@ -150,7 +150,7 @@ class DNA {
       genes[29]= 0.5;   // 29=fertility
       //println("At " + frameCount + ", In DNA, genes[29]= " + genes[29]);
       //genes[29]= random(0.65, 0.85);   // 29=fertility
-      genes[30]= 0.3;   // 30=spawnLimit
+      genes[30]= 0.6;   // 30=spawnLimit
       //genes[30]= random(0.1, 0.3);   // 30=spawnLimit
       //genes[31]= random(0.2, 0.6);   // 31=lifespan
       //genes[31]= 0.8;   // 31=lifespan. Range 0-1, % of gs.maxLifespan

@@ -58,7 +58,7 @@ class Cell {
   // **************************************************CONSTRUCTOR********************************************************
   // CONSTRUCTOR: create a 'cell' object
   Cell (PVector pos, PVector vel, DNA dna_) {
-    modulators = new float[6];
+    modulators = new float[6]; // Each float holds value = 0.0 at this point
     
     // OBJECTS
     dna = new DNA();
@@ -78,20 +78,27 @@ class Cell {
     // POSITION & MOVEMENT
     position = pos.copy();                // cell has current position
     home = pos.copy();                    // home = initial position
-    //origin = new PVector(gs.orx, gs.ory); //arbitrary origin
+    //origin = new PVector(gs.orx, gs.ory); //arbitrary origin (replaced by gs.origin in updatePosition()
     
     updatePosition();
     
-    velocityLinear = vel.copy(); //cell has unique basic velocity component
-    updateVelocity();
+    velocity = vel.copy(); //cell has unique basic velocity component
     velocityRef = velocity.copy(); //keep a copy of the inital velocity for reference
+    velocityLinear = velocity.copy(); //cell has unique basic velocity component
         
     noise_xoff = dna.genes[27]*1000; //Seed for noise-component (x)
     noise_yoff = dna.genes[28]*1000; //Seed for noise-component (y)
+    // velocity, velocityRef, noise_xoff & noise_yoff must all have values before updateModulators() can be run for first time
+    updateModulators(); // Why would I want to do that now? To PRIME them for any following DNA-mods
+    // Once updateModulators() has been run, velocity can be calculated correctly
+    updateVelocity();
+    velocityRef = velocity.copy(); // velocityRef() can be redefined using the correct velocity value.
+    
+    // OLD remnants??
     //noise_xoff = modulator(cycleGenSin, 1, 1.5); // NOTE: max/min values are hard-coded
     //noise_yoff = map (id, 0, gpl.genepool.size(), 1, 1000) + map(cycleGenSin, 0, 1, 10, 10.5); //Strain ID is seed for noiseY
     
-    //updateModulators(); // Why would I want to do that now? To PRIME them for any following DNA-mods
+    
     //distanceFromOriginMods(); // IF ENABLED, IT WOULD HAVE TO BE HERE, ONCE POSITION & MODULATORS ARE INITIALISED  *******************************************
     // TEMPORARILY MOVING ALL DNA MODS HERE *************************************************************************
     
@@ -272,7 +279,7 @@ class Cell {
   
   void updateFillColor() {
     // START > END
-    float h = (modulator(modulators[0], dna.genes[1], dna.genes[2]) * 255) % 255;
+    float h = (modulator(modulators[0], dna.genes[1], dna.genes[2])) % 255;
     float s = modulator(modulators[0], dna.genes[3], dna.genes[4]) * 255;
     float b = modulator(modulators[0], dna.genes[5], dna.genes[6]) * 255;
     float a = modulator(modulators[0], dna.genes[7], dna.genes[8]);
