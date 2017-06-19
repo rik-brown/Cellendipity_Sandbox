@@ -67,12 +67,12 @@ class Global_settings {
     patternSelector = 0; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 10;
+    numStrains = 20;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
     populationMaxSize = 400;  // Not really used when 'breeding' is disabled
     
-    seeds = 150;
+    seeds = 25;
     
     //rows = int(random(1, 9));
     //rows = int(random (4,12));
@@ -98,7 +98,7 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 255; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 255; // last 160, 50, 128, 255
+    bkg_B = 0; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
@@ -108,8 +108,8 @@ class Global_settings {
     nucleusColorF = color(0, 255, 0, 255); // Black
     
     //maxSize = width * random(0.3, 0.5);
-    maxSize = width * 0.2;
-    maxLifespan = width * 0.7;
+    maxSize = width * 0.4;
+    maxLifespan = width * 0.5;
     //maxLifespan = random(1000, 2000);
     maxSpawns = 10;
     
