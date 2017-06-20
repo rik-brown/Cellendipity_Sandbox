@@ -162,7 +162,7 @@ class Cell {
     //updateStrokeColorByPosition();
     if (stripeON) {updateStripeColor();}
     //updateStep();
-    updateNucleus();
+    //updateNucleus();
     display();
     //displayLine();
     //displayText();
@@ -346,7 +346,7 @@ class Cell {
     translate(position.x, position.y);
     float angle = velocity.heading();
     rotate(angle);
-    if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
+    if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 3);}
     if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, r*0.2, r*0.2, 1);}
     popMatrix(); 
   }
@@ -356,7 +356,8 @@ class Cell {
     fill(fillCol);
     stroke(strokeCol);
     if (type == 1) {ellipse(0, 0, xSize, ySize);}
-    if (type == 2) {rect(0, 0, xSize, ySize);}  
+    if (type == 2) {rect(0, 0, xSize, ySize);}
+    if (type == 3) {stroke(0, 40); point(0, 0);}
   }
 
 void displayLine() {
