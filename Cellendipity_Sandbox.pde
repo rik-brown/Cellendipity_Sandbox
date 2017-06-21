@@ -71,8 +71,8 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-162.30";
-int maxCycles = 10;
+String batchName = "batch-162.31";
+int maxCycles = 100;
 int runCycle = 1;
 float cycleGen, cycleGenSin;
 
@@ -110,12 +110,12 @@ void setup() {
   //size(800, 800);
   //size(1000, 1000);
   //size(1500, 1500);
-  //size(2048, 2048);
-  size(4000, 4000);
+  size(2048, 2048);
+  //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
-  //background(gs.bkgColor); // TEST ONLY
+  background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(1000);} else {frameRate(1000);}
   videoExport = new VideoExport(this, videoPath + ".mp4");
   videoExport.setFrameRate(30);
@@ -179,7 +179,7 @@ void getReady() {
   if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   gpl = new Genepool();
   colony = new Colony();
-  background(gs.bkgColor);
+  //background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 

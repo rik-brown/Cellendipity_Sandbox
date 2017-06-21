@@ -76,19 +76,19 @@ class DNA {
       //genes[2]= 240 + map(cycleGenSin, 0, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      genes[3]= 1;
+      genes[3]= 255;
       //genes[3]= random(130,180);   // 3=fill_S_start  
       //genes[3]= map(cycleGenSin, 0, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
-      genes[4]= 1;
+      genes[4]= 255;
       //genes[4]= map(cycleGenSin, 0, 1, 100, 255);   // 4=fill_S_end
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0.0;
+      genes[5]= 0;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
-      genes[6]= 1.0;
+      genes[6]= 255;
       //genes[6]= map(cycleGenSin, 0, 1, 255,64);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * random(0.9, 1.1);   // 6=fill_B_end
       //genes[6]= gs.bkg_B * 0.5;   // 6=fill_B_end
@@ -109,9 +109,9 @@ class DNA {
       genes[13]= 1;   // 13=stroke_B_start
       genes[14]= 1;   // 14=stroke_B_end
       
-      genes[15]= 0;   // 15=stroke_A_start
+      genes[15]= 2;   // 15=stroke_A_start
       //genes[15]= random(5.5, 16.3);   // 15=stroke_A_start
-      genes[16]= 0;   // 16=stroke_A_end
+      genes[16]= 15;   // 16=stroke_A_end
       
       genes[17]= 0.2;   // 17=size_start. Range 0-1, % of gs.maxSize
       //genes[17]= 500/((gs.rows)*random(1, 2));   // 17=size_start CARTESIAN GRID
@@ -137,10 +137,10 @@ class DNA {
       genes[24]= 1;   // 24=noisePercent_End (range: 0-1)
       //genes[24]= random(0,100);   // 24=noisePercent_end
       
-      genes[25]= random(2, 4);   // 25=noise_vMax
-      //genes[25]= 2;
-      genes[26]= random(0.001, 0.006);   // 26=noise_step
-      //genes[26]= 0.003;
+      //genes[25]= random(2, 4);   // 25=noise_vMax
+      genes[25]= 2;
+      //genes[26]= random(0.001, 0.006);   // 26=noise_step
+      genes[26]= 0.003;
       genes[27]= random(1);   // 27=noise_xOff
       //genes[27]= 500;
       genes[28]= random(1);   // 28=noise_yOff

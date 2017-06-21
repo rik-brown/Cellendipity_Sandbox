@@ -36,9 +36,9 @@ class Colony {
   void center_pattern() {
     // Here is the code which fills the 'cells' arraylist with cells at the center of the screen
     for (int n = 0; n < gs.seeds; n++) {
-      int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
+      //int strain = int(random(gpl.numPredefined, gpl.numPredefined + gs.numStrains));
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
-      //int strain = gpl.numPredefined + n;
+      int strain = gpl.numPredefined + n;
       //int strain = (n % gs.numStrains) + gpl.numPredefined;
       //int strain = int(random(gpl.numPredefined + gs.numStrains));
       pos = new PVector(width*0.5, height*0.5); // random position
@@ -55,6 +55,8 @@ class Colony {
       DNA dna = gpl.genepool.get(strain); // Get's a random strain of dna from the genepool
       //DNA dna = gpl.genepool.get(0);                            // Get's a specific strain of dna from the genepool
       dna.genes[0] = n; //n is transferred to gene 0
+      dna.genes[27] = n + (runCycle * 0.0001); //n is transferred to gene 0
+      dna.genes[28] = n + (runCycle * 0.0001); //n is transferred to gene 0
       
       for (int s = 0; s < gs.strainSize; s ++) {
         population.add(new Cell(pos, vel, dna));

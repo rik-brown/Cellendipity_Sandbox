@@ -280,17 +280,17 @@ class Cell {
   void updateFillColor() {
     // START > END
     float h = (modulator(modulators[0], dna.genes[1], dna.genes[2])) % 255;
-    float s = modulator(modulators[0], dna.genes[3], dna.genes[4]) * 255;
-    float b = modulator(modulators[0], dna.genes[5], dna.genes[6]) * 255;
+    float s = modulator(modulators[0], dna.genes[3], dna.genes[4]);
+    float b = modulator(modulators[0], dna.genes[5], dna.genes[6]);
     float a = modulator(modulators[0], dna.genes[7], dna.genes[8]);
     fillColor = color(h, s, b, a); //fill colour is updated with new values
   }
   
   void updateStrokeColor() {
     // START > END
-    float h = (modulator(modulators[0], dna.genes[9], dna.genes[10]) * 255) % 255;
-    float s = modulator(modulators[0], dna.genes[11], dna.genes[12]) * 255;
-    float b = modulator(modulators[0], dna.genes[13], dna.genes[14]) * 255;
+    float h = (modulator(modulators[0], dna.genes[9], dna.genes[10])) % 255;
+    float s = modulator(modulators[0], dna.genes[11], dna.genes[12]);
+    float b = modulator(modulators[0], dna.genes[13], dna.genes[14]);
     float a = modulator(modulators[0], dna.genes[15], dna.genes[16]);
     strokeColor = color(h, s, b, a); //fill colour is updated with new values
   }
@@ -357,7 +357,7 @@ class Cell {
     stroke(strokeCol);
     if (type == 1) {ellipse(0, 0, xSize, ySize);}
     if (type == 2) {rect(0, 0, xSize, ySize);}
-    if (type == 3) {stroke(0, 40); point(0, 0);}
+    if (type == 3) {point(0, 0);}
   }
 
 void displayLine() {
