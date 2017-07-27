@@ -1,8 +1,9 @@
-Velocity can be scaled down from unit vector (1) by multiplying with a value in range 0-1
+Do I modulate the DNA or the phenotypical effects? (a local scaling factor)
 
-Age can be mapped from 0 to 1000 (not 0 - lifetime)
-Cells with shorter lifetime will thereby die at an earlier stage in their colour-lifecycle
 
-Heading can be controlled or influenced by noise
+Don't refresh the background
+Plot points, perhaps stepped
+Only noise?
+RunCycle steps through noise seeds
+5-10 strains?
 
-All modulated values should be able to both grow and shrink on their journey through life
