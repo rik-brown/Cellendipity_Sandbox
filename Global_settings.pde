@@ -20,9 +20,8 @@ class Global_settings {
   boolean makeGIF;
   boolean makeMPEG;
   
-  boolean nucleus;
-  boolean stepped;
-
+  PVector origin;   // arbitrary origin (e.g. center of screen)
+  
   float borderWidth;
   float borderHeight;
 
@@ -41,9 +40,6 @@ class Global_settings {
   int orx;
   int ory; 
   
-  int stepSize;
-  int stepSizeN;
-  
   float bkg_H;
   float bkg_S;
   float bkg_B;
@@ -52,6 +48,9 @@ class Global_settings {
   color nucleusColorU;
   color nucleusColorF;
   
+  float maxSize;
+  float maxLifespan;
+  float maxSpawns;
 
   Global_settings() {
     
@@ -59,28 +58,28 @@ class Global_settings {
     savePNG = true;
     makePDF = false;
     makeGIF = false;
-    makeMPEG = false;
+    makeMPEG = true;
     
-    borderWidth = 0.15;
-    borderHeight = 0.15;
+    borderWidth = 0.5;
+    borderHeight = 0.5;
            
     //patternSelector = int(random(1,5)); // 0 = centered, 1 = random,  2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
-    patternSelector = 4; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
+    patternSelector = 0; // 0 = centered, 1 = random, 2 = cartesian, 3 = cartesian_alt, 4 = phyllotaxic
    
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
-    numStrains = 1;
+    numStrains = 3;
     //strainSize = int(random(2,5)); // Number of cells in a strain
     strainSize = 1;
-    populationMaxSize = 200;  // Not really used when 'breeding' is disabled
+    populationMaxSize = 1000;  // Not really used when 'breeding' is disabled
     
-    seeds = 300;
+    seeds = 3;
     
     //rows = int(random(1, 9));
-    //rows = int(random (4,12));
+    rows = int(random (4,14));
     //rows = int(random(4,118));
-	  rows = 8;
-    cols = 8;
-    //cols = 12;
+	  //rows = 14;
+    //cols = 14;
+    cols = rows;
     
     //orx = int(width * random (0.3, 0.7));  // Random but kept roughly within the pattern
     //ory = int(height * random (0.3, 0.7)); // Random but kept roughly within the pattern
@@ -88,29 +87,31 @@ class Global_settings {
     //ory = int(height * random (0.4, 0.6)); // Random but kept roughly within the pattern
     //orx = int(width * random (1));  // Fully random
     //ory = int(height * random (1)); // Fully random
-    orx = int(width * 0.5) +1;  // Centered
-    ory = int(height * 0.5) +1; // Centered
-
-    // I kept this as a boolean because if size was set to zero to disable it looked steppy
-    stepped = false;
-    stepSize = 20;
-    stepSizeN = int(random (55, 82));
-    
+    orx = int(width * 0.5);  // Centered
+    ory = int(height * 0.5); // Centered
+    //orx = 0; // @origin
+    //ory = 0; // @origin
+    origin = new PVector(orx, ory); //arbitrary origin
+       
     //bkg_H = random(360);
-    bkg_H = 240;
+    bkg_H = 150;
     //bkg_S = random(128,164);
-    bkg_S = 255; // last 105, 55, 255, 225
+    bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
     bkg_B = 255; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
-
-    // I kept this as a boolean to avoid unnecessary work when nucleus is not required
-    nucleus = false;
-    nucleusColorU = color(0, 0, 255); // White
+    
+    nucleusColorU = color(0, 0, 255, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
-    nucleusColorF = color(0, 255, 0); // Black
+    nucleusColorF = color(0, 255, 0, 255); // Black
+    
+    //maxSize = width * random(0.3, 0.5);
+    maxSize = width * 0.5;
+    maxLifespan = width * 1;
+    //maxLifespan = random(1000, 2000);
+    maxSpawns = 10;
     
     logSettings();
   }
@@ -127,14 +128,12 @@ class Global_settings {
     output.println("cols = " + cols);
     output.println("or.x = " + orx);
     output.println("or.y = " + ory);
-    output.println("stepped = " + stepped);
-    output.println("stepSize = " + stepSize);
-    output.println("nucleus = " + nucleus);
-    output.println("stepSizeN = " + stepSizeN);
     output.println("bkg_H = " + bkg_H);
     output.println("bkg_S = " + bkg_S);
     output.println("bkg_B = " + bkg_B);
     output.println("makePDF = " + makePDF);
     output.println("makeGIF = " + makeGIF);
+    output.println("maxSize = " + maxSize);
+    output.println("maxLifespan = " + maxLifespan);
   }
 }
