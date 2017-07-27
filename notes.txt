@@ -1,0 +1,8 @@
+Do I modulate the DNA or the phenotypical effects? (a local scaling factor)
+
+
+Don't refresh the background
+Plot points, perhaps stepped
+Only noise?
+RunCycle steps through noise seeds
+5-10 strains?

@@ -98,14 +98,14 @@ class Global_settings {
     //bkg_S = random(128,164);
     bkg_S = 0; // last 105, 55, 255, 225
     //bkg_B = random(120,180);
-    bkg_B = 255; // last 160, 50, 128, 255
+    bkg_B = 210; // last 160, 50, 128, 255
     bkgColor = color(bkg_H, bkg_S, bkg_B);
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
     
-    nucleusColorU = color(0, 0, 255, 255); // White
+    nucleusColorU = color(0, 0, 255, 55); // White
     //nucleusColorU = color(0, 255, 255); // Red
-    nucleusColorF = color(0, 255, 0, 255); // Black
+    nucleusColorF = color(0, 255, 0, 55); // Black
     
     //maxSize = width * random(0.3, 0.5);
     maxSize = width * 0.5;
