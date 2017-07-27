@@ -1,0 +1,11 @@
+make a piece which responds to here fake synthetic music
+radius of each cell varies according to pitch?
+
+
+use pixel 1 to determine background colour
+
+use pixel colour values to determine strain parameters
+
+lifespan = hue mapped
+start size = brightness mapped
+etc
