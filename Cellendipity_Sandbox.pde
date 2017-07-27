@@ -31,8 +31,9 @@
 *
 *  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
 *
-*  o) SPAWNING new cells - does it still work?
+*  o) SPAWNING new cells - does it still work? YES! Pretty much
 *    1) Add recombined DNA to the genepool?
+*      a) Why would I want to do this? What's the use-case. The genepool is currently only used initially, when seeding a new colony.
 *  
 *  p) Use an image file in /data as a seed for colours (or other parameters) at spawn positions
 *    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
@@ -70,13 +71,13 @@ Genepool gpl;          // A Genepool object called 'gpl'
 PImage img;
 VideoExport videoExport;
 
-String batchName = "batch-160.0";
-int maxCycles = 2;
+String batchName = "batch-162.31";
+int maxCycles = 100;
 int runCycle = 1;
-float cycleGen;
+float cycleGen, cycleGenSin;
 
 
-int maxFrames = 1000;
+int maxFrames = 10000;
 //int maxFrames = int(random(1300,1600));
 int frameCounter;
 
@@ -97,7 +98,7 @@ String videoPath; // Name & location of video output (.mp4 file)
 PrintWriter output;    // Object for writing to the settings logfile
 
 void setup() {
-  colorMode(HSB, 360, 255, 255, 255);
+  colorMode(HSB, 255, 255, 255, 255);
   //blendMode(DIFFERENCE);
   rectMode(RADIUS);
   ellipseMode(RADIUS);
@@ -107,15 +108,15 @@ void setup() {
   //size(400, 400);
   //size(500, 500);
   //size(800, 800);
-  size(1024, 1024);
+  //size(1000, 1000);
   //size(1500, 1500);
-  //size(2048, 2048);
+  size(2048, 2048);
   //size(4000, 4000);
   //size(5000, 5000);
   //size(6000, 6000);
   //size(8000, 8000);
-  //background(gs.bkgColor); // TEST ONLY
-  if (gs.debug) {frameRate(5);} else {frameRate(10);}
+  background(gs.bkgColor); // TEST ONLY
+  if (gs.debug) {frameRate(1000);} else {frameRate(1000);}
   videoExport = new VideoExport(this, videoPath + ".mp4");
   videoExport.setFrameRate(30);
   videoExport.setQuality(70, 128);
@@ -123,7 +124,7 @@ void setup() {
   videoExport.startMovie();
 }
 
-void draw() {
+void draw() { //<>//
   if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
   if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
@@ -143,6 +144,7 @@ void manageColony() {
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
   if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
+  //if (runCycle >= maxCycles) {exit();}
   else {
     // get ready for a new cycle
     runCycle ++;
@@ -155,8 +157,9 @@ void getReady() {
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
-  cycleGen = sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)); // cyclic generator value in range 0-1
-  println("Iteration: " + runCycle + " cycleGen: " + cycleGen);
+  cycleGen = map(runCycle, 1, maxCycles, 0, 1); // global linear modulator value in range 0-1
+  cycleGenSin = map(sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)), -1, 1, 0, 1); // global cyclic modulator value in range 0-1
+  //println("Iteration: " + runCycle + " cycleGenSin: " + cycleGenSin);
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
@@ -176,7 +179,7 @@ void getReady() {
   if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   gpl = new Genepool();
   colony = new Colony();
-  background(gs.bkgColor);
+  //background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
 
