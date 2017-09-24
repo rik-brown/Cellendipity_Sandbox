@@ -77,17 +77,18 @@ void manageColony() {
   if (gs.savePNG) {saveFrame(screendumpPath);} // Save an image of how the colony looked when it was terminated
   if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save an image plus a duplicate image with alternative iteration number
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
-  if (gs.makePDF) {endRecord();}
-  if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
+  if (gs.makePDF) {endRecord();} // If I'm in PDF-mode, complete & close the file
+  if (gs.makeMPEG) {videoExport.saveFrame();} // If in MPEG mode, save one frame per iteration to the file
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
+  // If all iterations are completed:
   if (runCycle >= maxCycles) {
-    if (gs.makeMPEG) {videoExport.endMovie();}
-    exit();
+    if (gs.makeMPEG) {videoExport.endMovie();} // If in MPEG mode, complete & close the file
+    exit(); // Terminate the program
   }
   //if (runCycle >= maxCycles) {exit();}
   else {
-    // get ready for a new cycle
+    // Increment the counter & get ready for a new cycle
     runCycle ++;
     getReady();
   }
@@ -106,18 +107,18 @@ void getReady() {
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
 
   screendumpPath = pathName + "/png/" + batchName + "-" + iterationNum + ".png";
+  //screendumpPath = "../output.png"; // For use when running from local bot
   screendumpPathGIF1 = pathName + "/jpg/" + batchName + "-" + iterationNum + ".jpg";
   screendumpPathGIF2 = pathName + "/jpg/" + batchName + "-" + iterationNum2 + ".jpg";
   screendumpPathPDF = pathName + "/pdf/" + batchName + "-" + iterationNum + ".pdf";
-  //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
   videoPath = pathName + "/" + batchName;
 
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
 
   startSettingsFile();
-  gs = new Global_settings();
   if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
+  gs = new Global_settings();
   gpl = new Genepool();
   colony = new Colony();
   //background(gs.bkgColor);
@@ -136,6 +137,7 @@ void endSettingsFile() {
   output.close(); //Flush and close the settings file
 }
 
+// Saves a frame as .jpg to framedumpPath
 void frameSave() {
   String frameName = nf(frameCount, 5);
   saveFrame(framedumpPath + frameName + ".jpg");

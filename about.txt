@@ -9,10 +9,25 @@ Is a generic 'multi-cellular playset'
 Stuff I'm currently working on:
 ===============================
 TASKS:
-  T1) Read through the whole code to remind myself how it all works
-  
+  t-1) Read through the whole code to remind myself how it all works
+
 BUGS:
-IMPROVEMENTS:
+  b-1) cycleGen & cycleGenSin should be set to =1 if MaxCycles = 1 (can't map in range 1 to 1)
+
+IMPROVEMENTS
+  i-1) I can simply and robustly configure the 'mode of operation' of the system without having to remember technical stuff
+    * A 'makePDF' mode
+    * A 'makeGIF' mode
+    * A 'makeMPEG' mode
+    * A 'Use source image' mode
+    * A 'recycle output as source image' mode
+  i-2) I can add to a list of predefined DNA types
+  i-3) Change the way I write to logfile to a short generic method which accepts a filename, a string, opens, writes & closes the file
+  i-4) Cellendipity_Sandbox.pde generally appears messy & overcomplicated, with all it's counters & filenames. SIMPLIFY!
+    * Operations linked to setting up managing the Colony
+    * Operations linked to graphical output
+    * Operations linked to logfiles
+
 NEW FEATURES:
 
 
