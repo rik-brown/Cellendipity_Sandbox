@@ -1,0 +1,81 @@
+Cellendipity_Sandbox
+====================
+
+Is a generic 'multi-cellular playset'
+ - consisting of well-organized, easy-to-understand functional-modules
+ - for easy prototyping & documentation of exploratory art-experiments
+ RB 09.apr.2017
+
+Stuff I'm currently working on:
+===============================
+TASKS:
+  T1) Read through the whole code to remind myself how it all works
+  
+BUGS:
+IMPROVEMENTS:
+NEW FEATURES:
+
+
+
+Stuff I might do in the future:
+===============================
+
+BUGS:
+
+NEW FEATURES:
+  g) Introduce a new spawn-pattern of concentric rings
+    1) Also variable spacing between rows/columns or rings (binomial, sine etc.)
+
+IMPROVEMENTS:
+  d) Improve functionality for saving frames for gifs/mp4 videos:
+    1) Configurable frame interval
+
+  j) Nucleus should be moved to the DNA
+    1) Nucleus colour might need to be hard-coded, to avoid yet more DNA. or?
+    2) Same goes for stripe colour
+
+  k) Populate the library with some 'favourite' cell genotypes from older sketches
+
+  m) DNA modifiers need to take spawn-pattern into account (e.g. centered).
+    * What are the implications of this?
+
+  v) REFACTORING: rather than size, remoteness, age etc should have "fillcolormodulator" "strokecolormodulator" "sizemodulator" "noisemodulator" "shapemodulator"
+    * Each of these can in turn be linked to age, oDist, pixelColor etc.
+    * e.g. fill_H = map(fillMod, 0, 1, fill_H_start, fill_H_end) % 360;
+    * where fillmod could be map(range, 0, lifespan, 1, 0) or (age, 0, lifespan, 1, 0) etc. MORE ECONOMICAL
+
+  w) Mods in cell() are done to DNA before assignment to parameters, so values remain with the original range
+
+
+IDEAS:
+  i) Cell STYLE could be a variant of it's DNA, based on a single gene  EXPLORE! Examples could be:
+    1) Striped or not  (today handled by having stripe size > lifespan) (which incidentally is a neat way of calculating it)
+    2) Stepped or not (maybe stepsize could be managed in a similar way, so "always stepped" but "step interval is double the lifetime")
+    3) Show/don't show nucles (again, maybe it's just a question of interval size?)
+
+  l) Try to recreate the twitter/tumblrbot classic styles?
+
+  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
+
+  o) SPAWNING new cells - Add recombined DNA to the genepool?
+    * Why would I want to do this? What's the use-case?
+    * The genepool is currently only used initially, when seeding a new colony.
+
+    p) Use an image file in /data as a seed for colours (or other parameters) at spawn positions
+      1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
+      2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette) <DONE AS DEMO 157.1>
+      3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern) <DONE AS DEMO 157.100 & 2>
+      4) Add a new class to handle this? Need to think about how to enable this feature.
+      5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
+      6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
+      6a) Could just use hue while allowing B & S to continue as normal <DONE>
+      7) Continue on original path until pixelColor hue is more than X degrees different. If diff>x, adopt new hue & direction
+
+    r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI <DONE>
+      * Which in turn influences later changes...
+
+    s) pixelHue at current seed position determines heading (or heading offset from initial velocity) <DONE>
+
+    t) (If cell arrives at pixel of a given colour) {do this()} where this = die, spawn, stop moving, etc.
+
+    u) When (cell spawns or splits) {another cell dies}

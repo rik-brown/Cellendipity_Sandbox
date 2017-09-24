@@ -1,14 +1,78 @@
-import processing.pdf.*; // For exporting output as a .pdf file
-import com.hamoid.*;     // For creating .mp4 animations from output images
+/*
+* Cellendipity_Sandbox
+*
+* Is a generic 'multi-cellular playset'
+*  - consisting of well-organized, easy-to-understand functional-modules
+*  - for easy prototyping & documentation of exploratory art-experiments
+*  RB 09.apr.2017
+*
+* Development Goals:
+*
+*  d) Improve functionality for saving frames for gifs/mp4 videos:
+    1) Configurable frame interval
 
-Colony colony;           // A Colony object called 'colony'
-Global_settings gs;      // A Global_settings object called 'gs'
-Genepool gpl;            // A Genepool object called 'gpl'
-PImage img;              // A PImage object called 'img' (used when importing a source image)
-VideoExport videoExport; // A VideoExport object called 'videoExport' (used when exporting video)
+*  g) Introduce a new spawn-pattern of concentric rings
+*    1) Also variable spacing between rows/columns or rings (binomial, sine etc.)
 
-String batchName = "batch-163.00"; // Used to define the output folder
-int maxCycles = 1; // How many
+*  i) Cell STYLE could be a variant of it's DNA, based on a single gene  EXPLORE
+*    Examples could be:
+*    1) Striped or not  (today handled by having stripe size > lifespan) (which incidentally is a neat way of calculating it)
+*    2) Stepped or not (maybe stepsize could be managed in a similar way, so "always stepped" but "step interval is double the lifetime")
+*    3) Show/don't show nucles (again, maybe it's just a question of interval size?)
+
+*  j) Nucleus should be moved to the DNA
+*    1) Nucleus colour might need to be hard-coded, to avoid yet more DNA. or?
+*    2) Same goes for stripe colour
+
+*  k) Populate the library with some 'favourite' cell genotypes from older sketches
+*  l) Try to recreate the twitter/tumblrbot classic styles?
+*
+*  m) DNA modifiers need to take spawn-pattern into account (e.g. centered). What are the implications of this?
+*
+*  n) Cell 'gets' it's DNA according to strain ID (which is passed to the cell in a function)
+*
+*  o) SPAWNING new cells - does it still work? YES! Pretty much
+*    1) Add recombined DNA to the genepool?
+*      a) Why would I want to do this? What's the use-case. The genepool is currently only used initially, when seeding a new colony.
+*  
+*  p) Use an image file in /data as a seed for colours (or other parameters) at spawn positions
+*    1) This reference includes most of what I need: https://processing.org/tutorials/pixels/
+*    2) Alt.i) When colony spawns a cell, it pulls the colours from image sample (image = colour palette) <DONE AS DEMO 157.1>
+*    3) Alt.ii) When colony spawns a cell, it does so only in areas of the image having colour X (image =spawn-pattern) <DONE AS DEMO 157.100 & 2>
+*    4) Add a new class to handle this? Need to think about how to enable this feature.
+*    5) The output of one iteration could provide the input for the next? <DONE AS DEMO 157.1>
+*    6) Cell could sample for colour at it's current position for every draw cycle. <DONE AS 157.4>
+*    6a) Could just use hue while allowing B & S to continue as normal <DONE>
+*    7) Continue on original path until pixelColor hue is more than X degrees different. If diff>x, adopt new hue & direction
+*
+*  r) pixelHue at seed position determines initial velocity (direction) (hue is from 0/360, maps to -PI/PI <DONE>
+*    .... which in turn influences later changes
+*  s) pixelHue at current seed position determines heading (or heading offset from initial velocity) <DONE>
+*
+*  t) (If cell arrives at pixel of a given colour) {do this()} where this = die, spawn, stop moving, etc.
+*
+*  u) When (cell spawns or splits) {another cell dies}
+*
+*  v) REFACTORING: rather than size, remoteness, age etc should have "fillcolormodulator" "strokecolormodulator" "sizemodulator" "noisemodulator" "shapemodulator"
+*      Each of these can in turn be linked to age, oDist, pixelColor etc.
+*      e.g. fill_H = map(fillMod, 0, 1, fill_H_start, fill_H_end) % 360;
+*      where fillmod could be map(range, 0, lifespan, 1, 0) or (age, 0, lifespan, 1, 0) etc. MORE ECONOMICAL
+*
+*  w) Mods in cell() are done to DNA before assignment to parameters, so values remain with the original range
+*
+*/
+
+import processing.pdf.*;
+import com.hamoid.*;
+
+Colony colony;        // A Colony object called 'colony'
+Global_settings gs;   // A Global_settings object called 'gs'
+Genepool gpl;          // A Genepool object called 'gpl'
+PImage img;
+VideoExport videoExport;
+
+String batchName = "batch-163.00";
+int maxCycles = 1;
 int runCycle = 1;
 float cycleGen, cycleGenSin;
 
@@ -39,12 +103,12 @@ void setup() {
   rectMode(RADIUS);
   ellipseMode(RADIUS);
   smooth();
-  getReady(); // Create the colony
+  getReady();
   //size(200, 200);
   //size(400, 400);
-  //size(500, 500);
+  size(500, 500);
   //size(800, 800);
-  size(1000, 1000);
+  //size(1000, 1000);
   //size(1500, 1500);
   //size(2048, 2048);
   //size(4000, 4000);
@@ -53,20 +117,18 @@ void setup() {
   //size(8000, 8000);
   background(gs.bkgColor); // TEST ONLY
   if (gs.debug) {frameRate(1000);} else {frameRate(1000);}
-  if (gs.makeMPEG) {
-    videoExport = new VideoExport(this, videoPath + ".mp4");
-    videoExport.setFrameRate(30);
-    videoExport.setQuality(70, 128);
-    videoExport.setDebugging(false);
-    videoExport.startMovie();
-  }
+  videoExport = new VideoExport(this, videoPath + ".mp4");
+  videoExport.setFrameRate(30);
+  videoExport.setQuality(70, 128);
+  videoExport.setDebugging(false);
+  videoExport.startMovie();
 }
 
 void draw() {
-  if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();} // Criteria for terminating & restarting a colony
+  if (colony.population.size() == 0 || frameCounter <= 0 ) {manageColony();}
   if (gs.debug) {background(gs.bkgColor);} // Refresh the background on every frame to simplify debugging
   //background(gs.bkgColor);
-  colony.run(); // Update the colony
+  colony.run();
   //frameSave(); // Saves each frame as a .png (for GIFs etc.)
   //if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save every frame in the sketch
   frameCounter --;
@@ -74,17 +136,14 @@ void draw() {
 
 // What happens when the colony goes extinct
 void manageColony() {
-  if (gs.savePNG) {saveFrame(screendumpPath);} // Save an image of how the colony looked when it was terminated
-  if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save an image plus a duplicate image with alternative iteration number
+  if (gs.savePNG) {saveFrame(screendumpPath);} // Save an image
+  if (gs.makeGIF) {saveFrame(screendumpPathGIF1);saveFrame(screendumpPathGIF2);} // Save a duplicate image with alternative iteration number 
   //saveFrame("/data/output.png"); // Save a duplicate image to the /data folder to be used in next iteration
   if (gs.makePDF) {endRecord();}
   if (gs.makeMPEG) {videoExport.saveFrame();} // Use this to save one frame per iteration
   endSettingsFile(); // Complete the settings logfile & close
   //exit();
-  if (runCycle >= maxCycles) {
-    if (gs.makeMPEG) {videoExport.endMovie();}
-    exit();
-  }
+  if (runCycle >= maxCycles) {videoExport.endMovie(); exit();}
   //if (runCycle >= maxCycles) {exit();}
   else {
     // get ready for a new cycle
@@ -104,7 +163,7 @@ void getReady() {
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
   //pathName = "D:/output/" + applicationName + "/" + batchName + "/"+ String.valueOf(width) + "x" + String.valueOf(height) + "/"; //USB
-
+  
   screendumpPath = pathName + "/png/" + batchName + "-" + iterationNum + ".png";
   screendumpPathGIF1 = pathName + "/jpg/" + batchName + "-" + iterationNum + ".jpg";
   screendumpPathGIF2 = pathName + "/jpg/" + batchName + "-" + iterationNum2 + ".jpg";
@@ -112,9 +171,9 @@ void getReady() {
   //screendumpPath = "../output.png"; // For use when running from local bot
   framedumpPath = pathName + "/frames/";
   videoPath = pathName + "/" + batchName;
-
+  
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
-
+    
   startSettingsFile();
   gs = new Global_settings();
   if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
@@ -132,7 +191,7 @@ output.println(screendumpPath);
 
 void endSettingsFile() {
   output.println("Total frames: " + (maxFrames - frameCounter)); // Update the log with the number of frames used
-  output.flush();
+  output.flush(); 
   output.close(); //Flush and close the settings file
 }
 
