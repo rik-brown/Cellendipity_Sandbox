@@ -59,8 +59,9 @@ class DNA {
       
       genes[0] = 0;  // id
       
+      genes[1]= 200;
       //genes[1]= random(200, 260);   // 1=fill_H_start
-      genes[1]= random(255);   // 1=fill_H_start
+      //genes[1]= random(255);   // 1=fill_H_start
       //genes[1]= 300 + map(cycleGenSin, 0, 1, 0, 30);   // 1=fill_H_start
 
       //genes[1]= cycleGen;
@@ -77,7 +78,7 @@ class DNA {
       //genes[2]= 240 + map(cycleGenSin, 0, 1, 0, 30);   // 2=fill_H_end
       //genes[2]= map(runCycle, 1, maxCycles, 360, 719);
 
-      genes[3]= 255;
+      genes[3]= 128;
       //genes[3]= random(130,180);   // 3=fill_S_start  
       //genes[3]= map(cycleGenSin, 0, 1, 0, 100);   // 3=fill_S_start
       //genes[3]= gs.bkg_S;   // 3=fill_S_start
@@ -86,7 +87,7 @@ class DNA {
       //genes[4]= gs.bkg_S;   // 4=fill_S_end
       //genes[4]= gs.bkg_S * random(0.5, 0.9);   // 4=fill_S_end
       
-      genes[5]= 0;
+      genes[5]= 128;
       //genes[5]= gs.bkg_B;   // 5=fill_B_start
       //genes[5]= map(cycleGenSin, 0, 1, 164, 200);   // 5=fill_B_start
       genes[6]= 255;

@@ -99,8 +99,8 @@ void getReady() {
   inputFile = "output.png"; // After 1st run, all iterations will use /data/output.png as the input file
   frameCounter = maxFrames;
   iterationNum = nf(runCycle, 3);
-  cycleGen = map(runCycle, 1, maxCycles, 0, 1); // global linear modulator value in range 0-1
-  cycleGenSin = map(sin(PI * map(runCycle, 1, maxCycles, 1.5, 3.5)), -1, 1, 0, 1); // global cyclic modulator value in range 0-1
+  cycleGen = map(runCycle, 0, maxCycles, 0, 1); // global linear modulator value in range 0-1
+  cycleGenSin = map(sin(PI * map(runCycle, 0, maxCycles, 1.5, 3.5)), -1, 1, 0, 1); // global cyclic modulator value in range 0-1
   //println("Iteration: " + runCycle + " cycleGenSin: " + cycleGenSin);
   String iterationNum2 = nf((maxCycles * 2 - runCycle), 3);
   pathName = "../../output/" + applicationName + "/" + batchName + "/" + String.valueOf(width) + "x" + String.valueOf(height) + "/"; //local
@@ -117,14 +117,14 @@ void getReady() {
   output = createWriter(pathName + "/settings/" + batchName + "-" + iterationNum +".settings.log"); //Open a new settings logfile
 
   startSettingsFile();
-  if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   gs = new Global_settings();
   gpl = new Genepool();
   colony = new Colony();
+  if (gs.makePDF) {beginRecord(PDF, screendumpPathPDF);}
   //background(gs.bkgColor);
   //image(img,(width-img.width)*0.5, (height-img.height)*0.5); // Displays the image file /data/output.png (centered)
 }
-
+ //<>//
 void startSettingsFile() {
 String timeStamp = (year() + "" + month() + "" + day() + "-" + hour() + "" + minute() + "" + second());
 output.println("Iteration: " + iterationNum + " " + timeStamp);

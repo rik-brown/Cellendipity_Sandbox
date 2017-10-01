@@ -346,8 +346,8 @@ class Cell {
     translate(position.x, position.y);
     float angle = velocity.heading();
     rotate(angle);
-    //if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
-    //if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, r*0.1, r*0.1, 1);}
+    if (drawCellON) {drawSomething(fillColor, strokeColor, r, r*flatness, 1);}
+    if (drawNucleusON) {updateNucleusColor(); drawSomething(fillColor, strokeColor, r*0.1, r*0.1, 1);}
     if (drawNucleusON) {updateNucleusColor(); drawSomething(strokeColor, fillColor, r*0.1, r*0.1, 1);}
     popMatrix(); 
   }

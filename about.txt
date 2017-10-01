@@ -10,13 +10,19 @@ Stuff I'm currently working on:
 ===============================
 TASKS:
   t-1) Read through the whole code to remind myself how it all works
+  t-2) Improve the comments/documentation so I have an easier job understanding how things are working 1 year from now
+    * Each gene in the DNA needs to be transparent in it's function
+  t-3) Make sure there are no 'debug hacks' active in the code
 
 BUGS:
   b-1) cycleGen & cycleGenSin should be set to =1 if MaxCycles = 1 (can't map in range 1 to 1)
+  b-2) Something is causing "map(0.9643783, 0, 1, 1.1157783, NaN) called, which returns NaN (not a number)s"
 
 IMPROVEMENTS
 
   EPIC: SYSTEM CONFIGURATION
+  Could one solution be that 'Global_settings' can also be stored/loaded from a seperate .csv file (like the genepool)?
+
   i-1) I can simply and robustly configure the 'output mode' of the system (without having to remember technical stuff)
     * A 'makePDF' mode
     * A 'makeGIF' mode
