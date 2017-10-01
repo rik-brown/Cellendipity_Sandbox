@@ -170,6 +170,7 @@ class Cell {
     increment();
   }
 
+  // Updates the values of the parameters which are incremented on each iteration 
   void increment() {
     age ++;
     sawtooth_1 ++;
@@ -180,6 +181,7 @@ class Cell {
     position.add(velocity);
   }
   
+  // Updates the values of each of the modulators according to their respective rules
   void updateModulators() {
     modulators[0] = map(age, 0, dna.genes[31] * gs.maxLifespan, 0, 1); // maturity is the driver tied to the aging process 'MATURITY'
     modulators[1] = map(distanceFromHome, 0, dna.genes[31] * gs.maxLifespan, 0, 1); // distanceFromHome = distance to seed-position (home). 'REMOTENESS'
@@ -198,6 +200,8 @@ class Cell {
   }
   
   void updateSawteeth() {
+    // sawtooth_1 starts at zero and increases by +1 each run-cycle
+    // It sets 'sawtooth_1_Flag' to TRUE and resets to zero every time it passes the limit 'sawtooth_1_limit'
     float sawtooth_1_limit = r * dna.genes[34];
     if (sawtooth_1 > sawtooth_1_limit) {sawtooth_1_Flag = true; sawtooth_1 = 0;} else {sawtooth_1_Flag = false;}
     

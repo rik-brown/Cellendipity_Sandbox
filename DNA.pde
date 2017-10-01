@@ -163,7 +163,8 @@ class DNA {
       //if (random(1)>0.4) {genes[32] = random(20,50);} else {genes[32] = 10000;} // 32=StripeSize
       //genes[33]= 0.01;   // 33=StripeRatio
       genes[33] = random(0.2, 0.4);  // 33=StripeRatio
-      genes[34] = 0.5;  // 34=Sawtooth_1_scaling_factor
+      //genes[34] = 0.5;  // 34=Sawtooth_1_scaling_factor
+      genes[34] = 0;  // 34=Sawtooth_1_scaling_factor 0=No step
       genes[35] = 1000.0;  // 35=Sawtooth_2_scaling_factor      
    }
 

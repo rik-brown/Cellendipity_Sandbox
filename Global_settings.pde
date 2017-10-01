@@ -103,12 +103,12 @@ class Global_settings {
     //bkgColor = 0; // Black
     //bkgColor = 360; // White
 
-    nucleusColorU = color(0, 0, 255, 55); // White
+    nucleusColorU = color(0, 0, 255, 255); // White
     //nucleusColorU = color(0, 255, 255); // Red
-    nucleusColorF = color(0, 255, 0, 55); // Black
+    nucleusColorF = color(0, 255, 0, 255); // Black
 
     //maxSize = width * random(0.3, 0.5);
-    maxSize = width * 0.5;
+    maxSize = width * 0.1;
     maxLifespan = width * 2;
     //maxLifespan = random(1000, 2000);
     maxSpawns = 10;

@@ -264,9 +264,9 @@ class Colony {
     }
   }
   
-  // Method which receives a position PVector & returns a color object matching the color of the pixel in /data/input.png
+  // Returns a color object matching the color of the equivalent pixel at the position 'pos' in the source image /data/input.png
   color pixelColour(PVector pos) {
-    int pixelX = int(map(pos.x, -1, width+1, 0, img.width-1));
+    int pixelX = int(map(pos.x, -1, width+1, 0, img.width-1)); 
     int pixelY = int(map(pos.y, -1, height+1, 0, img.height-1));
     int pixelPos = pixelX + pixelY * img.width; // Position of pixel to be used for colour-sample
     img.loadPixels(); // Load the pixel array for the input image
@@ -280,34 +280,34 @@ class Colony {
   }
   
   
-  // Spawn a new cell
+  // Spawns a new cell using the received values for position, velocity & DNA
   void spawn(PVector pos, PVector vel, DNA dna_) {
     population.add(new Cell(pos, vel, dna_));
   }
 
-  // Run the colony
+  // Runs the colony
   void run() {
-    if (gs.debug) {colonyDebugger();}
+    if (gs.debug) {colonyDebugger();}                 // If debug mode = true, run debugger to print debug info about the colony
     for (int i = population.size()-1; i >= 0; i--) {  // Iterate backwards through the ArrayList because we are removing items
       Cell c = population.get(i);                     // Get one cell at a time
-      c.run();                                   // Run the cell (grow, move, spawn, check position vs boundaries etc.)
+      c.run();                                        // Run the cell (grow, move, spawn, check position vs boundaries etc.)
       if (c.dead()) {population.remove(i);}           // If the cell has died, remove it from the array
 
-      // Iteration to check collision between current cell(i) and the rest
-      if (population.size() <= gs.populationMaxSize && c.fertile) {         // Don't check for collisons if there are too many cells (wait until some die off)
-        for (int others = i-1; others >= 0; others--) {         // Since main iteration (i) goes backwards, this one needs to too
+      // Test for collision between current cell(i) and the rest
+      if (population.size() <= gs.populationMaxSize && c.fertile) {  // Don't check for collisons if there are too many cells (wait until some die off)
+        for (int others = i-1; others >= 0; others--) {              // Since main iteration (i) goes backwards, this one needs to too
           Cell other = population.get(others);                       // Get the other cells, one by one
-          if (other.fertile) { c.checkCollision(other); }       // Only check for collisions when both cells are fertile
+          if (other.fertile) {c.checkCollision(other);}              // Only check for collisions when both cells are fertile
         }
       }
     }
   }
 
-
-  void colonyDebugger() {  // Displays some values as text at the top left corner (for debug only)
+  // Displays some values as text at the top left corner (for debug only)
+  void colonyDebugger() {
     noStroke();
     fill(0);
-    rect(0,0,250,40);
+    rect(0,0,250,40); // Make a background & overwrite the previous text to make the new text readable 
     fill(360);
     textSize(16);
     text("Cycle: " + runCycle + " Cycle frame: " + frameCounter + " Total frames: " + frameCount + " Nr. cells: " + population.size() + " MaxLimit:" + gs.populationMaxSize + " Pattern:" + gs.patternSelector, 10, 18);
