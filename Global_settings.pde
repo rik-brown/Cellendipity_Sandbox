@@ -22,8 +22,8 @@ class Global_settings {
 
   PVector origin;   // arbitrary origin (e.g. center of screen)
 
-  float borderWidth;
-  float borderHeight;
+  float borderWidth;  // Not currently in use
+  float borderHeight; // Not currently in use
 
   int patternSelector;
 
@@ -69,10 +69,10 @@ class Global_settings {
     //numStrains = int(random(1, 4)); // Number of strains (a group of cells sharing the same DNA)
     numStrains = 3;
     //strainSize = int(random(2,5)); // Number of cells in a strain
-    strainSize = 1;
+    strainSize = 10;
     populationMaxSize = 1000;  // Not really used when 'breeding' is disabled
 
-    seeds = 3;
+    seeds = 2;
 
     //rows = int(random(1, 9));
     rows = int(random (4,14));

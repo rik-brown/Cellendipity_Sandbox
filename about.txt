@@ -15,13 +15,29 @@ BUGS:
   b-1) cycleGen & cycleGenSin should be set to =1 if MaxCycles = 1 (can't map in range 1 to 1)
 
 IMPROVEMENTS
-  i-1) I can simply and robustly configure the 'mode of operation' of the system without having to remember technical stuff
+
+  EPIC: SYSTEM CONFIGURATION
+  i-1) I can simply and robustly configure the 'output mode' of the system (without having to remember technical stuff)
     * A 'makePDF' mode
     * A 'makeGIF' mode
     * A 'makeMPEG' mode
+
+  i-2) I can simply and robustly configure the 'input mode' of the system (without having to remember technical stuff)
     * A 'Use source image' mode
     * A 'recycle output as source image' mode
-  i-2) I can add to a list of predefined DNA types
+
+  i-3) I can easily select the pattern style (initial spawn) used by the system
+    * Manual configuration
+    * Automatic (e.g. iterative or random) selection
+
+  i-4) I can easily configure the parameters used to control the result of the artwork
+    * Manual configuration
+    * Automatic (e.g. iterative or random) selection
+
+  i-5) The configurations I select fall within 'workable ranges' without sacrificing too many interesting outcomes
+
+  i-2) I can easily add to a list of predefined DNA types
+
   i-3) Change the way I write to logfile to a short generic method which accepts a filename, a string, opens, writes & closes the file
   i-4) Cellendipity_Sandbox.pde generally appears messy & overcomplicated, with all it's counters & filenames. SIMPLIFY!
     * Operations linked to setting up managing the Colony
@@ -60,6 +76,13 @@ IMPROVEMENTS:
     * where fillmod could be map(range, 0, lifespan, 1, 0) or (age, 0, lifespan, 1, 0) etc. MORE ECONOMICAL
 
   w) Mods in cell() are done to DNA before assignment to parameters, so values remain with the original range
+
+  x) In Genepool: 3) Any new genotypes that might arise during the lifetime of a colony (Why would I want to do this, actually?)
+    *  For 3) I need a 'genepool.spawn' function that adds a new genotype to the pool when a new cell is created
+    *  It must somehow be linked to the colony.spawn function
+    *  It must receive some new DNA and push it to the genepool arraylist
+    *  It must be written to the genepool.csv output file
+    *  Maybe 'write to .csv' is a function that is called once, at the end of a colony, rather than in the constructor itself?
 
 
 IDEAS:

@@ -1,24 +1,17 @@
 class Genepool {
 
 /* The Genepool class creates and manages an ArrayList for all the DNA available to the Colony
-*  The genepool consists of:
+*
+*  The genepool object consists of:
 *  1) A fixed number of predefined genotypes (DNA objects), stored in /data/genepool.csv
 *  2) A configurable number of genotypes, created by iteratively applying the DNA constructor
-*  3) Any new genotypes that might arise during the lifetime of a colony
-*
-*  TO DO:
-*  For 3) I need a 'genepool.spawn' function that adds a new genotype to the pool when a new cell is created
-*  It must somehow be linked to the colony.spawn function
-*  It must receive some new DNA and push it to the genepool arraylist
-*  It must be written to the genepool.csv output file
-*  Maybe 'write to .csv' is a function that is called once, at the end of a colony, rather than in the constructor itself?
 *
 */
 
   // VARIABLES
   ArrayList<DNA> genepool;  // An arraylist for all the strains of dna
   Table genetable; // A table of gene data
-  int numPredefined; // The number of predefined DNA in the genepool
+  int numPredefined; // The quantity of predefined DNA in the genepool (#rows in the source .csv)
   
   // CONSTRUCTOR: Create a 'Colony' object containing a genepool and an initial population of cells
   Genepool() {
@@ -27,6 +20,7 @@ class Genepool {
     genetable = loadTable("genepool.csv", "header");
     numPredefined = genetable.getRowCount(); // Count the number of rows initially (minus header)
     
+    // This for-loop reads each row of the .csv and adds a DNA object to the genepool using the values
     for (TableRow row : genetable.rows()) {
       float[] newgenes = new float[genetable.getColumnCount()];
       // Iterate through all the columns, getting each value and add it to newgenes[]
@@ -35,7 +29,7 @@ class Genepool {
         newgenes[col] = value; //Add the value pulled from the table to it's respective position in the array
       }
       
-      // This code is needed to inject some random into specific genes in the DNA stored in genepool.csv
+      // This code may be used to inject some random into specific genes in the DNA stored in genepool.csv
       //newgenes[17]= 500/gs.rows;
       //newgenes[25]= random(2, 4);   // 25=noise_vMax
       //newgenes[26]= random(0.001, 0.006);   // 26=noise_step
@@ -48,7 +42,8 @@ class Genepool {
       
     }
     
-    // Here is the code which fills the 'genepool' arraylist with a given number (gs.numStrains) of different DNA-strains.
+    // This for-loop calls the newDNA constructor 'gs.numStrains' times to make different DNA-strains & add them to the 'genepool' arraylist
+    // (they are also added to the .csv table, for posterity)
     for (int g = 0; g < gs.numStrains; g++) {
       DNA newDNA = new DNA(); // Create a new DNA object from the constructor template (id gene[0] will always be =0)
       TableRow newRow = genetable.addRow();
@@ -63,9 +58,11 @@ class Genepool {
       genepool.add(newDNA); // Add new DNA object to the genepool. numStrains = nr. of unique genomes
     }
     
+    // The current 'genetable' (including a copy of the original .csv and all DNA added in this constructor) is saved to file
     String newFileName = pathName + "/csv/" + batchName + "-" + iterationNum +".genepool.csv";
     saveTable(genetable, newFileName);
     
+    // In debug-mode, the value of a specific gene in each DNA will be printed to the terminal
     if (gs.debug) {
       for (int i = 0; i < genepool.size(); i++) {
         int gene = 32;
@@ -73,7 +70,5 @@ class Genepool {
         println("Genepool strain# " + i + ": contains gene [" + gene + "] with value " + debugDNA.genes[gene]);
       }
     }
-       
   }
-
 }
